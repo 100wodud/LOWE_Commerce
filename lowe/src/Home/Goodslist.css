@@ -1,0 +1,39 @@
+
+.goods {
+    width: 187px;
+    z-index: -100;
+}
+
+.goods_thumnail{
+    width: 187px;
+    height: 187px;
+}
+
+.goods_like {
+    text-align: right;
+    z-index: 100;
+}
+
+.goods_title {
+    padding: 12px 16px 8px 12px;
+    height: 32px;
+    width: 159px;
+    font: 500 13px "Montserrat";
+}
+
+.goods_price {
+    padding: 0 16px 28px 12px;
+    height: 32px;
+    width: 159px;
+}
+
+.goods_price_percent {
+    font: 700 15px "Montserrat";
+    margin-right: 8px;
+    color: #FF3D12;
+}
+
+.goods_price_price {
+    font: 700 15px "Montserrat";
+    color: #333333;
+}

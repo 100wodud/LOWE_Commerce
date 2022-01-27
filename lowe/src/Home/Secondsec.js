@@ -1,0 +1,188 @@
+import axios from 'axios';
+import { Component } from "react";
+import Goodslist from './Goodslist';
+import Filter from "./Filter";
+import "./Secondsec.css";
+
+class Secondsec extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            Allgoods: "",
+            Showgoods: "",
+            promotion: "",
+            category: "",
+            filter: false,
+            status: "최신순"
+        };
+    }
+
+    componentDidMount = () => {
+        axios.post("http://3.36.218.192:5000/getAllBoard", {})
+            .then((res) => {
+                let arr =[];
+                for(let i = 0; i < res.data.length; i++){
+                    if(res.data[i].open === '1'){
+                        arr.push(res.data[i])
+                    }
+                }
+                this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
+                console.log(arr)
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+
+    onclickPromotion = () => {
+        let arr = [];
+        for (let i = 0; i < this.state.Allgoods.length; i++) {
+            if (this.state.Allgoods[i].eventType) {
+                arr.push(this.state.Allgoods[i]);
+            }
+        }
+        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, });
+    }
+
+    onclickAll = () => {
+        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, })
+    }
+
+    onclickCategory = (e) => () => {
+        let arr = [];
+
+        if (e === 0) {
+            if (!this.state.promotion) {
+                arr = this.state.Allgoods;
+            } else {
+                for (let i = 0; i < this.state.Allgoods.length; i++) {
+                    if (this.state.Allgoods[i].eventType) {
+                        arr.push(this.state.Allgoods[i]);
+                    }
+                }
+            }
+        } else {
+            if (!this.state.promotion) {
+                for (let i = 0; i < this.state.Allgoods.length; i++) {
+                    if (this.state.Allgoods[i].category === e) {
+                        arr.push(this.state.Allgoods[i]);
+                    }
+                }
+            } else {
+                for (let i = 0; i < this.state.Allgoods.length; i++) {
+                    if (this.state.Allgoods[i].category === e && this.state.Allgoods[i].eventType) {
+                        arr.push(this.state.Allgoods[i]);
+                    }
+                }
+            }
+        }
+        this.setState({ category: e, Showgoods: arr })
+    }
+
+
+
+    onClickFilter = () => {
+        this.setState({ filter: true })
+    }
+    onClickclose = () => {
+        this.setState({ filter: false })
+    }
+
+    onclickdataFilter = (e) => async() => {
+        this.setState({ filter: false, status: e })
+        console.log(e)
+        let arr = this.state.Showgoods;
+        if (arr.length) {
+            if (e === "최신순") {
+                console.log(arr)
+                arr.sort(await (function (a, b) {
+                    if (a.id > b.id) {
+                        return -1;
+                    }
+                    if (a.id < b.id) {
+                        return 1;
+                    }
+                    return 0;
+                }))
+                this.setState({Showgoods: arr})
+            }
+            if (e === "인기순") {
+                console.log(arr)
+                arr.sort(await function (a, b) {
+                    let alike = 0;
+                    let blike = 0;
+                    for(let i =0; i < a.Wishes.length; i++){
+                        if(a.Wishes[i].heart ===1){
+                            alike = alike+1;
+                        }
+                    }
+                    for(let j =0; j < b.Wishes.length; j++){
+                        if(b.Wishes[j].heart ===1){
+                            blike = blike+1;
+                        }
+                    }
+                    if (alike > blike) {
+                        return -1;
+                    }
+                    if (alike < blike) {
+                        return 1;
+                    }
+                    return 0;
+                })
+                this.setState({Showgoods: arr})
+            }
+
+            if (e === "리뷰 많은 순") {
+                console.log(arr)
+                arr.sort(await function (a, b) {
+                    if (a.Reviews.length > b.Reviews.length) {
+                        return -1;
+                    }
+                    if (a.id < b.id) {
+                        return 1;
+                    }
+                    return 0;
+                })
+                this.setState({Showgoods: arr})
+            }
+        }
+    }
+
+    render() {
+        const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 4, category: "붙임머리" }, { id: 5, category: "클리닉" }];
+        return (
+            <section className="Mainpage_second_section">
+                <Filter
+                    onclickPromotion={this.onclickPromotion}
+                    onclickAll={this.onclickAll}
+                    promotion={this.state.promotion}
+                    category={category}
+                    onclickCategory={this.onclickCategory}
+                    categorySelect={this.state.category}
+                    onClickFilter={this.onClickFilter}
+                    onClickclose={this.onClickclose}
+                    filter={this.state.filter}
+                    status={this.state.status}
+                    onclickdataFilter={this.onclickdataFilter} />
+                <div className="goods_list">
+                    {
+                        this.state.Showgoods.length ?
+                            this.state.Showgoods.map((e, i) => (
+                                <div key={e.id}>
+                                    <Goodslist e={e} />
+                                    {
+                                        (i + 1) % 4 === 0 ?
+                                            <div className="middle_bannder">무언가</div> : null
+                                    }
+                                </div>
+                            )) :
+                            <div>
+                                결과가없습니다
+                            </div>
+                    }
+                </div>
+            </section>
+        )
+    }
+}
+
+export default Secondsec;

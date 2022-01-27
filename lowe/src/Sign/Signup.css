@@ -1,0 +1,108 @@
+.SignUp_section {
+    margin-top: 76px;
+    padding: 24px;
+}
+
+.signUptitle {
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 327px;
+    font: 700 12px "Noto Sans";
+}
+
+.signUpinfo {
+    height: 40px;
+    max-width: 327px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #DDDDDD;
+    background-color: none;
+    font: 400 14px "Noto Sans";
+}
+
+
+.signUpinfo:focus{
+    outline: none;
+    border-bottom: 2px solid #333333;   
+}
+
+.SignUp_section input {
+    font: 700 14px "Montserrat";
+}
+
+
+.SignUp_section input::placeholder {
+    font: 500 14px "Noto Sans";
+}
+
+.signUpinfo_radio input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+}
+
+.signUp_radio {
+    position: relative;
+    cursor: pointer;
+    display:inline-block;
+    height: fit-content;
+    line-height: 40px;
+    padding: 13px 16px 13px 16px;
+    font: 400 14px "Noto Sans";
+    text-align: center;
+    margin-right: 12px;
+    color: #9C9C9C;
+    border: 1px solid #DDDDDD;
+}
+
+
+#gender1:checked~.signUp_radio,#gender2:checked~.signUp_radio,#gender3:checked~.signUp_radio,#gender4:checked~.signUp_radio,#gender5:checked~.signUp_radio {
+    background-color: #333333;
+    font: 400 14px "Noto Sans";
+    color: #ffffff;
+}
+
+
+.signup_error {
+    margin-top: 8px;
+    height: 32px;
+    color: #FF3D12;
+    font: 400 12px "Noto Sans"
+}
+
+.signUpcheckid{
+    text-align: center;
+    width: 84px;
+    background: #FFFFFF;
+    border: 1px solid #333333;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font: 400 14px "Noto Sans";
+    line-height: 40px;
+    float: right;
+}
+
+.signup_true {
+    margin-top: 8px;
+    height: 32px;
+    color: #03581f;
+    font: 400 12px "Noto Sans"
+}
+
+
+.signup_agree_text{
+    font: 500 14px "Noto Sans";
+}
+
+.signup_agree[type="checkbox"] {
+    background-color: #333333;
+    color: #333333;
+    box-sizing: border-box;
+    height: 12px;
+    margin-right: 8px;
+}

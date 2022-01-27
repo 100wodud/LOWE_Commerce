@@ -1,0 +1,34 @@
+.coupon_div {
+    width: 351px;
+    height: 188px;
+    border: 1px solid #DDDDDD;
+    line-height: 188px;
+}
+
+.coupon-dim{
+    position: absolute;
+    height: 188px;
+    width: 351px;
+    text-align: center;
+    color: #FFFFFF;
+    font: 700 14px "Montserrat";
+}
+.coupon_first_div {
+    padding: 24px 0 19px 0;
+    margin: 0 16px 0 16px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.coupon_second_div {
+    margin: 0 16px 0 16px;
+    padding: 19px 0 19px 0;
+
+}
+
+.used .coupon_first_div {
+
+    border-bottom: 1px solid rgba(75, 75, 75, 0.69);
+}
+.used {
+    background: rgba(0, 0, 0, 0.69);
+}

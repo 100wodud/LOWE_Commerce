@@ -1,0 +1,70 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap'); */
+
+@font-face {
+    font-family: "Montserrat"; 
+    font-style: normal;
+    font-weight: 400;     
+    src: url("./Montserrat-Regular.ttf");   
+    src:  
+    url("./Montserrat-Regular.ttf") format("woff2"),
+    url("./Montserrat-Regular.ttf") format("woff"),
+    url("./Montserrat-Regular.ttf") format("truetype"),
+    url("./Montserrat-Regular.ttf") format("embedded-opentype");
+  }
+  
+  @font-face {
+    font-family: "Montserrat";
+    font-weight: 500;        
+    src: url("./Montserrat-Medium.ttf");
+    src: 
+    url("./Montserrat-Medium.ttf") format("woff2"),
+    url("./Montserrat-Medium.ttf") format("woff"),
+    url("./Montserrat-Medium.ttf") format("truetype"),
+    url("./Montserrat-Medium.ttf") format("embedded-opentype");
+  }
+  
+  @font-face {
+    font-family: "Montserrat"; 
+    font-weight: 700;     
+    src: url("./Montserrat-Bold.ttf");   
+    src: 
+    url("./Montserrat-Bold.ttf") format("woff2"),
+    url("./Montserrat-Bold.ttf") format("woff"),
+    url("./Montserrat-Bold.ttf") format("truetype"),
+    url("./Montserrat-Bold.ttf") format("embedded-opentype"),
+  }
+  @font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url("./NotoSansKR-Regular.otf");   
+    src: 
+    url("./NotoSansKR-Regular.otf") format("woff2"),
+    url("./NotoSansKR-Regular.otf") format("woff"),
+    url("./NotoSansKR-Regular.otf") format("truetype"),
+    url("./NotoSansKR-Regular.otf") format("embedded-opentype"),
+}
+
+  @font-face {
+      font-family: 'Noto Sans';
+      font-weight: 500;
+      src: url("./NotoSansKR-Medium.otf");   
+      src: 
+      url("./NotoSansKR-Medium.otf") format("woff2"),
+      url("./NotoSansKR-Medium.otf") format("woff"),
+      url("./NotoSansKR-Medium.otf") format("truetype"),
+      url("./NotoSansKR-Medium.otf") format("embedded-opentype"),
+  }
+  
+  @font-face {
+    font-family: 'Noto Sans';
+    font-weight: 700;
+    src: url("./NotoSansKR-Bold.otf");   
+    src: 
+    url("./NotoSansKR-Bold.otf") format("woff2"),
+    url("./NotoSansKR-Bold.otf") format("woff"),
+    url("./NotoSansKR-Bold.otf") format("truetype"),
+    url("./NotoSansKR-Bold.otf") format("embedded-opentype"),
+}
+
+  

@@ -1,0 +1,49 @@
+.login_id{
+    width: 363px;
+    height: 80px;
+    font: 700 17px "Montserrat";
+    line-height: 80px;
+    padding-left: 12px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.Mypage_section {
+    margin-top: 76px;
+}
+
+.mypage-filter {
+
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: 60px;
+}
+
+.mypage-filter p {
+    width: 33.333%;
+    float: left;
+    height: 60px;
+    color: #333333;
+    font: 700 14px "Montserrat";
+    line-height: 60px;
+    cursor: pointer;
+}
+
+.mypage-list {
+    padding: 28px 12px 80px 12px;
+}
+
+.mypage_noreview {
+    margin-top: 95px;
+    text-align: center;
+}
+
+.mypage_noreview > div {
+    margin-top: 25px;
+    font: 700 18px "Noto Sans";
+    color: #ADADAD;
+}
+
+.mypage_noreview > div > div {
+    margin-bottom: 5px;
+}

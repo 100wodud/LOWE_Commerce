@@ -1,0 +1,28 @@
+
+.Board_caution .notice-list { 
+    padding: 20px 0 6px 0; 
+    z-index: 0;
+}
+.Board_caution .notice-list li { 
+    position: relative; 
+    padding-left: 30px; 
+    margin-bottom: 14px; 
+    font: 500 14px "Noto Sans";
+}
+
+.Board_caution .notice-list li .num { 
+    position:absolute; 
+    top: 0; 
+    left: 0; 
+    font: 700 14px "Montserrat";
+    line-height: 22px; 
+}
+
+.Board_caution ul {
+    list-style: none;
+    z-index: 1;
+}
+
+.notice-text {
+    font: 700 14px "Noto Sans";
+}

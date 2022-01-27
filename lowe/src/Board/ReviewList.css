@@ -1,0 +1,45 @@
+.imgreview_img {
+    width: 96px;
+    height: 96px;
+    margin-right: 4px;
+    object-fit: cover;
+}
+
+.imgreviewlist_div{
+    padding-bottom: 24px;
+    border-bottom: 1px solid #DDDDDD;
+    height: fit-content;
+    overflow-x: scroll;
+    white-space:nowrap;
+    display: flex;
+}
+
+.imgreviewlist_div::-webkit-scrollbar {
+    display: none;
+  }
+
+  .review_moreview{
+      width: 100%;
+      max-width: 375%;
+      height: 60px;
+      text-align: center;
+      line-height: 60px;
+      font: 700 12px "Montserrat";
+      cursor: pointer;
+  }
+
+  .no_review{
+      padding-bottom: 100px;
+      width: 350px;
+      height: 96px;
+      text-align: center;
+  }
+
+  .no_review_content1{
+      margin-top: 14px;
+      font: 400 13px "Noto Sans"
+  }
+
+  .no_review_content2{
+    font: 700 13px "Noto Sans"
+  }

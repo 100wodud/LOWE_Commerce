@@ -1,0 +1,11 @@
+.BAimg_img {
+    width: 49.7%;
+    display: inline-block;
+}
+
+.BAimg_main {
+    text-align: center;
+    font: 400 14px "Noto Sans";
+    margin-bottom: 40px;
+    margin-top: 20px;
+}

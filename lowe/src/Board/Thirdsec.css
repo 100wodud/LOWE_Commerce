@@ -1,0 +1,44 @@
+
+.Board_third_section {
+    margin: 0px 12px 0px 12px;
+}
+
+.Board_mainimg {
+    padding-top: 120px;
+    width: 100%;
+    padding-bottom: 60px;
+}
+
+.BaA {
+    font: 700 24px "Montserrat";
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 60px;
+}
+
+.Board_caution {
+    padding: 40px 7px 40px 7px;
+    margin-top: 120px;
+    border-top: 1px solid #8E8E8E;
+    border-bottom: 1px solid #8E8E8E;;
+}
+
+.private {
+    font: 700 24px "Montserrat";
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 140px;
+}
+.private_img {
+    width: 320px;
+    height: 320px;
+    margin-right: 10px;
+}
+
+.private_div{
+    padding-bottom: 10px;
+    height: fit-content;
+    overflow-x: scroll;
+    white-space:nowrap;
+    display: flex;
+}

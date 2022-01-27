@@ -1,0 +1,33 @@
+.Board_first_section img {
+    width: 100%;
+}
+.Board_first_section {
+    background-position: center;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.Board_first_img {
+    width: 100% ;
+    outline: none;
+}
+
+.Board_first_number {
+    position: absolute;
+    width: 44px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    margin-bottom: 25px;
+    transform: translate(375%, -190%);
+    text-align: center;
+    font: 700 11px "Montserrat";
+    color: #D1D1D1;
+    line-height: 20px;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+}
+
+.Board_first_number > span{
+    font-weight: 500;
+}

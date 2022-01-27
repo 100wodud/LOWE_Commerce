@@ -1,0 +1,22 @@
+.goods_list {
+    width: 100%;
+    display:inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 52px;
+    
+}
+.middle_bannder{
+    background-color: aliceblue;
+    width: 100%;
+    max-width: 375px;
+    height: 80px;
+    margin: 8px 0px;
+}
+
+
+@media screen and (max-width:  374px) {
+    .goods_list {
+        justify-content: center;
+    }
+}

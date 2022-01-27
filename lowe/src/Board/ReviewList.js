@@ -1,0 +1,69 @@
+import { Component } from "react";
+import Review from "./Review";
+import ModalReview from "./ModalReview"
+import "./ReviewList.css"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+class ReviewList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arr: [],
+      data: null,
+      review: false,
+      slider: 0
+    };
+  }
+
+
+  openmodal = (e) => () => {
+    this.setState({ review: true, slider: e });
+  };
+  closemodal = () => {
+    this.setState({ review: false });
+  };
+
+  onClickImg = () => () => { }
+
+  render() {
+    return (
+      <div>
+        {
+          this.props.imgdata.length ?
+            <div className="imgreviewlist_div" >
+              {this.props.imgdata.map((e, i) => (
+                e.Images.map((image) => (
+                  <img onClick={this.openmodal(i)} src={image.url} key={e.id} alt="사진리뷰" className="imgreview_img" />
+                ))
+              ))}
+            </div> : null
+        }
+        {this.props.data.length ?
+          this.props.data.map((e) => (
+            <Review key={e.id} data={e} />
+          )) :
+          <div className="no_review" >
+            <div>
+              <img src={process.env.PUBLIC_URL + "/image/nav/board_noreview.svg"} alt="moreview" />
+            </div>
+            <div className="no_review_content1">로위에서 바꾼 스타일에 대해 이야기해보세요</div>
+            <div className="no_review_content2">리뷰 작성 시, 최대 5,000원 쿠폰을 드릴게요</div>
+          </div>
+        }
+        {this.props.data.length > this.props.number ?
+          <div className="review_moreview" style={{ lineHeight: "60px" }} onClick={this.props.onClickmoreview}>
+            <span style={{ marginRight: "8px" }}><img src={process.env.PUBLIC_URL + "/image/nav/review_moreview.svg"} alt="moreview" /></span><span>더보기</span>
+          </div> : null
+        }
+        {
+          this.state.review === true ?
+            <ModalReview data={this.props.imgdata} close={this.closemodal} slider={this.state.slider} /> :
+            null
+        }
+      </div>
+    )
+  }
+}
+
+export default ReviewList;

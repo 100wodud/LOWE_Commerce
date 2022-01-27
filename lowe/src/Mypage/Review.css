@@ -1,0 +1,39 @@
+.myreview {
+    width: 100%;
+    max-width: 351px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+.myreview_img{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-right: 14px;
+}
+
+.myreview_img > img {
+    width: 100%;
+    height: 100%;
+}
+
+.myreview_content {
+    max-width: 230px;
+    width: 100%;
+    height: 100px;
+    float: left;
+}
+
+.myreviwew_edit {
+    text-align: center;
+    font: 700 14px "Montserrat";
+    line-height: 36px;
+    width: 77px;
+    height: 36px;
+    background: #F0F0F0;
+}
+
+.myreview_board {
+    height: 64px;
+    font: 700 14px "Montserrat"
+}
+

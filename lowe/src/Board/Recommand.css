@@ -1,0 +1,38 @@
+
+.recommand {
+    width: 140px;
+    z-index: -100;
+}
+
+.recommand_thumnail{
+    width: 140px;
+    height: 140px;
+}
+
+.recommand_like {
+    text-align: right;
+    z-index: 100;
+}
+
+.recommand_title {
+    padding: 12px 0px 4px 0px;
+    height: 28px;
+    width: 137px;
+    font: 500 12px "Montserrat";
+}
+
+.recommand_price {
+    height: 32px;
+    width: 137px;
+}
+
+.recommand_price_percent {
+    font: 700 14px "Montserrat";
+    margin-right: 10px;
+    color: #333333;
+}
+
+.recommand_price_price {
+    font: 700 14px "Montserrat";
+    color: #333333;
+}

@@ -1,0 +1,129 @@
+.header3 {
+    position: fixed;
+    width: 100%;
+    max-width: 375px;
+    z-index: 10;
+    height: 60px;
+    top: 0;
+    background-color: white;
+  }
+  
+  .header_back{
+    z-index: 20;
+  }
+
+  .header_input {
+      max-width: 255px;
+      position: absolute;
+      height: 60px;
+      line-height: 60px;
+      border: none;
+      outline: none;
+      font: 500 16px "Noto Sans"
+  }
+
+  .header_search {
+    width: 60px;
+    position: absolute;
+    right: 0;
+    height: 60px;
+}
+
+.nonSearch_title{
+    padding: 32px 12px 40px 12px;
+    font: 700 14px "Noto Sans";
+    margin-top: 60px;
+}
+.nonSearch_content{
+    padding-left: 12px;
+}
+.nonSearch_content > span {
+    width: 50%;
+    float: left;
+}
+
+.nonSearch_content_num {
+    width: 32px;
+    font: 700 15px "Montserrat";
+    display: inline-block;
+    margin-bottom: 32px;
+}
+
+.nonSearch_content_text {
+    font: 500 15px "Noto Sans"
+}
+
+.cannot_search {
+    
+    transform: translate(0, 35vh);
+    text-align: center;
+}
+.cannot_search > img {
+    margin-bottom: 20px;
+}
+
+.cannot_search >div >div {
+    color: #ADADAD;
+    font-family: "Noto Sans";
+    line-height: 150%;
+}
+
+.search_name {
+    position: absolute;
+    top: 0;
+    margin-top: 60px;
+    height: 100%;
+    background-color: #ffffff;
+    width: 100%;
+    overflow: scroll;
+
+}
+
+.search_board_name {
+    width: 100%;
+    max-width: 375px;
+    display: block;
+    margin: 35px 12px 0px 12px;
+    font: 500 15px "Noto Sans";
+}
+
+.no_search {
+    max-width: 375px;
+    width: 100%;
+    transform: translate(0, 28vh);
+    text-align: center;
+}
+
+
+.no_search > img {
+    margin-bottom: 20px;
+}
+
+.no_search >div >div {
+    color: #ADADAD;
+    font-family: "Noto Sans";
+    line-height: 150%;
+}
+
+.search_filter_recent {
+
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    margin-top: 60px;
+}
+
+
+.search_filter_recent > div {
+    height: 49px;
+    line-height: 49px;
+    vertical-align: middle;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.search_filter_recent > div > span {
+    font: 400 14px "Noto Sans";
+    color: #333333;
+}

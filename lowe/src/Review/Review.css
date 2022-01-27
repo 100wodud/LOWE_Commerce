@@ -1,0 +1,118 @@
+.review_write_section {
+    background-position: center;
+    width: 100%;
+    margin-top: 80px;
+    overflow: hidden;
+}
+
+.review_write_title {
+    margin-top: 20px;
+    font: 700 14px "Noto Sans";
+    margin-bottom: 12px;
+}
+.review_write-filter {
+    text-align: center;
+    display: inline-block;
+}
+
+.review_write-filter p {
+    float: left;
+    padding: 6.5px 16px 8.5px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+
+}
+
+.review_write_section textarea {
+    width: 100%;
+    max-width: 327px;
+    height: 128px;
+    padding: 16px 12px;
+    font: 400 15px "Noto Sans";
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #333333;
+}
+
+
+.review_write_section textarea::placeholder {
+    font: 700 13px "Noto Sans";
+}
+
+.click_button {
+    background: #333333;
+    color: #ffffff;
+    font: 700 15px "Noto Sans";
+    margin-right: 12px;
+}
+
+.unclick_button {
+    color: #9C9C9C;
+    background: #F5F5F5;
+    font: 500 15px "Noto Sans";
+    margin-right: 12px;
+}
+
+.review_write_section label {  
+    width: 80px;
+    height: 80px;
+    left: 12px;
+    top: 593px;
+    text-align: center;
+    background: #7C7C7C;
+    border-radius: 6px;
+    font: 700 11px "Montserrat";
+    color: #ffffff;
+    cursor: pointer;
+    line-height: 80px; 
+    vertical-align: middle;
+    float: left;
+}
+
+
+ .review_write_section input[type="file"] {
+      position: absolute; width: 1px; 
+      height: 1px; 
+      padding: 0; 
+      margin: -1px; 
+      overflow: hidden; 
+      clip:rect(0,0,0,0); 
+      border: 0; 
+    }
+
+.review_write_addimg {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-left: 8px;
+}
+.review_write_delimg {
+    margin-left: -20px;
+    cursor: pointer;
+    z-index: 5;
+}
+.reviewimg_scroll {
+    width: 100%;
+overflow-x: scroll;
+white-space:nowrap;
+display: flex;
+margin-bottom: 80px;
+}
+
+.review_write_submit {
+    bottom: 0;
+    max-width: 375px;
+    width: 100%;
+    background: #333333;
+    position:fixed;
+    height: 60px;
+    font: 700 15px "Noto Sans";
+    line-height: 60px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.review_write_section > div {
+    margin-left: 12px;
+}

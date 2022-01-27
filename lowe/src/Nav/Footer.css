@@ -1,0 +1,16 @@
+footer {
+    position: fixed;
+    width: 100%;
+    max-width: 375px;
+    z-index: 10;
+    height: 52px;
+    bottom: 0;
+    background-color: white;
+    border-top: 1px solid #DDDDDD;
+    justify-content: space-between;
+  }
+
+  .footer_icon {
+      width: 25%;
+      height: 52px;
+  }

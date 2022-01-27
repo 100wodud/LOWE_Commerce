@@ -1,0 +1,72 @@
+.filter-promotion {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: 39px;
+}
+.push_button {
+    border-bottom: 2px solid #333333;
+}
+
+.pull_button {
+    border-bottom: 1px solid #ECECEC;
+}
+
+.filter-promotion p {
+    width: 50%;
+    float: left;
+    height: 39px;
+    color: #333333;
+    font: 700 14px "Montserrat";
+    line-height: 39px;
+    cursor: pointer;
+}
+.filter_category {
+    width: 363px;
+    padding-left: 12px;
+    overflow-x: scroll;
+    white-space:nowrap;
+    height: 53px;
+    margin: auto;
+    line-height: 53px;
+}
+
+.filter_category span {
+    padding: 9px 16px 9px 16px;
+    margin-right: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.category_select {
+    color: #FFFFFF;
+    background-color: #333333;
+    font: 700 14px "Noto Sans KR";
+}
+
+.category_nonselect {
+    font-weight: 400;
+    color: #9C9C9C;
+    background-color: #F5F5F5;
+    font: 400 14px "Noto Sans KR";
+}
+
+.filter_recent {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.filter_recent > div {
+    height: 49px;
+    line-height: 49px;
+    vertical-align: middle;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.filter_recent > div > span {
+    font: 400 14px "Noto Sans";
+    color: #333333;
+}

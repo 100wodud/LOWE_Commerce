@@ -1,0 +1,27 @@
+.review_modal_user{
+    font: 700 12px "Montserrat"
+}
+.review_modal_create{
+    font: 500 12px "Montserrat"
+}
+.review_modal_info {
+    font: 700 12px "Noto Sans";
+    margin-right: 11px;
+}
+.review_modal_span{
+    font: 500 12px "Noto Sans"
+    
+}
+.review_modal_img {
+    max-width: 351px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+
+.review_modal_content_true {
+    white-space: pre-line;
+    font: 500 14px "Noto Sans";
+    margin-top: 12px;
+    margin-bottom: 120px;
+}

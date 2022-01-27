@@ -1,0 +1,36 @@
+.BFooter {
+    position: fixed;
+    width: 100%;
+    max-width: 375px;
+    z-index: 10;
+    height: 65px;
+    bottom: 0;
+    background-color: white;
+    border-top: 1px solid #DDDDDD;
+    text-align: center;
+  }
+
+
+  .BFooter >div {
+    height: 65px;
+    line-height: 65px;
+    background-color: #EEEEEE;
+    border: none;
+    text-align: center;
+  }
+
+  .BFooter >div >div{
+    background-color: #EEEEEE;
+    vertical-align: middle;
+  }
+
+
+  .BFooter >div >div >div{
+      height: fit-content;
+      font: 400 15px "Montserrat" 
+  }
+
+  .BFooter a {
+      font: 700 17px "Noto Sans";
+      color: #FF3D12;
+  }

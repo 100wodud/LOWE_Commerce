@@ -1,0 +1,42 @@
+
+.Like_first_section {
+    background-position: center;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.Like_total {
+    padding-left: 12px;
+    height: 60px;
+    font: 700 14px "Montserrat";
+    line-height: 60px;
+}
+
+
+.mypage_nolike {
+    margin-top: 180px;
+    text-align: center;
+    width: 100%;
+    max-width: 375px;
+}
+.mypage_nolike > div {
+    margin-top: 25px;
+    font: 700 18px "Noto Sans";
+    color: #ADADAD;
+}
+
+.mypage_nolike > div > div {
+    margin-top: 25px;
+}
+.nolike_button {
+    width: 160px;
+    height: 52px;
+    background-color: #333333;
+    margin: auto;
+}
+
+
+.mypage_nolike > div a {
+    color: #ffffff;
+    font: 700 18px "Noto Sans"
+}

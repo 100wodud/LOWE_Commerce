@@ -1,0 +1,67 @@
+.review_user{
+    font: 700 12px "Montserrat"
+}
+.review_create{
+    font: 500 12px "Montserrat"
+}
+.review_info {
+    font: 700 12px "Noto Sans";
+    margin-right: 11px;
+}
+.review_span{
+    font: 500 12px "Noto Sans"
+    
+}
+.review_img {
+    max-width: 351px;
+    width: 100%;
+}
+
+.review_content_false {
+    white-space: pre-line;
+    max-height: 60px;
+    overflow-y: hidden;
+    font: 500 14px "Noto Sans";
+    margin-bottom: 24px;
+    max-width: 326px;
+    white-space:pre-line;
+    word-break:break-word;
+}
+
+
+.review_content_true {
+    white-space: pre-line;
+    font: 500 14px "Noto Sans";
+    margin-bottom: 24px;
+    max-width: 326px;
+    white-space:pre-line;
+    word-break:break-word;
+}
+
+#review_slider .slick-dots li {
+    width: 6px;
+  }
+
+  #review_slider .slick-dots {
+    bottom: 10px;
+  }
+  #review_slider .slick-dots li.slick-active button:before {
+    opacity: 1;
+}
+  
+#review_slider .slick-dots li button:before { 
+  width: 4px; 
+  height: 4px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  color: transparent;
+} 
+
+.Board_review_moreview {
+    float: right;
+    margin-top: -40px;
+}
+
+.rev {
+    transform: rotate(180deg);
+}

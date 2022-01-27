@@ -1,0 +1,13 @@
+
+.Recent_first_section {
+    background-position: center;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.Recent_total {
+    padding-left: 12px;
+    height: 60px;
+    font: 700 14px "Montserrat";
+    line-height: 60px;
+}

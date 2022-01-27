@@ -1,0 +1,19 @@
+
+.Board_fifth_section {
+    margin: 0 12px 60px 12px;
+}
+
+.review_title_div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.review_title {
+    font: 700 15px "Noto Sans";
+}
+
+.review_title_write {
+    font: 500 14px "Noto Sans";
+    border-bottom: 1px solid #333333;
+}

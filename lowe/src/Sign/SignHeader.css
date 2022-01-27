@@ -1,0 +1,22 @@
+.header2 {
+    position: fixed;
+    width: 100%;
+    max-width: 375px;
+    z-index: 10;
+    height: 60px;
+    top: 0;
+    background-color: white;
+  }
+  
+.header2 .header_back{
+    position: absolute;
+    margin-top: -60px;
+  }
+
+.header2 .header_name {
+      min-width: 375px;
+      font: 700 17px "Montserrat";
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+  }

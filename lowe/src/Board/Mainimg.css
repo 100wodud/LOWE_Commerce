@@ -1,0 +1,17 @@
+.Mainimg_img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.Mainimg_main {
+    text-align: center;
+    font: 700 24px "Noto Sans";
+    margin-bottom: 12px;
+}
+
+.Mainimg_sub{
+    text-align: center;
+    font: 400 16px "Noto Sans";
+    margin-bottom: 40px;
+    line-height: 150%;
+}
