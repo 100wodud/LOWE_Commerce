@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <meta name="keywords"
+    content="미용실,공유미용실,로위,lowe,fhdnl,벤틀스페이스,로위 합정,미용구인구직,공유 미용실,로위헤어,공유미용실 로위,신촌 로위,로위 신촌점,1인 미용실,공유주방,로위 미용실,로위미용실,합정 로위,홍대미용실,1인미용실,로위 합정점,로위 공유미용실,로위 홍대,로위합정,홍대 미용실,공유경제사례,로위공유미용실,로위 헤어,미용실창업,홍대 1인미용실,프라이빗미용실,홍대 로위,공융미용실,러위ㄹㅗ위,강남미용실, 강남 공유미용실,1인미용실 창업,룸미용실,헤어인잡,디자이너이직,헤어디자이너,미용사,미용실이직,로위강남점 강남 로위,강남역 미용실, 러위,강남 1인미용실,강남 헤어샵, 강남 1인샵, 1인숍,공유헤어샵,프라이빗룸,코로나미용실,합정미용실,신촌미용실">
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,22 +24,34 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-    <script language="JavaScript">
-      Number.prototype.comma = function() {
-          return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      };
-  
-  
-      String.prototype.comma = function() {
-          return this.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      };
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160614766-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-160614766-3');
   </script>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+  
+  <title>로위(LOWE)</title>
+  <script language="JavaScript">
+    Number.prototype.comma = function () {
+      return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
+
+
+    String.prototype.comma = function () {
+      return this.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    };
+  </script>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -49,5 +61,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>

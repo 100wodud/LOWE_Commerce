@@ -9,7 +9,6 @@ class Caution extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         // const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 4, category: "붙임머리" }, { id: 5, category: "클리닉" }];
         return (
             <>

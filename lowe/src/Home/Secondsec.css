@@ -6,14 +6,16 @@
     padding-bottom: 52px;
     
 }
-.middle_bannder{
-    background-color: aliceblue;
+.middle_banner{  
     width: 100%;
     max-width: 375px;
-    height: 80px;
-    margin: 8px 0px;
 }
 
+
+.middle_banner img {
+    width: 100%;
+    margin-bottom: 28px;
+}
 
 @media screen and (max-width:  374px) {
     .goods_list {

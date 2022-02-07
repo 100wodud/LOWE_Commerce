@@ -30,7 +30,7 @@
 
   .no_review{
       padding-bottom: 100px;
-      width: 350px;
+      max-width: 350px;
       height: 96px;
       text-align: center;
   }

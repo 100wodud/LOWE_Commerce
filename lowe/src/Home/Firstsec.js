@@ -15,7 +15,7 @@ class Firstsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://3.36.218.192:5000/getAllBanner", {})
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBanner", {})
         .then((res)=>{
             let arr = [];
             if(res.data.length){
@@ -48,7 +48,6 @@ class Firstsec extends Component {
             beforeChange: (current, next) =>
               this.setState({ activeSlide: next })
         };
-        console.log(this.state.data)
         let count = 0;
         return (
             <section className="Mainpage_first_section" id="Mainpage_first_section">

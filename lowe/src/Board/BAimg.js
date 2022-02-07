@@ -9,7 +9,6 @@ class BAimg extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <>
                 <div className="BAimg_div">

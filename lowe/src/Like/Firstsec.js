@@ -13,7 +13,7 @@ class Firstsec extends Component {
 
     componentDidMount = () => {
         let user = window.localStorage.getItem("id");
-        axios.post("http://3.36.218.192:5000/getMyWish", { user: user })
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getMyWish", { user: user })
             .then((res) => {
                 this.setState({ Showgoods: res.data })
             }).catch((err) => {
@@ -23,7 +23,6 @@ class Firstsec extends Component {
     }
 
     render() {
-        console.log(this.state.Showgoods)
         return (
             <section className="Like_first_section">
                 {

@@ -27,7 +27,6 @@ class Coupon extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <>
                 {this.state.can.map((e) => (

@@ -34,7 +34,7 @@ class Footer extends Component {
                 <a href="/signin">
                     <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_like.svg"} alt="로위 찜 아이콘" />
                 </a>
-                <a href="/signin">
+                <a href="/recently">
                     <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_recent.svg"} alt="로위 최신 아이콘" />
                 </a>
                 <a href="/signin">

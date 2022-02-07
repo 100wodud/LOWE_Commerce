@@ -16,7 +16,6 @@ class SignupModal extends React.Component {
 
     render() {
         const { open } = this.props;
-        console.log(agree[1])
         return (
             <>
                 {open ? (
@@ -25,7 +24,7 @@ class SignupModal extends React.Component {
                         <div className="Signup_modalInner">
                             <div>
                                 <div style={{ textAlign: "right" }}>
-                                    <img className="Signup_modalClose" onClick={this.handleClose} src={`${process.env.PUBLIC_URL}/image/nav/modalClose_white.svg`} alt="로위 상세보기 닫기" />
+                                    <img className="Signup_modalClose" onClick={this.handleClose} src={`${process.env.PUBLIC_URL}/image/nav/exit_button.svg`} alt="로위 상세보기 닫기" />
                                 </div>
                                 {
                                     open === 1 ?

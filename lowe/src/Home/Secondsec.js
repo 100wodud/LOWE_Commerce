@@ -13,21 +13,36 @@ class Secondsec extends Component {
             promotion: "",
             category: "",
             filter: false,
-            status: "최신순"
+            status: "최신순",
+            banner: '',
         };
     }
 
     componentDidMount = () => {
-        axios.post("http://3.36.218.192:5000/getAllBoard", {})
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
             .then((res) => {
-                let arr =[];
-                for(let i = 0; i < res.data.length; i++){
-                    if(res.data[i].open === '1'){
+                let arr = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].open === '1') {
                         arr.push(res.data[i])
                     }
                 }
                 this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
                 console.log(arr)
+            }).catch((err) => {
+                console.log(err)
+            })
+
+
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBanner", {})
+            .then((res) => {
+                if (res.data.length) {
+                    for (let i = 0; i < res.data.length; i++) {
+                        if (res.data[i].type === 4) {
+                            this.setState({ banner: res.data[i] })
+                        }
+                    }
+                }
             }).catch((err) => {
                 console.log(err)
             })
@@ -87,13 +102,11 @@ class Secondsec extends Component {
         this.setState({ filter: false })
     }
 
-    onclickdataFilter = (e) => async() => {
+    onclickdataFilter = (e) => async () => {
         this.setState({ filter: false, status: e })
-        console.log(e)
         let arr = this.state.Showgoods;
         if (arr.length) {
             if (e === "최신순") {
-                console.log(arr)
                 arr.sort(await (function (a, b) {
                     if (a.id > b.id) {
                         return -1;
@@ -103,21 +116,20 @@ class Secondsec extends Component {
                     }
                     return 0;
                 }))
-                this.setState({Showgoods: arr})
+                this.setState({ Showgoods: arr })
             }
             if (e === "인기순") {
-                console.log(arr)
                 arr.sort(await function (a, b) {
                     let alike = 0;
                     let blike = 0;
-                    for(let i =0; i < a.Wishes.length; i++){
-                        if(a.Wishes[i].heart ===1){
-                            alike = alike+1;
+                    for (let i = 0; i < a.Wishes.length; i++) {
+                        if (a.Wishes[i].heart === 1) {
+                            alike = alike + 1;
                         }
                     }
-                    for(let j =0; j < b.Wishes.length; j++){
-                        if(b.Wishes[j].heart ===1){
-                            blike = blike+1;
+                    for (let j = 0; j < b.Wishes.length; j++) {
+                        if (b.Wishes[j].heart === 1) {
+                            blike = blike + 1;
                         }
                     }
                     if (alike > blike) {
@@ -128,11 +140,10 @@ class Secondsec extends Component {
                     }
                     return 0;
                 })
-                this.setState({Showgoods: arr})
+                this.setState({ Showgoods: arr })
             }
 
             if (e === "리뷰 많은 순") {
-                console.log(arr)
                 arr.sort(await function (a, b) {
                     if (a.Reviews.length > b.Reviews.length) {
                         return -1;
@@ -142,7 +153,7 @@ class Secondsec extends Component {
                     }
                     return 0;
                 })
-                this.setState({Showgoods: arr})
+                this.setState({ Showgoods: arr })
             }
         }
     }
@@ -167,13 +178,17 @@ class Secondsec extends Component {
                     {
                         this.state.Showgoods.length ?
                             this.state.Showgoods.map((e, i) => (
-                                <div key={e.id}>
-                                    <Goodslist e={e} />
+                                <>
+                                    <div key={e.id}>
+                                        <Goodslist e={e} />
+                                    </div>
                                     {
-                                        (i + 1) % 4 === 0 ?
-                                            <div className="middle_bannder">무언가</div> : null
+                                        (i + 1) % 10 === 0 ?
+                                            <a href={this.state.banner.url} className="middle_banner">
+                                                <img src={this.state.banner.img} alt="띠 배너" />
+                                            </a> : null
                                     }
-                                </div>
+                                </>
                             )) :
                             <div>
                                 결과가없습니다

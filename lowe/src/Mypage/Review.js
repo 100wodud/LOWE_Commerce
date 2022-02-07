@@ -13,7 +13,7 @@ class Review extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://3.36.218.192:5000/getBoardDetail", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
             id: this.props.data.BoardId,
         })
             .then((res) => {
@@ -22,7 +22,6 @@ class Review extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <div className="myreview" >
                 {this.state.data ?

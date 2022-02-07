@@ -36,11 +36,11 @@ class Firstsec extends Component {
         var settings = {
             dots: false,
             infinite: true,
-            autoplaySpeed: 10000,
+            autoplaySpeed: 5000,
             pauseOnHover: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplay: false,
+            autoplay: true,
             touchMove: true,
             draggable: true,
             beforeChange: (current, next) =>

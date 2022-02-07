@@ -17,13 +17,11 @@ class Mypage extends Component {
 
     componentDidMount = () => {
         let id = window.localStorage.getItem("id");
-        console.log(id)
-        axios.post("http://3.36.218.192:5000/getOneUser", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
             id: id,
         })
             .then((res) => {
                 this.setState({ data: res.data[0] })
-                console.log(res.data)
             })
             .catch(err => {
                 console.log("에러")

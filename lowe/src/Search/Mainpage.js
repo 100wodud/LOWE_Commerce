@@ -23,12 +23,17 @@ class Mainpage extends Component {
 
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value, result: false });
-        axios.post("http://3.36.218.192:5000/search", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: e.target.value
         })
             .then((res) => {
-                this.setState({ name: res.data })
-                console.log(res.data)
+                let arr =[];
+                for(let i = 0; i < res.data.length; i++){
+                    if(res.data[i].open === '1'){
+                        arr.push(res.data[i])
+                    }
+                }
+                this.setState({ name: arr })
             })
             .catch(err => {
                 console.log("에러")
@@ -37,13 +42,17 @@ class Mainpage extends Component {
 
     handleInputSearch = () => {
         let keyword = this.state.search
-        console.log(keyword)
-        axios.post("http://3.36.218.192:5000/search", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: keyword
         })
             .then((res) => {
-                this.setState({ data: res.data, result: true })
-                console.log(res.data)
+                let arr =[];
+                for(let i = 0; i < res.data.length; i++){
+                    if(res.data[i].open === '1'){
+                        arr.push(res.data[i])
+                    }
+                }
+                this.setState({ data: arr, result: true })
             })
             .catch(err => {
                 console.log("에러")
@@ -53,13 +62,17 @@ class Mainpage extends Component {
 
     handleInputRecommand = (key) => () => {
         let keyword = key
-        console.log(keyword)
-        axios.post("http://3.36.218.192:5000/search", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: keyword
         })
             .then((res) => {
-                this.setState({ data: res.data, result: true })
-                console.log(res.data)
+                let arr =[];
+                for(let i = 0; i < res.data.length; i++){
+                    if(res.data[i].open === '1'){
+                        arr.push(res.data[i])
+                    }
+                }
+                this.setState({ data: arr, result: true })
             })
             .catch(err => {
                 console.log("에러")
@@ -76,11 +89,9 @@ class Mainpage extends Component {
 
     onclickdataFilter = (e) => async () => {
         this.setState({ filter: false, status: e })
-        console.log(e)
         let arr = this.state.data;
         if (arr.length) {
             if (e === "최신순") {
-                console.log(arr)
                 arr.sort(await (function (a, b) {
                     if (a.id > b.id) {
                         return -1;
@@ -90,10 +101,8 @@ class Mainpage extends Component {
                     }
                     return 0;
                 }))
-                console.log(arr)
             }
             if (e === "인기순") {
-                console.log(arr)
                 arr.sort(await function (a, b) {
                     let alike = 0;
                     let blike = 0;
@@ -115,11 +124,9 @@ class Mainpage extends Component {
                     }
                     return 0;
                 })
-                console.log(arr)
             }
 
             if (e === "리뷰 많은 순") {
-                console.log(arr)
                 arr.sort(await function (a, b) {
                     if (a.Reviews.length > b.Reviews.length) {
                         return -1;
@@ -129,7 +136,6 @@ class Mainpage extends Component {
                     }
                     return 0;
                 })
-                console.log(arr)
             }
         }
         this.setState({ data: arr })
@@ -152,7 +158,6 @@ class Mainpage extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <>
                 <SHeader handleInputValue={this.handleInputValue} handleInputSearch={this.handleInputSearch} />

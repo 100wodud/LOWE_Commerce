@@ -46,7 +46,6 @@ class Thirdsec extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <section className="Board_third_section" id="goods">
                 {

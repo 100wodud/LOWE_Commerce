@@ -44,12 +44,11 @@ class ModalReview extends React.Component {
             touchMove: false,
             draggable: false,
         };
-        console.log(this.props.data)
         return (
             <div className="modalBody" >
                 <div className="modalclick" onClick={this.handleClose}></div>
                 <div className="modalInner" >
-                    <Header header="리뷰" close={this.handleClose} />
+                    <Header header="포토리뷰" close={this.handleClose} />
                     <img className="gotoback" onClick={this.gotoBack} src={`${process.env.PUBLIC_URL}/image/nav/arrow_back.svg`} alt="뒤로"/>
                     <div style={{marginTop: "85px"}}>
                             <Slider {...setting} ref={slider => (this.slider = slider)}>

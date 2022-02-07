@@ -16,9 +16,8 @@ class Secondsec extends Component {
     componentDidMount = () => {
         let id = this.props.data.board.id;
         let user = Number(window.localStorage.getItem("id"));
-        console.log(id, user)
         if (id && user) {
-            axios.post("http://3.36.218.192:5000/boardLikeChk", {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardLikeChk", {
                 user: user,
                 id: id,
             })
@@ -32,16 +31,15 @@ class Secondsec extends Component {
         }
 
 
-        axios.post("http://3.36.218.192:5000/getAllBanner", {})
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {
                         if (res.data[i].type === 2 && this.props.data.board.eventType === 1) {
                             this.setState({ banner: res.data[i] })
-                        } else
-                            if (res.data[i].type === 3 && this.props.data.board.eventType === 0) {
-                                this.setState({ banner: res.data[i] })
-                            }
+                        } else if (res.data[i].type === 3 && this.props.data.board.eventType === 0) {
+                            this.setState({ banner: res.data[i] })
+                        }
                     }
                 }
             }).catch((err) => {
@@ -61,7 +59,7 @@ class Secondsec extends Component {
             like = 0;
         }
         if (id && user) {
-            await axios.post("http://3.36.218.192:5000/boardLikeUpdate", {
+            await axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardLikeUpdate", {
                 id: id,
                 user: user,
                 heart: like
@@ -72,9 +70,7 @@ class Secondsec extends Component {
     }
 
     render() {
-        console.log(this.state.banner)
         let user = window.localStorage.getItem("id");
-        console.log(user)
         return (
             <section className="Board_second">
                 <div className="Board_second_section">
@@ -102,7 +98,7 @@ class Secondsec extends Component {
                         <div style={{ width: "67%", maxWidth: "270px", whiteSpace: "pre-line" }}>{this.props.data.board.addPrice}</div>
                     </div>
                     <div>
-                        <a className="Board_second_store" href={this.props.designer[0].reserve_url}>
+                        <a className="Board_second_store" href={this.props.designer[0].home}>
                             <div style={{ width: "70%" }}>
                                 <span>로위 {this.props.data.board.store}</span>
                                 <span style={{ marginLeft: "8px", fontWeight: "400" }}>원장 {this.props.data.board.designer_name}</span>

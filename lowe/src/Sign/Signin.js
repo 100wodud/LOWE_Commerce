@@ -24,12 +24,11 @@ class Signin extends React.Component {
 
     handleSignIn = () => {
         this.setState({ error: "" });
-        axios.post("http://3.36.218.192:5000/loginUser", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/loginUser", {
             login_id: this.state.login_id,
             password: this.state.password,
         })
             .then((res) => {
-                console.log(res.data)
                 if (res.data.id) {
                     window.localStorage.setItem("id", res.data.id);
                     window.location.replace("/")

@@ -14,7 +14,7 @@ class Fourthsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://3.36.218.192:5000/getBoardRelation", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardRelation", {
             category: this.props.data.board.category,
             gender: this.props.data.board.gender,
             length: this.props.data.board.length,
@@ -23,7 +23,6 @@ class Fourthsec extends Component {
             limit: 10
         }).then((res) => {
             this.setState({ data: res.data })
-            console.log(res.data)
         }).catch((err) => {
             console.log(err)
         });
@@ -39,7 +38,6 @@ class Fourthsec extends Component {
             slidesToScroll: 1,
             autoplay: false
         };
-        console.log(this.props.data.board)
         return (
             <section className="Board_fourth_section" id="location">
                 <div style={{ paddingTop: "120px" }}>
