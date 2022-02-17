@@ -1,5 +1,19 @@
+.coupon_ul {
+    padding-left: 20px;
+}
+.coupon_ul li {
+    font: 500 14px "Noto Sans";
+    margin-bottom: 4px;
+}
+.coupon_ul li strong {
+    font: 700 14px "Noto Sans";
+}
+.coupon_ul li::marker {
+    color: #9A9A9A;
+}
+
 .coupon_div {
-    width: 351px;
+    max-width: 351px;
     height: 188px;
     border: 1px solid #DDDDDD;
     line-height: 188px;
@@ -8,10 +22,12 @@
 .coupon-dim{
     position: absolute;
     height: 188px;
-    width: 351px;
+    max-width: 351px;
     text-align: center;
     color: #FFFFFF;
     font: 700 14px "Montserrat";
+    text-align: center;
+    width: 100%;
 }
 .coupon_first_div {
     padding: 24px 0 19px 0;

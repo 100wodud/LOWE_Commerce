@@ -17,6 +17,7 @@ class Mypage extends Component {
 
     componentDidMount = () => {
         let id = window.localStorage.getItem("id");
+        if(id){
         axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
             id: id,
         })
@@ -26,6 +27,9 @@ class Mypage extends Component {
             .catch(err => {
                 console.log("에러")
             })
+        } else {
+            window.location.replace("/signin")
+        }
     }
 
     onclickList = (e) => () => {

@@ -30,6 +30,7 @@ class Signup extends React.Component {
             agree1: false,
             agree2: false,
             modalOpen: '',
+            agree3: false
         };
     }
 
@@ -182,27 +183,44 @@ class Signup extends React.Component {
                 password: this.state.password,
                 phone: this.state.phone,
                 birthday: this.state.birthday.slice(0, 4) + '-' + this.state.birthday.slice(4, 6) + '-' + this.state.birthday.slice(6, 8),
-                gender: gender
+                gender: gender,
+                agree: this.state.agree3
             }).then((res) => {
-                axios.post("https://d205rw3p3b6ysa.cloudfront.net/createCoupon", {
-                    UserId: res.data.id,
-                    price: 10000,
-                    content: "회원가입 쿠폰",
-                    used: "1"
-                })
-                window.alert(`회원가입 완료 :)\n${this.state.login_id}님 만을 위한 쿠폰을 보내드렸어요!`)
-                window.location.replace("/")
+                if (res.data.status === "false") {
+                    this.setState({
+                        phone_error: "이미 회원가입된 번호입니다. 입력한 번호를 확인해 주세요",
+                        status: false
+                    })
+                } else {
+                    axios.post("https://d205rw3p3b6ysa.cloudfront.net/createCoupon", {
+                        UserId: res.data.id,
+                        price: 5000,
+                        content: "[WELCOME] 회원가입 축하 쿠폰",
+                        used: "1"
+                    })
+                    window.alert(`회원가입 완료 :)\n${this.state.login_id}님 만을 위한 쿠폰을 보내드렸어요!`)
+                    window.location.replace("/")
+                }
             }).catch(err => {
-                this.setState({
-                    phone_error: "이미 회원가입된 번호입니다. 입력한 번호를 확인해 주세요",
-                    status: false
-                })
             })
         }
 
     }
-    handleOnInput=()=>(e)=> {
-        e.target.value = e.target.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '')
+
+    //영문,숫자 이외 전부 제외
+    handleOnInput = () => (e) => {
+        e.target.value = e.target.value.replace(/[^a-z0-9]/g, '')
+    }
+
+
+    handleOnInput2 = () => (e) => {
+        e.target.value = e.target.value.replace(/[a-z0-9]|[ [\]{}()<>?|`~!@#$%^&*-_+=,.;:"'\\]/g, '')
+    }
+
+
+    //숫자 이외 전부 제외
+    handleOnInput3 = () => (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '')
     }
 
     render() {
@@ -212,7 +230,7 @@ class Signup extends React.Component {
                 <section className="SignUp_section">
                     <div>
                         <div className="signUptitle">이름</div>
-                        <input className="signUpinfo" type="text" placeholder="이름을 입력해주세요" onChange={this.handleInputValue("name")} />
+                        <input className="signUpinfo" type="text" placeholder="이름을 입력해주세요" onChange={this.handleInputValue("name")} onInput={this.handleOnInput2()} />
                         {
                             this.state.error ?
                                 <div className="signup_error">{this.state.error}</div> :
@@ -249,7 +267,7 @@ class Signup extends React.Component {
                     </div>
                     <div>
                         <div className="signUptitle">휴대폰 번호</div>
-                        <input className="signUpinfo" type="text" style={{ maxWidth: "197px", width: "65%" }} placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("phone")} />
+                        <input className="signUpinfo" type="text" style={{ maxWidth: "197px", width: "65%" }} placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("phone")}  onInput={this.handleOnInput3()} />
                         <button className="signUpcheckid" style={{ width: "113px" }} onClick={this.checksignupPhone}>인증번호 받기</button>
                         {
                             this.state.phone_error ?
@@ -305,7 +323,7 @@ class Signup extends React.Component {
                             <label className="signup_agree_text" >본인은 만 14세 이상입니다(필수)</label>
                         </div>
                         <div style={{ marginTop: "18px", marginBottom: "20px" }}>
-                            <input className="signup_agree" name="agree" id="agree3" type="checkbox" value="3" />
+                            <input className="signup_agree" name="agree" id="agree3" type="checkbox" value="3" onClick={() => { this.setState({ agree3: !this.state.agree3 }) }} />
                             <label className="signup_agree_text"><span onClick={this.openmodal(2)} className="signup_agree_text" style={{ fontWeight: "700" }}>마케팅 활용</span>에 동의합니다(선택)</label>
                         </div>
                     </div>

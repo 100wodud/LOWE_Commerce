@@ -28,7 +28,6 @@ class Secondsec extends Component {
                     }
                 }
                 this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
-                console.log(arr)
             }).catch((err) => {
                 console.log(err)
             })
@@ -55,11 +54,11 @@ class Secondsec extends Component {
                 arr.push(this.state.Allgoods[i]);
             }
         }
-        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, });
+        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, status: "최신순" });
     }
 
     onclickAll = () => {
-        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, })
+        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, status: "최신순" })
     }
 
     onclickCategory = (e) => () => {
@@ -90,7 +89,7 @@ class Secondsec extends Component {
                 }
             }
         }
-        this.setState({ category: e, Showgoods: arr })
+        this.setState({ category: e, Showgoods: arr, status: "최신순"})
     }
 
 
@@ -159,7 +158,7 @@ class Secondsec extends Component {
     }
 
     render() {
-        const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 4, category: "붙임머리" }, { id: 5, category: "클리닉" }];
+        const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 5, category: "클리닉" }];
         return (
             <section className="Mainpage_second_section">
                 <Filter
@@ -190,8 +189,8 @@ class Secondsec extends Component {
                                     }
                                 </>
                             )) :
-                            <div>
-                                결과가없습니다
+                            <div style={{ height:"100px", textAlign: "center",lineHeight: "100px", width: "100%"}}>
+                                곧 새로운 스타일을 보여드릴게요 :)
                             </div>
                     }
                 </div>

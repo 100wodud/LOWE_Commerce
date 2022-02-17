@@ -53,7 +53,7 @@ class Board extends Component {
                         <Fifthsec data={this.state.data} />
                     </>
                     : <div style={{ height:"100vh", textAlign: "center",lineHeight: "100vh"}}>
-                       삭제된 상품입니다
+                       잠시만 기다려 주세요 :)
                     </div>
                 }
                 <Footer data={this.state.data} designer={this.state.designer} />

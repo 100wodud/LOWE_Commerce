@@ -34,7 +34,6 @@ class Fifthsec extends Component {
 
     render() {
         let id = window.localStorage.getItem("id");
-        console.log(id)
         return (
             <section className="Board_fifth_section" id="review">
             <div style={{ paddingTop: "120px" }}>
