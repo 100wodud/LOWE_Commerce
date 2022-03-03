@@ -4,6 +4,8 @@ import axios from "axios";
 import Footer from '../Nav/Footer';
 import Coupon from './Coupon';
 import Review from './Review';
+import Edit from './Edit';
+import SignoutModal from './SignoutModal';
 
 
 class Mypage extends Component {
@@ -12,13 +14,23 @@ class Mypage extends Component {
         this.state = {
             data: '',
             list: 1,
+            open: false
         }
     }
+
+
+    openmodal = () =>  {
+        this.setState({ open: true });
+    };
+    closemodal = () => {
+        this.setState({ open: false });
+    };
+
 
     componentDidMount = () => {
         let id = window.localStorage.getItem("id");
         if(id){
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
+        axios.post("http://3.36.218.192:5000/getOneUser", {
             id: id,
         })
             .then((res) => {
@@ -74,16 +86,17 @@ class Mypage extends Component {
                                     this.state.list === 3 ?
                                         <div className="mypage_noreview">
                                             <div>
-                                                <div style={{ marginTop: "150px" }}>준비중입니다</div>
+                                                <div style={{ marginTop: "109px", marginBottom:"109px" }}>준비중입니다</div>
                                             </div>
                                         </div> : null
                                 }
-
+                                <Edit openmodal={this.openmodal} open={this.state.open} />
                             </div>
                         </> :
                         null
                     }
                 </section>
+                <SignoutModal open={this.state.open} closemodal={this.closemodal} />
                 <Footer />
             </>
         );

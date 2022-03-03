@@ -15,7 +15,7 @@ class Goodslist extends Component {
     let id = this.props.e.id;
     let user = window.localStorage.getItem("id");
     if (id && user) {
-      axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardLikeChk", {
+      axios.post("http://3.36.218.192:5000/boardLikeChk", {
         user: user,
         id: id,
       })
@@ -39,7 +39,7 @@ class Goodslist extends Component {
       like = 0;
     }
     if (id && user) {
-      await axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardLikeUpdate", {
+      await axios.post("http://3.36.218.192:5000/boardLikeUpdate", {
         id: id,
         user: user,
         heart: like
@@ -76,9 +76,9 @@ class Goodslist extends Component {
             <div style={{ width: "100%", height: "37px", marginTop: "-39px", textAlign: "right", zIndex: "100" }} >
               {user ?
                 this.state.like === false ?
-                  <img src={process.env.PUBLIC_URL + "/image/nav/home_dislike.svg"} className="goods_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
+                  <img src={process.env.PUBLIC_URL + "/image/nav/home_dislike.png"} className="goods_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
                   <img src={process.env.PUBLIC_URL + "/image/nav/home_like.svg"} className="goods_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
-                <img src={process.env.PUBLIC_URL + "/image/nav/home_dislike.svg"} className="goods_like" alt="로위 상품 찜" onClick={(e) => { e.preventDefault(); alert("로그인을 해주세요") }} />
+                <img src={process.env.PUBLIC_URL + "/image/nav/home_dislike.png"} className="goods_like" alt="로위 상품 찜" onClick={(e) => { e.preventDefault(); alert("로그인을 해주세요") }} />
               }
             </div>
           </div>

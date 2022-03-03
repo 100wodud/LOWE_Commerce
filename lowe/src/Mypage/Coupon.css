@@ -1,9 +1,8 @@
-.coupon_ul {
-    padding-left: 20px;
-}
+
 .coupon_ul li {
     font: 500 14px "Noto Sans";
     margin-bottom: 4px;
+    list-style: none;
 }
 .coupon_ul li strong {
     font: 700 14px "Noto Sans";
@@ -14,37 +13,65 @@
 
 .coupon_div {
     max-width: 351px;
-    height: 188px;
+    height: 136px;
     border: 1px solid #DDDDDD;
-    line-height: 188px;
+    line-height: 136px;
+    border-radius: 8px;
+    margin-bottom: 8px;
 }
 
-.coupon-dim{
-    position: absolute;
-    height: 188px;
-    max-width: 351px;
-    text-align: center;
-    color: #FFFFFF;
-    font: 700 14px "Montserrat";
-    text-align: center;
-    width: 100%;
+
+.coupon_first_div_used {
+    margin: 28px 0 28px 0;
+    padding: 0 12px 0 16px;
+    float: left;
+    border-right: 1px dashed #DDDDDD;
 }
+.coupon_first_div_used > div{
+
+    text-align: center;
+    font: 700 14px "Montserrat";
+    line-height: 80px;
+    width: 80px;
+    height: 80px;
+    border-radius: 60px;
+    background: #DDDDDD;
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    color: #FFFFFF;
+}
+
 .coupon_first_div {
-    padding: 24px 0 19px 0;
-    margin: 0 16px 0 16px;
-    border-bottom: 1px solid #DDDDDD;
+    margin: 28px 0 28px 0;
+    padding: 0 12px 0 16px;
+    float: left;
+    border-right: 1px dashed #DDDDDD;
+}
+
+.coupon_first_div > div {
+    text-align: center;
+    font: 700 14px "Montserrat";
+    line-height: 80px;
+    width: 80px;
+    height: 80px;
+    border-radius: 60px;
+    background: #FF5732;
+    border: 1px solid #FF5732;
+    box-sizing: border-box;
+    color: #FFFFFF;
 }
 
 .coupon_second_div {
-    margin: 0 16px 0 16px;
-    padding: 19px 0 19px 0;
+    margin: 0 0 0 16px;
+    padding: 28px 0 28px 0;
+    float: left;
 
 }
 
 .used .coupon_first_div {
-
     border-bottom: 1px solid rgba(75, 75, 75, 0.69);
 }
+
 .used {
     background: rgba(0, 0, 0, 0.69);
 }

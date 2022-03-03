@@ -9,6 +9,9 @@ import Board from "./Board/Board";
 import Like from "./Like/Like";
 import Recent from "./Recent/Recent";
 import Review from "./Review/Review";
+import Find from "./Find/Find";
+import Withdrawal from "./Sign/Withdrawal";
+import EditmyInfo from "./Sign/EditmyInfo";
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +32,10 @@ class App extends Component {
           <Route path='/search' component={Search} />
           <Route path='/board/:id' component={Board} />
           <Route path='/like' component={Like} />
+          <Route path='/withdrawal' component={Withdrawal} />
+          <Route path='/findmyid' component={Find} />
           <Route path='/recently' component={Recent} />
+          <Route path='/editmyinfo' component={EditmyInfo} />
           <Route path='/myreview/edit/:id' component={Review} />
           <Route path='/review/write/:id' component={Review} />
         </Switch>

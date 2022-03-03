@@ -47,8 +47,8 @@ class ReviewList extends Component {
             <div>
               <img src={process.env.PUBLIC_URL + "/image/nav/board_noreview.svg"} alt="moreview" />
             </div>
-            <div className="no_review_content1">로위에서 바꾼 스타일에 대해 이야기해보세요</div>
-            <div className="no_review_content2">리뷰 작성 시, 최대 5,000원 쿠폰을 드릴게요</div>
+            <div className="no_review_content1">리뷰 작성 후 <strong>베스트 리뷰에 선정되시면</strong></div>
+            <div className="no_review_content2"><strong><span style={{fontFamily:"Montserrat"}}>10,000</span>원 할인 쿠폰</strong>을 드려요!</div>
           </div>
         }
         {this.props.data.length > this.props.number ?

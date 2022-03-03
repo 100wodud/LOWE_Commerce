@@ -6,6 +6,7 @@ body {
   -webkit-tap-highlight-color : transparent;
   -webkit-overflow-scrolling: touch;
   padding: 0;
+  color: #333333;
 }
 
 * {
@@ -18,6 +19,11 @@ body {
 body a{
   text-decoration: none;
   color: #333333;
+}
+
+body input[type="text"], body input[type="radio"], body input[type="textarea"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
 }
 
 body img {

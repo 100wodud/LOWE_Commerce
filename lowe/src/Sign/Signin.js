@@ -13,8 +13,9 @@ class Signin extends React.Component {
             confirm: "",
             phone: "",
             birthday: "",
-            gender: ""
-
+            gender: "",
+            error: "",
+            id_error: ""
         };
     }
 
@@ -24,7 +25,29 @@ class Signin extends React.Component {
 
     handleSignIn = () => {
         this.setState({ error: "" });
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/loginUser", {
+
+        if (this.state.login_id.length > 1) {
+            axios.post("http://3.36.218.192:5000/loginIdCheck", {
+                login_id: this.state.login_id,
+            }).then((res) => {
+                if (res.data.status === "false") {
+                    this.setState({
+                        id_error: "",
+                    })
+                } else if (res.data.status === "true") {
+                    this.setState({
+                        id_error: "아이디를 확인해주세요",
+                    })
+
+                }
+            })
+        } else {
+            this.setState({
+                id_error: "아이디를 확인해주세요",
+            })
+        }
+
+        axios.post("http://3.36.218.192:5000/loginUser", {
             login_id: this.state.login_id,
             password: this.state.password,
         })
@@ -33,14 +56,11 @@ class Signin extends React.Component {
                     window.localStorage.setItem("id", res.data.id);
                     window.location.replace("/")
                 } else {
-                    this.setState({ error: "아이디/비밀번호를 확인해주세요" })
+                    this.setState({ error: "비밀번호를 확인해주세요" })
                 }
             })
             .catch(err => {
                 console.log("에러")
-                this.setState({
-                    error: "존재하는 이메일 입니다"
-                })
             })
     }
 
@@ -55,7 +75,11 @@ class Signin extends React.Component {
                     <div>
                         <div className="signIntitle">아이디</div>
                         <input className="signUpinfo" type="text" placeholder="예 : lowe1234" onChange={this.handleInputValue("login_id")} />
-                        <div className="signin_error"></div>
+                        {
+                            this.state.id_error ?
+                                <div className="signin_error">{this.state.id_error}</div> :
+                                <div className="signin_error"></div>
+                        }
                     </div>
                     <div>
                         <div className="signIntitle">비밀번호</div>
@@ -65,6 +89,9 @@ class Signin extends React.Component {
                                 <div className="signin_error">{this.state.error}</div> :
                                 <div className="signin_error"></div>
                         }
+                    </div>
+                    <div>
+                        <div className="signin_find"><a href="/findmyid">아이디 / 비밀번호 찾기 </a><span><img src={process.env.PUBLIC_URL + "/image/nav/next_arrow.svg"} alt="다음" /></span></div>
                     </div>
                     <div className="signin_buttonbox">
                         <div className="signin_button" onClick={this.handleSignIn}>로그인</div>

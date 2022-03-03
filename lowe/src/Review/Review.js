@@ -2,6 +2,7 @@ import { Component } from "react";
 import "./Review.css";
 import axios from 'axios';
 import Header from "../Sign/SignHeader";
+import ReviewModal from "./ReviewModal";
 
 class Review extends Component {
     constructor(props) {
@@ -15,8 +16,17 @@ class Review extends Component {
             content: '',
             imgs: [],
             img: '',
+            phonemodal: false,
+            modalcomment: '',
         };
     }
+
+    openmodalReview = (e) => {
+        this.setState({ phonemodal: true, modalcomment: e });
+    };
+    closemodalReview = () => {
+        this.setState({ phonemodal: false, modalcomment: "" });
+    };
 
     componentDidMount = () => {
         let id = window.location.pathname.split("/")[3];
@@ -47,7 +57,7 @@ class Review extends Component {
         const img = this.state.imgs
         if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content) {
             axios
-                .post("https://d205rw3p3b6ysa.cloudfront.net/createReview", {
+                .post("http://3.36.218.192:5000/createReview", {
                     user: Number(this.state.user),
                     BoardId: Number(this.state.id),
                     hair_color: this.state.Color,
@@ -57,11 +67,10 @@ class Review extends Component {
                     img
                 })
                 .then((res) => {
-                    window.alert("리뷰 작성 완료\n작성한 리뷰는 마이페이지에서 확인 할 수 있어요 : )")
-                    window.location.replace("/mypage")
+                    this.openmodalReview("성공")
                 });
         } else {
-            window.alert("모든 항목을 채워주세요")
+            this.openmodalReview("모든 항목을 채워주세요")
         }
     }
 
@@ -69,7 +78,7 @@ class Review extends Component {
         const img = this.state.imgs
         if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content) {
             axios
-                .post("https://d205rw3p3b6ysa.cloudfront.net/updateReview", {
+                .post("http://3.36.218.192:5000/updateReview", {
                     id: this.props.location.state.id,
                     hair_color: this.state.Color,
                     hair_amout: this.state.Amout,
@@ -78,11 +87,10 @@ class Review extends Component {
                     img
                 })
                 .then((res) => {
-                    window.alert("리뷰 수정 완료\n수정한 리뷰는 마이페이지에서 확인 할 수 있어요 : )")
-                    window.location.replace("/mypage")
+                    this.openmodalReview("리뷰 수정 완료\n수정한 리뷰는 마이페이지에서 확인 할 수 있어요 : )")
                 });
         } else {
-            window.alert("모든 항목을 채워주세요")
+            this.openmodalReview("모든 항목을 채워주세요")
         }
     }
 
@@ -103,7 +111,7 @@ class Review extends Component {
                 const formData = new FormData();
                 formData.append("file", img);
                 await axios
-                    .post("https://d205rw3p3b6ysa.cloudfront.net/addImg", formData, {
+                    .post("http://3.36.218.192:5000/addImg", formData, {
                         headers: {
                             "content-type": "multipart/form-data",
                         },
@@ -212,6 +220,7 @@ class Review extends Component {
                             <div className="review_write_submit" style={{ marginLeft: 0 }} onClick={this.onClicksubmit}>작성 완료</div>
                     }
                 </section>
+                <ReviewModal open={this.state.phonemodal} closemodal={this.closemodalReview} comment={this.state.modalcomment} />
             </>
         )
     }

@@ -1,0 +1,51 @@
+.recentSearch_text_div{
+    justify-content: space-between;
+    display: flex;
+    margin-top: 60px;
+}
+
+.recentSearch_title{
+    padding: 32px 12px 16px 12px;
+    font: 700 14px "Noto Sans";
+}
+
+.recentSearch_deleteAll {
+    padding: 32px 12px 16px 12px;
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+    cursor: pointer;
+}
+
+.recentSearch_content_div {
+    width: 100%;
+}
+
+
+.recentSearch_content_div {
+    width: 363px;
+    padding-left: 12px;
+    overflow-x: scroll;
+    white-space:nowrap;
+    height: 53px;
+    margin: auto;
+    line-height: 53px;
+}
+
+.recentSearch_content_div > span {
+    padding: 9px 16px 9px 16px;
+    margin-right: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+.recentSearch_content {
+    font-weight: 400;
+    color: #333333;
+    background-color: #F5F5F5;
+    font: 400 14px "Noto Sans";
+}
+
+.recentSearch_content img {
+    width: 10px;
+}

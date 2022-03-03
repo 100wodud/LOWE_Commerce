@@ -1,12 +1,14 @@
 import { Component } from "react";
 import store from "../data/Store";
 import "./Store.css"
+import ModalPhone from "../Sign/ModalPhone";
 
 class Store extends Component {
     constructor(props) {
         super(props);
         this.state = {
             store: "",
+            modalcomment: "",
         };
     }
 
@@ -23,11 +25,19 @@ class Store extends Component {
 
     }
 
+    openmodalPhone =(e)  => {
+        this.setState({ phonemodal: true, modalcomment: e });
+    };
+    closemodalPhone = () => {
+        this.setState({ phonemodal: false, modalcomment: "" });
+    };
+
+
 
     clickAddress = () => {
         navigator.clipboard.writeText(this.state.store.address)
         .then(() => {
-            alert(`로위 ${this.state.store.store} 주소가 클립보드에 복사되었습니다`);
+            this.openmodalPhone(`로위 ${this.state.store.store} 주소가 복사되었습니다`)
         })
     }
 
@@ -44,6 +54,7 @@ class Store extends Component {
                         </div>
                     </div> : null
                 }
+                <ModalPhone open={this.state.phonemodal} closemodal={this.closemodalPhone} comment={this.state.modalcomment} />
              </>
         )
     }
