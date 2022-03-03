@@ -7,6 +7,7 @@
 .recommand_thumnail{
     width: 140px;
     height: 140px;
+    object-fit: cover;
 }
 
 .recommand_like {
@@ -29,7 +30,7 @@
 .recommand_price_percent {
     font: 700 14px "Montserrat";
     margin-right: 10px;
-    color: #333333;
+    color: #FF3D12;
 }
 
 .recommand_price_price {

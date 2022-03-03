@@ -33,7 +33,7 @@ class Filter extends Component {
                     <p className={(this.props.promotion ? "push_button" : 'pull_button')} onClick={this.props.onclickPromotion}>EVENT</p>
                 </div>
                 <ScrollContainer className="filter_category">
-                        {this.props.category.map((e) => (
+                        {this.props.category.map((e, i) => (
                             <span key={e.id} className={(this.props.categorySelect === e.id ? "category_select" : "category_nonselect")} onClick={this.props.onclickCategory(e.id)}>{e.category}</span>
                         ))
                         }

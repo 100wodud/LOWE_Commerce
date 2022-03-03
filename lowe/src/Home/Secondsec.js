@@ -15,11 +15,13 @@ class Secondsec extends Component {
             filter: false,
             status: "최신순",
             banner: '',
+            number: 10,
         };
     }
 
     componentDidMount = () => {
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
+
+        axios.get("http://3.36.218.192:5000/allBoard", {})
             .then((res) => {
                 let arr = [];
                 for (let i = 0; i < res.data.length; i++) {
@@ -28,12 +30,26 @@ class Secondsec extends Component {
                     }
                 }
                 this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
+            })
+            .then(() => {
+                axios.post("http://3.36.218.192:5000/getAllBoard", {})
+                    .then((res) => {
+                        let arr = [];
+                        for (let i = 0; i < res.data.length; i++) {
+                            if (res.data[i].open === '1') {
+                                arr.push(res.data[i])
+                            }
+                        }
+                        this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
+                    }).catch((err) => {
+                        console.log(err)
+                    })
             }).catch((err) => {
                 console.log(err)
             })
 
 
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBanner", {})
+        axios.post("http://3.36.218.192:5000/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {
@@ -45,7 +61,23 @@ class Secondsec extends Component {
             }).catch((err) => {
                 console.log(err)
             })
+
+        window.addEventListener('scroll', this.onScroll);
+
+
+
     }
+
+    onScroll = (e) => {
+        // 스크롤 할때마다 state에 scroll한 만큼 scrollTop 값 증가하므로 이를 업데이트해줌, 
+        //따라서 스크롤 시점에 따라 특정액션을 추후에 state를 활용하여 구현 가능
+        var infinity_scroll = window.pageYOffset + document.getElementById("infinity_scroll").getBoundingClientRect().top;
+        const scrollTop = ('scroll', e.srcElement.scrollingElement.scrollTop);
+        this.setState({ scroll: scrollTop, infinity_scroll: infinity_scroll });
+        if (this.state.infinity_scroll > 1000 && this.state.infinity_scroll < this.state.scroll + 900) {
+            this.setState({ number: this.state.number + 10 });
+        }
+    };
 
     onclickPromotion = () => {
         let arr = [];
@@ -54,11 +86,11 @@ class Secondsec extends Component {
                 arr.push(this.state.Allgoods[i]);
             }
         }
-        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, status: "최신순" });
+        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, status: "최신순", number: 10 });
     }
 
     onclickAll = () => {
-        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, status: "최신순" })
+        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, status: "최신순", number: 10 })
     }
 
     onclickCategory = (e) => () => {
@@ -89,7 +121,7 @@ class Secondsec extends Component {
                 }
             }
         }
-        this.setState({ category: e, Showgoods: arr, status: "최신순"})
+        this.setState({ category: e, Showgoods: arr, status: "최신순", number: 10 })
     }
 
 
@@ -115,7 +147,7 @@ class Secondsec extends Component {
                     }
                     return 0;
                 }))
-                this.setState({ Showgoods: arr })
+                this.setState({ Showgoods: arr, number: 10 })
             }
             if (e === "인기순") {
                 arr.sort(await function (a, b) {
@@ -139,7 +171,7 @@ class Secondsec extends Component {
                     }
                     return 0;
                 })
-                this.setState({ Showgoods: arr })
+                this.setState({ Showgoods: arr, number: 10 })
             }
 
             if (e === "리뷰 많은 순") {
@@ -152,10 +184,11 @@ class Secondsec extends Component {
                     }
                     return 0;
                 })
-                this.setState({ Showgoods: arr })
+                this.setState({ Showgoods: arr, number: 10 })
             }
         }
     }
+
 
     render() {
         const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 5, category: "클리닉" }];
@@ -176,23 +209,24 @@ class Secondsec extends Component {
                 <div className="goods_list">
                     {
                         this.state.Showgoods.length ?
-                            this.state.Showgoods.map((e, i) => (
+                            this.state.Showgoods.slice(0, this.state.number).map((e, i) => (
                                 <>
                                     <div key={e.id}>
                                         <Goodslist e={e} />
                                     </div>
                                     {
                                         (i + 1) % 10 === 0 ?
-                                            <a href={this.state.banner.url} className="middle_banner">
+                                            <a key={i} href={this.state.banner.url} className="middle_banner" >
                                                 <img src={this.state.banner.img} alt="띠 배너" />
                                             </a> : null
                                     }
                                 </>
                             )) :
-                            <div style={{ height:"100px", textAlign: "center",lineHeight: "100px", width: "100%"}}>
+                            <div style={{ height: "100px", textAlign: "center", lineHeight: "100px", width: "100%" }}>
                                 곧 새로운 스타일을 보여드릴게요 :)
                             </div>
                     }
+                    <div onClick={this.check} id="infinity_scroll"></div>
                 </div>
             </section>
         )

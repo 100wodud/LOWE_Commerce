@@ -23,6 +23,17 @@
     font: 400 12px "Noto Sans"
 }
 
+.signin_find {
+    text-align: right;
+    margin-top: 22.5px;
+    margin-bottom: 20px;
+    color: #333333;
+    line-height: -10px;
+    font: 500 13px "Noto Sans";
+    height: 16px;
+}
+
+
 .signin_button {
     width: 327px;
     font: 700 16px "Noto Sans";

@@ -17,6 +17,10 @@
     border: none;
     border-bottom: 2px solid #DDDDDD;
     background-color: none;
+    font: 700 14px "Noto Sans";
+}
+
+.signUpinfo::placeholder {
     font: 400 14px "Noto Sans";
 }
 
@@ -84,6 +88,7 @@
     padding: 0;
     font: 400 14px "Noto Sans";
     line-height: 40px;
+    color: #333333;
     float: right;
 }
 
@@ -100,9 +105,9 @@
 }
 
 .signup_agree[type="checkbox"] {
-    background-color: #333333;
-    color: #333333;
     box-sizing: border-box;
     height: 12px;
     margin-right: 8px;
+    width: 12px;
+    appearance: auto;
 }

@@ -10,7 +10,10 @@ export default (
           <Route path='/search' />
           <Route path='/board/:id' />
           <Route path='/like' />
+          <Route path='/withdrawal' />
+          <Route path='/findmyid' />
           <Route path='/recently' />
+          <Route path='/editmyinfo' />
           <Route path='/myreview/edit/:id' />
           <Route path='/review/write/:id' />
         </Switch>

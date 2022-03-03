@@ -6,6 +6,7 @@ import NonSearch from "./NonSearch";
 import Footer from "../Nav/Footer";
 import Goodslist from '../Home/Goodslist';
 import FilterModal from "../Home/FilterModal";
+import Recently from "./Reacently";
 
 class Mainpage extends Component {
     constructor(props) {
@@ -16,20 +17,44 @@ class Mainpage extends Component {
             data: "",
             name: [],
             filter: false,
-            status: "최신순"
+            status: "최신순",
+            recent: []
         };
+    }
+    componentDidMount = () => {
+        let recently = JSON.parse(window.localStorage.getItem("recentWord"));
+        const set = new Set(recently);
+        const recent = [...set];
+
+        if (recent) {
+            this.setState({ recent: recent });
+        } else {
+            this.setState({ recent: [] });
+        }
     }
 
 
+    deleteAllsearch = () => {
+        window.localStorage.removeItem("recentWord");
+        this.setState({recent: []});
+    }
+
+    deleteOnesearch = (i) => ()=> {
+        let recent = this.state.recent;
+        recent.splice(i, 1);
+        this.setState({recent: recent});
+        window.localStorage.setItem("recentWord", JSON.stringify(recent));
+    }
+
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value, result: false });
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
+        axios.post("http://3.36.218.192:5000/search", {
             keyword: e.target.value
         })
             .then((res) => {
-                let arr =[];
-                for(let i = 0; i < res.data.length; i++){
-                    if(res.data[i].open === '1'){
+                let arr = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].open === '1') {
                         arr.push(res.data[i])
                     }
                 }
@@ -42,17 +67,55 @@ class Mainpage extends Component {
 
     handleInputSearch = () => {
         let keyword = this.state.search
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
+        let recently = this.state.recent;
+        let set = []
+        let recent = []
+        if(keyword){
+            recently.unshift(keyword)
+            set = new Set(recently);
+            recent = [...set];
+        }
+        axios.post("http://3.36.218.192:5000/search", {
             keyword: keyword
         })
             .then((res) => {
-                let arr =[];
-                for(let i = 0; i < res.data.length; i++){
-                    if(res.data[i].open === '1'){
+                let arr = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].open === '1') {
                         arr.push(res.data[i])
                     }
                 }
-                this.setState({ data: arr, result: true })
+                window.localStorage.setItem("recentWord", JSON.stringify(recent));
+                this.setState({ data: arr, result: true, recent: recent })
+            })
+            .catch(err => {
+                console.log("에러")
+            })
+    }
+
+    handleRecentSearch = (keyword) => ()=>{
+        let recently = this.state.recent;
+        recently.unshift(keyword)
+        let set = []
+        let recent = []
+        if(keyword){
+            recently.unshift(keyword)
+            set = new Set(recently);
+            recent = [...set];
+        }
+        axios.post("http://3.36.218.192:5000/search", {
+            keyword: keyword
+        })
+            .then((res) => {
+                let arr = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].open === '1') {
+                        arr.push(res.data[i])
+                    }
+                }
+                window.localStorage.setItem("recentWord", JSON.stringify(recent));
+                this.setState({ data: arr, result: true, keyword: keyword, recent: recent });
+                document.getElementById("header_search").value = keyword;
             })
             .catch(err => {
                 console.log("에러")
@@ -62,13 +125,13 @@ class Mainpage extends Component {
 
     handleInputRecommand = (key) => () => {
         let keyword = key
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
+        axios.post("http://3.36.218.192:5000/search", {
             keyword: keyword
         })
             .then((res) => {
-                let arr =[];
-                for(let i = 0; i < res.data.length; i++){
-                    if(res.data[i].open === '1'){
+                let arr = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].open === '1') {
                         arr.push(res.data[i])
                     }
                 }
@@ -158,12 +221,21 @@ class Mainpage extends Component {
     }
 
     render() {
+        var boxAll = document.querySelectorAll('.search_board_name');
+        for (var i = 0; i < boxAll.length; i++) {
+            var find = this.state.search;
+            var regex = new RegExp(find, "g");
+            boxAll[i].innerHTML = boxAll[i].innerText.replace(regex, "<span class='highlight'>" + find + "</span>");
+        }
         return (
             <>
                 <SHeader handleInputValue={this.handleInputValue} handleInputSearch={this.handleInputSearch} />
                 {
                     this.state.result === false ?
-                        <NonSearch handleInputRecommand={this.handleInputRecommand} /> :
+                        <>
+                            <Recently deleteAllsearch={this.deleteAllsearch} deleteOnesearch={this.deleteOnesearch} recent={this.state.recent} handleRecentSearch={this.handleRecentSearch} />
+                            <NonSearch handleInputRecommand={this.handleInputRecommand} />
+                        </> :
                         !this.state.data.length ?
                             <div className="cannot_search">
                                 <img src={process.env.PUBLIC_URL + "/image/nav/search_non.svg"} alt="검색결과 없음" />
@@ -204,7 +276,7 @@ class Mainpage extends Component {
                             {
                                 this.state.name.length ?
                                     this.state.name.map((e) => (
-                                        <a href={"/board/" + e.id} className="search_board_name" onClick={this.onclickRecently(e.id)} key={e.id}>{e.name}</a>
+                                        <a href={"/board/" + e.id} className="search_board_name" onClick={this.onclickRecently(e.id)} key={e.id}><pre>{e.name}</pre></a>
                                     )) :
 
                                     <div className="no_search">

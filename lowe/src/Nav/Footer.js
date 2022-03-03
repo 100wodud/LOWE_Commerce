@@ -11,7 +11,7 @@ class Footer extends Component {
     }
     render() {
         return (
-            <footer>
+            <footer id='footer'>
                 { window.localStorage.getItem("id") ?
                 <>
                 <a href="/">

@@ -1,0 +1,27 @@
+
+.Find_section {
+    margin-top: 60px;
+}
+
+.Find-filter {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: 60px;
+}
+
+.Find-filter p {
+    width: 50%;
+    float: left;
+    height: 60px;
+    color: #333333;
+    font: 700 14px "Montserrat";
+    line-height: 60px;
+    cursor: pointer;
+}
+
+.findid_section {
+    padding: 24px;
+    margin-top: 16px;
+
+}

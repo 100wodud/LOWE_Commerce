@@ -1,0 +1,12 @@
+.idresult_section {
+    margin-top: 60px;
+}
+
+.idresult_section > div {
+    padding: 40px 24px 40px 24px;
+}
+
+.idresult_section_title {
+    font: 700 20px "Noto Sans";
+    margin-bottom: 40px;
+}
