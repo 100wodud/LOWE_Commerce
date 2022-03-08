@@ -27,7 +27,7 @@ class Signin extends React.Component {
         this.setState({ error: "" });
 
         if (this.state.login_id.length > 1) {
-            axios.post("http://3.36.218.192:5000/loginIdCheck", {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/loginIdCheck", {
                 login_id: this.state.login_id,
             }).then((res) => {
                 if (res.data.status === "false") {
@@ -47,7 +47,7 @@ class Signin extends React.Component {
             })
         }
 
-        axios.post("http://3.36.218.192:5000/loginUser", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/loginUser", {
             login_id: this.state.login_id,
             password: this.state.password,
         })
@@ -70,7 +70,9 @@ class Signin extends React.Component {
                 <SignHeader header=" " />
                 <section className="SignIn_section">
                     <div className="signin_logo" >
-                        <img src={process.env.PUBLIC_URL + "/image/nav/header_logo.svg"} alt="로위 로고" />
+                        <a href="/" className="signin_logo" >
+                            <img src={process.env.PUBLIC_URL + "/image/nav/header_logo.svg"} alt="로위 로고" />
+                        </a>
                     </div>
                     <div>
                         <div className="signIntitle">아이디</div>

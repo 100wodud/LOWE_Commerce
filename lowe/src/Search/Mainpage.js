@@ -48,7 +48,7 @@ class Mainpage extends Component {
 
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value, result: false });
-        axios.post("http://3.36.218.192:5000/search", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: e.target.value
         })
             .then((res) => {
@@ -75,7 +75,7 @@ class Mainpage extends Component {
             set = new Set(recently);
             recent = [...set];
         }
-        axios.post("http://3.36.218.192:5000/search", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: keyword
         })
             .then((res) => {
@@ -103,7 +103,7 @@ class Mainpage extends Component {
             set = new Set(recently);
             recent = [...set];
         }
-        axios.post("http://3.36.218.192:5000/search", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: keyword
         })
             .then((res) => {
@@ -125,7 +125,7 @@ class Mainpage extends Component {
 
     handleInputRecommand = (key) => () => {
         let keyword = key
-        axios.post("http://3.36.218.192:5000/search", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: keyword
         })
             .then((res) => {

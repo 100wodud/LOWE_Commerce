@@ -6,17 +6,38 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            header: false,
+            scroll: 0
         };
     }
 
+    componentDidMount = () => {
+        var self = this
+        document.addEventListener('scroll', function () {
+            var cur = self.state.scroll;
+            var currentScrollValue = document.documentElement.scrollTop;
+            if (cur + 100 < currentScrollValue && currentScrollValue > 60) {
+                self.setState({ scroll: currentScrollValue, header: false })
+            }
+            if (cur - 100 > currentScrollValue || currentScrollValue <= 60) {
+                self.setState({ scroll: currentScrollValue, header: true })
+            }
 
+            let header = document.getElementById("headers");
+            if (self.state.header) {
+                header.classList.remove("hide");
+            } else {
+                header.classList.add("hide");
+            }
+        });
+    }
     gotoBack = () => {
         window.history.go(-1)
     }
 
     render() {
         return (
-            <header className="header">
+            <header className="header" id="headers">
                 {this.props.header !== "board" ?
                     <>
                         <a href="/">

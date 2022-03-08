@@ -24,6 +24,7 @@ class App extends Component {
   render() {
     return (
       <>
+        <span id="header_trigger"></span>
         <Route exact path="/" component={Home} />
         <Switch>
           <Route path='/signin' component={Signin} />

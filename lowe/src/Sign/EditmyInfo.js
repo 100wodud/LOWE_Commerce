@@ -50,7 +50,7 @@ class EditmyInfo extends React.Component {
     componentDidMount = () => {
         let id = window.localStorage.getItem("id");
         if(id){
-        axios.post("http://3.36.218.192:5000/getOneUser", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
             id: id,
         })
             .then((res) => {
@@ -110,7 +110,7 @@ class EditmyInfo extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("http://3.36.218.192:5000/checkPhoneNumber", {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -224,7 +224,7 @@ class EditmyInfo extends React.Component {
 
     sendSignup = () => {
         if (this.state.status && this.state.phonecheck && this.state.agree1 && this.state.agree2) {
-            axios.post("http://3.36.218.192:5000/updateUserInfo", {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/updateUserInfo", {
                 id: window.localStorage.getItem("id"),
                 name: this.state.name,
                 login_id: this.state.login_id,

@@ -31,21 +31,13 @@
     line-height: 53px;
 }
 
-.recentSearch_content_div > span {
-    padding: 9px 16px 9px 16px;
-    margin-right: 8px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-
 .recentSearch_content {
     font-weight: 400;
     color: #333333;
     background-color: #F5F5F5;
     font: 400 14px "Noto Sans";
-}
-
-.recentSearch_content img {
-    width: 10px;
+    padding: 9px 0;
+    margin-right: 8px;
+    border-radius: 20px;
+    cursor: pointer;
 }

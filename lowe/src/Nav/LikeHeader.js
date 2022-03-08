@@ -11,7 +11,7 @@ class LikeHeader extends Component {
 
     render() {
         return (
-            <header className="header">
+            <header className="headers">
                 {this.props.header ?
                     <div className="header_text">{this.props.header} 시술</div> :
                     null

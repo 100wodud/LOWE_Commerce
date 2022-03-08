@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import "./BFooter.css"
+import "./BFooter.css";
+import axios from "axios";
 
 
 class BFooter extends Component {
@@ -9,6 +10,18 @@ class BFooter extends Component {
             accordion: true
         }
     }
+
+    onClicknumber = () => {
+        let id = window.location.pathname.split("/")[2];
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardVisit", {
+            id: id
+             })
+             .then((res) => {
+
+             }).catch((err)=>{
+             });
+    }
+
     render() {
         let user = window.localStorage.getItem("id");
         return (
@@ -16,10 +29,10 @@ class BFooter extends Component {
                 {this.props.data && this.props.designer ?
                     <>
                         <div style={{ maxWidth: "80px", width: "21%", float: "left", marginRight: "0.4%" }}>
-                            <div style={{ lineHeight: "65px", marginTop: "14px" }}>
-                                <div>리뷰</div>
+                            <a className='BFooter_review' href='#review' style={{ lineHeight: "65px" }}>
+                                <div style={{ paddingTop: "14px", }}>리뷰</div>
                                 <div>({this.props.data.board.Reviews.length})</div>
-                            </div>
+                            </a>
                         </div>
                         <div style={{ maxWidth: "102px", width: "25.2%", float: "left", marginRight: "0.4%" }}>
                             {
@@ -32,9 +45,9 @@ class BFooter extends Component {
 
                             }
                         </div>
-                        <div style={{ maxWidth: "200px", width: "52.9%", float: "left" }}>
+                        <div className='BFooter_res' style={{ maxWidth: "200px", width: "52.9%", float: "left" }}>
                             {user ?
-                                <a href={this.props.designer[0].reserve_url}>예약하기</a> :
+                                <a href={this.props.designer[0].reserve_url} onClick={this.onClicknumber}>예약하기</a> :
                                 <a href="/signin">예약하기</a>
                             }
                         </div>

@@ -22,10 +22,10 @@ class Recently extends Component {
                         </div>
                         <ScrollContainer className="recentSearch_content_div">
                                 {this.props.recent.map((e, i) => (
-                                    <span key={i} className="recentSearch_content" onClick={this.props.handleRecentSearch(e)}>
-                                        <span>{e}</span>
-                                        <span onClick={this.props.deleteOnesearch(i)} style={{marginLeft: "11px"}}>
-                                            <img src={process.env.PUBLIC_URL + "/image/nav/modalClose.svg"} alt="로위 홈 아이콘" />
+                                    <span key={i} className="recentSearch_content" >
+                                        <span onClick={this.props.handleRecentSearch(e)} style={{padding: "9px 5px 9px 16px"}}>{e}</span>
+                                        <span onClick={this.props.deleteOnesearch(i)} style={{padding: "9px 16px 9px 10px"}}>
+                                            <img src={process.env.PUBLIC_URL + "/image/nav/search_delete.svg"} alt="로위 홈 아이콘" />
                                         </span>
                                     </span>
                                 ))
