@@ -16,7 +16,7 @@ class Firstsec extends Component {
         if (recent) {
             let arr = [];
             for (let i = 0; i < recent.length; i++) {
-                await axios.post("http://3.36.218.192:5000/getBoardDetail", {
+                await axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
                     id: recent[i],
                 })
                     .then((res) => {

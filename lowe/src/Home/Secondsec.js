@@ -21,7 +21,7 @@ class Secondsec extends Component {
 
     componentDidMount = () => {
 
-        axios.get("http://3.36.218.192:5000/allBoard", {})
+        axios.get("https://d205rw3p3b6ysa.cloudfront.net/allBoard", {})
             .then((res) => {
                 let arr = [];
                 for (let i = 0; i < res.data.length; i++) {
@@ -32,7 +32,7 @@ class Secondsec extends Component {
                 this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
             })
             .then(() => {
-                axios.post("http://3.36.218.192:5000/getAllBoard", {})
+                axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
                     .then((res) => {
                         let arr = [];
                         for (let i = 0; i < res.data.length; i++) {
@@ -49,7 +49,7 @@ class Secondsec extends Component {
             })
 
 
-        axios.post("http://3.36.218.192:5000/getAllBanner", {})
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {

@@ -21,11 +21,11 @@ class Board extends Component {
 
     componentDidMount = () => {
         let id = window.location.pathname.split("/")[2];
-        axios.post("http://3.36.218.192:5000/getBoardDetail", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
             id: id,
         }).then((res) => {
             this.setState({ data: res.data });
-            axios.post("http://3.36.218.192:5000/getDesignerName", {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerName", {
            name: res.data.board.designer_name,
             })
             .then((res) => {

@@ -30,7 +30,7 @@ class Mypage extends Component {
     componentDidMount = () => {
         let id = window.localStorage.getItem("id");
         if(id){
-        axios.post("http://3.36.218.192:5000/getOneUser", {
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
             id: id,
         })
             .then((res) => {

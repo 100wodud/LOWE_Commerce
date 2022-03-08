@@ -5,7 +5,12 @@
     z-index: 10;
     height: 60px;
     top: 0;
+    border-bottom: 1px solid #DDDDDD;
     background-color: white;
+    transition: top 0.2s ease-in-out;
+    -webkit-transition: All 0.2s ease;
+    -moz-transition: All 0.2s ease;
+    -o-transition: All 0.2s ease;
   }
   
   .header_logo{
@@ -13,6 +18,11 @@
     height: 60px;
     position: absolute;
     left:0
+  }
+
+  .hide {
+    position: absolute;
+    top: -60px;
   }
 
   .header_search {

@@ -6,6 +6,7 @@
 .signin_logo {
     text-align: center;
     margin-bottom: 60px;
+    width: 100%;
 }
 
 .SignIn_section input {
