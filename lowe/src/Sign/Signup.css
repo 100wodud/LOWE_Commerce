@@ -1,6 +1,9 @@
 .SignUp_section {
+    margin: auto;
     margin-top: 76px;
     padding: 24px;
+    max-width: 327px;
+    width: 100%;
 }
 
 .signUptitle {

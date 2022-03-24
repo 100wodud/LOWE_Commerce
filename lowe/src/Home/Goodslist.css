@@ -5,8 +5,8 @@
 }
 
 .goods_thumnail{
-    width: 187px;
-    height: 187px;
+    width: 214px;
+    height: 214px;
     object-fit: cover;
 }
 
@@ -18,14 +18,14 @@
 .goods_title {
     padding: 12px 16px 8px 12px;
     height: 32px;
-    width: 159px;
+    width: 186px;
     font: 500 13px "Montserrat";
 }
 
 .goods_price {
     padding: 0 16px 28px 12px;
     height: 32px;
-    width: 159px;
+    width: 186px;
 }
 
 .goods_price_percent {
@@ -37,4 +37,30 @@
 .goods_price_price {
     font: 700 15px "Montserrat";
     color: #333333;
+}
+
+
+@media screen and (max-width:  429px) {
+    .goods_thumnail{
+        width: 50vw;
+        height: 50vw;
+        min-width: 187px;
+        min-height: 187px;
+        object-fit: cover;
+    }
+
+    .goods_title {
+        padding: 12px 16px 8px 12px;
+        height: 32px;
+        width: 42vw;
+        min-width: 159px;
+        font: 500 13px "Montserrat";
+    }
+
+    .goods_price {
+        padding: 0 16px 28px 12px;
+        height: 32px;
+        width: 42vw;
+        min-width: 159px;
+    }
 }

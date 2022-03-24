@@ -1,5 +1,7 @@
 .idresult_section {
     margin-top: 60px;
+    max-width: 327px;
+    margin: auto;
 }
 
 .idresult_section > div {

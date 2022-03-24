@@ -29,9 +29,10 @@ class Review extends Component {
     };
 
     componentDidMount = () => {
-        let id = window.location.pathname.split("/")[3];
+        let id = window.location.pathname.split("/")[4];
+        let ManagerId = window.location.pathname.split("/")[3];
         let user = window.localStorage.getItem("id");
-        this.setState({ id: id, user: user })
+        this.setState({ id: id, user: user, ManagerId: ManagerId })
         let arr = [];
         if (this.props.location.state) {
             let img = this.props.location.state.Images;
@@ -60,6 +61,7 @@ class Review extends Component {
                 .post("https://d205rw3p3b6ysa.cloudfront.net/createReview", {
                     user: Number(this.state.user),
                     BoardId: Number(this.state.id),
+                    ManagerId: Number(this.state.ManagerId),
                     hair_color: this.state.Color,
                     hair_amout: this.state.Amout,
                     hair_thick: this.state.Thick,

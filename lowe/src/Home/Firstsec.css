@@ -1,5 +1,6 @@
 .Mainpage_first_section img {
-    height: 200px;
+    height:53.333vw;
+    max-height: 228px;
     width: 100% ;
 }
 .Mainpage_first_section {
@@ -9,13 +10,15 @@
 }
 
 .banner_img {
-    height: 200px;
-    max-width: 375px ;
+    height:53.333vw;
+    max-height: 228px;
+    max-width: 428px ;
     outline: none;
 }
 
 .Mainpage_first_section .slick-slider div {
-    height: 200px;
+    height:53.333vw;
+    max-height: 228px;
 }
 
 
@@ -26,7 +29,7 @@
     background-color: #FFFFFF;
     border-radius: 20px;
     margin-bottom: 25px;
-    transform: translate(720%, 80%);
+    transform: translate(820%, 80%);
     text-align: center;
     font: 700 11px "Montserrat";
     color: #000000;
@@ -38,4 +41,13 @@
 
 .Mainpage_first_number > span{
     font-weight: 500;
+}
+
+
+@media screen and (max-width:  428px) {
+
+    .Mainpage_first_number {
+        transform: translate(0, 80%);
+        right: 10px;
+    }
 }

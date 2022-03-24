@@ -32,7 +32,7 @@ class Recommand extends Component {
 
     render() {
         return (
-            <span>
+            <span style={{float: "left", marginRight: "12px"}}>
                 <a onClick={this.onclickRecently} href={`/board/${this.props.e.id}`} className="recommand">
                     <div>
                         <img src={process.env.PUBLIC_URL + this.props.e.thumbnail} className="recommand_thumnail" alt="로위 상품 썸네일" />

@@ -93,7 +93,7 @@ class Id extends React.Component {
                     </div>
                     <div>
                         <div className="signUptitle">휴대폰 번호 인증</div>
-                        <input className="signUpinfo" type="number" placeholder="인증번호 숫지 입력" onChange={this.handleInputValue("randomcheck")} />
+                        <input className="signUpinfo" type="number" placeholder="인증번호 숫자 입력" onChange={this.handleInputValue("randomcheck")} />
                         {
                             this.state.phonecheck_error ?
                                 <div className="signup_error">{this.state.phonecheck_error}</div> :

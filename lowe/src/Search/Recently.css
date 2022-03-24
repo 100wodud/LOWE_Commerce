@@ -36,8 +36,14 @@
     color: #333333;
     background-color: #F5F5F5;
     font: 400 14px "Noto Sans";
-    padding: 9px 0;
+    padding: 5px 0 7px 0;
     margin-right: 8px;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.recentSearch_content img {
+    width: 9px;
+    height: 9px;
+    line-height: 9px;
 }

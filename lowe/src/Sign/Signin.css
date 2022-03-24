@@ -1,6 +1,9 @@
 .SignIn_section {
+    margin: auto;
     margin-top: 118px;
     padding: 24px;
+    max-width: 327px;
+    width: 100%;
 }
 
 .signin_logo {
@@ -43,11 +46,12 @@
     background: #333333;
     color: #ffffff;
     border: 2px solid #333333;
+    margin: 0 auto;
 }
 .signin_buttonbox{
     margin-bottom: 12px;
     width: 100%;
-    max-width: 375px;
+    max-width: 428px;
     text-align: center;
     cursor: pointer;
 }

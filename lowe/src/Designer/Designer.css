@@ -1,0 +1,82 @@
+.Designer_section {
+    margin-top: 60px;
+    padding-bottom: 80px;
+}
+
+.Designer-filter {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+}
+
+.Designer-filter .push_button {
+    width: 50%;
+    float: left;
+    height: 40px;
+    color: #333333;
+    font: 700 14px "Montserrat";
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.Designer-filter .pull_button {
+    width: 50%;
+    float: left;
+    height: 40px;
+    color: #333333;
+    font: 400 14px "Montserrat";
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.Designer_filter {
+    line-height: 35px;
+}
+
+.Designer_filter_div img {
+    margin: auto;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+.Designer_filter_div > div {
+    line-height: 35px;
+}
+
+
+.Designer_filter_div {
+    padding: 0 12px;
+    margin: 16px 0;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    display: flex;
+    width: 95%;
+    max-width: 406px; 
+    height: 35px;
+    line-height: 35px;
+}
+.Designer_filter > span {
+    padding: 6px 12px 6px 12px;
+    margin-right: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+.Designer_filter_false {
+    font-weight: 400;
+    color: #333333;
+    background-color: #F5F5F5;
+    font: 400 14px "Noto Sans";
+}
+
+
+.Designer_filter_true {
+    font-weight: 400;
+    color: #FFFFFF;
+    background-color: #333333;
+    font: 400 14px "Noto Sans";
+}

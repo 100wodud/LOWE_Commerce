@@ -8,8 +8,8 @@ class Secondsec extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Allgoods: "",
-            Showgoods: "",
+            Allgoods: [],
+            Showgoods: [],
             promotion: "",
             category: "",
             filter: false,
@@ -20,8 +20,25 @@ class Secondsec extends Component {
     }
 
     componentDidMount = () => {
+        this.setState({ Allgoods: [], Showgoods: [], category: 0, number: 0 });
+        let Allboard = JSON.parse(window.localStorage.getItem("Allboard"));
+        if (!Allboard) {
+            axios.get("https://d205rw3p3b6ysa.cloudfront.net/allBoard", {})
+                .then((res) => {
+                    let arr = [];
+                    for (let i = 0; i < res.data.length; i++) {
+                        if (res.data[i].open === '1') {
+                            arr.push(res.data[i])
+                        }
+                    }
+                    this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
 
-        axios.get("https://d205rw3p3b6ysa.cloudfront.net/allBoard", {})
+                })
+        } else {
+            this.setState({ Allgoods: Allboard, Showgoods: Allboard, category: 0, number: 10  })
+        }
+
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
             .then((res) => {
                 let arr = [];
                 for (let i = 0; i < res.data.length; i++) {
@@ -30,22 +47,7 @@ class Secondsec extends Component {
                     }
                 }
                 this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
-            })
-            .then(() => {
-                axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
-                    .then((res) => {
-                        let arr = [];
-                        for (let i = 0; i < res.data.length; i++) {
-                            if (res.data[i].open === '1') {
-                                arr.push(res.data[i])
-                            }
-                        }
-                        this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
-                    }).catch((err) => {
-                        console.log(err)
-                    })
-            }).catch((err) => {
-                console.log(err)
+                localStorage.setItem("Allboard", JSON.stringify(arr));
             })
 
 

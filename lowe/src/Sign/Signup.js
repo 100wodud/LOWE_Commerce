@@ -4,6 +4,7 @@ import "./Signup.css";
 import SignHeader from "./SignHeader";
 import SignupModal from "./SignupModal";
 import ModalPhone from "./ModalPhone";
+import moment from 'moment';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -232,11 +233,15 @@ class Signup extends React.Component {
                         status: false
                     })
                 } else {
+                    let date = new Date();
+                    let expired = moment(date).add(1, "months")
                     axios.post("https://d205rw3p3b6ysa.cloudfront.net/createCoupon", {
                         UserId: res.data.id,
                         price: 5000,
                         content: "[WELCOME] 회원가입 축하 쿠폰",
-                        used: "1"
+                        used: "1",
+                        expired: expired,
+                        minimum: 30000
                     })
                     setTimeout(() => {
                         this.openmodalPhone(`회원가입 완료 :)\n${this.state.login_id}님 만을 위한 쿠폰을 보내드렸어요!`)

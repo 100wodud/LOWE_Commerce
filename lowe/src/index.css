@@ -21,7 +21,7 @@ body a{
   color: #333333;
 }
 
-body input[type="text"], body input[type="radio"], body input[type="textarea"] {
+body input[type="text"], body input[type="radio"], body input[type="textarea"], body input[type="number"], body input[type="password"] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 }
@@ -33,8 +33,9 @@ body img {
 
 #root {
   width: 100%;
-  max-width: 375px;
+  max-width: 428px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .slick-slider{
