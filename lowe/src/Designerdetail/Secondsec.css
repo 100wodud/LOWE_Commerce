@@ -1,0 +1,89 @@
+.Ddetail {
+    padding-bottom: 80px;
+}
+.Ddetail_surgery{
+    margin-top: 1px;
+}
+
+.Ddetail_surgery th, .Ddetail_surgery td {
+    text-align: left;
+}
+
+.Ddetail_surgery_title_first  {
+    padding: 14px 12px;
+    max-width: 217px;
+    font: 700 12px "Montserrat";
+    color: #9C9C9C;
+}
+
+.Ddetail_surgery_content_first  {
+    padding: 14px 12px;
+    width: 100%;
+    max-width: 217px;
+    word-break: keep-all;
+    font: 400 13px "Montserrat";
+}
+
+.Ddetail_surgery_title_second {
+    padding: 14px 8px;
+    min-width: 78px;
+    font: 700 12px "Montserrat";
+    color: #9C9C9C;
+}
+
+.Ddetail_surgery_content_second{
+    padding: 14px 8px;
+    min-width: 78px;
+    font: 400 13px "Montserrat";
+}
+
+.Ddetail_surgery_content_third {
+    padding: 0 12px;
+}
+.Ddetail_surgery_content_third > .Ddetail_orange {
+    border: 1px solid #FF5732;
+    font: 500 12px "Noto Sans";
+    line-height: 28px;
+}
+.Ddetail_orange > a {
+    color: #FF5732;
+}
+
+.Ddetail_surgery_content_third > div {
+    width: 77px;
+    height: 32px;
+    font: 400 12px "Montserrat";
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    border-radius: 4px;
+    line-height: 32px;
+    text-align: center;
+    color: #333333
+}
+
+
+#store .dl {
+    width: 100%; 
+    display: flex; 
+    padding-bottom: 24px;
+}
+#store .dd {
+    font: 400 13px "Montserrat";
+    margin-left: 12px;
+}
+#store .dt {
+    width: 90px; 
+    font: 700 12px "Montserrat";
+    color: #9C9C9C;
+}
+
+.store-map {
+    margin-top: 12px;
+    border: 1px solid #DDDDDD;
+    width: 166px;
+    height: 40px;
+    font: 700 12px "Montserrat";
+    line-height: 40px;
+    text-align: center;
+}

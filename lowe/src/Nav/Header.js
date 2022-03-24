@@ -37,6 +37,14 @@ class Header extends Component {
 
     render() {
         return (
+            <>
+            { this.props.header === "clear" ?
+
+            <header className="header clear" id="headers">
+            <div style={{cursor: "pointer"}}>
+                <img onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_dback.svg"} alt="로위 로고" />
+            </div>
+            </header> :
             <header className="header" id="headers">
                 {this.props.header !== "board" ?
                     <>
@@ -60,6 +68,8 @@ class Header extends Component {
                     </>
                 }
             </header>
+            }
+            </>
         );
     }
 }

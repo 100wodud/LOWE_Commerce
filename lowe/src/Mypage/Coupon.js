@@ -40,7 +40,6 @@ class Coupon extends Component {
                     </ul>
                 </div>
                 {this.state.can.map((e) => {
-                    let expired = moment(e.createdAt).add(1, "months")
                     return (
                         <div key={e.id} className="coupon_div">
                             <div className="coupon_first_div">
@@ -48,8 +47,11 @@ class Coupon extends Component {
                             </div>
                             <div className="coupon_second_div">
                                 <div style={{ fontWeight: "700", fontSize: "14px", marginBottom: "5px" }}>{e.content}</div>
-                                <div style={{ fontSize: "12px", marginBottom: "14px" }}>30,000원 이상 시술 결제시 사용가능</div>
-                                <div style={{ fontSize: "11px", fontWeight: "500", marginBottom: "7px", color: "#999999" }}>{e.createdAt.slice(0, 10).replaceAll("-", ". ")} - <Moment date={expired} format='YYYY. MM. DD'></Moment></div>
+                                { e.minimum ?
+                                    <div style={{ fontSize: "12px", marginBottom: "14px" }}>{e.minimum.comma()}원 이상 시술 결제시 사용가능</div>:
+                                    <div style={{ fontSize: "12px", marginBottom: "14px" }}>-</div>
+                                }
+                                <div style={{ fontSize: "11px", fontWeight: "500", marginBottom: "7px", color: "#999999" }}>{e.createdAt.slice(0, 10).replaceAll("-", ". ")} - <Moment date={e.expired} format='YYYY. MM. DD'></Moment></div>
                                 <div style={{ fontSize: "12px", fontWeight: "500", color: "#999999" }}>일부상품제외</div>
                             </div>
                         </div>

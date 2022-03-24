@@ -2,8 +2,8 @@ import { Component } from "react";
 import axios from "axios";
 import "./Fourthsec.css"
 import Recommand from "./Recommand";
-import Slider from "react-slick";
 import Store from "./Store";
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 class Fourthsec extends Component {
     constructor(props) {
@@ -29,15 +29,6 @@ class Fourthsec extends Component {
     }
 
     render() {
-        let settings = {
-            dots: true,
-            infinite: false,
-            autoplaySpeed: 10000,
-            pauseOnHover: true,
-            slidesToShow: 2.4,
-            slidesToScroll: 1,
-            autoplay: false
-        };
         return (
             <section className="Board_fourth_section" id="location">
                 <div style={{ paddingTop: "120px" }}>
@@ -48,16 +39,16 @@ class Fourthsec extends Component {
                     {this.state.data.length > 1 ?
                         <>
                             <div className="store_title" style={{marginTop: "60px"}}>추천시술</div>
-                            <div>
-                                <Slider {...settings} >
+                            
+                                    <ScrollContainer className="recommand_scroll">
                                     {
                                         this.state.data.map((e => (
                                             <Recommand key={e.id} e={e} />
                                         )))
 
                                     }
-                                </Slider>
-                            </div>
+                                    </ScrollContainer>
+                            
                         </> : null
                     }
                 </div>

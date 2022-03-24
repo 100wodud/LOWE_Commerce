@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
 import "./Secondsec.css"
+import DesignerList from "../Designer/DesignerList";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -8,7 +9,8 @@ class Secondsec extends Component {
         this.state = {
             data: "",
             like: false,
-            banner: ''
+            banner: '',
+            designer: []
         };
         this.onclickLike = this.onclickLike.bind(this);
     }
@@ -45,6 +47,8 @@ class Secondsec extends Component {
             }).catch((err) => {
                 console.log(err)
             })
+
+        this.setState({ designer: this.props.designer[0] })
     }
 
 
@@ -98,15 +102,10 @@ class Secondsec extends Component {
                         <div style={{ width: "67%", maxWidth: "270px", whiteSpace: "pre-line" }}>{this.props.data.board.addPrice}</div>
                     </div>
                     <div>
-                        <a className="Board_second_store" href={this.props.designer[0].home}>
-                            <div style={{ width: "70%" }}>
-                                <span>로위 {this.props.data.board.store}</span>
-                                <span style={{ marginLeft: "8px", fontWeight: "400" }}>원장 {this.props.data.board.designer_name}</span>
-                            </div>
-                            <div style={{ width: "30%" }}>
-                                <img src={process.env.PUBLIC_URL + "/image/nav/board_arrow.svg"} alt="로위 지점페이지" />
-                            </div>
-                        </a>
+                        {this.props.designer ?
+                            <DesignerList data={this.props.designer} board={true} /> 
+                            : null
+                        }
                     </div>
                 </div>
                 <a href={this.state.banner.url} className="Board_banner">

@@ -2,7 +2,8 @@
     font: 700 12px "Montserrat"
 }
 .review_create{
-    font: 500 12px "Montserrat"
+    width: 57px;
+    font: 500 12px "Montserrat";
 }
 .review_info {
     font: 700 12px "Noto Sans";
@@ -13,7 +14,7 @@
     
 }
 .review_img {
-    max-width: 351px;
+    max-width: 404px;
     width: 100%;
 }
 
@@ -23,17 +24,16 @@
     overflow-y: hidden;
     font: 500 14px "Noto Sans";
     margin-bottom: 24px;
-    max-width: 326px;
+    max-width: 370px;
     white-space:pre-line;
     word-break:break-word;
 }
-
 
 .review_content_true {
     white-space: pre-line;
     font: 500 14px "Noto Sans";
     margin-bottom: 24px;
-    max-width: 326px;
+    max-width: 370px;
     white-space:pre-line;
     word-break:break-word;
 }

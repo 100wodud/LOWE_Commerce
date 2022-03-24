@@ -12,6 +12,9 @@ import Review from "./Review/Review";
 import Find from "./Find/Find";
 import Withdrawal from "./Sign/Withdrawal";
 import EditmyInfo from "./Sign/EditmyInfo";
+import Designers from "./Designer/Designer";
+import Ddetail from "./Designerdetail/Ddetail";
+import Promotion from "./Promotion/Promotion";
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +42,9 @@ class App extends Component {
           <Route path='/editmyinfo' component={EditmyInfo} />
           <Route path='/myreview/edit/:id' component={Review} />
           <Route path='/review/write/:id' component={Review} />
+          <Route path='/designers' component={Designers} />
+          <Route path='/designer/:id' component={Ddetail} />
+          <Route path='/promotion/spring2203'component={Promotion} />
         </Switch>
       </>
     )

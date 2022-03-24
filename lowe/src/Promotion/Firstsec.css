@@ -1,0 +1,22 @@
+.Promotion_spring img {
+    width: 100%;
+    max-width: 428px;
+    image-rendering: -webkit-optimize-contrast
+}
+
+.Promotion_spring_text {
+    padding: 60px 0 60px 0;
+    width: 100%;
+    max-width: 428px;
+    background-color: #333333;
+}
+
+.Promotion_spring_text div {
+    font: 400 20px "Noto Sans";
+    color: #DDDDDD;
+    text-align: center;
+}
+
+.Promotion_spring_text strong {
+    color: #ffffff
+}

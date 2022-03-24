@@ -1,0 +1,61 @@
+.Designerlist_div {
+    padding: 12px;
+    height: 60px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    display: flex;
+}
+
+.border {
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+
+.DesignerList_profileimg {
+    width: 60px;
+    height: 60px;
+    border-radius: 90%;
+    overflow: hidden;
+}
+
+.DesignerList_profileimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 90;
+}
+
+.DesignerList_content_div{
+    width: 100%;
+    line-height: 60px;
+    margin: auto;
+    margin-left: 8px;
+}
+
+.DesignerList_content {
+    margin: auto;
+    font: 400 16px "Noto Sans";
+    margin-bottom: 2px;
+}
+
+.DesignerList_content_hash {
+    font: 400 12px "Noto Sans";
+    color: #9C9C9C;
+}
+
+.DesignerList_Coupon_div{
+    min-width: 25px;
+    margin: auto;
+}
+
+.DesignerList_Like_div {
+    min-width: 60px;
+    margin: auto;
+    text-align: center;
+}
+
+.DesignerList_Like_div > div {
+    margin-top: 4px;
+    font: 700 10px "Montserrat";
+    color: #9C9C9C;
+}

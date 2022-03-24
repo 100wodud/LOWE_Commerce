@@ -25,8 +25,8 @@ class Board extends Component {
             id: id,
         }).then((res) => {
             this.setState({ data: res.data });
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerName", {
-           name: res.data.board.designer_name,
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerDetail", {
+                id: res.data.board.ManagerId,
             })
             .then((res) => {
                 this.setState({ designer: res.data });

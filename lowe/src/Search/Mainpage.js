@@ -31,6 +31,19 @@ class Mainpage extends Component {
         } else {
             this.setState({ recent: [] });
         }
+
+        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
+        .then((res) => {
+            let arr = [];
+            for (let i = 0; i < res.data.length; i++) {
+                if (res.data[i].open === '1') {
+                    arr.push(res.data[i])
+                }
+            }
+            window.localStorage.setItem("allboard", JSON.stringify(arr));
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
 
@@ -47,22 +60,15 @@ class Mainpage extends Component {
     }
 
     handleInputValue = (key) => (e) => {
+        let allboard = JSON.parse(localStorage.getItem('allboard'))
         this.setState({ [key]: e.target.value, result: false });
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
-            keyword: e.target.value
-        })
-            .then((res) => {
-                let arr = [];
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].open === '1') {
-                        arr.push(res.data[i])
-                    }
-                }
-                this.setState({ name: arr })
-            })
-            .catch(err => {
-                console.log("에러")
-            })
+        let arr = [];
+        for(let i =0; i< allboard.length; i++){
+            if(allboard[i].name.indexOf(e.target.value) !== -1){
+                arr.push(allboard[i]);
+            }
+        }
+        this.setState({name: arr})
     };
 
     handleInputSearch = () => {
@@ -123,7 +129,8 @@ class Mainpage extends Component {
     }
 
 
-    handleInputRecommand = (key) => () => {
+    handleInputRecommand = (key) => (e) => {
+        e.preventDefault();
         let keyword = key
         axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
             keyword: keyword

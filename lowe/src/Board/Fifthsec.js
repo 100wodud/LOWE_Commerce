@@ -40,10 +40,10 @@ class Fifthsec extends Component {
                     <div className="review_title_div">
                         <span className="review_title">포토리뷰</span>
                         <span >
-                            <a href={id ? "/review/write/" + this.props.data.board.id : "/signin"} className="review_title_write">리뷰쓰기</a>
+                            <a href={id ? "/review/write/" + this.props.data.board.ManagerId +"/" +this.props.data.board.id : "/signin"} className="review_title_write">리뷰쓰기</a>
                         </span>
                     </div>
-                    <ReviewList data={this.state.showreview} imgdata={this.state.imgreview} onClickmoreview={this.onClickmoreview} moreview={this.state.moreview} number={this.state.number} />
+                    <ReviewList ManagerId={this.props.data.board.ManagerId} data={this.state.showreview} imgdata={this.state.imgreview} onClickmoreview={this.onClickmoreview} moreview={this.state.moreview} number={this.state.number} />
                 </div>
             </section>
         )

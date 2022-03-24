@@ -2,6 +2,7 @@
 .recommand {
     width: 140px;
     z-index: -100;
+    white-space:pre-wrap;
 }
 
 .recommand_thumnail{

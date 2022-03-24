@@ -23,18 +23,17 @@ class BFooter extends Component {
     }
 
     render() {
-        let user = window.localStorage.getItem("id");
         return (
             <footer className='BFooter'>
                 {this.props.data && this.props.designer ?
                     <>
-                        <div style={{ maxWidth: "80px", width: "21%", float: "left", marginRight: "0.4%" }}>
+                        <div style={{ maxWidth: "92px", width: "21%", float: "left", marginRight: "0.4%" }}>
                             <a className='BFooter_review' href='#review' style={{ lineHeight: "65px" }}>
                                 <div style={{ paddingTop: "14px", }}>리뷰</div>
                                 <div>({this.props.data.board.Reviews.length})</div>
                             </a>
                         </div>
-                        <div style={{ maxWidth: "102px", width: "25.2%", float: "left", marginRight: "0.4%" }}>
+                        <div style={{ maxWidth: "108px", width: "25.2%", float: "left", marginRight: "0.4%" }}>
                             {
                                 this.props.data.board.eventType === 1 ?
                                     <div style={{ lineHeight: "65px", height: "65px", textAlign: "left", marginLeft: "16px", marginTop: "14px" }}>
@@ -45,11 +44,8 @@ class BFooter extends Component {
 
                             }
                         </div>
-                        <div className='BFooter_res' style={{ maxWidth: "200px", width: "52.9%", float: "left" }}>
-                            {user ?
-                                <a href={this.props.designer[0].reserve_url} onClick={this.onClicknumber}>예약하기</a> :
-                                <a href="/signin">예약하기</a>
-                            }
+                        <div className='BFooter_res' style={{ maxWidth: "230px", width: "52.9%", float: "left" }}>
+                                <a href={this.props.designer.reserve_url} onClick={this.onClicknumber}>예약하기</a> 
                         </div>
                     </> : null
                 }

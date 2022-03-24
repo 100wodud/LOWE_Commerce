@@ -1,7 +1,7 @@
 .header2 {
     position: fixed;
     width: 100%;
-    max-width: 375px;
+    max-width: 428px;
     z-index: 10;
     height: 60px;
     top: 0;
@@ -14,7 +14,7 @@
   }
 
 .header2 .header_name {
-      min-width: 375px;
+      width: 100%;
       font: 700 17px "Montserrat";
       height: 60px;
       line-height: 60px;

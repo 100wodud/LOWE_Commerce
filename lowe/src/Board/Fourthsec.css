@@ -8,3 +8,10 @@
     font: 700 15px "Noto Sans";
     margin-bottom: 20px;
 }
+
+.recommand_scroll {
+    height: fit-content;
+    overflow-x: scroll;
+    white-space:nowrap;
+    display: flex;
+}

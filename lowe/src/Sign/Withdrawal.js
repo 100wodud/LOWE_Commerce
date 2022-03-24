@@ -85,7 +85,7 @@ class Withdrawal extends Component {
                         <div>
                             <input className="Withdrawal_reason" name="withdrawal" id="withdrawal3" type="checkbox" checked={this.state.reason === "쿠폰 등 혜택이 적어서" || this.state.reason === "잦은 오류, 장애가 발생해서" || this.state.reason === "원하는 상품이 없어서" || this.state.reason === "" ? false : true} onClick={this.clickCheck("0")} readOnly />
                             <label htmlFor="withdrawal4" className="Withdrawal_text">직접입력</label>
-                            <div style={{maxWidth: "351px"}}>
+                            <div style={{maxWidth: "400px"}}>
                                 <textarea className="Withdrawal_reason" name="withdrawal" id="withdrawal4" onChange={this.handleInputValue("reason")} onClick={this.handleInputValue("reason")} />
                             </div>
                         </div>
