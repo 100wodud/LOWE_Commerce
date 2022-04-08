@@ -1,0 +1,95 @@
+
+.Payment_third_section {
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+}
+
+.Payment_third_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.Payment_third_section textarea {
+    width: 94%;
+    max-width: 380px;
+    height: 128px;
+    padding: 16px 12px;
+    font: 400 15px "Noto Sans";
+    margin-bottom: 20px;
+    outline: none;
+    border: 1px solid #EBEBEB;
+    border-radius: 6px;
+    line-height: 21px;
+}
+
+
+.Payment_third_section textarea::placeholder {
+    font: 700 13px "Noto Sans";
+    color: #9C9C9C;
+    line-height: 21px;
+}
+.Payment_third_section textarea:focus {
+    border: 1px solid #333333;
+    border-radius: 6px;
+}
+
+.click_button {
+    background: #333333;
+    color: #ffffff;
+    font: 700 15px "Noto Sans";
+    margin-right: 12px;
+}
+
+.unclick_button {
+    color: #9C9C9C;
+    background: #F5F5F5;
+    font: 500 15px "Noto Sans";
+    margin-right: 12px;
+}
+
+.Payment_third_section label {  
+    width: 80px;
+    height: 80px;
+    left: 12px;
+    top: 593px;
+    text-align: center;
+    background: #7C7C7C;
+    border-radius: 6px;
+    font: 700 11px "Montserrat";
+    color: #ffffff;
+    cursor: pointer;
+    line-height: 80px; 
+    vertical-align: middle;
+    float: left;
+}
+
+
+ .Payment_third_section input[type="file"] {
+      position: absolute; width: 1px; 
+      height: 1px; 
+      padding: 0; 
+      margin: -1px; 
+      overflow: hidden; 
+      clip:rect(0,0,0,0); 
+      border: 0; 
+    }
+
+.review_write_addimg {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-left: 8px;
+}
+.review_write_delimg {
+    margin-left: -20px;
+    cursor: pointer;
+    z-index: 5;
+}
+.paymentimg_scroll {
+    width: 100%;
+overflow-x: scroll;
+white-space:nowrap;
+display: flex;
+}

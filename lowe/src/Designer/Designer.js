@@ -39,6 +39,7 @@ class Designer extends React.Component {
         this.setState({ list: e })
 
         let user_id = Number(window.localStorage.getItem("id"));
+        if(user_id){
         axios.post(`https://d205rw3p3b6ysa.cloudfront.net/getFavorite`,{
             user_id: user_id,
         })
@@ -47,6 +48,8 @@ class Designer extends React.Component {
             }).catch((err) => {
                 console.log(err)
             });
+        }
+
     }
 
     onClickClose = () => {

@@ -1,0 +1,33 @@
+
+.Payment_first_section {
+    background-position: center;
+    margin-top: 60px;
+    border-top: 1px solid #DDDDDD;
+    padding: 32px 12px;
+}
+
+.Payment_first_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+.Payment_first_content {
+    width: 100%;
+}
+
+.Payment_first_content img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    float: left;
+    margin-right: 12px;
+}
+.Payment_first_content_name {
+    word-break: keep-all;
+    height: 54px;
+    font: 400 14px "Noto Sans"
+}
+
+.Payment_first_content_price span {
+    font: 700 15px "Montserrat";
+    margin-right: 10px;
+}

@@ -1,0 +1,37 @@
+.Receipt_Contact_section{
+    background-position: center;
+    margin-top: 60px;
+    border-top: 1px solid #DDDDDD;
+    padding: 32px 12px;
+}
+
+.Receipt_Contact_link {
+    width: 100%;
+    display: block;
+    padding: 16px 0;
+    text-align: center;
+    border: 2px solid #FF3D12;
+    border-radius: 8px;
+    font: 700 16px "Noto Sans";
+    color: #FF3D12;
+    margin-bottom: 20px;
+}
+
+.Receipt_Contact_caution li {
+    font: 400 13px "Noto Sans";
+    list-style: none;
+}
+
+.Receipt_Contact_caution li span {
+    font: 400 13px "Noto Sans";
+    color: #FF3D12;
+}
+
+.Receipt_Contact_caution li::before {
+
+    content: "•";
+    color: #9C9C9C;
+    display: inline-block;
+    width: 11px;
+    font-size: 14px;
+}

@@ -38,7 +38,13 @@
     font: 400 15px "Montserrat" 
 }
 
-  .BFooter_res a {
+  .BFooter_res {
+      display:block;
+      max-width: 230px;
+      width: 52.9%;
       font: 700 17px "Noto Sans";
       color: #FF3D12;
+      height: 65px;
+      line-height: 65px;
+      cursor: pointer;
   }

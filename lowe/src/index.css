@@ -26,6 +26,10 @@ body input[type="text"], body input[type="radio"], body input[type="textarea"], 
   -webkit-border-radius: 0;
 }
 
+body textarea {
+  resize: none;
+}
+
 body img {
   margin: 0;
   padding: 0;

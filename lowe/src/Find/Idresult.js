@@ -38,10 +38,10 @@ class Idresult extends React.Component {
                             </div>
                             <div style={{justifyContent: "space-between",  display: "flex"}}>
                                 <div onClick={this.props.onclickListPw} className="signin_buttonbox">
-                                    <div style={{ width: "42.4vw", maxWidth: "157px", color: "#333333", backgroundColor: "#ffffff", borderColor: "#cfcfcf", borderWidth: "1px", fontWeight: "400"}} className="signin_button">비밀번호 찾기</div>
+                                    <div style={{ width: "42.4vw", maxWidth: "152px", color: "#333333", backgroundColor: "#ffffff", borderColor: "#cfcfcf", borderWidth: "1px", fontWeight: "400"}} className="signin_button">비밀번호 찾기</div>
                                 </div>
                                 <a href="/signin"  className="signin_buttonbox">
-                                    <div style={{ width: "42.4vw", maxWidth: "157px", borderWidth: "1px",  }} className="signin_button">로그인</div>
+                                    <div style={{ width: "42.4vw", maxWidth: "152px", borderWidth: "1px",  }} className="signin_button">로그인</div>
                                 </a>
                             </div>
                         </div>

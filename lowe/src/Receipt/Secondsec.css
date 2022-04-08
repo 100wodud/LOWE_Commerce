@@ -1,0 +1,21 @@
+.Receipt_second_section{
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+    height: fit-content;
+}
+
+#rpayment .dl {
+    width: 100%; 
+    display: flex; 
+    padding-bottom: 12px;
+}
+#rpayment .dd {
+    font: 500 13px "Montserrat";
+    margin-left: 12px;
+}
+#rpayment .dt {
+    width: 85px; 
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+}

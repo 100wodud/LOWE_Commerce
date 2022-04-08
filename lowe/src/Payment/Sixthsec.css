@@ -1,0 +1,36 @@
+
+.Payment_sixth_section {
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+}
+
+
+.Payment_sixth_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.Payment_sixth_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Payment_sixth_content div{
+    width: 48%;
+    font: 700 13px "Noto Sans";
+    height: 48px;
+    line-height: 48px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.sixth_nonclick {
+    border: 1px solid #DDDDDD;
+    color: #333333;
+}
+
+.sixth_click {
+    border: 1px solid #FF3D12;
+    color: #FF3D12;
+}

@@ -1,0 +1,39 @@
+
+.Payment_fifth_section {
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+}
+
+.Payment_fifth_content {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.Payment_fifth_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.Payment_fifth_price_div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Payment_fifth_price_sub {
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+    margin-bottom: 12px;
+    line-height: 14px;
+}
+
+.Payment_fifth_price_main {
+    font: 500 14px "Montserrat";
+    text-align: right;
+}
+
+.Payment_fifth_pricetotal {
+    font: 700 20px "Montserrat";
+    color: #FF3D12;
+}

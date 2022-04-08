@@ -35,14 +35,12 @@ class Board extends Component {
         }).catch((err) => {
             console.log(err)
         });
-
-
     }
 
     render() {
         return (
             <>
-                <Header header="board" />
+                <Header header="clear" />
                 {this.state.data && this.state.designer && this.state.data.board.open ==="1" ?
                     <>
                         <Firstsec data={this.state.data} />

@@ -1,18 +1,25 @@
+.Coupon_mycoupons {
+    margin-top: 61px;
+    padding: 40px 12px 34px 12px;
+    border-top:  1px solid #DDDDDD;
+}
 
-.coupon_ul li {
-    font: 500 14px "Noto Sans";
-    margin-bottom: 4px;
-    list-style: none;
+.Coupon_mycoupons_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
 }
-.coupon_ul li strong {
-    font: 700 14px "Noto Sans";
+
+.Coupon_mycoupons_title >span {
+    color: #FF5732;
 }
-.coupon_ul li::marker {
-    color: #9A9A9A;
+
+.mycoupon_policy{
+    padding: 32px 12px 84px 12px;
+    background-color: #F5F5F5;
 }
 
 .coupon_div {
-    max-width: 351px;
+    max-width: 404px;
     height: 136px;
     border: 1px solid #DDDDDD;
     line-height: 136px;
@@ -74,4 +81,12 @@
 
 .used {
     background: rgba(0, 0, 0, 0.69);
+}
+
+
+.coupon_ul li { position: relative; padding-left: 14px; font: 400 13px "Noto Sans";line-height: 20px; color: #9C9C9C; word-break: keep-all;}
+.coupon_ul li + li { margin-top: 8px; }
+.coupon_ul li .num { position:absolute; top: -1px; left: 0; font-size: 17px; font-weight: 600; line-height: 20px; color: #9C9C9C;}
+.mycoupon_policy ul {
+    list-style: none;
 }

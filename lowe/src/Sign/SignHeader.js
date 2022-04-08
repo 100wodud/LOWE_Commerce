@@ -13,6 +13,11 @@ class SignHeader extends Component {
         window.history.go(-1)
     }
 
+
+    gotohome = () => {
+        window.location.replace("/")
+    }
+
     render() {
         return (
             <header className="header2">
@@ -25,10 +30,13 @@ class SignHeader extends Component {
                     <div>
                         <img className="header_back" onClick={this.props.close} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
                     </div> :
-
-                    <div>
-                        <img className="header_back" onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
-                    </div>
+                    this.props.home ?
+                        <div>
+                            <img className="header_back" onClick={this.gotohome} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
+                        </div> :
+                        <div>
+                            <img className="header_back" onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
+                        </div>
                 }
             </header>
         );

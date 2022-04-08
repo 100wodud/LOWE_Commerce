@@ -1,0 +1,31 @@
+
+.Receipt_fifth_section {
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+}
+
+.Receipt_fifth_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.Receipt_fifth_text {
+    font: 400 14px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.receipt_fifth_img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+
+.receiptimg_scroll {
+    width: 100%;
+    overflow-x: scroll;
+    white-space:nowrap;
+    display: flex;
+}
