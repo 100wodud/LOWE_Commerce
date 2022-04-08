@@ -1,0 +1,21 @@
+.Review_myreviews{
+    margin-top: 61px;
+    padding: 40px 12px 34px 12px;
+    border-top:  1px solid #DDDDDD;
+}
+
+.mypage_noreview {
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 68px;
+}
+
+.mypage_noreview > div {
+    margin-top: 25px;
+    font: 700 18px "Noto Sans";
+    color: #ADADAD;
+}
+
+.mypage_noreview > div > div {
+    margin-bottom: 5px;
+}

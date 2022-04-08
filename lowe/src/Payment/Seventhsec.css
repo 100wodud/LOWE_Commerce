@@ -1,0 +1,53 @@
+
+.Payment_seventh_section {
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+}
+.Payment_seventh_section > div {
+    width: 100%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.Payment_seventh_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 33px;
+    float: left;
+}
+
+.Payment_seventh_span {
+    float: left;
+    margin-right: 8px;
+    font: 400 14px "Noto Sans"
+}
+
+.Pagreeall img {
+    margin-top: 5px;
+}
+
+.Pagree img {
+    margin-top: 3px;
+}
+
+.Payment_seventh_caution li {
+    font: 400 13px "Noto Sans";
+    list-style: none;
+    margin-left: 6px;
+    margin-bottom: 9px;
+}
+
+.Payment_seventh_caution li span {
+    font: 400 13px "Noto Sans";
+    color: #FF3D12;
+}
+
+.Payment_seventh_caution li::before {
+
+    content: "•";
+    color: #9C9C9C;
+    display: inline-block;
+    width: 11px;
+    margin-left: 14px;
+    font-size: 14px;
+}

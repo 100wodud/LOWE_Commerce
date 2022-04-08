@@ -1,23 +1,24 @@
 .profile_edit {
-    margin-top: 32px;
-    padding-top: 8px;
-    background-color: #F5F5F5;
+    border-top: 8px solid #F5F5F5;
 }
 
 .profile_edit >a {
     display: flex;
     justify-content: space-between;
     padding: 23px 12px 23px 12px;
-    border-bottom: 1px solid #DDDDDD;
     background-color: #ffffff;
 }
 
+.profile_edit_subtitle {
+    font: 700 13px "Montserrat";
+    color: #9d9d9d;
+    padding: 32px 12px 17px 12px;
+}
 
-.profile_edit > div {
+.profile_edit_div {
     display: flex;
     justify-content: space-between;
     padding: 23px 12px 23px 12px;
-    border-bottom: 1px solid #DDDDDD;
     background-color: #ffffff;
 }
 
@@ -26,6 +27,6 @@
 }
 
 
-.profile_edit >div >div {
+.profile_edit_div >div {
     font: 400 14px "Noto Sans"
 }

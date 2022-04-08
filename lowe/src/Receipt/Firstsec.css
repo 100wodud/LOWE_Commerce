@@ -1,0 +1,78 @@
+
+.Receipt_first_section {
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+}
+
+.Receipt_first_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+.decoration div, .decoration span {
+    color: #9C9C9C;
+    text-decoration:line-through;
+}
+
+.Receipt_first_content {
+    width: 100%;
+}
+
+.Receipt_first_content img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    float: left;
+    margin-right: 12px;
+}
+.Receipt_first_content_name {
+    word-break: keep-all;
+    height: 54px;
+    font: 400 14px "Noto Sans"
+}
+
+.Receipt_first_content_price span {
+    font: 700 15px "Montserrat";
+    margin-right: 10px;
+}
+
+.Mypayment_state {
+    float: right;
+    margin-top: -25px;
+    padding: 4px 6px;
+}
+
+.Mypayment_state span {
+    font: 700 12px "Noto Sans";
+    text-decoration:none;
+}
+
+
+.state_green {
+    border: 1px solid #0BA754;
+    border-radius: 4px;
+    color:#0BA754;
+    text-decoration:none;
+}
+
+.state_green span{
+    text-decoration: none;
+    color:#0BA754
+}
+
+.state_red {
+    border: 1px solid #FF3D12;
+    border-radius: 4px;
+    color: #FF3D12;
+}
+
+.Mypayment_box {
+    width: fit-content;
+    padding: 12px 32px;
+    border: 2px solid #DDDDDD;
+    border-radius: 4px;
+    margin-left: 92px;
+    font: 700 13px "Noto Sans";
+    display: block;
+    cursor: pointer;
+}

@@ -1,0 +1,49 @@
+.mypayment{
+    padding: 28px 20px 16px 20px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    margin-bottom: 12px;
+
+}
+
+.mypayment_pay_goods {
+    font: 700 15px "Noto Sans";
+    margin-bottom: 18px;
+}
+
+.mypayment .dl {
+    width: 100%; 
+    display: flex; 
+    padding-bottom: 12px;
+}
+.mypayment .dd {
+    font: 500 14px "Montserrat";
+    margin-top: 1px;
+}
+.mypayment .dt {
+    width: 60px; 
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+}
+
+
+.refund .mypayment_pay_goods  {
+    color: #9C9C9C;
+    text-decoration-line: line-through;
+}
+
+.mypayment .refund  .dl {
+    color: #9C9C9C;
+    text-decoration-line: line-through;
+    
+}
+.mypayment .refund .dd {
+    color: #9C9C9C;
+    text-decoration-line: line-through;
+    
+}
+.mypayment .refund .dt {
+    color: #9C9C9C;
+    text-decoration-line: line-through;
+
+}

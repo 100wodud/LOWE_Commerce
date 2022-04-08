@@ -90,7 +90,7 @@ class DesignerList extends React.Component {
                                         <img src={process.env.PUBLIC_URL + "/image/nav/designer_like.svg"} alt="좋아요 버튼" onClick={this.onclickLike} />
                                     </div> :
                                 <div>
-                                    <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike.svg"} alt="좋아요 버튼" onClick={() => { alert("로그인을 해주세요") }} />
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/designer_dislike.svg"} alt="좋아요 버튼" onClick={() => { alert("로그인을 해주세요") }} />
                                 </div>
                             }
                             <div>

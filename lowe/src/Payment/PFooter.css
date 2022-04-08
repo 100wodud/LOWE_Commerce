@@ -1,0 +1,78 @@
+.Payment_footer_section {
+    width: 100%;
+    padding: 28px 0;
+    text-align: center;
+    background-color: #333333;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.Payment_footer_modal {
+    transition:  all 1s;
+    position: absolute;
+    padding: 20px;
+    background-color: #333333;
+    font: 400 14px "Noto Sans";
+    color: #ffffff;
+    text-align: left;
+    display: none;
+}
+
+.Payment_footer_modal_up {
+    transition:  all 1s;
+    margin: 12px;
+    max-width: 364px;
+    width: 100%;
+    top:-85px;
+    position: absolute;
+    padding: 20px;
+    background: rgba(51, 51, 51, 0.9);
+    border-radius: 8px;
+    font: 400 14px "Noto Sans";
+    color: #ffffff;
+    text-align: left;
+}
+.Payment_footer_modal_up::after {
+    top:-85px;
+    transition:  all 1s;
+}
+
+.Payment_footer_price >span{
+    font: 700 20px "Montserrat";
+    color: #FFFFFF
+}
+.Payment_footer_price {
+    font: 400 20px "Noto Sans";
+    color: #FFFFFF
+}
+
+
+@media screen and (max-width:  396px) {
+
+    .Payment_footer_modal_up {
+        max-width: 332px;
+        width: 100%;
+    }
+    
+}
+
+
+@media screen and (max-width:  375px) {
+
+    .Payment_footer_modal_up {
+        max-width: 311px;
+        width: 100%;
+    }
+    
+}
+
+
+@media screen and (max-width:  370px) {
+
+    .Payment_footer_modal_up {
+        max-width: 311px;
+        width: 80%;
+    }
+    
+}

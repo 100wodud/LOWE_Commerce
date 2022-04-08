@@ -12,14 +12,28 @@ class BFooter extends Component {
     }
 
     onClicknumber = () => {
-        let id = window.location.pathname.split("/")[2];
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardVisit", {
-            id: id
-             })
-             .then((res) => {
-
-             }).catch((err)=>{
-             });
+        let id = Number(window.location.pathname.split("/")[2]);
+        let userid = Number(window.localStorage.getItem("id"));
+        if (userid) {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+                type: 1,
+                BoardId: id,
+                UserId: userid,
+            })
+                .then((res) => {
+                    window.location.href = this.props.designer.reserve_url
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+                type: 1,
+                BoardId: id,
+            })
+                .then((res) => {
+                    window.location.href = this.props.designer.reserve_url
+                }).catch((err) => {
+                });
+        }
     }
 
     render() {
@@ -44,8 +58,8 @@ class BFooter extends Component {
 
                             }
                         </div>
-                        <div className='BFooter_res' style={{ maxWidth: "230px", width: "52.9%", float: "left" }}>
-                                <a href={this.props.designer.reserve_url} onClick={this.onClicknumber}>예약하기</a> 
+                        <div className='BFooter_res' style={{ maxWidth: "230px", width: "52.9%", float: "left" }} onClick={this.onClicknumber} >
+                            예약하기
                         </div>
                     </> : null
                 }

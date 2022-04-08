@@ -15,6 +15,12 @@ import EditmyInfo from "./Sign/EditmyInfo";
 import Designers from "./Designer/Designer";
 import Ddetail from "./Designerdetail/Ddetail";
 import Promotion from "./Promotion/Promotion";
+import Payment from "./Payment/Payment";
+import Mycoupon from "./Mypage/Coupon";
+import Myreview from "./Mypage/ReviewList";
+import Receipt from "./Receipt/Receipt";
+import PaymentList from "./Mypage/PaymentList";
+import Paymentfail from "./Payment/Paymentfail";
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +51,13 @@ class App extends Component {
           <Route path='/designers' component={Designers} />
           <Route path='/designer/:id' component={Ddetail} />
           <Route path='/promotion/spring2203'component={Promotion} />
+          <Route path='/payment/:id' component={Payment} />
+          <Route path='/mycoupons' component={Mycoupon} />
+          <Route path='/myreviews' component={Myreview} />
+          <Route path='/receipt/:id' component={Receipt} />
+          <Route path='/mypayments' component={PaymentList} />
+          <Route path='/mypayment/:id' component={Receipt} />
+          <Route path='/paymentfail' component={Paymentfail} />
         </Switch>
       </>
     )

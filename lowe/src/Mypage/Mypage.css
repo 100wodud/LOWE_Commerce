@@ -4,7 +4,6 @@
     font: 700 17px "Montserrat";
     line-height: 80px;
     padding-left: 12px;
-    border-bottom: 1px solid #DDDDDD;
 }
 
 .Mypage_section {
@@ -12,39 +11,107 @@
 }
 
 .mypage-filter {
-
     width: 100%;
     text-align: center;
     position: relative;
-    height: 60px;
+    height: 90px;
+    line-height: 90px;
+    display: block;
+    border-top: 8px solid #F5F5F5;
 }
 
-.mypage-filter p {
+.mypage-filter a{
+    padding: 16px 0 20px 0;
     width: 33.333%;
     float: left;
-    height: 60px;
     color: #333333;
-    font: 700 14px "Montserrat";
-    line-height: 60px;
+    font: 400 14px "Noto Sans";
     cursor: pointer;
 }
+.mypage-payment-check{
+    padding: 32px 12px;
+}
+
+.mypage-subtitle {
+    font: 700 13px "Montserrat";
+    color: #9d9d9d;
+    margin-bottom: 20px;
+}
+
+.mypage-payment-check-div {
+    display: flex;
+    justify-content: space-around;
+    background-color: #F5F5F5;
+    border-radius: 8px;
+}
+.mypage-payment-check-content-number{
+    font: 700 18px "Montserrat"
+}
+.mypage-payment-check-content {
+    padding: 20px 25px;
+    text-align: center;
+}
+
+.mypage-payment-check-content-content {
+    font: 400 14px "Noto Sans"
+}
+
+.mypage-payment-check-arrow {
+    margin: 0 auto;
+    line-height: 82px;
+}
+
+.mypage-info {
+    padding: 25px 12px 20px 12px;
+    margin-top: 20px;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #DDDDDD;
+}
+.mypage-info-title {
+    font: 400 14px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.mypage-info-contact {
+    display: flex;
+    justify-content:space-around;
+    margin-bottom: 12px;
+}
+.mypage-info-contact div {
+    width: 166px;
+    height: 45px;
+    border: 2px solid #DDDDDD;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 45px;
+}
+
+.mypage-info-contact a {
+    font: 400 13px "Noto Sans";
+}
+
+.mypage-info-content {
+    font: 400 12px "Montserrat";
+    line-height: 20px;
+}
+
+.mypage-policy {
+    padding: 25px 12px 80px 12px;
+    background-color: #F5F5F5;
+}
+
+.mypage-policy-name {
+    font: 700 12px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.mypage-policy-content {
+    font: 400 12px "Montserrat";
+    line-height: 20px;
+}
+
+
 
 .mypage-list {
     padding: 28px 12px 80px 12px;
-}
-
-.mypage_noreview {
-    margin-top: 40px;
-    text-align: center;
-    margin-bottom: 68px;
-}
-
-.mypage_noreview > div {
-    margin-top: 25px;
-    font: 700 18px "Noto Sans";
-    color: #ADADAD;
-}
-
-.mypage_noreview > div > div {
-    margin-bottom: 5px;
 }

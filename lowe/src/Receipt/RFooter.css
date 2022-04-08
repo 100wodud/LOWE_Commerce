@@ -1,0 +1,24 @@
+.Receipt_footer_section {
+    width: 100%;
+    padding: 28px 0;
+    text-align: center;
+    background-color: #333333;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.Receipt_footer_modal {
+    position: absolute;
+    padding: 20px;
+    background-color: #333333;
+    font: 400 14px "Noto Sans";
+    color: #ffffff;
+    text-align: left;
+    display: none;
+}
+
+.Receipt_footer_price {
+    font: 700 16px "Noto Sans";
+    color: #FFFFFF
+}

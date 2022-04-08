@@ -1,0 +1,25 @@
+
+.Payment_second_section {
+    background-position: center;
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 12px;
+}
+
+
+
+.Payment_second_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+
+.Payment_second_content_title {
+    width: 80px;
+    display: inline-block;
+    margin-right: 14px;
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+}
+
+.Payment_second_content_content {
+    font: 500 14px "Montserrat";
+}
