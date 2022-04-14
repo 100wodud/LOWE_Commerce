@@ -6,6 +6,7 @@
     height: 60px;
     top: 0;
     background-color: white;
+    border-bottom: 1px solid #DDDDDD;
   }
   
 .header2 .header_back{

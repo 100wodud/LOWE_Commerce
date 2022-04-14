@@ -31,7 +31,10 @@ class Firstsec extends Component {
     render() {
         return (
             <section className="Recent_first_section">
-                <div className="Recent_total">총 {this.state.Showgoods.length}개</div>
+                <div className="Recent_total">
+                    <div className='Recent_total_title'>최근 본 항목</div>
+                    <div className='Recent_total_count'>총 {this.state.Showgoods.length}개</div>
+                </div>
                 {
                     this.state.Showgoods.length ?
                         <div className="goods_list">
@@ -47,7 +50,7 @@ class Firstsec extends Component {
                             <div>
                                 <div>최근 본 시술이 없습니다</div>
                             </div>
-                            <div className="nolike_button" style={{ lineHeight: "52px", marginTop: "43px" }} >
+                            <div className="nolike_button" style={{ lineHeight: "52px", marginTop: "23px" }} >
                                 <a href="/">상품 보러가기</a>
                             </div>
                         </div>

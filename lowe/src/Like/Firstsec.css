@@ -2,7 +2,6 @@
 .Like_first_section {
     background-position: center;
     width: 100%;
-    margin-top: 60px;
 }
 
 .Like_total {
@@ -14,19 +13,20 @@
 
 
 .mypage_nolike {
-    margin-top: 180px;
+    margin-top: 20px;
     text-align: center;
     width: 100%;
     max-width: 428px;
+    margin-bottom: 70px;
 }
 .mypage_nolike > div {
-    margin-top: 25px;
+    margin-top: 5px;
     font: 700 18px "Noto Sans";
     color: #ADADAD;
 }
 
 .mypage_nolike > div > div {
-    margin-top: 25px;
+    margin-top: 5px;
 }
 .nolike_button {
     width: 160px;
@@ -35,6 +35,10 @@
     margin: auto;
 }
 
+.Recent_total_list {
+    margin-bottom: 30px;
+    padding-left: 12px;
+}
 
 .mypage_nolike > div a {
     color: #ffffff;

@@ -74,7 +74,6 @@
 
 .mypage-info-contact {
     display: flex;
-    justify-content:space-around;
     margin-bottom: 12px;
 }
 .mypage-info-contact div {
@@ -93,6 +92,7 @@
 .mypage-info-content {
     font: 400 12px "Montserrat";
     line-height: 20px;
+    color: #9C9C9C
 }
 
 .mypage-policy {

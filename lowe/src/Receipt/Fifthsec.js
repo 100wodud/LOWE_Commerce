@@ -10,7 +10,6 @@ class Fifthsec extends Component {
 
 
     render() {
-        console.log(this.props)
         return (
             <section className="Receipt_fifth_section">
                 {this.props.request ?

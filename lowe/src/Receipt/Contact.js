@@ -18,8 +18,8 @@ class Contact extends Component {
 
                     <div className="Receipt_Contact_caution">
                         <li><span>시술 예약일 하루 전까지 날짜 및 시간 변경 가능</span></li>
-                        <li>시술 예약일 하루 전까지 : <span>100% 취소/환불</span></li>
-                        <li>당일 취소, 예약시간 경과, 노쇼 : <span>90% 취소/환불</span></li>
+                        <li>시술 예약일 하루 전까지 : <span><span style={{fontFamily: "Montserrat"}}>100%</span> 취소/환불</span></li>
+                        <li>당일 취소, 예약시간 경과, 노쇼 : <span><span style={{fontFamily: "Montserrat"}}>90%</span> 취소/환불</span></li>
                     </div>
             </section>
         )

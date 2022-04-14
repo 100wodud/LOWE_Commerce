@@ -36,6 +36,12 @@ class Firstsec extends Component {
                 this.setState({ activeSlide: next })
         };
         let count = 0;
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <section className="Ddesigner_first_section">
                 {
@@ -47,7 +53,7 @@ class Firstsec extends Component {
                                         count = count + 1;
                                         return (
                                             <div className="Ddesigner_first_img_div"  key={e.id}>
-                                                <a href={e.url} className="Ddesigner_first_img" onChange={this.onChangeNumber(count)}>
+                                                <a href={e.url+funnel} className="Ddesigner_first_img" onChange={this.onChangeNumber(count)}>
                                                     <img src={e.main} alt="로위 배너" />
                                                     <div className="Ddesigner_first_img_text"><pre>{e.content ? e.content : null}</pre></div>
                                                 </a>

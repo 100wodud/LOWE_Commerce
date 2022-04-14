@@ -36,6 +36,12 @@ class Header extends Component {
     }
 
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <>
             { this.props.header === "clear" ?
@@ -48,18 +54,18 @@ class Header extends Component {
             <header className="header" id="headers">
                 {this.props.header !== "board" ?
                     <>
-                        <a href="/">
+                        <a href={`/${funnel}`}>
                             <img className="header_logo" src={process.env.PUBLIC_URL + "/image/nav/header_logo.svg"} alt="로위 로고" />
                         </a>
                         {this.props.header === "home" ?
-                            <a href="/search">
+                        <a href={`/search${funnel}`}>
                                 <img className="header_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
                             </a> :
                             <div></div>
                         }
                     </> :
                     <>
-                        <a href="/">
+                        <a href={`/${funnel}`}>
                             <img className="header_name" src={process.env.PUBLIC_URL + "/image/nav/header_logo.svg"} alt="로위 로고" />
                         </a>
                         <div>

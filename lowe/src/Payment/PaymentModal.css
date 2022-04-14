@@ -1,0 +1,63 @@
+.Signup_modalBody {
+    z-index: 150;  
+    position: fixed;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000000D9; 
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+.Signup_modalBody::-webkit-scrollbar{ display:none; }
+
+
+.modalclick {
+
+    z-index: 150;  
+    transition: opacity 0.4s ease-in-out;
+    position: fixed;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    z-index: 0;
+}
+
+.Signup_modalInner {
+    max-width: 428px;
+    width: 100%;
+    margin: auto;
+    color: #ffffff;
+    font: 500 1.04166666vw "Noto Sans";
+    z-index: 1;
+    padding: 20px 12px 52px 12px;
+    min-height: 100vh;
+}
+
+
+.Signup_modalClose {
+    width: 40px;
+    cursor: pointer;
+}
+
+.Signup_title {
+    font: 700 20px "Noto Sans";
+    margin-bottom: 40px;
+}
+
+.Signup_sub {
+    font: 700 14px "Noto Sans";
+    margin-bottom: 16px;
+}
+
+.Signup_content {
+    font: 400 12px "Noto Sans";
+}

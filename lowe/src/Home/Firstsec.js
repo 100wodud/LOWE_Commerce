@@ -48,6 +48,12 @@ class Firstsec extends Component {
             beforeChange: (current, next) =>
               this.setState({ activeSlide: next })
         };
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let count = 0;
         return (
             <section className="Mainpage_first_section" id="Mainpage_first_section">
@@ -58,7 +64,7 @@ class Firstsec extends Component {
                         this.state.data.map((e)=>{
                             count = count + 1;
                         return (
-                            <a href={e.url}  key={e.id} className="banner_img" >
+                            <a href={e.url+funnel}  key={e.id} className="banner_img" >
                                 <img src={e.img} alt="로위 배너" />
                             </a>
                         )}) :

@@ -26,6 +26,12 @@ class Secondsec extends Component {
     }
 
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <section className="Ddetail">
                 {
@@ -61,7 +67,7 @@ class Secondsec extends Component {
                                                     <td className="Ddetail_surgery_content_third">{
                                                         e.url ?
                                                             <div className="Ddetail_orange">
-                                                                <a href={e.url}>
+                                                                <a href={e.url+funnel}>
                                                                     상품보기
                                                                 </a>
                                                             </div> :

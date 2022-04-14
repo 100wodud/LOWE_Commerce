@@ -14,12 +14,6 @@ class Firstsec extends Component {
                 <div>
                     <img src={process.env.PUBLIC_URL + "/image/promotion/01.png"} alt="프로모션" />
                 </div>
-                <div style={{ marginTop: "-5px" }}>
-                    <img src={process.env.PUBLIC_URL + "/image/promotion/02.png"} alt="프로모션" />
-                </div>
-                <div style={{ marginTop: "-5px" }}>
-                    <img src={process.env.PUBLIC_URL + "/image/promotion/03.png"} alt="프로모션" />
-                </div>
                 <div className="Promotion_spring_text">
                     <div style={{fontSize: "28px", marginBottom: "32px"}}>
                         <strong>봄에는 더 예뻐져봄</strong>

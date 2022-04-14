@@ -14,23 +14,31 @@ class BFooter extends Component {
     onClicknumber = () => {
         let id = Number(window.location.pathname.split("/")[2]);
         let userid = Number(window.localStorage.getItem("id"));
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel=window.location.href.split("?")[1];
+        } else{
+            funnel='/'
+        }
         if (userid) {
             axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
                 type: 1,
                 BoardId: id,
                 UserId: userid,
+                funnel: funnel
             })
                 .then((res) => {
-                    window.location.href = this.props.designer.reserve_url
+                    window.location.href = '/payment/'+this.props.data.board.id
                 }).catch((err) => {
                 });
         } else {
             axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
                 type: 1,
                 BoardId: id,
+                funnel:funnel
             })
                 .then((res) => {
-                    window.location.href = this.props.designer.reserve_url
+                    window.location.href = '/payment/'+this.props.data.board.id
                 }).catch((err) => {
                 });
         }
@@ -41,7 +49,7 @@ class BFooter extends Component {
             <footer className='BFooter'>
                 {this.props.data && this.props.designer ?
                     <>
-                        <div style={{ maxWidth: "92px", width: "21%", float: "left", marginRight: "0.4%" }}>
+                        {/* <div style={{ maxWidth: "92px", width: "21%", float: "left", marginRight: "0.4%" }}>
                             <a className='BFooter_review' href='#review' style={{ lineHeight: "65px" }}>
                                 <div style={{ paddingTop: "14px", }}>리뷰</div>
                                 <div>({this.props.data.board.Reviews.length})</div>
@@ -60,8 +68,19 @@ class BFooter extends Component {
                         </div>
                         <div className='BFooter_res' style={{ maxWidth: "230px", width: "52.9%", float: "left" }} onClick={this.onClicknumber} >
                             예약하기
+                        </div> */}
+                        <div className='BFooter_kakao'>
+                            <a href="http://pf.kakao.com/_xlzsPs/chat" >
+                                <img src={process.env.PUBLIC_URL + "/image/nav/gotokakao.svg"} alt="문의하기" />
+                            </a>
                         </div>
-                    </> : null
+                        <div className='BFooter_payment' onClick={this.onClicknumber}>
+                            <div>
+                                <div>예약하기</div>
+                            </div>
+                        </div>
+                    </> 
+                    : null
                 }
             </footer >
         );

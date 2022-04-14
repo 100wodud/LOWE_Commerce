@@ -16,6 +16,10 @@ class Secondsec extends Component {
             status: "최신순",
             banner: '',
             number: 10,
+            location: "",
+            gender: 3,
+            length: 4,
+            modal: false
         };
     }
 
@@ -192,9 +196,61 @@ class Secondsec extends Component {
     }
 
 
+    onClickCloses = () => {
+        this.setState({ modal: false })
+    }
+
+    onClickOpens = () => {
+        this.setState({ modal: true })
+    }
+
+    onclicklength = (e) => () => {
+        this.setState({ length: e })
+    }
+    onclickgender = (e) => () => {
+        this.setState({ gender: e })
+    }
+
+
+    onclicklocation = (e) => () => {
+        this.setState({ location: e })
+    }
+
+    onclickReset = () => {
+        let data = this.state.Allgoods
+        this.setState({
+            Showgoods: data,
+            modal: false,
+            promotion: "",
+            category: 0,
+            status: "최신순",
+        })
+    }
+
+    onclicksearching = () => {
+        let data = this.state.data;
+        let arr = [];
+        let category = this.state.category;
+        let location = this.state.location;
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].store.indexOf(location) !== -1 || this.state.location === "전체") {
+                for (let j = 0; j < data[i].Hashtags.length; j++) {
+                    if (data[i].Hashtags[j].content.indexOf(category) !== -1 || this.state.category === "전체") {
+                        arr.push(data[i])
+                        break;
+                    }
+                }
+            }
+        }
+        this.setState({ showdata: arr, modal: false, filter: true })
+    }
+
+
     render() {
         const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 5, category: "클리닉" }];
         return (
+            <>
             <section className="Mainpage_second_section">
                 <Filter
                     onclickPromotion={this.onclickPromotion}
@@ -207,7 +263,19 @@ class Secondsec extends Component {
                     onClickclose={this.onClickclose}
                     filter={this.state.filter}
                     status={this.state.status}
-                    onclickdataFilter={this.onclickdataFilter} />
+                    onclickdataFilter={this.onclickdataFilter} 
+
+                    onClickCloses={this.onClickCloses} 
+                    onClickOpens={this.onClickOpens}
+                    onclicklength={this.onclicklength} 
+                    onclickgender={this.onclickgender}
+                    onclicklocation={this.onclicklocation}
+                    length={this.state.length} 
+                    gender={this.state.gender} 
+                    location={this.state.location} 
+                    onclickReset={this.onclickReset}
+                    onclicksearching={this.onclicksearching}
+                    modal={this.state.modal} />
                 <div className="goods_list">
                     {
                         this.state.Showgoods.length ?
@@ -231,6 +299,7 @@ class Secondsec extends Component {
                     <div onClick={this.check} id="infinity_scroll"></div>
                 </div>
             </section>
+            </>
         )
     }
 }

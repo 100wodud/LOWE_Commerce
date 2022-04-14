@@ -14,10 +14,16 @@ class Edit extends Component {
         this.props.openmodal();
     }
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <div className="profile_edit" >
                 <div className="profile_edit_subtitle">나의 정보</div>
-                <a href='/editmyinfo'>
+                <a href={`/editmyinfo${funnel}`}>
                     <div>회원정보 수정</div><div><img src={process.env.PUBLIC_URL + "/image/nav/next_arrow.svg"} alt="다음" /></div>
                 </a>
                 <div className='profile_edit_div' onClick={this.onClickSignOut} style={{cursor: "pointer"}}>

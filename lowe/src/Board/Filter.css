@@ -5,6 +5,7 @@
     height: 44px;
     text-align: center;
     z-index: 10;
+    margin-top: -3px;
 }
 
 .fixed {

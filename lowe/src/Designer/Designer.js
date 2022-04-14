@@ -29,8 +29,14 @@ class Designer extends React.Component {
         this.setState({ data: designer, showdata: designer })
         axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerList", {
         }).then((res) => {
-            this.setState({ data: res.data, showdata: res.data })
-            localStorage.setItem("designer_list", JSON.stringify(res.data));
+            let arr = []
+            for(let i = 0; i < res.data.length; i++){
+                if(res.data[i].user_state === 1){
+                    arr.push(res.data[i])
+                }
+            }
+            this.setState({ data: arr, showdata: arr })
+            localStorage.setItem("designer_list", JSON.stringify(arr));
         })
 
     }
@@ -144,8 +150,11 @@ class Designer extends React.Component {
                                             <span><img src={process.env.PUBLIC_URL + "/image/nav/reset.svg"} alt="리셋버튼" /></span>
                                         </div>
                                     </div>
-                                    {this.state.showdata.map((e) => (
-                                        <DesignerList data={e} key={e.id} />
+                                    {this.state.showdata.map((e,i) => (
+                                        <div key={e.id} >
+                                            <div className="Designer_ranking_number">{i+1}</div> 
+                                            <DesignerList data={e} />
+                                        </div> 
                                     ))
                                     }
                                 </>

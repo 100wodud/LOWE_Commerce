@@ -46,7 +46,13 @@ class DesignerList extends React.Component {
 
     render() {
         let user = window.localStorage.getItem("id");
-        let data = this.props.data
+        let data = this.props.data;
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <>
                 {data.user_state === 1 ?
@@ -56,7 +62,7 @@ class DesignerList extends React.Component {
                                 <img src={data.img} alt={data.name} />
                             </div>
                         </div>
-                        <a href={`/designer/${data.id}`} className="DesignerList_content_div">
+                        <a href={`/designer/${data.id}${funnel}`} className="DesignerList_content_div">
                             <div className="DesignerList_content">
                                 <strong>{data.name} {data.rank}</strong><span style={{ marginLeft: "8px" }}>{data.store}</span>
                             </div>
