@@ -21,7 +21,7 @@
 }
 .Payment_fourth_title_margin {
     font: 700 16px "Noto Sans";
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .Payment_fourth_title_down {
@@ -39,7 +39,7 @@
     padding: 16px 12px;
     border: 1px solid #DDDDDD;
     border-radius: 6px;
-    margin-bottom: 8px;
+    margin-top: 8px;
     cursor: pointer;
 }
 
@@ -62,7 +62,7 @@
     padding: 16px 12px;
     border: 1px solid #DDDDDD;
     border-radius: 6px;
-    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 .Payment_fourth_coupon_click {
@@ -71,7 +71,7 @@
     padding-left: 12px;
     border: 1px solid #FF3D12;
     border-radius: 6px;
-    margin-bottom: 8px;
+    margin-top: 8px;
     cursor: pointer;
 }
 .Payment_fourth_coupon_click span {

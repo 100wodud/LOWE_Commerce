@@ -22,7 +22,6 @@ class Paymentfail extends Component {
 
 
     render() {
-        console.log(this.state.data)
         return (
             <>
                 <Header header="결제실패" />

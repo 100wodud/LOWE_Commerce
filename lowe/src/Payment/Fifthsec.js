@@ -37,7 +37,7 @@ class Fifthsec extends Component {
                             </div>
                             <div>
                                 <div className="Payment_fifth_price_div">
-                                    <div className="Payment_fifth_title">총 결제 금액</div>
+                                    <div className="Payment_fifth_title" style={{marginBottom: "0px"}}> 총 결제 금액</div>
                                     <div className="Payment_fifth_pricetotal" id="pricetotal" >{this.props.price.comma()}원</div>
                                 </div>
                             </div>

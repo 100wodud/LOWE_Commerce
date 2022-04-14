@@ -67,9 +67,15 @@ class Goodslist extends Component {
 
   render() {
     let user = window.localStorage.getItem("id");
+    let funnel ="";
+    if(window.location.href.split("?")[1]){
+        funnel="?" + window.location.href.split("?")[1];
+    } else{
+        funnel=''
+    }
     return (
       <span style={{ float: "left" }}>
-        <a onClick={this.onclickRecently} href={`/board/${this.props.e.id}`} className="goods">
+        <a onClick={this.onclickRecently} href={`/board/${this.props.e.id}${funnel}` } className="goods">
           <div>
             <img src={process.env.PUBLIC_URL + this.props.e.thumbnail} className="goods_thumnail" alt="로위 상품 썸네일" />
 

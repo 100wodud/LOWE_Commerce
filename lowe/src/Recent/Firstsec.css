@@ -2,12 +2,27 @@
 .Recent_first_section {
     background-position: center;
     width: 100%;
-    margin-top: 60px;
+    border-top: 8px solid #F5F5F5;
 }
 
 .Recent_total {
-    padding-left: 12px;
+    padding: 0 12px;
     height: 60px;
-    font: 700 14px "Montserrat";
+    display: flex;
+    justify-content: space-between;
+}
+
+.Recent_total div {
     line-height: 60px;
+
+}
+
+.Recent_total_title {
+    font: 700 18px "Montserrat";
+}
+
+.Recent_total_count{
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+
 }

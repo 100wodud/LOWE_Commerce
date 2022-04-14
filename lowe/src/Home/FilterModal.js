@@ -17,6 +17,7 @@ class FilterModal extends React.Component {
             <div className="filter_modalBody" >
                 <div className="filter_modalclick" onClick={this.handleClose}></div>
                 <div className="filter_modalInner" >
+                    <div className="filter_modalclick" onClick={this.handleClose}></div>
                     <div className="filter_content">
                         <div style={{height: "40px"}}></div>
                         <div className={`filter_content_div ${this.props.status === "리뷰 많은 순" ? "bold": null}`} onClick={this.props.onclickdataFilter("리뷰 많은 순")}>리뷰 많은 순</div>

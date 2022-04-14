@@ -57,7 +57,6 @@ class Payment extends Component {
     }
 
     onChangetotal = (e) => () => {
-        console.log(e.target.value)
         this.setState({ totalprice: e })
     }
 
@@ -142,6 +141,7 @@ class Payment extends Component {
 
     onclickSubmit = (e) => {
         let total = document.getElementById("pricetotal").innerHTML;
+        localStorage.setItem("reload", "false");
         let price = total.slice(0, total.length - 1).replaceAll(",", "");
         let payment = {}
         if (this.state.agree1 && this.state.agree2) {
@@ -185,7 +185,6 @@ class Payment extends Component {
                         obj.PCD_RST_URL = `https://d205rw3p3b6ysa.cloudfront.net/payment_result`;
                         obj.PCD_PAYER_NO = this.state.user.id;
                         obj.PCD_PAYER_NAME = this.state.user.name; //user.name
-                        obj.PCD_PAYER_HP = this.state.user.phone; //user.phone
                         obj.PCD_PAYER_EMAIL = this.state.user.email; //user.email
                         // obj.PCD_USER_DEFINE1 = replaceData1;
                         // obj.PCD_USER_DEFINE2 = replaceData2;
@@ -206,7 +205,6 @@ class Payment extends Component {
 
 
     render() {
-        console.log(this.state)
         let price = 0
         if (this.state.data) {
             price = this.state.data.board.price;

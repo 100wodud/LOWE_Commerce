@@ -81,7 +81,6 @@ class Firstsec extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <section className="Receipt_first_section">
                 {
@@ -89,7 +88,7 @@ class Firstsec extends Component {
                         this.props.mypayment ?
                             <>
                                 <div className={this.props.mypayment.state === "환불완료" ? "decoration" : ""}>
-                                    <div className="Receipt_first_title" style={{ color: "#333333" }}>시술정보</div>
+                                    <div className="Receipt_first_title" style={{ color: "#333333", textDecoration: "none" }}>시술정보</div>
                                     <div className="Receipt_first_content ">
                                         <div><img src={this.props.data.board.thumbnail} alt="결제 상품 정보" /></div>
                                         <div>

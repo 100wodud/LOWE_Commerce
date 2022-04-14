@@ -10,7 +10,6 @@ class Secondsec extends Component {
 
 
     render() {
-        console.log(this.props)
         return (
             <>
                 <section className="Receipt_second_section">

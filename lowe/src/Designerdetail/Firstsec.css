@@ -12,8 +12,7 @@
 }
 
 .Ddesigner_first_img {
-    width: 100% ;
-    outline: none;
+    
     background: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%);
 }
 
@@ -26,7 +25,7 @@
     background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%); /* IE10+ */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-    pointer-events : none;
+
 }
 
 .Ddesigner_first_number {

@@ -44,7 +44,6 @@ class PaymentList extends Component {
     }
 
     render() {
-        console.log(this.state)
         let data = this.state.data
         let refund = this.state.refund
         return (

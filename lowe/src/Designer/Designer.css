@@ -12,6 +12,16 @@
     line-height: 40px;
 }
 
+.Designer_ranking_number{
+    padding-left: 20px;
+    padding-right: 4px;
+    float: left;
+    font: 700 10px "Montserrat";
+    line-height: 84px;
+    text-align: center;
+    color: #9C9C9C;
+}
+
 .Designer-filter .push_button {
     width: 50%;
     float: left;

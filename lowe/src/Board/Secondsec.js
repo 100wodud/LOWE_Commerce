@@ -75,6 +75,12 @@ class Secondsec extends Component {
 
     render() {
         let user = window.localStorage.getItem("id");
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <section className="Board_second">
                 <div className="Board_second_section">
@@ -108,7 +114,7 @@ class Secondsec extends Component {
                         }
                     </div>
                 </div>
-                <a href={this.state.banner.url} className="Board_banner">
+                <a href={this.state.banner.url + funnel} className="Board_banner">
                     <img src={this.state.banner.img} alt="이벤트 배너" />
                 </a>
                 <div id="filter_trigger" />

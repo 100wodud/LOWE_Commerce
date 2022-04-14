@@ -12,7 +12,6 @@ class Payment extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         return (
             <div className="mypayment" >
                 {this.props.data ?

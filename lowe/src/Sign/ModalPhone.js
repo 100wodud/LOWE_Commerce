@@ -30,6 +30,7 @@ class ModalPhone extends React.Component {
                     <div className="Phonecheck_modalBody">
                         <div className="modalclick" onClick={this.handleClose}></div>
                         <div className="Phonecheck_modalInner">
+                        <div className="modalclick" onClick={this.handleClose}></div>
                             <div className="Phonecheck_modalContent" >
                                 {this.props.comment.indexOf(`\n`) !== -1 || this.props.comment === "인증번호"?
                                     <div style={{ backgroundColor: "#ffffff", height: "70px", borderRadius: "8px 8px 0px 0px", paddingTop: "30px", borderBottom: "1px solid #DDDDDD" }}>

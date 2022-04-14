@@ -17,13 +17,12 @@ class Receipt extends Component {
             data: "",
             manager: "",
             store: "",
-            payment: ""
+            payment: "",
         };
     }
 
     componentDidMount = async (e) => {
         let path = window.location.pathname.split("/")[1];
-        console.log(this.props.location.state)
         if (path === "mypayment") {
             let data = {
                 board: { board: this.props.location.state.data.Board },
@@ -58,13 +57,19 @@ class Receipt extends Component {
 
         } else {
             let recent_payment = JSON.parse(window.localStorage.getItem("recent_payment"));
+            let userid = window.localStorage.getItem("id");
             this.setState({ data: recent_payment })
             let id = window.location.pathname.split("/")[2];
-
+            let reload = window.localStorage.getItem("reload");
             await axios.post("https://d205rw3p3b6ysa.cloudfront.net/getPayment", {
                 id: id,
             }).then((res) => {
-                this.setState({ payment: res.data })
+                if (Number(userid) === res.data[0].User.id) {
+                    this.setState({ payment: res.data })
+                } else {
+                    window.location.replace("/")
+
+                }
             }).catch((err) => {
                 console.log(err)
             });
@@ -85,7 +90,7 @@ class Receipt extends Component {
             });
 
 
-            if (this.state.store) {
+            if (reload === "false") {
                 axios.post('https://d205rw3p3b6ysa.cloudfront.net/updatePayment', {
                     id: Number(id), //결제 DB 상의 id 값
                     ManagerId: this.state.manager.id,
@@ -101,15 +106,18 @@ class Receipt extends Component {
                         ? this.state.data.board.board.price
                         : null,
                     event_percent: this.state.data.board.board.eventPrice,
-                    coupons: this.state.data.coupons
+                    coupons: this.state.data.coupons,
+                    text: this.state.data.board.board.name
                 }).then((res) => {
-                    let reload = window.localStorage.getItem("reload");
-                    if (!reload) {
-                        window.localStorage.setItem("reload", true);
+                    window.localStorage.setItem("reload", "true");
+                    axios.post("https://d205rw3p3b6ysa.cloudfront.net/alert", {
+                        type: 2,
+                        PaymentId: Number(id)
+                    }).then((res) => {
                         window.location.reload();
-                    } else {
-                        window.localStorage.removeItem("reload")
-                    }
+                    }).catch((err) => {
+                        console.log(err)
+                    })
                 })
             }
         }
@@ -118,7 +126,6 @@ class Receipt extends Component {
 
     render() {
         let path = window.location.pathname.split("/")[1];
-        console.log(this.state)
         return (
             <>
                 {

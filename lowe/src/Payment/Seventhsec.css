@@ -3,6 +3,7 @@
     background-position: center;
     border-top: 8px solid #F5F5F5;
     padding: 32px 12px;
+    border-bottom: 8px solid #F5F5F5;
 }
 .Payment_seventh_section > div {
     width: 100%;
@@ -12,7 +13,7 @@
 
 .Payment_seventh_title {
     font: 700 16px "Noto Sans";
-    margin-bottom: 33px;
+    margin-bottom: 24px;
     float: left;
 }
 
@@ -34,7 +35,6 @@
     font: 400 13px "Noto Sans";
     list-style: none;
     margin-left: 6px;
-    margin-bottom: 9px;
 }
 
 .Payment_seventh_caution li span {

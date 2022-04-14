@@ -26,6 +26,7 @@ class ReviewModal extends React.Component {
                     <div className="Review_modalBody">
                         <div className="modalclick" onClick={this.handleClose}></div>
                         <div className="Review_modalInner">
+                        <div className="modalclick" onClick={this.handleClose}></div>
 
                             <div className="Review_modalContent" >
                                 {this.props.comment === "성공" ?

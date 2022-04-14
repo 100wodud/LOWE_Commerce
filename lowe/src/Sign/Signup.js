@@ -234,14 +234,23 @@ class Signup extends React.Component {
                     })
                 } else {
                     let date = new Date();
-                    let expired = moment(date).add(1, "months")
+                    let expired = moment(date).add(3, "months")
+                    let expired1 = moment(date).add(6, "months")
                     axios.post("https://d205rw3p3b6ysa.cloudfront.net/createCoupon", {
                         UserId: res.data.id,
-                        price: 5000,
+                        price: 10000,
                         content: "[WELCOME] 회원가입 축하 쿠폰",
                         used: "1",
                         expired: expired,
                         minimum: 30000
+                    })
+                    axios.post("https://d205rw3p3b6ysa.cloudfront.net/createCoupon", {
+                        UserId: res.data.id,
+                        price: 10000,
+                        content: "[WELCOME] 첫 예약 축하 쿠폰",
+                        used: "1",
+                        expired: expired1,
+                        minimum: 100000
                     })
                     setTimeout(() => {
                         this.openmodalPhone(`회원가입 완료 :)\n${this.state.login_id}님 만을 위한 쿠폰을 보내드렸어요!`)

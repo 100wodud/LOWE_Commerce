@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Header from "../Nav/LikeHeader";
 import Footer from "../Nav/Footer";
 import Firstsec from "./Firstsec";
+import Firstsecs from "../Recent/Firstsec";
 
 class Like extends Component {
   constructor(props) {
@@ -14,8 +14,8 @@ class Like extends Component {
   render() {
     return (
       <>
-        <Header header="찜한" />
         <Firstsec />
+        <Firstsecs />
         <Footer />
       </>
     )

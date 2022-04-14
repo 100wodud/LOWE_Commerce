@@ -12,13 +12,12 @@ class Fourthsec extends Component {
 
 
     render() {
-        console.log(this.state)
         return (
             <>
                 {this.props.manager ?
                     <section className="Receipt_Fourth_section">
                         <div>
-                            <div className="Receipt_first_title">정보</div>
+                            <div className="Receipt_first_title">매장정보</div>
                             <div id="rstore">
                                 <div>
                                     <dl className="dl">
@@ -47,7 +46,7 @@ class Fourthsec extends Component {
                                             }
                                         </dd>
                                     </dl>
-                                    <dl className="dl">
+                                    <dl className="dl" style={{paddingBottom: "0px"}}>
                                         <dt className="dt">매장번호</dt>
                                         <dd className="dd">
                                             <strong>

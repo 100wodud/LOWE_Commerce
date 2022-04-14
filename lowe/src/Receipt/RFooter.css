@@ -1,6 +1,5 @@
 .Receipt_footer_section {
     width: 100%;
-    padding: 28px 0;
     text-align: center;
     background-color: #333333;
     cursor: pointer;
@@ -20,5 +19,8 @@
 
 .Receipt_footer_price {
     font: 700 16px "Noto Sans";
-    color: #FFFFFF
+    color: #FFFFFF;
+    display: block;
+    height: 80px;
+    line-height: 80px;
 }
