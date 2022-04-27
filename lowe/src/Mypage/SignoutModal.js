@@ -26,8 +26,6 @@ class SignoutModal extends React.Component {
                     <div className="Signout_modalBody">
                         <div className="modalclick" onClick={this.handleClose}></div>
                         <div className="Signout_modalInner">
-
-                        <div className="modalclick" onClick={this.handleClose}></div>
                             <div className="Signout_modalContent" >
                                 <div style={{backgroundColor: "#ffffff", height: "100px", borderRadius: "8px 8px 0px 0px", borderBottom: "1px solid #DDDDDD"}}>
                                     <div style={{color: "#333333", lineHeight: "100px"}}>로그아웃 하시겠습니까?</div>

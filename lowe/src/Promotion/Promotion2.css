@@ -1,0 +1,39 @@
+.Promotion_spring04 .Promotion_spring04_firstdiv {
+    position: relative;
+    max-width: 428px;
+    width: 100%;
+    max-height: 774px;
+    height: 180.841121495vw;
+    
+}
+
+.Promotion_spring04_firstimg{
+    max-width: 428px;
+    position: absolute;
+    width: 100%;
+}
+
+.Promotion_spring04_img{
+    max-width: 428px;
+    width: 100%;
+}
+.Promotion_spring04_animation{
+    max-width: 428px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.Promotion_spring04_seconddiv{
+    background-color: #FDD5E9;
+    margin: 0 auto;
+    margin-top: -4px;
+    text-align: center;
+}
+
+.Promotion_spring04_thirddiv{
+    background-color: #D3C6F1;
+    margin: 0 auto;
+    margin-top: -4px;
+    text-align: center;
+}

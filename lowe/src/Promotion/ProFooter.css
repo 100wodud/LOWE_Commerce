@@ -1,0 +1,26 @@
+.ProFooter_footer {
+    position: fixed;
+    width: 100%;
+    max-width: 428px;
+    z-index: 10;
+    height: 64px;
+    text-align: center;
+    bottom: 28px;
+    margin: 0;
+}
+
+.ProFooter_footer> div {
+    text-align: center;
+    width: 100%;
+    max-width: 351px;
+   margin: 0 auto;
+   height: 64px;
+   background: #FF3165;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+.ProFooter_footer > div>div {
+    font: 400 20px "Noto Sans";
+    color: #ffffff;
+}

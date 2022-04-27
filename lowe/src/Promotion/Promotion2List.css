@@ -1,0 +1,51 @@
+.Promotion2List:not(:last-of-type) {
+    margin-bottom: 40px;
+}
+
+.Promotion2List > a > img {
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    max-width: 351px;
+}
+.Promotion2List > a {
+    margin: auto;
+    margin-top: -4px;
+}
+
+.Promotion2List_content{
+    width: 100%;
+    max-width: 351px;
+    background: #FFFFFF;
+    border-radius: 0px 0px 20px 20px;
+    height: 88px;
+    margin: auto;
+    margin-top: -4px;
+}
+
+.Promotion2List_content > div {
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Promotion2List_content_title {
+    font: 700 16px "Noto Sans";
+    line-height: 24px;
+}
+
+.Promotion2List_content_price {
+    font: 700 16px "Montserrat";
+    line-height: 24px;
+    color: #FF3D12;
+}
+
+.Promotion2List_content_price span {
+    color: #333333;
+    margin-left: 8px;
+}
+
+.Promotion2List_content img {
+    width: 40px;
+    margin-top: 4px;
+}

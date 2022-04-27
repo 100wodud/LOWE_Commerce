@@ -16,9 +16,9 @@ class Secondsec extends Component {
             status: "최신순",
             banner: '',
             number: 10,
-            location: "",
-            gender: 3,
-            length: 4,
+            location: "전체",
+            gender: 0,
+            length: 0,
             modal: false
         };
     }
@@ -39,7 +39,7 @@ class Secondsec extends Component {
 
                 })
         } else {
-            this.setState({ Allgoods: Allboard, Showgoods: Allboard, category: 0, number: 10  })
+            this.setState({ Allgoods: Allboard, Showgoods: Allboard, category: 0, number: 10 })
         }
 
         axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
@@ -92,11 +92,11 @@ class Secondsec extends Component {
                 arr.push(this.state.Allgoods[i]);
             }
         }
-        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, status: "최신순", number: 10 });
+        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, status: "최신순", number: 10, location: "전체", gender: 0, length: 0, });
     }
 
     onclickAll = () => {
-        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, status: "최신순", number: 10 })
+        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, status: "최신순", number: 10, location: "전체", gender: 0, length: 0, })
     }
 
     onclickCategory = (e) => () => {
@@ -127,7 +127,7 @@ class Secondsec extends Component {
                 }
             }
         }
-        this.setState({ category: e, Showgoods: arr, status: "최신순", number: 10 })
+        this.setState({ category: e, Showgoods: arr, status: "최신순", number: 10, location: "전체", gender: 0, length: 0, })
     }
 
 
@@ -221,29 +221,43 @@ class Secondsec extends Component {
         this.setState({
             Showgoods: data,
             modal: false,
-            promotion: "",
-            category: 0,
+            location: "전체",
+            gender: 0,
+            length: 0,
             status: "최신순",
+            promotion: "",
+            category: "",
         })
     }
 
     onclicksearching = () => {
-        let data = this.state.data;
+        let data = this.state.Allgoods;
         let arr = [];
-        let category = this.state.category;
+        let gender = this.state.gender;
+        let length = this.state.length;
         let location = this.state.location;
+        let promotion = this.state.promotion
+        let category = this.state.category
 
         for (let i = 0; i < data.length; i++) {
             if (data[i].store.indexOf(location) !== -1 || this.state.location === "전체") {
-                for (let j = 0; j < data[i].Hashtags.length; j++) {
-                    if (data[i].Hashtags[j].content.indexOf(category) !== -1 || this.state.category === "전체") {
-                        arr.push(data[i])
-                        break;
+
+                if (data[i].gender === Number(gender) - 1 || this.state.gender === Number(0)) {
+                    if (data[i].length === Number(length) || this.state.length === Number(0)) {
+                        if (data[i].category === category || this.state.category === 0) {
+                            if (promotion) {
+                                if (data[i].eventPrice) {
+                                    arr.push(data[i])
+                                }
+                            } else {
+                                arr.push(data[i])
+                            }
+                        }
                     }
                 }
             }
         }
-        this.setState({ showdata: arr, modal: false, filter: true })
+        this.setState({ Showgoods: arr, modal: false, status: "최신순" })
     }
 
 
@@ -251,54 +265,54 @@ class Secondsec extends Component {
         const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 5, category: "클리닉" }];
         return (
             <>
-            <section className="Mainpage_second_section">
-                <Filter
-                    onclickPromotion={this.onclickPromotion}
-                    onclickAll={this.onclickAll}
-                    promotion={this.state.promotion}
-                    category={category}
-                    onclickCategory={this.onclickCategory}
-                    categorySelect={this.state.category}
-                    onClickFilter={this.onClickFilter}
-                    onClickclose={this.onClickclose}
-                    filter={this.state.filter}
-                    status={this.state.status}
-                    onclickdataFilter={this.onclickdataFilter} 
+                <section className="Mainpage_second_section">
+                    <Filter
+                        onclickPromotion={this.onclickPromotion}
+                        onclickAll={this.onclickAll}
+                        promotion={this.state.promotion}
+                        category={category}
+                        onclickCategory={this.onclickCategory}
+                        categorySelect={this.state.category}
+                        onClickFilter={this.onClickFilter}
+                        onClickclose={this.onClickclose}
+                        filter={this.state.filter}
+                        status={this.state.status}
+                        onclickdataFilter={this.onclickdataFilter}
 
-                    onClickCloses={this.onClickCloses} 
-                    onClickOpens={this.onClickOpens}
-                    onclicklength={this.onclicklength} 
-                    onclickgender={this.onclickgender}
-                    onclicklocation={this.onclicklocation}
-                    length={this.state.length} 
-                    gender={this.state.gender} 
-                    location={this.state.location} 
-                    onclickReset={this.onclickReset}
-                    onclicksearching={this.onclicksearching}
-                    modal={this.state.modal} />
-                <div className="goods_list">
-                    {
-                        this.state.Showgoods.length ?
-                            this.state.Showgoods.slice(0, this.state.number).map((e, i) => (
-                                <>
-                                    <div key={e.id}>
-                                        <Goodslist e={e} />
-                                    </div>
-                                    {
-                                        (i + 1) % 10 === 0 ?
-                                            <a key={i} href={this.state.banner.url} className="middle_banner" >
-                                                <img src={this.state.banner.img} alt="띠 배너" />
-                                            </a> : null
-                                    }
-                                </>
-                            )) :
-                            <div style={{ height: "100px", textAlign: "center", lineHeight: "100px", width: "100%" }}>
-                                곧 새로운 스타일을 보여드릴게요 :)
-                            </div>
-                    }
-                    <div onClick={this.check} id="infinity_scroll"></div>
-                </div>
-            </section>
+                        onClickCloses={this.onClickCloses}
+                        onClickOpens={this.onClickOpens}
+                        onclicklength={this.onclicklength}
+                        onclickgender={this.onclickgender}
+                        onclicklocation={this.onclicklocation}
+                        length={this.state.length}
+                        gender={this.state.gender}
+                        location={this.state.location}
+                        onclickReset={this.onclickReset}
+                        onclicksearching={this.onclicksearching}
+                        modal={this.state.modal} />
+                    <div className="goods_list">
+                        {
+                            this.state.Showgoods.length ?
+                                this.state.Showgoods.slice(0, this.state.number).map((e, i) => (
+                                    <>
+                                        <div key={e.id}>
+                                            <Goodslist e={e} />
+                                        </div>
+                                        {
+                                            (i + 1) % 10 === 0 ?
+                                                <a key={i} href={this.state.banner.url} className="middle_banner" >
+                                                    <img src={this.state.banner.img} alt="띠 배너" />
+                                                </a> : null
+                                        }
+                                    </>
+                                )) :
+                                <div style={{ height: "100px", textAlign: "center", lineHeight: "100px", width: "100%" }}>
+                                    곧 새로운 스타일을 보여드릴게요 :)
+                                </div>
+                        }
+                        <div onClick={this.check} id="infinity_scroll"></div>
+                    </div>
+                </section>
             </>
         )
     }

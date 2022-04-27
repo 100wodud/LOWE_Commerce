@@ -18,6 +18,7 @@ class Signup extends React.Component {
             birthday: "",
             gender: "",
             email: "",
+            name_error: "",
             login_id_error: "",
             password_error: "",
             confirm_error: "",
@@ -123,6 +124,16 @@ class Signup extends React.Component {
             status: true,
         })
 
+        if (!this.state.name) {
+            this.setState({
+                name_error: "이름을 임력해주세요",
+                status: false
+            })
+        } else {
+            this.setState({
+                name_error: "",
+            })
+        }
 
         if (!this.state.idcheck) {
             this.setState({
@@ -295,8 +306,8 @@ class Signup extends React.Component {
                         <div className="signUptitle">이름</div>
                         <input className="signUpinfo" type="text" placeholder="이름을 입력해주세요" onChange={this.handleInputValue("name")} onInput={this.handleOnInput2()} />
                         {
-                            this.state.error ?
-                                <div className="signup_error">{this.state.error}</div> :
+                            this.state.name_error ?
+                                <div className="signup_error">{this.state.name_error}</div> :
                                 <div className="signup_error"></div>
                         }
                     </div>

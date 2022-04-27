@@ -13,9 +13,9 @@ class ModalFilter extends React.Component {
     }
 
     render() {
-        const gender = ["남성", "여성"];
-        const location = ["강남구", "마포구"];
-        const length = ["숏", "미들", "롱"]
+        const gender = ["전체", "남성", "여성"];
+        const location = ["전체", "강남", "신촌", "합정", "홍대"]
+        const length = ["전체", "숏", "미들", "롱"]
         return (
             <div className="Designer_modalBody" >
                 <div className="Designer_modalclick" onClick={this.handleClose}></div>
@@ -50,7 +50,7 @@ class ModalFilter extends React.Component {
                                 ))}
                             </div>
                         </div>
-                        <div  className="Designer_close">선택완료</div>
+                        <div onClick={this.props.onclicksearching} className="Designer_close">선택완료</div>
                     </div>
                 </div>
             </div>

@@ -25,12 +25,17 @@ class Secondsec extends Component {
         }
     }
 
+    SurgeriesPay = (e)=>() => {
+        localStorage.setItem("surgey_payment", JSON.stringify(e));
+        window.location.replace(`/surgery/${e.id}`)
+    }
+
     render() {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         return (
             <section className="Ddetail">
@@ -67,11 +72,12 @@ class Secondsec extends Component {
                                                     <td className="Ddetail_surgery_content_third">{
                                                         e.url ?
                                                             <div className="Ddetail_orange">
-                                                                <a href={e.url+funnel}>
+                                                                <a href={e.url + funnel}>
                                                                     상품보기
                                                                 </a>
                                                             </div> :
-                                                            <div onClick={this.props.openmodalPhone("준비중인 페이지입니다")} style={{ cursor: "pointer" }}>
+                                                            <div onClick={this.SurgeriesPay(e)} style={{ cursor: "pointer" }}>
+                                                            {/* <div onClick={this.props.openmodalPhone("준비 중 입니다")} style={{ cursor: "pointer" }}> */}
                                                                 결제하기
                                                             </div>
                                                     }

@@ -142,8 +142,8 @@ class Designer extends React.Component {
                                 <>
                                     <div className="Designer_filter_div">
                                         <div className="Designer_filter">
-                                            <span className={this.state.filter ? "Designer_filter_true" : "Designer_filter_false"} onClick={this.onClickOpen}>{this.state.filter ? this.state.location : "지역 " + this.state.location}<span style={{marginLeft: "8px"}}><img src={process.env.PUBLIC_URL + "/image/nav/designer_filter_arrow.svg"} alt="필터 보기" /></span></span>
-                                            <span className={this.state.filter ? "Designer_filter_true" : "Designer_filter_false"} onClick={this.onClickOpen}>{this.state.filter ? this.state.category : "시술 " + this.state.category}<span style={{marginLeft: "8px"}}><img src={process.env.PUBLIC_URL + "/image/nav/designer_filter_arrow.svg"} alt="필터 보기" /></span></span>
+                                            <span className={this.state.filter && this.state.location !== "전체" ? "Designer_filter_true" : "Designer_filter_false"} onClick={this.onClickOpen}>{this.state.filter&& this.state.location !== "전체" ? "" : "지역 "}<span>{this.state.location}</span><span style={{marginLeft: "8px"}}><img src={process.env.PUBLIC_URL + "/image/nav/designer_filter_arrow.svg"} alt="필터 보기" /></span></span>
+                                            <span className={this.state.filter && this.state.category !== "전체" ? "Designer_filter_true" : "Designer_filter_false"} onClick={this.onClickOpen}>{this.state.filter && this.state.category !== "전체" ? "" : "시술 "}<span>{this.state.category}</span><span style={{marginLeft: "8px"}}><img src={process.env.PUBLIC_URL + "/image/nav/designer_filter_arrow.svg"} alt="필터 보기" /></span></span>
                                         </div>
                                         <div onClick={this.onclickReset} style={{ cursor: "pointer" }}>
                                             <span style={{ font: "500 14px 'Noto Sans'" }}>초기화</span>

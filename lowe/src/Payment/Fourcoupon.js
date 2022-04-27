@@ -18,7 +18,6 @@ class Fourcoupon extends Component {
 
     render() {
         //value={JSON.stringify(e)} onChange={this.props.handleInputValue("coupon")}
-        console.log(this.props)
         return (
             <>
                 {
