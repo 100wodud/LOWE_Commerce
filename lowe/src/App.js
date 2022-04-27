@@ -21,6 +21,7 @@ import Myreview from "./Mypage/ReviewList";
 import Receipt from "./Receipt/Receipt";
 import PaymentList from "./Mypage/PaymentList";
 import Paymentfail from "./Payment/Paymentfail";
+import Promotion2 from "./Promotion/Promotion2";
 
 class App extends Component {
   constructor(props) {
@@ -58,6 +59,8 @@ class App extends Component {
           <Route path='/mypayments' component={PaymentList} />
           <Route path='/mypayment/:id' component={Receipt} />
           <Route path='/paymentfail' component={Paymentfail} />
+          <Route path='/promotion/spring2204'component={Promotion2} />
+          <Route path='/surgery/:id' component={Payment} />
         </Switch>
       </>
     )

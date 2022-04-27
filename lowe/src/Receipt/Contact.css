@@ -35,3 +35,7 @@
     width: 11px;
     font-size: 14px;
 }
+
+.Receipt_Contact_li_margin::before {
+    margin-left: 14px;
+}

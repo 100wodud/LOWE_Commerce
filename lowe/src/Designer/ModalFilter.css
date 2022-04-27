@@ -47,7 +47,6 @@
     width: 100%;
     height: 100%;
     margin: auto;
-    background: rgba(0, 0, 0, 0.7);
     z-index: 1;
 }
 
@@ -86,16 +85,14 @@
 
 
 .Designer_categorylist .category_select {
-    color: #FFFFFF;
-    background-color: #333333;
-    font: 700 14px "Noto Sans KR";
+    color: #FF3D12;
+    font: 700 14px "Noto Sans";
+    background-color: #FFF4F1;
 }
 
 .Designer_categorylist .category_nonselect {
-    font-weight: 400;
     color: #9C9C9C;
-    background-color: #F5F5F5;
-    font: 400 14px "Noto Sans KR";
+    font: 400 14px "Noto Sans";
 }
 
 .Designer_category_title {
@@ -106,13 +103,14 @@
 
 .Designer_categorylist {
     width: 100%;
-    line-height: 50px;
+    line-height: 54px;
 }
 
 .Designer_categorylist span {
-    padding: 11px 16px 11px 16px;
+    padding: 12px 17px 12px 17px;
     margin-right: 12px;
-    border-radius: 20px;
+    background: #F5F5F5;
+    border-radius: 8px;
     display: inline-block;
     word-break: keep-all;
     cursor: pointer;

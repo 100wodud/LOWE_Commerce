@@ -40,7 +40,7 @@ class Filter extends Component {
                         }
                 </ScrollContainer>
                 <div className="filter_recent">
-                    <div >
+                    <div onClick={this.props.onClickOpens}>
                         <img src={process.env.PUBLIC_URL + "/image/nav/filter.svg"} alt="로위 필터" />
                     </div>
                     <div onClick={this.props.onClickFilter}>

@@ -10,6 +10,7 @@ import Fifthsec from "./Fifthsec";
 import Seventhsec from "./Seventhsec";
 import PFooter from "./PFooter";
 
+
 class Payment extends Component {
     constructor(props) {
         super(props);
@@ -28,13 +29,30 @@ class Payment extends Component {
 
     componentDidMount = () => {
         let id = window.location.pathname.split("/")[2];
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
-            id: id,
-        }).then((res) => {
-            this.setState({ data: res.data });
-        }).catch((err) => {
-            console.log(err)
-        });
+        let path = window.location.pathname.split("/")[1];
+        if (path === "payment") {
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
+                id: id,
+            }).then((res) => {
+                this.setState({ data: res.data });
+            }).catch((err) => {
+                console.log(err)
+            });
+        } else if (path === "surgery") {
+            let surgey_payment = JSON.parse(window.localStorage.getItem("surgey_payment"));
+            console.log(surgey_payment)
+            let data = {
+                board: {
+                    id: 122,
+                    ManagerId: surgey_payment.ManagerId,
+                    price: surgey_payment.price,
+                    thumbnail: "",
+                    name: surgey_payment.content,
+                    eventPrice: 0,
+                }
+            }
+            this.setState({ data: data });
+        }
 
 
         let user = window.localStorage.getItem("id");
@@ -83,7 +101,7 @@ class Payment extends Component {
                         },
                     }).then(res => {
                         let img = this.state.imgs;
-                        let data = {url:res.data.url}
+                        let data = { url: res.data.url }
                         img.push(data);
                         this.setState({ imgs: img });
                     })
@@ -216,6 +234,7 @@ class Payment extends Component {
                 price = this.state.data.board.price;
             }
         }
+        console.log(this.state)
         return (
             <>
                 <Header header="결제" />

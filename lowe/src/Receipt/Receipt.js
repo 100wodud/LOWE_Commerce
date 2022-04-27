@@ -28,7 +28,7 @@ class Receipt extends Component {
                 board: { board: this.props.location.state.data.Board },
                 BoardId: this.props.location.state.data.BoardId,
                 coupons: this.props.location.state.data.Coupons,
-                managerId: this.props.location.state.data.Board.ManagerId,
+                managerId: this.props.location.state.data.ManagerId,
                 price: this.props.location.state.data.pay_total,
                 request: {
                     text: this.props.location.state.data.user_request,
@@ -88,7 +88,7 @@ class Receipt extends Component {
             }).catch((err) => {
                 console.log(err)
             });
-
+           
 
             if (reload === "false") {
                 axios.post('https://d205rw3p3b6ysa.cloudfront.net/updatePayment', {
@@ -119,6 +119,26 @@ class Receipt extends Component {
                         console.log(err)
                     })
                 })
+            } 
+            else {
+                    const webhookUrl = 'https://hooks.slack.com/services/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';
+                
+                    const data = {
+                        "text": `${this.state.data.board.board.name}\n상품금액: ${this.state.data.board.board.price.comma()}원\n지점: ${this.state.store.store} \n<http://lowehair.admin.s3-website.ap-northeast-2.amazonaws.com/payments|결제 확인하기>`,
+                    }
+                    let res = await axios.post(webhookUrl, JSON.stringify(data), {
+                        withCredentials: false,
+                        transformRequest: [(data, headers) => {
+                            delete headers.post["Content-Type"]
+                            return data
+                        }]
+                    })
+                
+                    if (res.status === 200) {
+                        console.log("성공")
+                
+                        //clear state so text boxes clear
+                    } 
             }
         }
     }
@@ -136,7 +156,7 @@ class Receipt extends Component {
                 {this.state.payment ?
                     <>
                         <Contact />
-                        <Firstsec data={this.state.data.board} mypayment={this.props.location.state ? this.props.location.state.data : ""} />
+                        <Firstsec data={this.state.data.board} mypayment={this.props.location.state ? this.props.location.state.data : ""} payment={this.state.payment[0]} />
                         <Secondsec payment={this.state.payment} user={this.state.data.user} />
                         <Thirdsec data={this.state.data.board} coupon={this.state.data.coupons} price={this.state.data.price} />
                         <Fourthsec manager={this.state.manager} store={this.state.store} />

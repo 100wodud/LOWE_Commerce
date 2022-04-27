@@ -42,12 +42,18 @@
     color: #FF3D12;
 }
 
-.Payment_seventh_caution li::before {
+.Payment_seventh_li::before {
+    margin-left: 14px;
+}
 
+.Payment_seventh_li_margin::before {
+    margin-left: 27px;
+}
+
+.Payment_seventh_caution li::before {
     content: "•";
     color: #9C9C9C;
     display: inline-block;
     width: 11px;
-    margin-left: 14px;
     font-size: 14px;
 }

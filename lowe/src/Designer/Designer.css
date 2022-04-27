@@ -56,6 +56,9 @@
     line-height: 35px;
 }
 
+.Designer_filter_true img {
+    filter: invert(37%) sepia(98%) saturate(3930%) hue-rotate(352deg) brightness(101%) contrast(105%);
+}
 
 .Designer_filter_div {
     padding: 0 12px;
@@ -71,22 +74,25 @@
 .Designer_filter > span {
     padding: 6px 12px 6px 12px;
     margin-right: 8px;
-    border-radius: 20px;
     cursor: pointer;
 }
 
 
 .Designer_filter_false {
-    font-weight: 400;
     color: #333333;
     background-color: #F5F5F5;
     font: 400 14px "Noto Sans";
+    border-radius: 8px;
+}
+
+.Designer_filter_false span {
+    font: 700 14px "Noto Sans";
 }
 
 
 .Designer_filter_true {
-    font-weight: 400;
-    color: #FFFFFF;
-    background-color: #333333;
-    font: 400 14px "Noto Sans";
+    color: #FF3D12;
+    font: 700 14px "Noto Sans";
+    background: #FFF4F1;
+    border-radius: 8px;
 }

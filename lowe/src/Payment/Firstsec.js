@@ -17,7 +17,9 @@ class Firstsec extends Component {
                     <div>
                         <div className="Payment_first_title">시술정보</div>
                         <div className="Payment_first_content">
-                            <div><img src={this.props.data.board.thumbnail} alt="결제 상품 정보"/></div>
+                            {this.props.data.board.thumbnail?
+                            <div> <img src={this.props.data.board.thumbnail} alt="결제 상품 정보"/></div>
+                            : null}
                             <div>
                                 <div className="Payment_first_content_name">{this.props.data.board.name}</div>
                                 <div className="Payment_first_content_price"><span>{this.props.data.board.price.comma()}원</span><span style={{color: "#FF3D12"}}>{this.props.data.board.eventPrice? this.props.data.board.eventPrice+"%" : null}</span></div>
