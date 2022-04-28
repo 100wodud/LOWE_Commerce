@@ -23,8 +23,49 @@ class Mainpage extends Component {
     }
     componentDidMount = () => {
         let recently = JSON.parse(window.localStorage.getItem("recentWord"));
-        const set = new Set(recently);
-        const recent = [...set];
+        let set = new Set(recently);
+        let recent = [...set];
+
+
+        let funnel ="";
+        if(window.location.href.split("?skeyword=")[1]){
+            funnel=decodeURI(window.location.href.split("?skeyword=")[1]);
+            recent.unshift(funnel)
+            set = new Set(recent);
+            recent = [...set];
+            document.getElementById("header_search").value=funnel
+
+
+            axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
+            keyword: funnel
+        })
+            .then((res) => {
+                let arr = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    if (res.data[i].open === '1') {
+                        arr.push(res.data[i])
+                    }
+                }
+                let userid = Number(window.localStorage.getItem("id"));
+                if (userid) {
+                    axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+                        type: 3,
+                        UserId: userid,
+                        funnel: "skeyword=" + funnel
+                    })
+                } else {
+                    axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+                        type: 3,
+                        funnel: "skeyword=" + funnel
+                    })
+                }
+                window.localStorage.setItem("recentWord", JSON.stringify(recent));
+                this.setState({ data: arr, result: true, recent: recent })
+            })
+            .catch(err => {
+                console.log("에러")
+            })
+        }
 
         if (recent) {
             this.setState({ recent: recent });
@@ -32,18 +73,6 @@ class Mainpage extends Component {
             this.setState({ recent: [] });
         }
 
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBoard", {})
-        .then((res) => {
-            let arr = [];
-            for (let i = 0; i < res.data.length; i++) {
-                if (res.data[i].open === '1') {
-                    arr.push(res.data[i])
-                }
-            }
-            window.localStorage.setItem("allboard", JSON.stringify(arr));
-        }).catch((err) => {
-            console.log(err)
-        })
     }
 
 
@@ -81,22 +110,11 @@ class Mainpage extends Component {
             set = new Set(recently);
             recent = [...set];
         }
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
-            keyword: keyword
-        })
-            .then((res) => {
-                let arr = [];
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].open === '1') {
-                        arr.push(res.data[i])
-                    }
-                }
-                window.localStorage.setItem("recentWord", JSON.stringify(recent));
-                this.setState({ data: arr, result: true, recent: recent })
-            })
-            .catch(err => {
-                console.log("에러")
-            })
+
+        window.localStorage.setItem("recentWord", JSON.stringify(recent));
+        setTimeout(() => {
+            window.location.replace(`/search?skeyword=${keyword}`)
+        }, 10);
     }
 
     handleRecentSearch = (keyword) => ()=>{
@@ -109,44 +127,27 @@ class Mainpage extends Component {
             set = new Set(recently);
             recent = [...set];
         }
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
-            keyword: keyword
-        })
-            .then((res) => {
-                let arr = [];
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].open === '1') {
-                        arr.push(res.data[i])
-                    }
-                }
-                window.localStorage.setItem("recentWord", JSON.stringify(recent));
-                this.setState({ data: arr, result: true, keyword: keyword, recent: recent });
-                document.getElementById("header_search").value = keyword;
-            })
-            .catch(err => {
-                console.log("에러")
-            })
+
+        window.localStorage.setItem("recentWord", JSON.stringify(recent));
+        setTimeout(() => {
+            window.location.replace(`/search?skeyword=${keyword}`)
+        }, 0);
+    }
+
+    onclickEnter = (e) => {
+        if(e.key === 'Enter') {
+            this.handleInputSearch();
+        }
     }
 
 
     handleInputRecommand = (key) => (e) => {
         e.preventDefault();
         let keyword = key
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/search", {
-            keyword: keyword
-        })
-            .then((res) => {
-                let arr = [];
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].open === '1') {
-                        arr.push(res.data[i])
-                    }
-                }
-                this.setState({ data: arr, result: true })
-            })
-            .catch(err => {
-                console.log("에러")
-            })
+
+        setTimeout(() => {
+            window.location.replace(`/search?skeyword=${keyword}`)
+        }, 0);
     }
 
 
@@ -234,9 +235,10 @@ class Mainpage extends Component {
             var regex = new RegExp(find, "g");
             boxAll[i].innerHTML = boxAll[i].innerText.replace(regex, "<span class='highlight'>" + find + "</span>");
         }
+        console.log(this.state)
         return (
             <>
-                <SHeader handleInputValue={this.handleInputValue} handleInputSearch={this.handleInputSearch} />
+                <SHeader handleInputValue={this.handleInputValue} onclickEnter={this.onclickEnter} handleInputSearch={this.handleInputSearch} />
                 {
                     this.state.result === false ?
                         <>
@@ -244,7 +246,7 @@ class Mainpage extends Component {
                             <NonSearch handleInputRecommand={this.handleInputRecommand} />
                         </> :
                         !this.state.data.length ?
-                            <div className="cannot_search">
+                            <div className="no_search">
                                 <img src={process.env.PUBLIC_URL + "/image/nav/search_non.svg"} alt="검색결과 없음" />
                                 <div>
                                     <div style={{ fontWeight: "700", fontSize: "18px" }}>검색 결과가 없습니다</div>

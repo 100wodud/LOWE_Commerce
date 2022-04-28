@@ -129,7 +129,7 @@ class Mypage extends Component {
                             <div className="mypage-info">
                                 <div className='mypage-info-title'>고객센터</div>
                                 <div className='mypage-info-contact'>
-                                    <div style={{marginRight: "12px"}}><a href='/'>1:1 문의</a></div>
+                                    <div style={{marginRight: "12px"}}><a href='http://pf.kakao.com/_xlzsPs/chat'>1:1 문의</a></div>
                                     <div><a href='https://lo-we.kr/request'>디자이너 입점문의</a></div>
                                 </div>
                                 <div className='mypage-info-content'>
