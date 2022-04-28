@@ -61,6 +61,16 @@ class Ddetail extends Component {
         }).catch((err) => {
             console.log(err)
         });
+        let tab=window.location.href.split("#")[1];
+        if(tab === "Ddetailmenu"){
+            this.setState({list: 2})
+        } else if(tab === "Ddetailreview"){
+            this.setState({list: 3})
+        }else if(tab === "Ddetailinfo"){
+            this.setState({list: 4})
+        } else {
+            this.setState({list: 1})
+        }
     }
 
     onClickCoupon = () => {
@@ -112,10 +122,10 @@ class Ddetail extends Component {
                             null
                         }
                             <div className="Ddetail-filter">
-                                <p className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>상품</p>
-                                <p className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>메뉴</p>
-                                <p className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>
-                                <p className={(this.state.list === 4 ? "push_button" : 'pull_button')} onClick={this.onclickList(4)}>정보</p>
+                                <p id="Ddetailboard" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>상품</p>
+                                <p id="Ddetailmenu" className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>메뉴</p>
+                                <p id="Ddetailreview" className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>
+                                <p id="Ddetailinfo" className={(this.state.list === 4 ? "push_button" : 'pull_button')} onClick={this.onclickList(4)}>정보</p>
                             </div>
                         <Secondsec list={this.state.list} data={this.state.data} review={this.state.review} imgreview={this.state.imgreview} openmodalPhone={this.openmodalPhone} />
                     </>

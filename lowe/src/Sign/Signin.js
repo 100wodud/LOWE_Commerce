@@ -23,6 +23,13 @@ class Signin extends React.Component {
         this.setState({ [key]: e.target.value });
     };
 
+
+    onclickEnter = (e) => {
+        if(e.key === 'Enter') {
+            this.handleSignIn();
+        }
+    }
+
     handleSignIn = () => {
         this.setState({ error: "" });
 
@@ -76,7 +83,7 @@ class Signin extends React.Component {
                     </div>
                     <div>
                         <div className="signIntitle">아이디</div>
-                        <input className="signUpinfo" type="text" placeholder="예 : lowe1234" onChange={this.handleInputValue("login_id")} />
+                        <input className="signUpinfo" onKeyPress={this.onclickEnter} type="text" placeholder="예 : lowe1234" onChange={this.handleInputValue("login_id")} />
                         {
                             this.state.id_error ?
                                 <div className="signin_error">{this.state.id_error}</div> :
@@ -85,7 +92,7 @@ class Signin extends React.Component {
                     </div>
                     <div>
                         <div className="signIntitle">비밀번호</div>
-                        <input className="signUpinfo" type="password" placeholder="비밀번호를 입력해주세요" onChange={this.handleInputValue("password")} />
+                        <input className="signUpinfo" onKeyPress={this.onclickEnter} type="password" placeholder="비밀번호를 입력해주세요" onChange={this.handleInputValue("password")} />
                         {
                             this.state.error ?
                                 <div className="signin_error">{this.state.error}</div> :

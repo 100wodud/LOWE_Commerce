@@ -88,7 +88,6 @@ class Firstsec extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <section className="Receipt_first_section">
                 {

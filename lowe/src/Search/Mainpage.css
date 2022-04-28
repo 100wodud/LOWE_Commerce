@@ -13,6 +13,7 @@
   }
 
   .header_input {
+      width: 80%;
       max-width: 255px;
       position: absolute;
       height: 60px;
@@ -92,6 +93,7 @@
     width: 100%;
     transform: translate(0, 28vh);
     text-align: center;
+    height: 100vh;
 }
 
 
