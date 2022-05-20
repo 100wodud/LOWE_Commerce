@@ -7,10 +7,34 @@
     padding: 8px 12px 0 12px;
     bottom: 0;
     background-color: white;
-    border-top: 1px solid #DDDDDD;
+    border-top: none;
     text-align: center;
     padding-bottom: calc(0px +constant(safe-area-inset-bottom));
     padding-bottom: calc(0px +env(safe-area-inset-bottom));
+  }
+
+  .BFooter2 {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    font: 400 14px "Noto Sans";
+    height: 40px;
+    bottom: 72px;
+    line-height: 40px;
+    background-color: #FFF4F1;
+    border: none;
+    color: #FF3D12;
+    cursor: pointer;
+  }
+
+  .down {
+    bottom: 0;
+
+  }
+
+  .BFooter2 img {
+    margin-bottom: -1px;
   }
 /* 
 

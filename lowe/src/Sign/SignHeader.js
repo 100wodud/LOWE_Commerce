@@ -16,7 +16,13 @@ class SignHeader extends Component {
 
 
     gotohome = () => {
-        window.location.replace("/")
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
+        window.location.href = `/${funnel}`
     }
 
     render() {

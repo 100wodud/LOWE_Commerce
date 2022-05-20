@@ -33,6 +33,13 @@
       height: 96px;
       text-align: center;
   }
+  .no_review_top {
+    padding-bottom: 20px;
+    max-width: 403px;
+    height: 96px;
+    text-align: center;
+
+  }
 
   .no_review_content1{
       margin-top: 14px;

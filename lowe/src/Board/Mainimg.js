@@ -24,7 +24,15 @@ class Mainimg extends Component {
                             <div className="Mainimg_sub" style={{ fontWeight: "700", marginTop: "100px" }}>{e.main}</div>
                             {
                                 e.Urls.map((v) => (
-                                    <img key={v.id} className="Mainimg_img" src={v.url} alt="서브이미지" />
+                                    <>
+                                        {
+                                            v.url.slice(v.url.lastIndexOf('.'), v.url.lastIndexOf('.') + 4) === ".avi" || v.url.slice(v.url.lastIndexOf('.'), v.url.lastIndexOf('.') + 4) === ".mp4" ?
+                                                <video preload="metadata" key={v.id} playsInline muted controls loop autoPlay className="Mainimg_img"  alt="서브이미지" > 
+                                                    <source src={v.url + "#t=0.5"} />
+                                                </video>:
+                                                <img key={v.id} className="Mainimg_img" src={v.url} alt="서브이미지" />
+                                        }
+                                    </>
                                 ))
                             }
                         </div>

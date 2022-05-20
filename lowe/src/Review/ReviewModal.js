@@ -10,8 +10,14 @@ class ReviewModal extends React.Component {
 
 
     handleClose = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         if (this.props.comment.slice(0, 5) === "리뷰 수정") {
-            window.location.replace('/mypage')
+            window.location.href = `/mypage${funnel}`
         } else {
             this.props.closemodal();
         }
@@ -20,6 +26,12 @@ class ReviewModal extends React.Component {
 
     render() {
         const { open } = this.props;
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <>
                 {open ? (
@@ -34,8 +46,8 @@ class ReviewModal extends React.Component {
                                             <div style={{ color: "#333333" }}>작성한 리뷰는 마이페이지에서<br />확인 할 수 있어요 : )</div>
                                         </div>
                                         <div style={{ backgroundColor: "#ffffff", height: "52px", cursor: "pointer", borderRadius: "0px 0px 8px 8px" }} >
-                                            <a href="/" style={{ lineHeight: "52px", width: "49.7%", float: "left", borderRight: "1px solid #DDDDDD" }}>닫기</a>
-                                            <a href="/mypage" style={{ lineHeight: "52px", width: "49.7%", float: "left", color: "#FF3D12", fontWeight: "700" }}><strong>작성 리뷰 확인하기</strong></a>
+                                            <a href={`/${funnel}`} style={{ lineHeight: "52px", width: "49.7%", float: "left", borderRight: "1px solid #DDDDDD" }}>닫기</a>
+                                            <a href={`/mypage${funnel}`} style={{ lineHeight: "52px", width: "49.7%", float: "left", color: "#FF3D12", fontWeight: "700" }}><strong>작성 리뷰 확인하기</strong></a>
                                         </div>
                                     </> :
                                     <>

@@ -22,6 +22,9 @@ import Receipt from "./Receipt/Receipt";
 import PaymentList from "./Mypage/PaymentList";
 import Paymentfail from "./Payment/Paymentfail";
 import Promotion2 from "./Promotion/Promotion2";
+import Portfolio from "./Portfolio/Portfolio";
+import Portfoliolist from "./Portfolio/Portfoliolist";
+import Portf from "./Portfolio/Portf";
 
 class App extends Component {
   constructor(props) {
@@ -51,7 +54,7 @@ class App extends Component {
           <Route path='/review/write/:id' component={Review} />
           <Route path='/designers' component={Designers} />
           <Route path='/designer/:id' component={Ddetail} />
-          <Route path='/promotion/spring2203'component={Promotion} />
+          <Route path='/promotion/moment_event'component={Promotion} />
           <Route path='/payment/:id' component={Payment} />
           <Route path='/mycoupons' component={Mycoupon} />
           <Route path='/myreviews' component={Myreview} />
@@ -61,6 +64,9 @@ class App extends Component {
           <Route path='/paymentfail' component={Paymentfail} />
           <Route path='/promotion/spring2204'component={Promotion2} />
           <Route path='/surgery/:id' component={Payment} />
+          <Route path='/portfolios/:id' component={Portfolio} />
+          <Route path='/portfoliolist/:id' component={Portfoliolist} />
+          <Route path='/portfolio/:id' component={Portf} />
         </Switch>
       </>
     )

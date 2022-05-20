@@ -28,9 +28,15 @@ class Mypage extends Component {
 
 
     componentDidMount = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -40,7 +46,7 @@ class Mypage extends Component {
                     console.log("에러")
                 })
 
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getPayment", {
+            axios.post("https://server.lowehair.kr/getPayment", {
                 UserId: Number(id),
             })
                 .then((res) => {
@@ -64,12 +70,18 @@ class Mypage extends Component {
                     console.log("에러")
                 })
         } else {
-            window.location.replace("/signin")
+            window.location.href = `/signin${funnel}`
         }
     }
 
     render() {
-        let data = this.state.data
+        let data = this.state.data;
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <>
                 <section>
@@ -77,22 +89,22 @@ class Mypage extends Component {
                         <>
                             <div className="login_id">{data.login_id}님</div>
                             <div className="mypage-filter">
-                                <a href='/mycoupons' className='pull_button'>
+                                <a href={`/mycoupons${funnel}`} className='pull_button'>
                                     <img style={{ margin: "8px 0px" }} src={process.env.PUBLIC_URL + "/image/nav/mypage_coupon.svg"} alt="로위 쿠폰" />
                                     <div>쿠폰</div>
                                 </a>
-                                <a href='/myreviews' className='pull_button'>
+                                <a href={`/myreviews${funnel}`} className='pull_button'>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/mypage_review.svg"} alt="로위 쿠폰" />
                                     <div>마이리뷰</div>
                                 </a>
-                                <a href='/mypayments' className='pull_button'>
+                                <a href={`/mypayments${funnel}`} className='pull_button'>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/mypage_payment.svg"} alt="로위 쿠폰" />
                                     <div>결제</div>
                                 </a>
                             </div>
                             <div className="mypage-payment-check">
                                 <div className="mypage-subtitle">진행중인 예약내역</div>
-                                <a href="/mypayments" className="mypage-payment-check-div">
+                                <a href={`/mypayments${funnel}`} className="mypage-payment-check-div">
                                     <div className="mypage-payment-check-content">
                                         <div  className="mypage-payment-check-content-number">
                                             {this.state.pay.length}

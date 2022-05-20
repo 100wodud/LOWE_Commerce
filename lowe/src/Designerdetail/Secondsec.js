@@ -3,6 +3,8 @@ import ReviewList from "../Board/ReviewList";
 import Goodslist from "../Home/Goodslist";
 import Store from "../data/Store";
 import "./Secondsec.css"
+import axios from "axios";
+import Portfolios from "./Portfolios";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -26,8 +28,42 @@ class Secondsec extends Component {
     }
 
     SurgeriesPay = (e)=>() => {
-        localStorage.setItem("surgey_payment", JSON.stringify(e));
-        window.location.replace(`/surgery/${e.id}`)
+        let id = window.location.pathname.split("/")[2];
+        let userid = Number(window.localStorage.getItem("id"));
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel='/'
+        }
+        console.log(e)
+
+        if (userid) {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 6,
+                ManagerId: id,
+                UserId: userid,
+                SurgeryId: Number(e.id),
+                funnel: funnel
+            })
+                .then((res) => {
+                    localStorage.setItem("surgey_payment", JSON.stringify(e));
+                    window.location.href = `/surgery/${e.id}${funnel}`
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 6,
+                ManagerId: id,
+                SurgeryId: Number(e.id),
+                funnel: funnel
+            })
+                .then((res) => {
+                    localStorage.setItem("surgey_payment", JSON.stringify(e));
+                    window.location.href = `/signin${funnel}`
+                }).catch((err) => {
+                });
+        }
     }
 
     render() {
@@ -45,9 +81,13 @@ class Secondsec extends Component {
                             {
                                 this.props.data.Boards.length ?
                                     this.props.data.Boards.map((e, i) => (
-                                        <div key={e.id}>
+                                        <>
+                                        { e.open ==='1' ? 
+                                        <div key={i}>
                                             <Goodslist e={e} />
-                                        </div>
+                                        </div> : null
+                                        }
+                                        </>
                                     )) :
                                     <div style={{ height: "100px", textAlign: "center", lineHeight: "100px", width: "100%" }}>
                                         곧 새로운 스타일을 보여드릴게요 :)
@@ -77,7 +117,6 @@ class Secondsec extends Component {
                                                                 </a>
                                                             </div> :
                                                             <div onClick={this.SurgeriesPay(e)} style={{ cursor: "pointer" }}>
-                                                            {/* <div onClick={this.props.openmodalPhone("준비 중 입니다")} style={{ cursor: "pointer" }}> */}
                                                                 결제하기
                                                             </div>
                                                     }
@@ -92,7 +131,7 @@ class Secondsec extends Component {
                                 </div> :
                             this.props.list === 3 ?
                                 <div style={{ marginTop: "24px", padding: "0 12px" }}>
-                                    <ReviewList data={this.props.review} imgdata={this.props.imgreview} />
+                                    <ReviewList data={this.props.review} imgdata={this.props.imgreview} designer={true} />
 
                                 </div> :
                                 this.props.list === 4 ?
@@ -113,8 +152,8 @@ class Secondsec extends Component {
                                                                         <div><strong>로위 {this.state.store.store}</strong></div>
                                                                         <div style={{ marginTop: "12px" }}>{this.state.store.address}</div>
                                                                         {
-                                                                            this.state.store.location.map((e) => (
-                                                                                <div style={{ marginTop: "12px" }}>{e}</div>
+                                                                            this.state.store.location.map((e, i) => (
+                                                                                <div key={i} style={{ marginTop: "12px" }}>{e}</div>
                                                                             ))
                                                                         }
                                                                         <div className="store-map">
@@ -155,6 +194,9 @@ class Secondsec extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    : 
+                                    this.props.list === 5 ?
+                                    <Portfolios data={this.props.data} />
                                     : null
                 }
             </section>

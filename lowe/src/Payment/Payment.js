@@ -28,10 +28,16 @@ class Payment extends Component {
     }
 
     componentDidMount = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let id = window.location.pathname.split("/")[2];
         let path = window.location.pathname.split("/")[1];
         if (path === "payment") {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
+            axios.post("https://server.lowehair.kr/getBoardDetail", {
                 id: id,
             }).then((res) => {
                 this.setState({ data: res.data });
@@ -57,7 +63,7 @@ class Payment extends Component {
 
         let user = window.localStorage.getItem("id");
         if (user) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: user
             })
                 .then((res) => {
@@ -67,7 +73,7 @@ class Payment extends Component {
                     console.log("에러")
                 })
         } else {
-            window.location.replace("/signin")
+            window.location.href = `/signin${funnel}`
         }
 
 
@@ -95,7 +101,7 @@ class Payment extends Component {
                 const formData = new FormData();
                 formData.append("file", img);
                 await axios
-                    .post("https://d205rw3p3b6ysa.cloudfront.net/addImg", formData, {
+                    .post("https://server.lowehair.kr/addImg", formData, {
                         headers: {
                             "content-type": "multipart/form-data",
                         },
@@ -162,6 +168,8 @@ class Payment extends Component {
         localStorage.setItem("reload", "false");
         let price = total.slice(0, total.length - 1).replaceAll(",", "");
         let payment = {}
+        let define1 = {}
+        let define2 = {}
         if (this.state.agree1 && this.state.agree2) {
             payment.boardId = this.state.data.board.id
             payment.board = this.state.data
@@ -174,6 +182,20 @@ class Payment extends Component {
             }
             payment.price = price
             payment.managerId = this.state.data.board.ManagerId
+
+            define1.boardId = this.state.data.board.id
+            define1.board = this.state.data
+            define1.userId = this.state.user.id
+            define1.user = this.state.user
+            define1.coupons = this.state.coupon
+            define1.price = price
+            define1.managerId = this.state.data.board.ManagerId
+
+            define2.request = {
+                text: this.state.content,
+                img: this.state.imgs
+            }
+
             localStorage.setItem("recent_payment", JSON.stringify(payment));
             // const data1 = { user_id: window.localStorage.getItem('id') };
             // const dataString1 = JSON.stringify(data1);
@@ -181,7 +203,7 @@ class Payment extends Component {
             // const data2 = { user_request: 'input text' };
             // const dataString2 = JSON.stringify(data2);
             // const replaceData2 = dataString2.replaceAll('"', '&quot;');
-            axios.post('https://d205rw3p3b6ysa.cloudfront.net/payAuth')
+            axios.post('https://server.lowehair.kr/payAuth')
                 .then((response) => {
                     if (response.status === 200) {
                         e.preventDefault();
@@ -200,12 +222,12 @@ class Payment extends Component {
                         //
                         obj.PCD_PAY_GOODS = this.state.data.board.name;
                         obj.PCD_PAY_TOTAL = price; //board.price;
-                        obj.PCD_RST_URL = `https://d205rw3p3b6ysa.cloudfront.net/payment_result`;
+                        obj.PCD_RST_URL = `https://server.lowehair.kr/payment_result`;
                         obj.PCD_PAYER_NO = this.state.user.id;
                         obj.PCD_PAYER_NAME = this.state.user.name; //user.name
                         obj.PCD_PAYER_EMAIL = this.state.user.email; //user.email
-                        // obj.PCD_USER_DEFINE1 = replaceData1;
-                        // obj.PCD_USER_DEFINE2 = replaceData2;
+                        obj.PCD_USER_DEFINE1 = JSON.stringify(define1);
+                        obj.PCD_USER_DEFINE2 = JSON.stringify(define2);
 
                         window.PaypleCpayPopup(obj);
                     }
@@ -234,7 +256,6 @@ class Payment extends Component {
                 price = this.state.data.board.price;
             }
         }
-        console.log(this.state)
         return (
             <>
                 <Header header="결제" />

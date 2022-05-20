@@ -10,12 +10,13 @@ class Review extends Component {
         super(props);
         this.state = {
             user: '',
-            click: false
+            click: false,
+            board: '',
         };
     }
 
     componentDidMount = () => {
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
+        axios.post("https://server.lowehair.kr/getOneUser", {
             id: this.props.data.UserId,
         })
             .then((res) => {
@@ -24,6 +25,18 @@ class Review extends Component {
             .catch(err => {
                 console.log("에러")
             })
+
+        if(this.props.designer){
+            axios.post("https://server.lowehair.kr/getBoardDetail", {
+                id: this.props.data.BoardId,
+            })
+            .then((res) => {
+                this.setState({ board: res.data.board })
+            })
+            .catch(err => {
+                console.log("에러")
+            })
+        }
     }
     onClickreview = () => {
         this.setState({ click: !this.state.click })
@@ -39,9 +52,18 @@ class Review extends Component {
             slidesToScroll: 1,
             autoplay: false,
         };
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <div style={{ paddingBottom: "24px", borderBottom: "1px solid #DDDDDD" }} onClick={this.onClickreview}>
-                <div style={{ display: "flex", justifyContent: "space-between", margin: "24px 0 12px 0" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "24px" }}>
+                    <a style={{font: '700 12px "Montserrat"', color: "#FF5732"}} href={`/board/${this.state.board.id}${funnel}`}>{this.state.board.name}</a>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", margin: "12px 0 12px 0" }}>
                     <span className="review_user">{this.state.user}</span>
                     <span className="review_create">{this.props.data.createdAt.replaceAll("-", ". ").slice(2, 12)}</span>
                 </div>

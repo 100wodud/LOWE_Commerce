@@ -11,11 +11,17 @@ class Paymentfail extends Component {
     }
 
     componentDidMount = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let recent_payment = JSON.parse(window.localStorage.getItem("recent_payment"));
         this.setState({ data: recent_payment })
         setTimeout(() => {
             let id = this.state.data.boardId;
-            window.location.replace(`/board/${id}`)
+            window.location.href = `/board/${id}${funnel}`
         }, 5000);
     }
 

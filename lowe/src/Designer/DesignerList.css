@@ -1,5 +1,5 @@
 .Designerlist_div {
-    padding: 12px;
+    padding: 12px 1px 12px 12px;
     height: 60px;
     flex-wrap: nowrap;
     justify-content: space-between;

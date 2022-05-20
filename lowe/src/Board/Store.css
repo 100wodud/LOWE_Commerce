@@ -10,7 +10,8 @@
     width: 45.8vw;
     text-align: center;
     height: 54px;
-    background: #F0F0F0;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
     font: 700 15px "Noto Sans";
     cursor:pointer;
 }

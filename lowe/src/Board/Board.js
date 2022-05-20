@@ -8,6 +8,7 @@ import Thirdsec from "./Thirdsec";
 import Filter from "./Filter";
 import Fourthsec from "./Fourthsec";
 import Fifthsec from "./Fifthsec";
+import BFooter2 from "./BFooter2";
 
 class Board extends Component {
     constructor(props) {
@@ -25,15 +26,15 @@ class Board extends Component {
         let userid = Number(window.localStorage.getItem("id"));
         let funnel ="";
         if(window.location.href.split("?")[1]){
-            funnel=window.location.href.split("?")[1];
+            funnel="?" + window.location.href.split("?")[1];
         } else{
             funnel='/'
         }
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
+        axios.post("https://server.lowehair.kr/getBoardDetail", {
             id: id,
         }).then((res) => {
             this.setState({ data: res.data });
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerDetail", {
+            axios.post("https://server.lowehair.kr/getDesignerDetail", {
                 id: res.data.board.ManagerId,
             })
                 .then((res) => {
@@ -47,7 +48,7 @@ class Board extends Component {
         if (!this.state.click) {
             this.setState({ click: true })
             if (userid) {
-                axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+                axios.post("https://server.lowehair.kr/click", {
                     type: 2,
                     BoardId: id,
                     UserId: userid,
@@ -57,7 +58,7 @@ class Board extends Component {
                     }).catch((err) => {
                     });
             } else {
-                axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+                axios.post("https://server.lowehair.kr/click", {
                     type: 2,
                     BoardId: id,
                     funnel: funnel
@@ -87,6 +88,7 @@ class Board extends Component {
                         잠시만 기다려 주세요 :)
                     </div>
                 }
+                <BFooter2 />
                 <Footer data={this.state.data} designer={this.state.designer} />
             </>
         )

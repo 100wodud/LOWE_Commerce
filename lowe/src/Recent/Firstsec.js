@@ -16,7 +16,7 @@ class Firstsec extends Component {
         if (recent) {
             let arr = [];
             for (let i = 0; i < recent.length; i++) {
-                await axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
+                await axios.post("https://server.lowehair.kr/getBoardDetail", {
                     id: recent[i],
                 })
                     .then((res) => {
@@ -29,6 +29,12 @@ class Firstsec extends Component {
     }
 
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <section className="Recent_first_section">
                 <div className="Recent_total">
@@ -51,7 +57,7 @@ class Firstsec extends Component {
                                 <div>최근 본 시술이 없습니다</div>
                             </div>
                             <div className="nolike_button" style={{ lineHeight: "52px", marginTop: "23px" }} >
-                                <a href="/">상품 보러가기</a>
+                                <a href={`/${funnel}`}>상품 보러가기</a>
                             </div>
                         </div>
                 }

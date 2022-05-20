@@ -31,7 +31,7 @@ class Withdrawal extends Component {
     userWithdrawal = () => {
         let user = window.localStorage.getItem("id");
         if (this.state.reason.length > 1 && user) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/withdrawalUser", { id: user, withdrawalReason: this.state.reason })
+            axios.post("https://server.lowehair.kr/withdrawalUser", { id: user, withdrawalReason: this.state.reason })
                 .then((res) => {
                     setTimeout(() => {
                         this.openmodalPhone(`회원탈퇴가 완료되었습니다\n그동안 이용해주셔서 감사합니다`)

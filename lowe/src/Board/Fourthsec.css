@@ -1,12 +1,13 @@
 
 .Board_fourth_section {
-    margin: 0 12px 20px 12px;
+    border-bottom: 8px solid #F5F5F5;
 }
 
 
 .store_title {
     font: 700 15px "Noto Sans";
-    margin-bottom: 20px;
+    border-top: 8px solid #F5F5F5;
+    padding: 60px 12px 20px 12px;
 }
 
 .recommand_scroll {
@@ -14,4 +15,6 @@
     overflow-x: scroll;
     white-space:nowrap;
     display: flex;
+    padding-bottom: 60px;
+    margin: 0 12px ;
 }

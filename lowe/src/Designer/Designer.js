@@ -27,7 +27,7 @@ class Designer extends React.Component {
             localStorage.setItem("designer_list", JSON.stringify([]));
         }
         this.setState({ data: designer, showdata: designer })
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerList", {
+        axios.post("https://server.lowehair.kr/getDesignerList", {
         }).then((res) => {
             let arr = []
             for(let i = 0; i < res.data.length; i++){
@@ -46,7 +46,7 @@ class Designer extends React.Component {
 
         let user_id = Number(window.localStorage.getItem("id"));
         if(user_id){
-        axios.post(`https://d205rw3p3b6ysa.cloudfront.net/getFavorite`,{
+        axios.post(`https://server.lowehair.kr/getFavorite`,{
             user_id: user_id,
         })
             .then((res) => {

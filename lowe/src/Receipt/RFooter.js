@@ -10,10 +10,16 @@ class RFooter extends Component {
 
         
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <>
                 <section className="Receipt_footer_section">
-                    <a href="/mypage" className="Receipt_footer_price">결제 확인 완료</a>
+                    <a href={`/mypage${funnel}`} className="Receipt_footer_price">결제 확인 완료</a>
                 </section>
             </>
         );
