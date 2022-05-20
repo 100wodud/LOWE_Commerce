@@ -15,7 +15,7 @@ class DesignerList extends React.Component {
         let manager_id = this.props.data.id;
         let user_id = Number(window.localStorage.getItem("id"));
         if (manager_id && user_id) {
-            axios.post(`https://d205rw3p3b6ysa.cloudfront.net/getFavorite`, {
+            axios.post(`https://server.lowehair.kr/getFavorite`, {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
@@ -35,7 +35,7 @@ class DesignerList extends React.Component {
         let manager_id = this.props.data.id;
         let user_id = Number(window.localStorage.getItem("id"));
         if (user_id && manager_id) {
-            await axios.post("https://d205rw3p3b6ysa.cloudfront.net/favorite", {
+            await axios.post("https://server.lowehair.kr/favorite", {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
@@ -96,7 +96,7 @@ class DesignerList extends React.Component {
                                         <img src={process.env.PUBLIC_URL + "/image/nav/designer_like.svg"} alt="좋아요 버튼" onClick={this.onclickLike} />
                                     </div> :
                                 <div>
-                                    <img src={process.env.PUBLIC_URL + "/image/nav/designer_dislike.svg"} alt="좋아요 버튼" onClick={() => { alert("로그인을 해주세요") }} />
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/designer_dislike.svg"} alt="좋아요 버튼" onClick={() => {  window.location.href = `/signin${funnel}` }} />
                                 </div>
                             }
                             <div>

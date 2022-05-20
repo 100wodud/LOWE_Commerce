@@ -17,9 +17,15 @@ class PaymentList extends Component {
     }
 
     componentDidMount = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getPayment", {
+            axios.post("https://server.lowehair.kr/getPayment", {
                 UserId: Number(id),
             })
                 .then((res) => {
@@ -43,7 +49,7 @@ class PaymentList extends Component {
                     console.log("에러")
                 })
         } else {
-            window.location.replace("/signin")
+            window.location.href = `/signin${funnel}`
         }
     }
 

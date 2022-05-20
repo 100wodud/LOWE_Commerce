@@ -22,6 +22,12 @@ class Receipt extends Component {
     }
 
     componentDidMount = async (e) => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let path = window.location.pathname.split("/")[1];
         if (path === "mypayment") {
             let data = {
@@ -47,7 +53,7 @@ class Receipt extends Component {
                     }
                 }
             }
-            await axios.post("https://d205rw3p3b6ysa.cloudfront.net/getPayment", {
+            await axios.post("https://server.lowehair.kr/getPayment", {
                 id: id,
             }).then((res) => {
                 this.setState({ payment: res.data })
@@ -61,20 +67,20 @@ class Receipt extends Component {
             this.setState({ data: recent_payment })
             let id = window.location.pathname.split("/")[2];
             let reload = window.localStorage.getItem("reload");
-            await axios.post("https://d205rw3p3b6ysa.cloudfront.net/getPayment", {
+            await axios.post("https://server.lowehair.kr/getPayment", {
                 id: id,
             }).then((res) => {
                 if (Number(userid) === res.data[0].User.id) {
                     this.setState({ payment: res.data })
                 } else {
-                    window.location.replace("/")
+                    window.location.href = `/${funnel}`
 
                 }
             }).catch((err) => {
                 console.log(err)
             });
 
-            await axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerDetail", {
+            await axios.post("https://server.lowehair.kr/getDesignerDetail", {
                 id: recent_payment.managerId,
             }).then((res) => {
                 this.setState({ manager: res.data })
@@ -91,7 +97,7 @@ class Receipt extends Component {
            
 
             if (reload === "false") {
-                axios.post('https://d205rw3p3b6ysa.cloudfront.net/updatePayment', {
+                axios.post('https://server.lowehair.kr/updatePayment', {
                     id: Number(id), //결제 DB 상의 id 값
                     ManagerId: this.state.manager.id,
                     BoardId: this.state.data.board.board.id,
@@ -110,7 +116,7 @@ class Receipt extends Component {
                     text: this.state.data.board.board.name
                 }).then((res) => {
                     window.localStorage.setItem("reload", "true");
-                    axios.post("https://d205rw3p3b6ysa.cloudfront.net/alert", {
+                    axios.post("https://server.lowehair.kr/alert", {
                         type: 2,
                         PaymentId: Number(id)
                     }).then((res) => {
@@ -121,8 +127,8 @@ class Receipt extends Component {
                 })
             } 
             else {
-                    const webhookUrl = 'https://hooks.slack.com/services/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';
-                
+                    const webhookUrl = 'https://hooks.slack.com/services/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' //리얼;
+                    // const webhookUrl= 'https://hooks.slack.com/services/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' //테스트
                     const data = {
                         "text": `${this.state.data.board.board.name}\n상품금액: ${this.state.data.board.board.price.comma()}원\n지점: ${this.state.store.store} \n<http://lowehair.admin.s3-website.ap-northeast-2.amazonaws.com/payments|결제 확인하기>`,
                     }

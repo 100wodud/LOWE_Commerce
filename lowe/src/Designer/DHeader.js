@@ -13,6 +13,12 @@ class DHeader extends Component {
         window.history.go(-1)
     }
 
+    onclickEnter = (e) => {
+        if (e.key === 'Enter') {
+            this.props.handleInputSearch();
+        }
+    };
+
     render() {
         return (
             <header className="header3">
@@ -20,11 +26,11 @@ class DHeader extends Component {
                     <img className="header_back" onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
                 </span>
                 <span>
-                    <input id="header_search" className="header_input" onChange={this.props.onChangeSearch("search")} placeholder="검색어를 입력해주세요" type="text"></input>
+                    <input id="header_search" onKeyPress={this.onclickEnter} className="header_input" onChange={this.props.onChangeSearch("search")} placeholder="검색어를 입력해주세요" type="text"></input>
                 </span>
-                    <span onClick={this.props.handleInputSearch}>
-                        <img className="header_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
-                    </span>
+                <span onClick={this.props.handleInputSearch}>
+                    <img className="header_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
+                </span>
             </header>
         )
     }

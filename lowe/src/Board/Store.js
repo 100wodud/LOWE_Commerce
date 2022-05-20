@@ -13,16 +13,14 @@ class Store extends Component {
     }
 
     componentDidMount = () => {
-        this.props.data === '신촌점' ?
-            this.setState({ store: store[0] }) :
-            this.props.data === '홍대입구역점' ?
-                this.setState({ store: store[2] }) :
-                this.props.data === '합정점' ?
-                    this.setState({ store: store[1] }) :
-                    this.props.data === '강남점' ?
-                        this.setState({ store: store[3] }) :
-                        this.setState({ store: store[3] })
-
+        let data = this.props.data;
+        if (data) {
+            for (let i = 0; i < store.length; i++) {
+                if (store[i].store.indexOf(data) !== -1) {
+                    this.setState({ store: store[i] })
+                }
+            }
+        }
     }
 
     openmodalPhone =(e)  => {
@@ -46,7 +44,7 @@ class Store extends Component {
              <>
                 {
                     this.state.store ?
-                    <div>
+                    <div style={{margin: "0 12px"}}>
                         <img className="store_map" src={process.env.PUBLIC_URL + this.state.store.map} alt={`로위 ${this.state.store.store} 지도`} />
                         <div style={{width: "100%", justifyContent: "space-between",display: "flex"}}>
                             <div style={{lineHeight: "54px"}} className="store_box" onClick={this.clickAddress}>주소 복사</div>

@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Header from "../Nav/Header";
 import Firstsec from "./Firstsec";
-import Secondsec from "./Secondsec";
+import ProFooter from "./ProFooter";
 
 class Promotion extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class Promotion extends Component {
             <>
                 <Header header="clear" />
                 <Firstsec />
-                <Secondsec />
+                <ProFooter footer="promotion1" />
             </>
         )
     }

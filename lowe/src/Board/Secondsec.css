@@ -1,21 +1,26 @@
 .Board_second_section {
     margin: 0 12px 20px 12px;
 }
+.Board_real_price{
+    padding-top: 28px;
+    font: 400 14px "Montserrat";
+    color: #9C9C9C;
+    text-decoration-line: line-through;
+}
 
 .Board_second_price{
     justify-content: space-between;
     display: flex;
     max-width: 428px;
-    padding: 32px 0 15px 0;
+    padding-bottom: 15px;
     height: 36px;
     border-bottom: 1px solid #DDDDDD;;
 }
 .Board_like {
     text-align: right;
     z-index: 100;
-    margin-top: -12px;
-    margin-right: -12px;
 }
+
 
 .Board_title {
     padding: 30px 0 12px 0;
@@ -41,11 +46,37 @@
     color: #333333;
 }
 .Board_second_addprice {
-    float: left;
-    padding: 20.5px 0 32px 0;
+    padding: 20.5px 0 20px 0;
     width: 100%;
+    height: fit-content;
+}
+
+.Board_second_naver{
+    padding: 20px 0px;
+    width: 100%;
+    display: flex;
 
 }
+
+.Board_second_naver span, .Board_second_naver a {
+    width: 100%;
+    text-align: center;
+    font: 400 16px "Noto Sans";
+    line-height: 54px;
+    color: #FFFFFF;
+}
+.Board_second_naver img {
+    border-right: 1px solid #84D977;
+}
+.Board_second_naver > div {
+    background-color: #3EC62A;
+    height: 56px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
 .Board_second_addprice > div{
     min-height: 40px;
     float: left;

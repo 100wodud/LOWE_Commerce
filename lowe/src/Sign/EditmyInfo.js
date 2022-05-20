@@ -48,9 +48,15 @@ class EditmyInfo extends React.Component {
     };
 
     componentDidMount = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let id = window.localStorage.getItem("id");
         if(id){
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
+        axios.post("https://server.lowehair.kr/getOneUser", {
             id: id,
         })
             .then((res) => {
@@ -75,7 +81,7 @@ class EditmyInfo extends React.Component {
                 console.log("에러")
             })
         } else {
-            window.location.replace("/signin")
+            window.location.href = `/signin${funnel}`
         }
     }
 
@@ -110,7 +116,7 @@ class EditmyInfo extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/checkPhoneNumber", {
+            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -224,7 +230,7 @@ class EditmyInfo extends React.Component {
 
     sendSignup = () => {
         if (this.state.status && this.state.phonecheck && this.state.agree1 && this.state.agree2) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/updateUserInfo", {
+            axios.post("https://server.lowehair.kr/updateUserInfo", {
                 id: window.localStorage.getItem("id"),
                 name: this.state.name,
                 login_id: this.state.login_id,

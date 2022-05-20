@@ -13,7 +13,7 @@ class Review extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getBoardDetail", {
+        axios.post("https://server.lowehair.kr/getBoardDetail", {
             id: this.props.data.BoardId,
         })
             .then((res) => {
@@ -22,11 +22,17 @@ class Review extends Component {
     }
 
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <div className="myreview" >
                 {this.state.data ?
                     <div>
-                        <a href={`/board/${this.props.data.BoardId}`} className="myreview_img">
+                        <a href={`/board/${this.props.data.BoardId}${funnel}`} className="myreview_img">
                             <img src={this.state.data.thumbnail} alt={this.state.data.name} />
                         </a>
                         <span className="myreview_content">

@@ -58,7 +58,7 @@ class Review extends Component {
         const img = this.state.imgs
         if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content) {
             axios
-                .post("https://d205rw3p3b6ysa.cloudfront.net/createReview", {
+                .post("https://server.lowehair.kr/createReview", {
                     user: Number(this.state.user),
                     BoardId: Number(this.state.id),
                     ManagerId: Number(this.state.ManagerId),
@@ -80,7 +80,7 @@ class Review extends Component {
         const img = this.state.imgs
         if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content) {
             axios
-                .post("https://d205rw3p3b6ysa.cloudfront.net/updateReview", {
+                .post("https://server.lowehair.kr/updateReview", {
                     id: this.props.location.state.id,
                     hair_color: this.state.Color,
                     hair_amout: this.state.Amout,
@@ -113,7 +113,7 @@ class Review extends Component {
                 const formData = new FormData();
                 formData.append("file", img);
                 await axios
-                    .post("https://d205rw3p3b6ysa.cloudfront.net/addImg", formData, {
+                    .post("https://server.lowehair.kr/addImg", formData, {
                         headers: {
                             "content-type": "multipart/form-data",
                         },

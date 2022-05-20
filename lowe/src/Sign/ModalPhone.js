@@ -10,13 +10,19 @@ class ModalPhone extends React.Component {
 
 
     handleClose = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         if (this.props.comment.slice(0, 7) === "회원가입 완료" || this.props.comment.slice(0, 7) === "회원탈퇴가 완") {
             window.localStorage.removeItem("id");
-            window.location.replace('/')
+            window.location.href = `/${funnel}`
         } else if (this.props.comment.slice(0, 5) === "회원정보가") {
-            window.location.replace('/mypage')
+            window.location.href = `/mypage${funnel}`
         } else if (this.props.comment.slice(0, 5) === "비밀번호가") {
-            window.location.replace('/signin')
+            window.location.href = `/signin${funnel}`
         } else {
             this.props.closemodal();
         }

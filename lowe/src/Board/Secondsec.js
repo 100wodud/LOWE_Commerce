@@ -2,6 +2,7 @@ import { Component } from "react";
 import axios from "axios";
 import "./Secondsec.css"
 import DesignerList from "../Designer/DesignerList";
+import Fifthsec from "./Fifthsec";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class Secondsec extends Component {
         let id = this.props.data.board.id;
         let user = Number(window.localStorage.getItem("id"));
         if (id && user) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardLikeChk", {
+            axios.post("https://server.lowehair.kr/boardLikeChk", {
                 user: user,
                 id: id,
             })
@@ -33,7 +34,7 @@ class Secondsec extends Component {
         }
 
 
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBanner", {})
+        axios.post("https://server.lowehair.kr/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {
@@ -63,7 +64,7 @@ class Secondsec extends Component {
             like = 0;
         }
         if (id && user) {
-            await axios.post("https://d205rw3p3b6ysa.cloudfront.net/boardLikeUpdate", {
+            await axios.post("https://server.lowehair.kr/boardLikeUpdate", {
                 id: id,
                 user: user,
                 heart: like
@@ -72,6 +73,22 @@ class Secondsec extends Component {
             });
         }
     }
+
+    handleShare = () => {
+        let url = window.location.href;
+        if (navigator.share) {
+            navigator.share({
+                title: '로위 - 헤어스타일 스토어',
+                text: '온라인 헤어스타일 스토어. 내가 원하는 모든 헤어스타일 부터 예약까지 한 번에, 로위(LOWE)',
+                url: url,
+            });
+        }else{
+            navigator.clipboard.writeText(url)
+            .then(() => {
+                alert("링크복사 완료 주변에 알려주세요!");
+            })
+        }
+      }
 
     render() {
         let user = window.localStorage.getItem("id");
@@ -86,6 +103,10 @@ class Secondsec extends Component {
                 <div className="Board_second_section">
                     <div className="Board_title">{this.props.data.board.name}</div>
                     <div className="Board_content">{this.props.data.board.content}</div>
+                    { this.props.data.board.eventType ?
+                        <div className="Board_real_price">{(Math.round(this.props.data.board.price / (100-this.props.data.board.eventPrice)*100 / 1000)*1000).comma()}원</div> :
+                        <div className="Board_real_price"> </div>
+                    }
                     <div className="Board_second_price">
                         <div className="Board_price" >
                             {this.props.data.board.eventType ?
@@ -97,15 +118,22 @@ class Secondsec extends Component {
                         <div>
                             {user ?
                                 this.state.like === false ?
-                                    <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike.svg"} className="Board_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
-                                    <img src={process.env.PUBLIC_URL + "/image/nav/goods_like.svg"} className="Board_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
-                                <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike.svg"} className="Board_like" alt="로위 상품 찜" onClick={() => { alert("로그인을 해주세요") }} />
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike2.svg"} className="Board_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/goods_like2.svg"} className="Board_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
+                                <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike2.svg"} className="Board_like" alt="로위 상품 찜" onClick={() => { alert("로그인을 해주세요") }} />
                             }
+                            <img onClick={this.handleShare} src={process.env.PUBLIC_URL + "/image/nav/board_share.svg"} className="Board_share" alt="로위 상품 찜" /> 
                         </div>
                     </div>
                     <div className="Board_second_addprice">
                         <div style={{ width: "80px", fontWeight: "700" }}>추가금액</div>
                         <div style={{ width: "67%", maxWidth: "270px", whiteSpace: "pre-line" }}>{this.props.data.board.addPrice}</div>
+                    </div>
+                    <div className="Board_second_naver">
+                        <div>
+                            <img src={process.env.PUBLIC_URL + "/image/nav/board_naver.svg"} alt="네이버" />
+                            <a href={this.props.designer.reserve_url}><span>네이버 예약하기</span></a>
+                        </div>
                     </div>
                     <div>
                         {this.props.designer ?
@@ -114,6 +142,7 @@ class Secondsec extends Component {
                         }
                     </div>
                 </div>
+                <Fifthsec data={this.props.data} top={true} />
                 <a href={this.state.banner.url + funnel} className="Board_banner">
                     <img src={this.state.banner.img} alt="이벤트 배너" />
                 </a>

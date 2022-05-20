@@ -32,9 +32,15 @@ class Signin extends React.Component {
 
     handleSignIn = () => {
         this.setState({ error: "" });
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
 
         if (this.state.login_id.length > 1) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/loginIdCheck", {
+            axios.post("https://server.lowehair.kr/loginIdCheck", {
                 login_id: this.state.login_id,
             }).then((res) => {
                 if (res.data.status === "false") {
@@ -54,14 +60,14 @@ class Signin extends React.Component {
             })
         }
 
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/loginUser", {
+        axios.post("https://server.lowehair.kr/loginUser", {
             login_id: this.state.login_id,
             password: this.state.password,
         })
             .then((res) => {
                 if (res.data.id) {
                     window.localStorage.setItem("id", res.data.id);
-                    window.location.replace("/")
+                    window.location.href = `/${funnel}`
                 } else {
                     this.setState({ error: "비밀번호를 확인해주세요" })
                 }
@@ -72,12 +78,18 @@ class Signin extends React.Component {
     }
 
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <>
                 <SignHeader header=" " />
                 <section className="SignIn_section">
                     <div className="signin_logo" >
-                        <a href="/" className="signin_logo" >
+                        <a href={`/${funnel}`} className="signin_logo" >
                             <img src={process.env.PUBLIC_URL + "/image/nav/header_logo.svg"} alt="로위 로고" />
                         </a>
                     </div>
@@ -100,13 +112,13 @@ class Signin extends React.Component {
                         }
                     </div>
                     <div>
-                        <div className="signin_find"><a href="/findmyid">아이디 / 비밀번호 찾기 </a><span><img src={process.env.PUBLIC_URL + "/image/nav/next_arrow.svg"} alt="다음" /></span></div>
+                        <div className="signin_find"><a href={`/findmyid${funnel}`}>아이디 / 비밀번호 찾기 </a><span><img src={process.env.PUBLIC_URL + "/image/nav/next_arrow.svg"} alt="다음" /></span></div>
                     </div>
                     <div className="signin_buttonbox">
                         <div className="signin_button" onClick={this.handleSignIn}>로그인</div>
                     </div>
                     <div className="signin_buttonbox">
-                        <div className="signup_button"><a href="/signup">회원가입</a></div>
+                        <div className="signup_button"><a href={`/signup${funnel}`}>회원가입</a></div>
                     </div>
                 </section>
             </>

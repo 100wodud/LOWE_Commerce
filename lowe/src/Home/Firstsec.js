@@ -15,7 +15,7 @@ class Firstsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getAllBanner", {})
+        axios.post("https://server.lowehair.kr/getAllBanner", {})
         .then((res)=>{
             let arr = [];
             if(res.data.length){

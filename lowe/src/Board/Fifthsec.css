@@ -3,6 +3,11 @@
     margin: 0 12px 60px 12px;
 }
 
+.Board_fifth_section_top {
+    padding: 0 12px;
+    border-top: 8px solid #F5F5F5;
+}
+
 .review_title_div {
     display: flex;
     justify-content: space-between;
@@ -16,4 +21,13 @@
 .review_title_write {
     font: 500 14px "Noto Sans";
     border-bottom: 1px solid #333333;
+}
+
+
+.Board_fifth_section_top .imgreviewlist_div {
+    padding-bottom: 24px;
+    border-bottom: none;
+    height: fit-content;
+    overflow-x: scroll;
+    white-space: nowrap;
 }

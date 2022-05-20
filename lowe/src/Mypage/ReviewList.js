@@ -15,9 +15,15 @@ class ReviewList extends Component {
     }
 
     componentDidMount = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -26,8 +32,26 @@ class ReviewList extends Component {
                 .catch(err => {
                     console.log("에러")
                 })
+
+                // axios.post("https://server.lowehair.kr/getPayment", {
+                //     UserId: Number(id),
+                // })
+                //     .then((res) => {
+                //         let done= [];
+                //         if (res.data) {
+                //             for (let i = 0; i < res.data.length; i++) {
+                //                 if (res.data[i].state === "시술완료"){
+                //                     done.push(res.data[i])
+                //                 } 
+                //             }
+                //             this.setState({ payment: done });
+                //         }
+                //     })
+                //     .catch(err => {
+                //         console.log("에러")
+                //     })
         } else {
-            window.location.replace("/signin")
+            window.location.href = `/signin${funnel}`
         }
     }
 

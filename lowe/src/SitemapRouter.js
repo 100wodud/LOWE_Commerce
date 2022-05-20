@@ -16,6 +16,18 @@ export default (
           <Route path='/editmyinfo' />
           <Route path='/myreview/edit/:id' />
           <Route path='/review/write/:id' />
+          <Route path='/designers' />
+          <Route path='/designer/:id' />
+          <Route path='/promotion/spring2203' />
+          <Route path='/payment/:id' />
+          <Route path='/mycoupons' />
+          <Route path='/myreviews' />
+          <Route path='/receipt/:id' />
+          <Route path='/mypayments' />
+          <Route path='/mypayment/:id' />
+          <Route path='/paymentfail' />
+          <Route path='/promotion/spring2204' />
+          <Route path='/surgery/:id' />
         </Switch>
     )
 

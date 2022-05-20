@@ -18,7 +18,8 @@ class Ddetail extends Component {
             modal: false,
             modalcomment: "",
             review: [],
-            imgreview: []
+            imgreview: [],
+            click: false,
         };
     }
     
@@ -31,8 +32,15 @@ class Ddetail extends Component {
 
     componentDidMount = () => {
         let id = window.location.pathname.split("/")[2];
-        let arr = []
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getDesignerDetail", {
+        let userid = Number(window.localStorage.getItem("id"));
+        let arr = [];
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel='/'
+        }
+        axios.post("https://server.lowehair.kr/getDesignerDetail", {
             id: id,
         }).then((res) => {
             let coupon = ""
@@ -46,7 +54,7 @@ class Ddetail extends Component {
         });
 
 
-        axios.post(`https://d205rw3p3b6ysa.cloudfront.net/getReview`, {
+        axios.post(`https://server.lowehair.kr/getReview`, {
             ManagerId: id,
         }).then((res) => {
 
@@ -68,14 +76,43 @@ class Ddetail extends Component {
             this.setState({list: 3})
         }else if(tab === "Ddetailinfo"){
             this.setState({list: 4})
-        } else {
+        } else if(tab === "Ddetailstyle"){
+            this.setState({list: 5})
+        }else if(tab === "Ddetailboard"){
             this.setState({list: 1})
+        } else {
+            this.setState({list: 5})
+        }
+
+
+        if (!this.state.click) {
+            this.setState({ click: true })
+            if (userid) {
+                axios.post("https://server.lowehair.kr/click", {
+                    type: 4,
+                    ManagerId: id,
+                    UserId: userid,
+                    funnel: funnel
+                })
+                    .then((res) => {
+                    }).catch((err) => {
+                    });
+            } else {
+                axios.post("https://server.lowehair.kr/click", {
+                    type: 4,
+                    ManagerId: id,
+                    funnel: funnel
+                })
+                    .then((res) => {
+                    }).catch((err) => {
+                    });
+            }
         }
     }
 
     onClickCoupon = () => {
         let user_id = Number(window.localStorage.getItem("id"));
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/createCoupon", {
+        axios.post("https://server.lowehair.kr/createCoupon", {
             UserId: user_id,
             price: Number(this.state.coupon.couponprice),
             content: this.state.coupon.coupontext,
@@ -96,7 +133,40 @@ class Ddetail extends Component {
 
 
     onclickList = (e) => () => {
+        let id = window.location.pathname.split("/")[2];
+        let userid = Number(window.localStorage.getItem("id"));
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel='/'
+        }
+
+        if (userid) {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 5,
+                ManagerId: id,
+                UserId: userid,
+                funnel: funnel,
+                tab_num: Number(e)
+            })
+                .then((res) => {
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 5,
+                ManagerId: id,
+                funnel: funnel,
+                tab_num: Number(e)
+            })
+                .then((res) => {
+                }).catch((err) => {
+                });
+        }
+
         this.setState({ list: e })
+    
     }
 
     render() {
@@ -122,6 +192,7 @@ class Ddetail extends Component {
                             null
                         }
                             <div className="Ddetail-filter">
+                                <p id="Ddetailstyle" className={(this.state.list === 5 ? "push_button" : 'pull_button')} onClick={this.onclickList(5)}>스타일</p>
                                 <p id="Ddetailboard" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>상품</p>
                                 <p id="Ddetailmenu" className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>메뉴</p>
                                 <p id="Ddetailreview" className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>

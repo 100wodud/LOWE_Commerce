@@ -1,0 +1,44 @@
+.portheader {
+    position: fixed;
+    width: 100%;
+    max-width: 428px;
+    z-index: 10;
+    height: 60px;
+    top: 0;
+    border-bottom: 1px solid #DDDDDD;
+    background-color: white;
+    transition: top 0.2s ease-in-out;
+    -webkit-transition: All 0.2s ease;
+    -moz-transition: All 0.2s ease;
+    -o-transition: All 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+ }
+  
+  .portheader_logo{
+      padding: 10px 10px 10px 0;
+      cursor: pointer;
+  }
+  .portheader_logo_home{
+      padding: 10px 0;
+      cursor: pointer;
+  }
+
+  .hide {
+    position: absolute;
+    top: -60px;
+  }
+
+.portheader .portheader_back{
+  position: absolute;
+  cursor: pointer;
+}
+
+.portheader .portheader_name {
+    width: 100%;
+    max-width: 428px;
+    font: 700 17px "Montserrat";
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}

@@ -16,29 +16,29 @@ class BFooter extends Component {
         let userid = Number(window.localStorage.getItem("id"));
         let funnel ="";
         if(window.location.href.split("?")[1]){
-            funnel=window.location.href.split("?")[1];
+            funnel="?" + window.location.href.split("?")[1];
         } else{
-            funnel='/'
+            funnel=''
         }
         if (userid) {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+            axios.post("https://server.lowehair.kr/click", {
                 type: 1,
                 BoardId: id,
                 UserId: userid,
                 funnel: funnel
             })
                 .then((res) => {
-                    window.location.href = '/payment/'+this.props.data.board.id
+                    window.location.href = '/payment/'+this.props.data.board.id+funnel
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/click", {
+            axios.post("https://server.lowehair.kr/click", {
                 type: 1,
                 BoardId: id,
                 funnel:funnel
             })
                 .then((res) => {
-                    window.location.href = '/payment/'+this.props.data.board.id
+                    window.location.href = '/payment/'+this.props.data.board.id+funnel
                 }).catch((err) => {
                 });
         }
@@ -76,7 +76,7 @@ class BFooter extends Component {
                         </div>
                         <div className='BFooter_payment' onClick={this.onClicknumber}>
                             <div>
-                                <div>예약하기</div>
+                                <div>결제하기</div>
                             </div>
                         </div>
                     </> 

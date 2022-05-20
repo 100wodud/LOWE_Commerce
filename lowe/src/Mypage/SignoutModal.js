@@ -14,8 +14,14 @@ class SignoutModal extends React.Component {
     }
 
     onClickSignout = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         window.localStorage.removeItem("id");
-        window.location.replace('/');
+        window.location.href = `/${funnel}`
     }
 
     render() {

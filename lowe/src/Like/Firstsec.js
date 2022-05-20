@@ -14,7 +14,7 @@ class Firstsec extends Component {
 
     componentDidMount = () => {
         let user = window.localStorage.getItem("id");
-        axios.post("https://d205rw3p3b6ysa.cloudfront.net/getMyWish", { user: user })
+        axios.post("https://server.lowehair.kr/getMyWish", { user: user })
             .then((res) => {
                 this.setState({ Showgoods: res.data })
             }).catch((err) => {

@@ -62,7 +62,7 @@ class Pwresult extends React.Component {
 
     sendPw = () => {
         if(!this.state.confirm_error && !this.state.password_error){
-            axios.post("https://d205rw3p3b6ysa.cloudfront.net/updateUserPassword", {
+            axios.post("https://server.lowehair.kr/updateUserPassword", {
                 id: this.props.data,
                 password: this.state.password
             }).then((res) => {

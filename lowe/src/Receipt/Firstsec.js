@@ -18,8 +18,14 @@ class Firstsec extends Component {
         this.setState({ phonemodal: true, modalcomment: e, refund: false, });
     };
     closemodalPhone = () => {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         this.setState({ phonemodal: false, modalcomment: "", refund: false, });
-        window.location.replace('/mypayments')
+        window.location.href = `/mypayments${funnel}`
     };
 
     handlebuttonRefund = (e) => {
@@ -28,12 +34,12 @@ class Firstsec extends Component {
 
     onClickRefund = (e) => {
         if (this.state.reason) {
-            axios.post('https://d205rw3p3b6ysa.cloudfront.net/updatePayment', {
+            axios.post('https://server.lowehair.kr/updatePayment', {
                 id: Number(this.props.mypayment.id), //결제 DB 상의 id 값
                 state: '환불대기', //원하시는 형태로 결제 상태 입력해주세요!
                 cancel_reason: this.state.reason,
             }).then((res) => {
-                axios.post("https://d205rw3p3b6ysa.cloudfront.net/alert", {
+                axios.post("https://server.lowehair.kr/alert", {
                     type: 5,
                     PaymentId: Number(this.props.mypayment.id)
                 }).then((res) => {
@@ -88,6 +94,12 @@ class Firstsec extends Component {
     }
 
     render() {
+        let funnel ="";
+        if(window.location.href.split("?")[1]){
+            funnel="?" + window.location.href.split("?")[1];
+        } else{
+            funnel=''
+        }
         return (
             <section className="Receipt_first_section">
                 {
@@ -113,7 +125,7 @@ class Firstsec extends Component {
                                         this.props.data.board.id === 122 ?
                                             null :
                                             <div style={{ marginTop: "20px",height: "40px" }}>
-                                                <a href={`/review/write/${this.props.data.board.ManagerId}/${this.props.data.board.id}`} className="Mypayment_box">리뷰쓰기</a>
+                                                <a href={`/review/write/${this.props.data.board.ManagerId}/${this.props.data.board.id}${funnel}`} className="Mypayment_box">리뷰쓰기</a>
                                             </div> :
                                         <div onClick={this.handlebuttonRefund} style={{ marginTop: "20px", textAlign: "center" }}>
                                             <div className="Mypayment_box">취소 / 환불요청</div>
