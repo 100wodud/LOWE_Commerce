@@ -46,7 +46,6 @@ class Payment extends Component {
             });
         } else if (path === "surgery") {
             let surgey_payment = JSON.parse(window.localStorage.getItem("surgey_payment"));
-            console.log(surgey_payment)
             let data = {
                 board: {
                     id: 122,
@@ -157,7 +156,7 @@ class Payment extends Component {
             }
         }
         if (!exist) {
-            coupons.push(coupon)
+            coupons[0]=(coupon)
         }
         this.setState({ coupon: coupons })
 
@@ -255,6 +254,9 @@ class Payment extends Component {
             } else {
                 price = this.state.data.board.price;
             }
+            if(price <= 0){
+                price = 0;
+            }
         }
         return (
             <>
@@ -262,7 +264,7 @@ class Payment extends Component {
                 <Firstsec data={this.state.data} />
                 <Secondsec user={this.state.user} />
                 <Thirdsec onClickDelimg={this.onClickDelimg} handleInputValue={this.handleInputValue} state={this.state} />
-                <Fourthsec onClickCoupon={this.onClickCoupon} user={this.state.user} data={this.state.data} />
+                <Fourthsec onClickCoupon={this.onClickCoupon} user={this.state.user} data={this.state.data} coupon={this.state.coupon} />
                 <Fifthsec data={this.state.data} coupon={this.state.coupon} handleInputValue={this.handleInputValue} price={price} />
                 <Seventhsec onClickAgree={this.onClickAgree} agree1={this.state.agree1} agree2={this.state.agree2} />
                 <PFooter onclickSubmit={this.onclickSubmit} price={price} modalopen={this.state.modalopen} />

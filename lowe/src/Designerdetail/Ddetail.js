@@ -193,7 +193,7 @@ class Ddetail extends Component {
                         }
                             <div className="Ddetail-filter">
                                 <p id="Ddetailstyle" className={(this.state.list === 5 ? "push_button" : 'pull_button')} onClick={this.onclickList(5)}>스타일</p>
-                                <p id="Ddetailboard" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>상품</p>
+                                <p id="Ddetailboard" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>시술</p>
                                 <p id="Ddetailmenu" className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>메뉴</p>
                                 <p id="Ddetailreview" className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>
                                 <p id="Ddetailinfo" className={(this.state.list === 4 ? "push_button" : 'pull_button')} onClick={this.onclickList(4)}>정보</p>

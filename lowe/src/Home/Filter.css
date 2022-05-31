@@ -52,14 +52,13 @@
 .category_select {
     color: #FFFFFF;
     background-color: #333333;
-    font: 700 14px "Noto Sans KR";
+    font: 700 14px "Noto Sans";
 }
 
 .category_nonselect {
-    font-weight: 400;
     color: #9C9C9C;
     background-color: #F5F5F5;
-    font: 400 14px "Noto Sans KR";
+    font: 400 14px "Noto Sans";
 }
 
 .filter_recent {

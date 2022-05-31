@@ -17,11 +17,11 @@ class Portfolios extends Component {
             <div>
                 <div className="Portfolio_style_title">#Style Tag</div>
                 {this.props.data.Hashtags.length ?
-                    this.props.data.Hashtags.map((e, i) => (
+                    this.props.data.Hashtags.map((v, i) => (
                         <>
                             {
-                                e.Manager_Hashtag.open ?
-                                    <Portfolio data={e} portfolio={this.props.data.Portfolios} key={i} /> : null
+                                v.Manager_Hashtag.open ?
+                                    <Portfolio data={v} portfolio={this.props.data.Portfolios} key={v.id} /> : null
                             }
                         </>
                     )) : null

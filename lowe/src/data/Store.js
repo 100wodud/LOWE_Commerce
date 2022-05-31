@@ -8,7 +8,8 @@ const Store = [
         profile: "https://lo-we.kr/reservation/lowe_shinchon_p",
         mapurl: "https://map.kakao.com/?itemId=1427697335",
         private: ["/image/store/shinchon/0.jpg", "/image/store/shinchon/1.jpg","/image/store/shinchon/2.jpg"],
-        phone: "02-332-1226"
+        phone: "02-332-1226",
+        number: "1772319921"
     },
     {
         id: 2,
@@ -19,7 +20,9 @@ const Store = [
         profile: "https://lo-we.kr/reservation/lowe_hapjeong_p",
         mapurl: "https://map.kakao.com/?itemId=1676725047",
         private: ["/image/store/hapjeong/0.jpg", "/image/store/hapjeong/1.jpg","/image/store/hapjeong/2.jpg"],
-        phone: "02-336-1223"
+        phone: "02-336-1223",
+        number: "1366968814"
+
     },
     {
         id: 3,
@@ -30,7 +33,8 @@ const Store = [
         profile: "https://lo-we.kr/reservation/lowe_hongdae_p",
         mapurl: "https://map.kakao.com/?itemId=83977741",
         private: ["/image/store/hongdae/0.jpg", "/image/store/hongdae/1.jpg","/image/store/hongdae/2.jpg"],
-        phone: "02-332-2922"
+        phone: "02-332-2922",
+        number: "1054345463"
     },
     {
         id: 4,
@@ -41,18 +45,20 @@ const Store = [
         profile: "https://lo-we.kr/reservation/lowe_shinchon_p",
         mapurl: "https://map.kakao.com/?itemId=1044276392",
         private: ["/image/store/gangnam/0.jpg", "/image/store/gangnam/1.jpg","/image/store/gangnam/2.jpg"],
-        phone: "02-553-2010"
+        phone: "02-553-2010",
+        number: "1523196999"
     },
     {
         id: 5,
         store: "L7홍대점",
         address: "마포구 양화로 141 (홍대 L7롯데호텔) 3층",
         location: ["홍대입구역 1번 출구 도보 1분"],
-        map: "/image/store/gangnam.png",
+        map: "/image/store/L7.png",
         profile: "https://lo-we.kr/reservation/lowe_shinchon_p",
-        mapurl: "https://map.kakao.com/?itemId=1044276392",
+        mapurl: "https://map.kakao.com/?itemId=1675647735",
         private: ["/image/store/gangnam/0.jpg", "/image/store/gangnam/1.jpg","/image/store/gangnam/2.jpg"],
-        phone: "-"
+        phone: "02-336-4001",
+        number: "1410963182"
     },
     {
         id: 6,
@@ -63,7 +69,8 @@ const Store = [
         profile: "https://lo-we.kr/reservation/lowe_shinchon_p",
         mapurl: "https://map.kakao.com/?itemId=1044276392",
         private: ["/image/store/gangnam/0.jpg", "/image/store/gangnam/1.jpg","/image/store/gangnam/2.jpg"],
-        phone: "-"
+        phone: "-",
+        number: "1772319921"
     },
 ]
 

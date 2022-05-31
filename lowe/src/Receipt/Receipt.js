@@ -127,8 +127,8 @@ class Receipt extends Component {
                 })
             } 
             else {
-                    const webhookUrl = 'https://hooks.slack.com/services/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' //리얼;
-                    // const webhookUrl= 'https://hooks.slack.com/services/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' //테스트
+                    const webhookUrl = 'https://hooks.slack.com/services/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' //리얼;
+                    // const webhookUrl= 'https://hooks.slack.com/services/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' //테스트
                     const data = {
                         "text": `${this.state.data.board.board.name}\n상품금액: ${this.state.data.board.board.price.comma()}원\n지점: ${this.state.store.store} \n<http://lowehair.admin.s3-website.ap-northeast-2.amazonaws.com/payments|결제 확인하기>`,
                     }
