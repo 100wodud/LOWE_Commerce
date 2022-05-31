@@ -23,8 +23,6 @@ class ReviewList extends Component {
     this.setState({ review: false });
   };
 
-  onClickImg = () => () => { }
-
   render() {
     return (
       <div>
@@ -40,8 +38,8 @@ class ReviewList extends Component {
         }
         {!this.props.top ?
           this.props.data.length ?
-            this.props.data.map((e) => (
-              <Review key={e.id} data={e} designer={this.props.designer ? true : null} />
+            this.props.data.map((e, i) => (
+              <Review key={i} data={e} designer={this.props.designer ? true : null} />
             )) :
             <div className="no_review" >
               <div>

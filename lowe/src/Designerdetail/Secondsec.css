@@ -10,18 +10,55 @@
 }
 
 .Ddetail_surgery_title_first  {
-    padding: 14px 12px;
+    padding: 20px 12px 0 12px;
     max-width: 217px;
-    font: 700 12px "Montserrat";
-    color: #9C9C9C;
+    font: 400 15px "Noto Sans";
+}
+
+.Ddetail_filter_category span {
+    padding: 6px 12px 6px 12px;
+    margin-right: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.Ddetail_filter_category {
+    width: 100vw;
+    padding-left: 12px;
+    overflow-x: scroll;
+    white-space:nowrap;
+    height: 72px;
+    margin: auto;
+    line-height: 72px;
+}
+
+.Ddetail_category_select {
+    font: 700 14px "Noto Sans";
+    background: #FFF4F1;
+    color: #FF3D12;
+
+}
+
+.Ddetail_category_nonselect{
+    font: 400 14px "Noto Sans";
+    background: #F5F5F5;
 }
 
 .Ddetail_surgery_content_first  {
-    padding: 14px 12px;
+    padding: 32px 12px 12px 12px;
     width: 100%;
     max-width: 217px;
     word-break: keep-all;
     font: 400 13px "Montserrat";
+}
+
+.Ddetail_surgery_content_first_content {
+    font: 700 15px "Noto Sans";
+    margin-bottom: 8px;
+}
+
+.Ddetail_surgery_content_first_price {
+    font: 400 15px "Montserrat"
 }
 
 .Ddetail_surgery_title_second {
@@ -38,26 +75,25 @@
 }
 
 .Ddetail_surgery_content_third {
-    padding: 0 12px;
+    padding: 20px 12px 0 12px;
 }
 .Ddetail_surgery_content_third > .Ddetail_orange {
     border: 1px solid #FF5732;
-    font: 500 12px "Noto Sans";
-    line-height: 28px;
+    border-radius: 22px;
+    font: 700 12px "Noto Sans";
+    line-height: 26px;
 }
 .Ddetail_orange > a {
     color: #FF5732;
 }
 
 .Ddetail_surgery_content_third > div {
-    width: 77px;
-    height: 32px;
-    font: 400 12px "Montserrat";
-    background: #FFFFFF;
+    width: 75px;
+    height: 26px;
+    font: 700 12px "Noto Sans";
     border: 1px solid #DDDDDD;
-    box-sizing: border-box;
-    border-radius: 4px;
-    line-height: 32px;
+    border-radius: 22px;
+    line-height: 26px;
     text-align: center;
     color: #333333
 }
@@ -86,4 +122,35 @@
     font: 700 12px "Montserrat";
     line-height: 40px;
     text-align: center;
+}
+.Ddetail_surgery_more_info{
+    width: 125%;
+    padding: 0px 12px 20px 12px;
+    border-bottom: 1px solid #F5F5F5;;
+}
+
+.Ddetail_surgery_moreview {
+    float: right;
+    margin-top: -20px;
+    
+}
+.Ddetail_surgery_more_false {
+    max-height: 20px;
+    overflow-y: hidden;
+    font: 400 13px "Noto Sans";
+    white-space:pre-line;
+    color: #9C9C9C;
+    word-break:break-word;
+}
+
+.Ddetail_surgery_more_true {
+    white-space: pre-line;
+    font: 400 13px "Noto Sans";
+    white-space:pre-line;
+    word-break:break-word;
+    color: #9C9C9C;
+}
+
+.rev {
+    transform: rotate(180deg);
 }
