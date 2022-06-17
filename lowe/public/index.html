@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='ko'>
 
 <head>
   <!-- Google Tag Manager -->
@@ -13,6 +13,7 @@
     })(window, document, 'script', 'dataLayer', 'GTM-MTH2G6K');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
   <meta name="google-site-verification" content="WmZ_3B19ksSM8Oi9p81byMuNCoplFUE2LfCA43mAIgs" />
   <title>로위 - 헤어스타일 스토어</title>
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -68,6 +69,13 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTH2G6K" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-256.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="로위(LOWE)" />
 </head>
 
 <body>
@@ -83,7 +91,46 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+              navigator.serviceWorker.register('worker.js').then(function(registration) {
+              }, function(err) {
+                  console.log('Worker registration failed', err);
+              }).catch(function(err) {
+                  console.log(err);
+              });
+          });
+      } else {
+          console.log('Service Worker is not supported by browser.');
+      }
+  </script>
 </body>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCR1M80-aXmrK6oNjEcoeLuavBuXRUTXNs",
+    authDomain: "lowe-e4d22.firebaseapp.com",
+    projectId: "lowe-e4d22",
+    storageBucket: "lowe-e4d22.appspot.com",
+    messagingSenderId: "236435645682",
+    appId: "1:236435645682:web:fbee85b2ca30c33e999c6b",
+    measurementId: "G-07NK5MM0WP"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>

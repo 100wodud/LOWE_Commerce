@@ -51,7 +51,7 @@ class Secondsec extends Component {
                     }
                 }
                 this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
-                localStorage.setItem("Allboard", JSON.stringify(arr));
+                localStorage.setItem("Allboard", JSON.stringify(arr.slice(0,30)));
             })
 
 

@@ -47,7 +47,7 @@ class ReviewModal extends React.Component {
                                         </div>
                                         <div style={{ backgroundColor: "#ffffff", height: "52px", cursor: "pointer", borderRadius: "0px 0px 8px 8px" }} >
                                             <a href={`/${funnel}`} style={{ lineHeight: "52px", width: "49.7%", float: "left", borderRight: "1px solid #DDDDDD" }}>닫기</a>
-                                            <a href={`/mypage${funnel}`} style={{ lineHeight: "52px", width: "49.7%", float: "left", color: "#FF3D12", fontWeight: "700" }}><strong>작성 리뷰 확인하기</strong></a>
+                                            <a href={`/myreviews${funnel}`} style={{ lineHeight: "52px", width: "49.7%", float: "left", color: "#FF3D12", fontWeight: "700" }}><strong>작성 리뷰 확인하기</strong></a>
                                         </div>
                                     </> :
                                     <>

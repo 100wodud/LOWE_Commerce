@@ -47,7 +47,7 @@ class Goodslist extends Component {
         this.setState({ like: !this.state.like })
       });
     }
-    
+
   }
 
   onclickRecently = async () => {
@@ -67,15 +67,15 @@ class Goodslist extends Component {
 
   render() {
     let user = window.localStorage.getItem("id");
-    let funnel ="";
-    if(window.location.href.split("?")[1]){
-        funnel="?" + window.location.href.split("?")[1];
-    } else{
-        funnel=''
+    let funnel = "";
+    if (window.location.href.split("?")[1]) {
+      funnel = "?" + window.location.href.split("?")[1];
+    } else {
+      funnel = ''
     }
     return (
       <span style={{ float: "left" }}>
-        <a onClick={this.onclickRecently} href={`/board/${this.props.e.id}${funnel}` } className="goods">
+        <a onClick={this.onclickRecently} href={`/board/${this.props.e.id}${funnel}`} className="goods">
           <div>
             <img src={process.env.PUBLIC_URL + this.props.e.thumbnail} className="goods_thumnail" alt="로위 상품 썸네일" />
 
@@ -88,15 +88,25 @@ class Goodslist extends Component {
               }
             </div>
           </div>
+          <div className="goods_designer">
+            <strong>{this.props.e.designer_name}</strong> {this.props.e.store}
+          </div>
           <div className="goods_title">
             {this.props.e.name}
           </div>
           <div className="goods_price">
-            {this.props.e.eventType ?
-              <span className="goods_price_percent">{this.props.e.eventPrice}%</span> :
-              <></>
+            {
+              this.props.e.eventType ?
+                <span className="goods_price_percent">{this.props.e.eventPrice}%</span> :
+                <></>
             }
-            <span className="goods_price_price">{this.props.e.price.comma()}원</span>
+
+            <span className="goods_price_price">{this.props.e.price.comma()}</span>
+            {
+              this.props.e.eventType ?
+                <div className="goods_price_realprice">{(Math.round(this.props.e.price / (100 - this.props.e.eventPrice) * 100 / 1000) * 1000).comma()}</div> :
+                <></>
+            }
           </div>
         </a>
       </span>

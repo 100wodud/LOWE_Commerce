@@ -23,7 +23,8 @@ class Payment extends Component {
             method: 0,
             agree1: false,
             agree2: false,
-            modalopen: false
+            modalopen: false,
+            surgeyid: ""
         };
     }
 
@@ -51,12 +52,12 @@ class Payment extends Component {
                     id: 122,
                     ManagerId: surgey_payment.ManagerId,
                     price: surgey_payment.price,
-                    thumbnail: "",
+                    thumbnail: "https://lowe-image.s3.ap-northeast-2.amazonaws.com…8237171_525430271510486_1571957910076915712_n.png",
                     name: surgey_payment.content,
                     eventPrice: 0,
-                }
+                },
             }
-            this.setState({ data: data });
+            this.setState({ data: data,surgeyid: surgey_payment.id });
         }
 
 
@@ -183,13 +184,11 @@ class Payment extends Component {
             payment.managerId = this.state.data.board.ManagerId
 
             define1.boardId = this.state.data.board.id
-            define1.board = this.state.data
             define1.userId = this.state.user.id
-            define1.user = this.state.user
             define1.coupons = this.state.coupon
             define1.price = price
             define1.managerId = this.state.data.board.ManagerId
-
+            define1.surgeyId = this.state.surgeyid 
             define2.request = {
                 text: this.state.content,
                 img: this.state.imgs
@@ -197,11 +196,11 @@ class Payment extends Component {
 
             localStorage.setItem("recent_payment", JSON.stringify(payment));
             // const data1 = { user_id: window.localStorage.getItem('id') };
-            // const dataString1 = JSON.stringify(data1);
-            // const replaceData1 = dataString1.replaceAll('"', '&quot;');
+            const dataString1 = JSON.stringify(define1);
+            const replaceData1 = dataString1.replaceAll('"', '&quot;');
             // const data2 = { user_request: 'input text' };
-            // const dataString2 = JSON.stringify(data2);
-            // const replaceData2 = dataString2.replaceAll('"', '&quot;');
+            const dataString2 = JSON.stringify(define2);
+            const replaceData2 = dataString2.replaceAll('"', '&quot;');
             axios.post('https://server.lowehair.kr/payAuth')
                 .then((response) => {
                     if (response.status === 200) {
@@ -225,8 +224,8 @@ class Payment extends Component {
                         obj.PCD_PAYER_NO = this.state.user.id;
                         obj.PCD_PAYER_NAME = this.state.user.name; //user.name
                         obj.PCD_PAYER_EMAIL = this.state.user.email; //user.email
-                        obj.PCD_USER_DEFINE1 = JSON.stringify(define1);
-                        obj.PCD_USER_DEFINE2 = JSON.stringify(define2);
+                        obj.PCD_USER_DEFINE1 = replaceData1;
+                        obj.PCD_USER_DEFINE2 = replaceData2;
 
                         window.PaypleCpayPopup(obj);
                     }

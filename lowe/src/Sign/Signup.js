@@ -303,7 +303,7 @@ class Signup extends React.Component {
                 <section className="SignUp_section">
                     <div>
                         <div className="signUptitle">이름</div>
-                        <input className="signUpinfo" type="text" placeholder="이름을 입력해주세요" onChange={this.handleInputValue("name")} onInput={this.handleOnInput2()} />
+                        <input className="signUpinfo" type="text" placeholder="이름을 입력해주세요" onChange={this.handleInputValue("name")} />
                         {
                             this.state.name_error ?
                                 <div className="signup_error">{this.state.name_error}</div> :
