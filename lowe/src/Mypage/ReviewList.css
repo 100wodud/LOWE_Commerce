@@ -1,6 +1,5 @@
 .Review_myreviews{
-    margin-top: 61px;
-    padding: 40px 12px 34px 12px;
+    padding: 20px 12px 34px 12px;
     border-top:  1px solid #DDDDDD;
 }
 
@@ -18,4 +17,39 @@
 
 .mypage_noreview > div > div {
     margin-bottom: 5px;
+}
+
+.filter-myreview {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: 43px;
+    margin-top: 61px;
+}
+.push_button {
+    border-bottom: 2px solid #333333;
+}
+
+.pull_button {
+    border-bottom: 1px solid #ECECEC;
+}
+
+.filter-myreview .push_button {
+    width: 50%;
+    float: left;
+    height: 43px;
+    color: #333333;
+    font: 700 14px "Noto Sans";
+    line-height: 43px;
+    cursor: pointer;
+}
+
+.filter-myreview .pull_button {
+    width: 50%;
+    float: left;
+    height: 43px;
+    color: #333333;
+    font: 500 14px "Noto Sans";
+    line-height: 43px;
+    cursor: pointer;
 }

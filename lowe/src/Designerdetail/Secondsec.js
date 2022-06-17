@@ -193,7 +193,7 @@ class Secondsec extends Component {
                                 </div> :
                             this.props.list === 3 ?
                                 <div style={{ marginTop: "24px", padding: "0 12px" }}>
-                                    <ReviewList data={this.state.review} imgdata={this.state.imgreview} designer={true} />
+                                    <ReviewList onclickList={this.props.onclickList} data={this.state.review} imgdata={this.state.imgreview} designer={true} />
 
                                 </div> :
                                 this.props.list === 4 ?

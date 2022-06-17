@@ -113,7 +113,7 @@ class Receipt extends Component {
                         : null,
                     event_percent: this.state.data.board.board.eventPrice,
                     coupons: this.state.data.coupons,
-                    text: this.state.data.board.board.name
+                    text: this.state.data.board.board.name,
                 }).then((res) => {
                     window.localStorage.setItem("reload", "true");
                     axios.post("https://server.lowehair.kr/alert", {
@@ -142,8 +142,6 @@ class Receipt extends Component {
                 
                     if (res.status === 200) {
                         console.log("성공")
-                
-                        //clear state so text boxes clear
                     } 
             }
         }

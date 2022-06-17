@@ -198,7 +198,7 @@ class Ddetail extends Component {
                                 <p id="Ddetailreview" className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>
                                 <p id="Ddetailinfo" className={(this.state.list === 4 ? "push_button" : 'pull_button')} onClick={this.onclickList(4)}>정보</p>
                             </div>
-                        <Secondsec list={this.state.list} data={this.state.data} review={this.state.review} imgreview={this.state.imgreview} openmodalPhone={this.openmodalPhone} />
+                        <Secondsec list={this.state.list} data={this.state.data} review={this.state.review} imgreview={this.state.imgreview} openmodalPhone={this.openmodalPhone} onclickList={this.onclickList} />
                     </>
                     : <div style={{ height:"100vh", textAlign: "center",lineHeight: "100vh"}}>
                        잠시만 기다려 주세요 :)

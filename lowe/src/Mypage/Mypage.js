@@ -95,7 +95,7 @@ class Mypage extends Component {
                                 </a>
                                 <a href={`/myreviews${funnel}`} className='pull_button'>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/mypage_review.svg"} alt="로위 쿠폰" />
-                                    <div>마이리뷰</div>
+                                    <div>리뷰</div>
                                 </a>
                                 <a href={`/mypayments${funnel}`} className='pull_button'>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/mypage_payment.svg"} alt="로위 쿠폰" />

@@ -1,0 +1,13 @@
+
+.Promotion3_img{
+    max-width: 428px;
+    width: 100%;
+    outline: none;
+    margin-bottom: -4px;
+}
+
+.Promotion3_div {
+    height: 88px;
+    background-color: #333333;
+    position: relative;
+}

@@ -13,48 +13,75 @@ class Review extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("https://server.lowehair.kr/getBoardDetail", {
-            id: this.props.data.BoardId,
-        })
-            .then((res) => {
-                this.setState({ data: res.data.board })
-            });
+        if (this.props.data.BoardId !== 122) {
+            axios.post("https://server.lowehair.kr/getBoardDetail", {
+                id: this.props.data.BoardId,
+            })
+                .then((res) => {
+                    this.setState({ data: res.data.board })
+                });
+        }
     }
 
     render() {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         return (
             <div className="myreview" >
-                {this.state.data ?
-                    <div>
-                        <a href={`/board/${this.props.data.BoardId}${funnel}`} className="myreview_img">
-                            <img src={this.state.data.thumbnail} alt={this.state.data.name} />
-                        </a>
-                        <span className="myreview_content">
-                            <Link to={{
-                                pathname: "/myreview/edit/" + this.props.data.id,
-                                state: {
-                                    id: this.props.data.id,
-                                    Images: this.props.data.Images,
-                                    hair_amout: this.props.data.hair_amout,
-                                    hair_color: this.props.data.hair_color,
-                                    hair_thick: this.props.data.hair_thick,
-                                    content: this.props.data.content
-                                },
-                            }}>
-                                <div className="myreview_board">{this.state.data.name}</div>
-                                <div style={{float: "left"}}>
-                                    <div className="myreviwew_edit">수정하기</div>
-                                </div>
-                            </Link>
-                        </span>
-                    </div> :
-                    null
+                {
+                    !this.props.possible ?
+                        <>
+                            <div className="myreview_content">
+                                <Link to={{
+                                    pathname: "/myreview/edit/" + this.props.data.id,
+                                    state: {
+                                        id: this.props.data.id,
+                                        Images: this.props.data.Images,
+                                        hair_amout: this.props.data.hair_amout,
+                                        hair_color: this.props.data.hair_color,
+                                        hair_thick: this.props.data.hair_thick,
+                                        content: this.props.data.content
+                                    },
+                                }}>
+                                    <div className="myreview_manager">{this.props.data.Manager.name} {this.props.data.Manager.rank} {this.props.data.Manager.store}</div>
+                                    <div className="myreview_board">{this.props.data.goods}</div>
+                                    <div style={{ float: "left" }}>
+                                        <div className="myreviwew_edit">수정하기</div>
+                                    </div>
+                                </Link>
+                            </div>
+                            <div>
+                                {this.props.data.BoardId === 122 ?
+                                    null :
+                                    <a href={`/board/${this.props.data.BoardId}${funnel}`} className="myreview_img">
+                                        <img src={this.state.data.thumbnail} alt={this.state.data.name} />
+                                    </a>
+                                }
+                            </div>
+                        </> :
+                        <>
+                            <div className="myreview_content">
+                                <a href={`/review/write/${this.props.data.ManagerId}/${this.props.data.BoardId}/${this.props.data.id}`}>
+                                    <div className="myreview_manager">{this.props.data.Manager.name} {this.props.data.Manager.rank} {this.props.data.Manager.store}</div>
+                                    <div className="myreview_board">{this.props.data.pay_goods}</div>
+                                    <div style={{ float: "left" }}>
+                                        <div className="myreviwew_edit_red">리뷰쓰기</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                {this.props.data.BoardId === 122 ?
+                                    null :
+                                    <a href={`/board/${this.props.data.BoardId}${funnel}`} className="myreview_img">
+                                        <img src={this.state.data.thumbnail} alt={this.state.data.name} />
+                                    </a>
+                                }
+                            </div>
+                        </>
                 }
             </div>
         );

@@ -70,9 +70,12 @@ class Review extends Component {
         return (
             <div style={{ paddingBottom: "24px", borderBottom: "1px solid #DDDDDD" }} onClick={this.onClickreview}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: "24px" }}>
-                    {typeof (this.props.data.BoardId) === "number" ?
-                        <a style={{ font: '700 12px "Montserrat"', color: "#FF5732" }} href={`/board/${this.state.board.id}${funnel}`}>{this.state.board.name}</a> :
-                        <a style={{ font: '700 12px "Montserrat"', color: "#FF5732" }} href={`https://lowehair.kr${window.location.pathname}#Ddetailmenu${funnel}`}>{this.props.data.BoardId}</a>
+                    {
+                    typeof (this.props.data.BoardId) === "number" ?
+                            this.props.data.BoardId !== 122 ?
+                                <a style={{ font: '700 12px "Montserrat"', color: "#FF5732" }} href={`/board/${this.props.data.BoardId}${funnel}`}>{this.props.data.goods}</a> :
+                                <a style={{ font: '700 12px "Montserrat"', color: "#FF5732" }} href={`${window.location.pathname}#Ddetailmenu${funnel}`} onClick={this.props.onclickList(2)}>{this.props.data.goods}</a> :
+                            <a style={{ font: '700 12px "Montserrat"', color: "#FF5732" }} href={`${window.location.pathname}#Ddetailmenu${funnel}`} onClick={this.props.onclickList(2)}>{this.props.data.BoardId}</a>
                     }
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", margin: "12px 0 12px 0" }}>

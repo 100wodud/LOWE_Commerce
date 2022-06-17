@@ -3,6 +3,9 @@
     width: 187px;
     z-index: -100;
 }
+.goods div {
+    line-height: 100%;
+}
 
 .goods_thumnail{
     width: 214px;
@@ -16,14 +19,25 @@
 }
 
 .goods_title {
-    padding: 12px 16px 8px 12px;
-    height: 32px;
+    padding: 0px 12px 8px 12px;
+    white-space : pre;
     width: 186px;
-    font: 500 13px "Montserrat";
+    overflow: hidden;
+    text-overflow : ellipsis;
+    font: 500 13px "Noto Sans";
+}
+
+
+.goods_designer {
+    padding: 12px 12px 0px 12px;
+    height: 20px;
+    width: 186px;
+    font: 400 13px "Noto Sans";
+    color: #9C9C9C;
 }
 
 .goods_price {
-    padding: 0 16px 28px 12px;
+    padding: 0 12px 28px 12px;
     height: 32px;
     width: 186px;
 }
@@ -32,6 +46,13 @@
     font: 700 15px "Montserrat";
     margin-right: 8px;
     color: #FF3D12;
+}
+
+.goods_price_realprice {
+    font: 400 12px "Montserrat";
+    color: #9C9C9C;
+    text-decoration-line: line-through;
+    margin-top: 4px;
 }
 
 .goods_price_price {
@@ -50,15 +71,21 @@
     }
 
     .goods_title {
-        padding: 12px 16px 8px 12px;
-        height: 32px;
         width: 42vw;
         min-width: 159px;
-        font: 500 13px "Montserrat";
+        font: 500 13px "Noto Sans";
+    }
+
+    .goods_designer {
+        padding: 12px 12px 0px 12px;
+        height: 20px;
+        width: 42vw;
+        font: 400 13px "Noto Sans";
+        color: #9C9C9C;
     }
 
     .goods_price {
-        padding: 0 16px 28px 12px;
+        padding: 0 12px 28px 12px;
         height: 32px;
         width: 42vw;
         min-width: 159px;
