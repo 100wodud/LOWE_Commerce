@@ -32,13 +32,11 @@ class Surgery extends React.Component {
                     <td className="Ddetail_surgery_content_third">
                     {
                         this.props.data.url ?
-                            <div className="Ddetail_orange">
-                                <a href={this.props.data.url + funnel}>
+                                <div className="Ddetail_orange" onClick={this.props.boardPay(this.props.data)}href={this.props.data.url + funnel}>
                                     시술보기
-                                </a>
-                            </div> :
+                                </div> :
                             <div onClick={this.props.SurgeriesPay(this.props.data)} style={{ cursor: "pointer" }}>
-                                결제하기
+                                예약하기
                             </div>
                     }
                     </td>

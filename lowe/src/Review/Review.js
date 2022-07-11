@@ -18,7 +18,8 @@ class Review extends Component {
             img: '',
             phonemodal: false,
             modalcomment: '',
-            payment: ""
+            payment: "",
+
         };
     }
 
@@ -35,7 +36,14 @@ class Review extends Component {
         let user = window.localStorage.getItem("id");
 
         if (window.location.pathname.split("/")[5]) {
-            this.setState({ id: id, user: user, ManagerId: ManagerId, payment: window.location.pathname.split("/")[5] })
+
+            if (window.location.pathname.split("/")[6]) {
+
+                this.setState({ id: id, user: user, ManagerId: ManagerId, payment: window.location.pathname.split("/")[5], surgeryId: window.location.pathname.split("/")[6] })
+            } else {
+
+                this.setState({ id: id, user: user, ManagerId: ManagerId, payment: window.location.pathname.split("/")[5] })
+            }
         } else {
             this.setState({ id: id, user: user, ManagerId: ManagerId, payment: "" })
         }
@@ -61,24 +69,45 @@ class Review extends Component {
     }
 
     onClicksubmit = () => {
-        const img = this.state.imgs
+        const img = this.state.imgs;
+        let boardid = window.location.pathname.split("/")[4];
         if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content) {
             if (this.state.payment) {
-                axios
-                    .post("https://server.lowehair.kr/createReview", {
-                        user: Number(this.state.user),
-                        PaymentId: Number(this.state.payment),
-                        BoardId: Number(this.state.id),
-                        ManagerId: Number(this.state.ManagerId),
-                        hair_color: this.state.Color,
-                        hair_amout: this.state.Amout,
-                        hair_thick: this.state.Thick,
-                        content: this.state.content,
-                        img,
-                    })
-                    .then((res) => {
-                        this.openmodalReview("성공")
-                    });
+                if (boardid !== "122") {
+                    axios
+                        .post("https://server.lowehair.kr/createReview", {
+                            user: Number(this.state.user),
+                            PaymentId: Number(this.state.payment),
+                            BoardId: Number(boardid),
+                            ManagerId: Number(this.state.ManagerId),
+                            hair_color: this.state.Color,
+                            hair_amout: this.state.Amout,
+                            hair_thick: this.state.Thick,
+                            content: this.state.content,
+                            img,
+                        })
+                        .then((res) => {
+                            this.openmodalReview("성공")
+                        });
+                } else {
+
+                    axios
+                        .post("https://server.lowehair.kr/createReview", {
+                            user: Number(this.state.user),
+                            PaymentId: Number(this.state.payment),
+                            SurgeryId: Number(this.state.surgeryId),
+                            BoardId: Number(this.state.id),
+                            ManagerId: Number(this.state.ManagerId),
+                            hair_color: this.state.Color,
+                            hair_amout: this.state.Amout,
+                            hair_thick: this.state.Thick,
+                            content: this.state.content,
+                            img,
+                        })
+                        .then((res) => {
+                            this.openmodalReview("성공")
+                        });
+                }
 
             } else {
                 axios

@@ -29,7 +29,6 @@ class ReviewList extends Component {
                 id: id,
             })
                 .then((res) => {
-                    console.log(res.data)
                     this.setState({ data: res.data[0] })
                 })
                 .catch(err => {
@@ -66,6 +65,7 @@ class ReviewList extends Component {
 
     render() {
         let data = this.state.data
+        console.log(data)
         return (
             <>
                 <Header header="리뷰" />

@@ -42,12 +42,6 @@ class Secondsec extends Component {
                                         <dt className="dt">주문번호</dt>
                                         <dd className="dd">{this.props.payment[0].pay_cardtradenum}</dd>
                                     </dl>
-                                    {this.props.payment[0].surgery_date ?
-                                        <dl className="dl">
-                                            <dt className="dt">예약날짜</dt>
-                                            <dd className="dd">{this.props.payment[0].surgery_date}</dd>
-                                        </dl> : null
-                                    }
                                 </div>
                             </div>
                             : null}

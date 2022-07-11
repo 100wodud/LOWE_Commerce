@@ -15,6 +15,7 @@ class Mypage extends Component {
             date: [],
             pay: [],
             done: [],
+            diff: false
         }
     }
 
@@ -57,13 +58,17 @@ class Mypage extends Component {
                         for (let i = 0; i < res.data.length; i++) {
                             if (res.data[i].state === "결제완료") {
                                 pay.push(res.data[i])
-                               } else if (res.data[i].state === "예약확정") {
+                               } else if (res.data[i].state === "예약확정"  || res.data[i].state === "예약변경") {
                                    date.push(res.data[i])
                                 } else if (res.data[i].state === "시술완료") {
                                 done.push(res.data[i])
                             }
                         }
                         this.setState({ pay: pay, date: date, done:done });
+                        let pays = window.localStorage.getItem("payment_data");
+                        if(JSON.stringify(res.data) !== pays){
+                            this.setState({diff: true})
+                        }
                     }
                 })
                 .catch(err => {
@@ -89,20 +94,20 @@ class Mypage extends Component {
                         <>
                             <div className="login_id">{data.login_id}님</div>
                             <div className="mypage-filter">
-                                <a href={`/mycoupons${funnel}`} className='pull_button'>
+                                <a href={`/mycoupons${funnel}`}>
                                     <img style={{ margin: "8px 0px" }} src={process.env.PUBLIC_URL + "/image/nav/mypage_coupon.svg"} alt="로위 쿠폰" />
                                     <div>쿠폰</div>
                                 </a>
-                                <a href={`/myreviews${funnel}`} className='pull_button'>
+                                <a href={`/myreviews${funnel}`}>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/mypage_review.svg"} alt="로위 쿠폰" />
                                     <div>리뷰</div>
                                 </a>
-                                <a href={`/mypayments${funnel}`} className='pull_button'>
+                                <a href={`/mypayments${funnel}`}>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/mypage_payment.svg"} alt="로위 쿠폰" />
-                                    <div>결제</div>
+                                    <div>예약{this.state.diff ? <span>˙</span> : null}</div>
                                 </a>
                             </div>
-                            <div className="mypage-payment-check">
+                            {/* <div className="mypage-payment-check">
                                 <div className="mypage-subtitle">진행중인 예약내역</div>
                                 <a href={`/mypayments${funnel}`} className="mypage-payment-check-div">
                                     <div className="mypage-payment-check-content">
@@ -136,7 +141,7 @@ class Mypage extends Component {
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> */}
                             <Edit openmodal={this.openmodal} open={this.state.open} />
                             <div className="mypage-info">
                                 <div className='mypage-info-title'>고객센터</div>

@@ -47,8 +47,9 @@
     z-index: 2;
     width: 100%;
     max-width: 428px;
-    height: 684px;
-    bottom: 0;
+    max-height: 700px;
+    height: 80vh;
+    bottom: 61px;
     position: absolute;
     background-color: #ffffff;
     border-radius: 20px 20px 0px 0px;    
@@ -97,7 +98,6 @@
     line-height: 60px;
     text-align: center;
     cursor: pointer;
-    border-top: 1px solid #DDDDDD;
     background-color: #333333;
     color: #ffffff;
 }
@@ -129,6 +129,7 @@
 .Refund_caution li {
     font: 400 13px "Noto Sans";
     list-style: none;
+    line-height: 100%;
 }
 
 .Refund_caution li span {

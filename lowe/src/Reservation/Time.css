@@ -1,0 +1,47 @@
+.Reservation_time_section {
+    border-top: 8px solid #F5F5F5;
+    width: 100%;
+    min-height: 300px;
+    padding: 32px 0 88px 0;
+}
+
+
+.Reservation_time_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 18px;
+    margin-left: 12px;
+}
+
+
+.Reservation_time_zone {
+    padding: 8px;
+    width: calc(100% - 16px);
+}
+.Reservation_time_zone span {
+    width: 79px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    text-align: center;
+    display: inline-block;
+    height: 40px;
+    margin: 6px 4px;
+    font: 400 14px "Montserrat";
+    line-height: 40px;
+
+}
+.Reservation_time_span_select {
+    background: #FF3D12;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-weight: 700 !important;
+    border: 1px solid #FF3D12 !important;
+}   
+
+.Reservation_time_span_nonselect {
+    cursor: pointer;
+}
+
+.Reservation_time_span_cantselect {
+    background-color: #DDDDDD;
+    color: #FFFFFF;
+}

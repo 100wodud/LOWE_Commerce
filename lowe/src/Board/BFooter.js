@@ -28,7 +28,7 @@ class BFooter extends Component {
                 funnel: funnel
             })
                 .then((res) => {
-                    window.location.href = '/payment/'+this.props.data.board.id+funnel
+                    window.location.href = '/reservation_board/'+this.props.data.board.id+funnel
                 }).catch((err) => {
                 });
         } else {
@@ -38,7 +38,7 @@ class BFooter extends Component {
                 funnel:funnel
             })
                 .then((res) => {
-                    window.location.href = '/payment/'+this.props.data.board.id+funnel
+                    window.location.href = '/signin'+funnel
                 }).catch((err) => {
                 });
         }
@@ -76,7 +76,7 @@ class BFooter extends Component {
                         </div>
                         <div className='BFooter_payment' onClick={this.onClicknumber}>
                             <div>
-                                <div>결제하기</div>
+                                <div>예약하기</div>
                             </div>
                         </div>
                     </> 

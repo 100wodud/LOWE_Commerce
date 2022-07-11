@@ -1,5 +1,5 @@
 .mypayment{
-    padding: 28px 20px 16px 20px;
+    padding: 24px 18px 24px 18px;
     border: 1px solid #DDDDDD;
     border-radius: 8px;
     margin-bottom: 12px;
@@ -7,23 +7,32 @@
 }
 
 .mypayment_pay_goods {
-    font: 700 15px "Noto Sans";
-    margin-bottom: 18px;
+    font: 700 14px "Noto Sans";
+    margin-bottom: 6px;
+    overflow: hidden;
+    height: 21px;
+    text-overflow : ellipsis;
+    white-space : pre;
 }
 
-.mypayment .dl {
-    width: 100%; 
-    display: flex; 
-    padding-bottom: 12px;
+
+.mypayment_pay_goods:last-child {
+    margin-bottom: 0;
 }
-.mypayment .dd {
-    font: 500 14px "Montserrat";
-    margin-top: 1px;
+
+
+.mypayment_pay_state {
+    font: 700 12px "Noto Sans";
+    width: 52px;
+    height: 22px;
+    line-height: 22px;
+    margin-bottom: 12px;
+    text-align: center;
 }
-.mypayment .dt {
-    width: 60px; 
-    font: 400 14px "Noto Sans";
-    color: #9C9C9C;
+
+.mypayment_pay_state span {
+    font: 700 12px "Noto Sans";
+    text-decoration:none;
 }
 
 
@@ -32,18 +41,28 @@
     text-decoration-line: line-through;
 }
 
-.mypayment .refund  .dl {
+.mypayment .refund  .mypayment_pay_goods {
     color: #9C9C9C;
     text-decoration-line: line-through;
     
 }
-.mypayment .refund .dd {
-    color: #9C9C9C;
-    text-decoration-line: line-through;
-    
-}
-.mypayment .refund .dt {
-    color: #9C9C9C;
-    text-decoration-line: line-through;
 
+.mypayment_pay_dday {
+    border-radius: 180px;
+    width: 38px;
+    height: 37px;
+    background: #FF5732;
+    padding: 15px 14px 14px 14px;
+}
+
+.mypayment_pay_dday_content {
+    font: 700 12px "Montserrat";
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.mypayment_pay_dday_num {
+    font: 800 20px "Montserrat";
+    color: #FFFFFF;
+    text-align: center;
 }

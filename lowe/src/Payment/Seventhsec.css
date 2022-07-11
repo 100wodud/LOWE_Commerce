@@ -2,7 +2,7 @@
 .Payment_seventh_section {
     background-position: center;
     border-top: 8px solid #F5F5F5;
-    padding: 32px 12px;
+    padding: 32px 12px 124px;
     border-bottom: 8px solid #F5F5F5;
 }
 .Payment_seventh_section > div {
@@ -13,7 +13,7 @@
 
 .Payment_seventh_title {
     font: 700 16px "Noto Sans";
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     float: left;
 }
 
@@ -42,6 +42,12 @@
     color: #FF3D12;
 }
 
+.Payment_seventh_li {
+    margin-top: 8px;
+}
+.Payment_seventh_li:first-child {
+    margin-top: 0;
+}
 .Payment_seventh_li::before {
     margin-left: 14px;
 }

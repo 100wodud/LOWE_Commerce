@@ -16,11 +16,11 @@ class SignHeader extends Component {
 
 
     gotohome = () => {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         window.location.href = `/${funnel}`
     }
@@ -41,9 +41,15 @@ class SignHeader extends Component {
                         <div>
                             <img className="header_back" onClick={this.gotohome} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
                         </div> :
-                        <div>
-                            <img className="header_back" onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
-                        </div>
+                        this.props.header === "예약" || this.props.header === "리뷰" || this.props.header === "쿠폰" ?
+                            <div>
+                                <a href='/mypage'>
+                                    <img className="header_back" onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
+                                </a>
+                            </div> :
+                            <div>
+                                <img className="header_back" onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
+                            </div>
                 }
             </header>
         );

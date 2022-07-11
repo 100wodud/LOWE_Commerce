@@ -31,7 +31,7 @@ class Fourthsec extends Component {
     render() {
         return (
             <section className="Board_fourth_section" id="location">
-                <div style={{ paddingTop: "120px" }}>
+                <div style={{ paddingTop: "120px", marginBottom: "60px" }}>
                     <div>
                         <div className="store_title">매장 위치</div>
                             <Store data={this.props.data.board.store} />

@@ -15,6 +15,14 @@
     margin-bottom: 20px;
 }
 
+
+.Receipt_fifth_text pre {
+    font: 400 14px "Noto Sans";
+    margin-bottom: 20px;
+    line-height: 150%;
+}
+
+
 .receipt_fifth_img {
     width: 80px;
     height: 80px;

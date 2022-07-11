@@ -28,6 +28,13 @@ export default (
           <Route path='/paymentfail' />
           <Route path='/promotion/spring2204' />
           <Route path='/surgery/:id' />
+          <Route path='/portfolios/:id' />
+          <Route path='/portfoliolist/:id' />
+          <Route path='/portfolio/:id' />
+          <Route path='/event_review01' />
+          <Route path='/reservation_board/:id' />
+          <Route path='/reservation_surgery/:id' />
+          <Route path='/reservation_change/:id' />
         </Switch>
     )
 

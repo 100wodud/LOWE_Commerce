@@ -28,3 +28,7 @@ footer {
       text-align: center;
       font: 400 10px "Noto Sans"
   }
+  
+  footer strong {
+    font: 700 10px "Noto Sans"
+  }

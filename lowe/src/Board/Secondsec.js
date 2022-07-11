@@ -90,6 +90,47 @@ class Secondsec extends Component {
         }
       }
 
+      onClickReserve = () => {
+        let id = window.location.pathname.split("/")[2];
+        let userid = Number(window.localStorage.getItem("id"));
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = '/'
+        }
+
+        if (userid) {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 7,
+                BoardId: id,
+                ManagerId: this.props.data.board.ManagerId,
+                UserId: userid,
+                funnel: funnel,
+                tab_num: 3
+            })
+                .then((res) => {
+                    window.location.href = this.props.designer.reserve_url
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 7,
+                BoardId: id,
+                ManagerId: this.props.data.board.ManagerId,
+                funnel: funnel,
+                tab_num: 3
+            })
+                .then((res) => {
+                    window.location.href = this.props.designer.reserve_url
+                }).catch((err) => {
+                });
+        }
+
+    }
+
+
+
     render() {
         let user = window.localStorage.getItem("id");
         let funnel ="";
@@ -132,7 +173,7 @@ class Secondsec extends Component {
                     <div className="Board_second_naver">
                         <div>
                             <img src={process.env.PUBLIC_URL + "/image/nav/board_naver.svg"} alt="네이버" />
-                            <a href={this.props.designer.reserve_url}><span>네이버 예약하기</span></a>
+                            <div onClick={this.onClickReserve}><span>네이버 예약하기</span></div>
                         </div>
                     </div>
                     <div>

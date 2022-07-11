@@ -26,6 +26,7 @@ import Portfolio from "./Portfolio/Portfolio";
 import Portfoliolist from "./Portfolio/Portfoliolist";
 import Portf from "./Portfolio/Portf";
 import Promotion3 from "./Promotion/Promotion3";
+import Reservation from "./Reservation/Reservation";
 
 class App extends Component {
   constructor(props) {
@@ -69,6 +70,9 @@ class App extends Component {
           <Route path='/portfoliolist/:id' component={Portfoliolist} />
           <Route path='/portfolio/:id' component={Portf} />
           <Route path='/event_review01' component={Promotion3} />
+          <Route path='/reservation_board/:id' component={Reservation} />
+          <Route path='/reservation_surgery/:id' component={Reservation} />
+          <Route path='/reservation_change/:id' component={Reservation} />
         </Switch>
       </>
     )

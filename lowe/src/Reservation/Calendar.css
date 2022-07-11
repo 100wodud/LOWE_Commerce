@@ -1,0 +1,92 @@
+.Reservation_second_section{
+    border-top: 8px solid #F5F5F5;
+    padding: 32px 0;
+}
+
+.Reservation_Calendar_container {
+    width: 100%;
+    max-width: 390px;
+    margin: auto;
+}
+
+
+.Reservation_second_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 30px;
+    margin-left: 12px;
+}
+
+.react-calendar__month-view__weekdays, .react-calendar__month-view__days {
+    justify-content: space-between;
+}
+
+.react-calendar__month-view__days {
+    padding-top: 18px;
+    border-top: 1px solid #F5F5F5;
+}
+
+.react-calendar__tile {
+    border-radius: 80px;
+    border-color: #f0f0f0;
+    height: 40px;
+    border: none;
+    flex: 0 0 40px !important;
+    margin: 5px 5px;
+    background-color: #ffffff;
+    font: 500 16px "Montserrat";
+    color: #333333
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    flex: 0 0 40px !important;
+    padding: 20px 5px;
+    text-align: center;
+    color: #9C9C9C;
+    font: 400 14px "Noto Sans";
+}
+
+
+.react-calendar__tile:disabled {
+    border: none;
+    color: #DDDDDD !important;
+}
+
+.react-calendar__tile--active {
+    background-color: #FF3D12;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* .react-calendar__month-view__days__day--weekend {
+    color: rgb(195,0,0);
+} */
+
+.react-calendar__navigation {
+    text-align: center;
+}
+
+.react-calendar__navigation__label {
+    cursor: not-allowed;
+    pointer-events:none;
+    width: 290px;
+    margin: auto;
+    background-color: #ffffff;
+    border: none;
+    height:60px;
+    font: 700 16px "Montserrat";
+    color: #333333;
+}
+
+.react-calendar__navigation__arrow {
+    font-size: 30px;
+    background-color: #ffffff;
+    border: none;
+    color: #333333;
+}
+.react-calendar__navigation__arrow:disabled {
+    color: #9C9C9C;
+}
+
+.Reservation_Calendar_container abbr[title] {
+    text-decoration: none;
+}

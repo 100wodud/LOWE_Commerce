@@ -10,6 +10,7 @@ class Thirdsec extends Component {
 
 
     render() {
+        console.log(this.props.payment)
         return (
             <section className="Payment_fifth_section">
                 {
@@ -19,7 +20,7 @@ class Thirdsec extends Component {
                             <div className="Payment_fifth_content">
                                 <div className="Payment_fifth_price_div">
                                     <div className="Payment_fifth_price_sub">시술 금액</div>
-                                    <div className="Payment_fifth_price_main">{this.props.data.board.price.comma()}원</div>
+                                    <div className="Payment_fifth_price_main">{this.props.payment.event_price ?this.props.payment.event_price.comma():this.props.payment.list_price.comma()}원</div>
                                 </div>
                                 {this.props.coupon.length ?
                                     <div className="Payment_fifth_price_div">
