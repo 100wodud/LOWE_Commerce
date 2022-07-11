@@ -1,28 +1,27 @@
 
-.Payment_first_section {
+.Reservation_first_section {
     background-position: center;
     margin-top: 60px;
     border-top: 1px solid #DDDDDD;
+    background-position: center;
     padding: 32px 12px;
 }
 
-.Payment_first_title {
+.Reservation_first_title {
     font: 700 16px "Noto Sans";
     margin-bottom: 20px;
 }
-.Payment_first_content {
+
+
+.Reservation_first_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+}
+.Reservation_first_content {
     width: 100%;
 }
 
-.Payment_first_content img{
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    float: left;
-    margin-right: 12px;
-}
-
-.Payment_first_content_title {
+.Reservation_first_content_title {
     width: 80px;
     display: inline-block;
     margin-right: 14px;
@@ -30,6 +29,6 @@
     color: #9C9C9C;
 }
 
-.Payment_first_content_content {
+.Reservation_first_content_content {
     font: 500 14px "Montserrat";
 }

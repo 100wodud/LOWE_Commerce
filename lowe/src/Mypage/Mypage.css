@@ -28,6 +28,16 @@
     font: 400 14px "Noto Sans";
     cursor: pointer;
 }
+
+.mypage-filter span {
+    color: #FF5732;
+    font-size: 45px;
+    position: absolute;
+    margin-top: -8px;
+    margin-left: -10px;
+    font-family: "Montserrat";
+}
+
 .mypage-payment-check{
     padding: 32px 12px;
 }

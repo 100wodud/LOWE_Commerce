@@ -30,6 +30,7 @@ class Review extends Component {
         } else {
             funnel = ''
         }
+        console.log(this.props.data)
         return (
             <div className="myreview" >
                 {
@@ -65,7 +66,7 @@ class Review extends Component {
                         </> :
                         <>
                             <div className="myreview_content">
-                                <a href={`/review/write/${this.props.data.ManagerId}/${this.props.data.BoardId}/${this.props.data.id}`}>
+                                <a href={`/review/write/${this.props.data.ManagerId}/${this.props.data.BoardId}/${this.props.data.id}${this.props.data.SurgeryId ?"/"+this.props.data.SurgeryId : ""}`}>
                                     <div className="myreview_manager">{this.props.data.Manager.name} {this.props.data.Manager.rank} {this.props.data.Manager.store}</div>
                                     <div className="myreview_board">{this.props.data.pay_goods}</div>
                                     <div style={{ float: "left" }}>
@@ -77,7 +78,7 @@ class Review extends Component {
                                 {this.props.data.BoardId === 122 ?
                                     null :
                                     <a href={`/board/${this.props.data.BoardId}${funnel}`} className="myreview_img">
-                                        <img src={this.state.data.thumbnail} alt={this.state.data.name} />
+                                        <img src={this.props.data.Board.thumbnail} alt={this.props.data.Board.name} />
                                     </a>
                                 }
                             </div>

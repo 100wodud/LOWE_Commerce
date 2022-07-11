@@ -82,10 +82,9 @@
     border-radius: 22px;
     font: 700 12px "Noto Sans";
     line-height: 26px;
-}
-.Ddetail_orange > a {
     color: #FF5732;
-}
+    cursor: pointer;
+} 
 
 .Ddetail_surgery_content_third > div {
     width: 75px;

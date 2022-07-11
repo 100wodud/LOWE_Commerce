@@ -1,18 +1,23 @@
 .Payment_footer_section {
-    width: 100%;
-    padding: 28px 0;
+    width: calc(100% - 24px);
+    max-width: 404px;
+    height: 56px;
+    margin: 0 12px;
     text-align: center;
-    background-color: #333333;
+    background-color: #FF3D12;
     cursor: pointer;
-    position: relative;
+    bottom: 32px;
+    position: fixed;
+    line-height: 54px;
+    border-radius: 8px;
 }
 
 
 .Payment_footer_modal {
     transition:  all 1s;
     position: absolute;
-    padding: 20px;
-    background-color: #333333;
+    padding: 10px;
+    background-color: #FF3D12;
     font: 400 14px "Noto Sans";
     color: #ffffff;
     text-align: left;
@@ -21,58 +26,28 @@
 
 .Payment_footer_modal_up {
     transition:  all 1s;
-    margin: 12px;
-    max-width: 364px;
-    width: 100%;
-    top:-85px;
+    width: calc(100% - 40px);
+    max-width: 380px;
+    top:-64px;
     position: absolute;
-    padding: 20px;
-    background: rgba(51, 51, 51, 0.9);
+    background: rgba(51,51,51,0.9);;
     border-radius: 8px;
+    padding: 0 20px;
     font: 400 14px "Noto Sans";
     color: #ffffff;
     text-align: left;
+    margin: auto;
+    height: 56px;
+    line-height: 56px;
 }
 .Payment_footer_modal_up::after {
     top:-85px;
     transition:  all 1s;
 }
 
-.Payment_footer_price >span{
-    font: 700 20px "Montserrat";
-    color: #FFFFFF
-}
 .Payment_footer_price {
-    font: 400 20px "Noto Sans";
-    color: #FFFFFF
+    font: 700 16px "Noto Sans";
+    color: #FFFFFF;
+    line-height: 56px;
 }
 
-
-@media screen and (max-width:  396px) {
-
-    .Payment_footer_modal_up {
-        max-width: 332px;
-        width: 100%;
-    }
-    
-}
-
-
-@media screen and (max-width:  375px) {
-
-    .Payment_footer_modal_up {
-        max-width: 311px;
-        width: 100%;
-    }
-    
-}
-
-
-@media screen and (max-width:  370px) {
-
-    .Payment_footer_modal_up {
-        max-width: 311px;
-        width: 80%;
-    }
-    
-}

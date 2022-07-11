@@ -24,7 +24,8 @@ class Payment extends Component {
             agree1: false,
             agree2: false,
             modalopen: false,
-            surgeyid: ""
+            surgeyid: "",
+            reservation: "",
         };
     }
 
@@ -38,26 +39,36 @@ class Payment extends Component {
         let id = window.location.pathname.split("/")[2];
         let path = window.location.pathname.split("/")[1];
         if (path === "payment") {
+            let res_date = decodeURI(window.location.pathname.split("/")[3]);
             axios.post("https://server.lowehair.kr/getBoardDetail", {
                 id: id,
             }).then((res) => {
-                this.setState({ data: res.data });
+                this.setState({ data: res.data, reservation: res_date });
             }).catch((err) => {
                 console.log(err)
             });
         } else if (path === "surgery") {
-            let surgey_payment = JSON.parse(window.localStorage.getItem("surgey_payment"));
-            let data = {
-                board: {
-                    id: 122,
-                    ManagerId: surgey_payment.ManagerId,
-                    price: surgey_payment.price,
-                    thumbnail: "https://lowe-image.s3.ap-northeast-2.amazonaws.com…8237171_525430271510486_1571957910076915712_n.png",
-                    name: surgey_payment.content,
-                    eventPrice: 0,
-                },
-            }
-            this.setState({ data: data,surgeyid: surgey_payment.id });
+            let res_date = decodeURI(window.location.pathname.split("/")[3]);
+            let data = {}
+            axios.get(`https://server.lowehair.kr/surgery?id=${id}`, {
+            }).then((res) => {
+                data = {
+                    board: {
+                        id: 122,
+                        ManagerId: res.data[0].ManagerId,
+                        price: res.data[0].price,
+                        designer_name: res.data[0].Manager.name,
+                        store: res.data[0].Manager.store,
+                        thumbnail: "https://lowe-image.s3.ap-northeast-2.amazonaws.com…8237171_525430271510486_1571957910076915712_n.png",
+                        name: res.data[0].content,
+                        eventPrice: 0,
+                    },
+                }
+                this.setState({ data: data,surgeyid: Number(id), reservation: res_date });
+            }).catch((err) => {
+                console.log(err)
+            });
+            
         }
 
 
@@ -170,6 +181,7 @@ class Payment extends Component {
         let payment = {}
         let define1 = {}
         let define2 = {}
+        let reservation_date = JSON.parse(window.localStorage.getItem("reservation_date"));
         if (this.state.agree1 && this.state.agree2) {
             payment.boardId = this.state.data.board.id
             payment.board = this.state.data
@@ -187,6 +199,7 @@ class Payment extends Component {
             define1.userId = this.state.user.id
             define1.coupons = this.state.coupon
             define1.price = price
+            define1.surgery_date = reservation_date
             define1.managerId = this.state.data.board.ManagerId
             define1.surgeyId = this.state.surgeyid 
             define2.request = {
@@ -259,8 +272,8 @@ class Payment extends Component {
         }
         return (
             <>
-                <Header header="결제" />
-                <Firstsec data={this.state.data} />
+                <Header header="결제하기" />
+                <Firstsec data={this.state.data} reservation= {this.state.reservation} />
                 <Secondsec user={this.state.user} />
                 <Thirdsec onClickDelimg={this.onClickDelimg} handleInputValue={this.handleInputValue} state={this.state} />
                 <Fourthsec onClickCoupon={this.onClickCoupon} user={this.state.user} data={this.state.data} coupon={this.state.coupon} />

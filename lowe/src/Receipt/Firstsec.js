@@ -3,6 +3,7 @@ import "./Firstsec.css";
 import axios from 'axios';
 import RefundModal from "./RefundModal";
 import ModalPhone from "../Sign/ModalPhone";
+import moment from 'moment';
 
 class Firstsec extends Component {
     constructor(props) {
@@ -14,15 +15,16 @@ class Firstsec extends Component {
             reason: "",
         };
     }
+
     openmodalPhone = (e) => {
         this.setState({ phonemodal: true, modalcomment: e, refund: false, });
     };
     closemodalPhone = () => {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         this.setState({ phonemodal: false, modalcomment: "", refund: false, });
         window.location.href = `/mypayments${funnel}`
@@ -94,12 +96,16 @@ class Firstsec extends Component {
     }
 
     render() {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
+        let between = 0
+        let id = window.location.pathname.split("/")[2];
+        let s_date = moment(this.props.payment.surgery_date).subtract(1, 'days').format('YYYY-MM-DD 17:00')
+        between = moment(s_date).diff(moment(new Date()))
         return (
             <section className="Receipt_first_section">
                 {
@@ -107,38 +113,70 @@ class Firstsec extends Component {
                         this.props.mypayment ?
                             <>
                                 <div className={this.props.mypayment.state === "환불완료" ? "decoration" : ""}>
-                                    <div className="Receipt_first_title" style={{ color: "#333333", textDecoration: "none" }}>시술정보</div>
-                                    <div className="Receipt_first_content ">
-                                        <div> <img src={this.props.data.board.thumbnail} alt="결제 상품 정보" /></div>
+                                    <div className="Receipt_first_title" style={{ color: "#333333", textDecoration: "none" }}>
+                                        <div style={{ color: "#333333", textDecoration: "none" }}>예약정보</div>
                                         <div>
-                                            <div className="Receipt_first_content_name">{this.props.payment.pay_goods}</div>
-                                            <div>
-                                                <div className="Receipt_first_content_price"><span>{this.props.payment.event_price ? this.props.payment.event_price.comma() : this.props.payment.list_price.comma()}원</span><span style={this.props.mypayment.state === "환불완료" ? { color: "#9C9C9C" } : { color: "#FF3D12" }}>{Number(this.props.payment.event_percent) ? this.props.payment.event_percent + "%" : null}</span></div>
-                                                <div style={{ textDecoration: "none" }} className={this.props.mypayment.state === "환불대기" || this.props.mypayment.state === "환불완료" ? "Mypayment_state state_green" : "Mypayment_state state_red"}><span>{this.props.mypayment.state}</span></div>
-                                            </div>
+                                            <div style={{ textDecoration: "none" }} className={this.props.mypayment.state === "시술완료" || this.props.mypayment.state === "예약확정" || this.props.mypayment.state === "예약변경" ? "Mypayment_state state_green" : "Mypayment_state state_red"}><span style={this.props.mypayment.state === "환불완료" ? { textDecoration: "none", color: "#FF3D12" }:{ textDecoration: "none" }}>{this.props.mypayment.state === "예약변경" ? "예약확정" : this.props.mypayment.state}</span></div>
+                                        </div>
+                                    </div>
+                                    <div className="Receipt_first_content ">
+                                        <div>
+
+                                            <div><span className="Receipt_first_content_title" style={{ marginBottom: "12px", lineHeight: "100%" }}>시술명</span><span className="Receipt_first_content_content" >{this.props.mypayment.pay_goods}</span></div>
+                                            <div><span className="Receipt_first_content_title" style={{ marginBottom: "12px", lineHeight: "100%" }}>담당 / 지점</span><span className="Receipt_first_content_content" >{this.props.mypayment.Manager.name} {this.props.mypayment.Manager.rank} / {this.props.mypayment.Manager.store}</span></div>
+                                            <div><span className="Receipt_first_content_title" style={{ marginBottom: "12px", lineHeight: "100%" }}>시술금액</span><span className="Receipt_first_content_content" style={{ font: '700 14px "Montserrat' }}>{this.props.mypayment.pay_amount.comma()}</span></div>
+                                            {this.props.payment.surgery_date ?
+                                                <div>
+                                                    <span className="Reservation_first_content_title" style={{ marginBottom: "12px", lineHeight: "100%"  }}>예약일자</span><span className="Reservation_first_content_content state_red" style={{ font: '700 14px "Montserrat', border: "none" }}>
+                                                    {new Date(this.props.payment.surgery_date.replaceAll("-","/")).toLocaleString("US", { dateStyle: "full", timeStyle: "short" }).replace("일 ", "일(").replace("요일", ")").replace("년 ", ".").replace("월 ", ".").replace("일", "")}                                                    </span>
+                                                </div> : null
+                                            }
                                         </div>
                                     </div>
                                 </div>
                                 {this.props.mypayment.state === "환불대기" || this.props.mypayment.state === "환불완료" ?
                                     null :
                                     this.props.mypayment.state === "시술완료" ?
-                                        this.props.data.board.id === 122 ?
-                                            null :
-                                            <div style={{ marginTop: "20px",height: "40px" }}>
-                                                <a href={`/review/write/${this.props.data.board.ManagerId}/${this.props.data.board.id}${funnel}`} className="Mypayment_box">리뷰쓰기</a>
-                                            </div> :
-                                        <div onClick={this.handlebuttonRefund} style={{ marginTop: "20px", textAlign: "center" }}>
-                                            <div className="Mypayment_box">취소 / 환불요청</div>
+                                        <div style={{ marginTop: "20px" }}>
+                                            <a style={{ display: "contents" }} href={`/review/write/${this.props.payment.ManagerId}/${this.props.data.board.id}/${this.props.payment.id}${this.props.payment.SurgeryId ? "/" + this.props.payment.SurgeryId : ""}${funnel}`} >
+                                                <div className="Mypayment_box">리뷰쓰기</div>
+                                            </a>
+                                        </div> :
+                                        <div style={{ marginTop: "20px", display: "flex", justifyContent: "space-between" }}>
+                                            {between >= 0 ?
+                                                <a style={{ display: "contents" }} href={`/reservation_change/${id}`} >
+                                                    <div className="Mypayment_box" style={{ marginRight: "5px" }}>
+                                                        예약변경
+                                                    </div>
+                                                </a> :
+                                                <div className="Mypayment_box_cant" style={{ marginRight: "5px" }}>
+                                                    예약변경
+                                                </div>
+                                            }
+                                            <div onClick={this.handlebuttonRefund} style={{ marginLeft: "5px" }} className="Mypayment_box">취소 / 환불요청</div>
                                         </div>
+                                }
+                                {this.props.mypayment.state === "예약확정" || this.props.mypayment.state === "예약변경" ?
+                                    <>
+                                        <div style={{ paddingTop: "32px", font: '700 14px "Noto Sans"', lineHeight: "100%" }}>예약 취소시 유의사항 안내</div>
+                                        <div className="Refund_caution" style={{ padding: "20px 0 0 0" }}>
+                                            <li>시술 <span>예약 전일 오후 <strong>5시 이전</strong></span></li>
+                                            <li className="Receipt_Contact_li_margin">예약 날짜 및 시간 <strong>변경 가능</strong></li>
+                                            <li className="Receipt_Contact_li_margin">예약 취소 <strong>100% 환불</strong></li>
+                                            <li>시술 <span>예약 전일 오후 <strong>5시 이후</strong></span></li>
+                                            <li className="Receipt_Contact_li_margin">예약 날짜 및 시간 <strong>변경 불가</strong></li>
+                                            <li className="Receipt_Contact_li_margin">당일 취소, 예약시간 경과, 노쇼 <strong>90% 환불</strong></li>
+                                        </div>
+                                    </> : null
                                 }
                             </> :
 
                             <div>
                                 <div className="Receipt_first_title">시술정보</div>
                                 <div className="Receipt_first_content">
-                                    { this.props.data.board.thumbnail ?
-                                    <div><img src={this.props.data.board.thumbnail} alt="결제 상품 정보" /></div> :
-                                    <div><img src="https://lowe-image.s3.ap-northeast-2.amazonaws.com…8237171_525430271510486_1571957910076915712_n.png" alt="결제 상품 정보" /></div>
+                                    {this.props.data.board.thumbnail ?
+                                        <div><img src={this.props.data.board.thumbnail} alt="결제 상품 정보" /></div> :
+                                        <div><img src="https://lowe-image.s3.ap-northeast-2.amazonaws.com…8237171_525430271510486_1571957910076915712_n.png" alt="결제 상품 정보" /></div>
                                     }
                                     <div>
                                         <div className="Receipt_first_content_name">{this.props.payment.pay_goods}</div>

@@ -32,13 +32,6 @@ class Signin extends React.Component {
 
     handleSignIn = () => {
         this.setState({ error: "" });
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
-        }
-
         if (this.state.login_id.length > 1) {
             axios.post("https://server.lowehair.kr/loginIdCheck", {
                 login_id: this.state.login_id,
@@ -67,7 +60,7 @@ class Signin extends React.Component {
             .then((res) => {
                 if (res.data.id) {
                     window.localStorage.setItem("id", res.data.id);
-                    window.location.href = `/${funnel}`
+                    window.history.go(-1)
                 } else {
                     this.setState({ error: "비밀번호를 확인해주세요" })
                 }

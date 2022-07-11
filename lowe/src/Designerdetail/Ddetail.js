@@ -22,8 +22,8 @@ class Ddetail extends Component {
             click: false,
         };
     }
-    
-    openmodalPhone =(e)=>()  => {
+
+    openmodalPhone = (e) => () => {
         this.setState({ modal: true, modalcomment: e });
     };
     closemodalPhone = () => {
@@ -34,21 +34,21 @@ class Ddetail extends Component {
         let id = window.location.pathname.split("/")[2];
         let userid = Number(window.localStorage.getItem("id"));
         let arr = [];
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel='/'
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = '/'
         }
         axios.post("https://server.lowehair.kr/getDesignerDetail", {
             id: id,
         }).then((res) => {
             let coupon = ""
-            if(res.data.coupons){
+            if (res.data.coupons) {
                 coupon = JSON.parse(res.data.coupons)
             }
 
-            this.setState({data: res.data, coupon: coupon})
+            this.setState({ data: res.data, coupon: coupon })
         }).catch((err) => {
             console.log(err)
         });
@@ -58,30 +58,30 @@ class Ddetail extends Component {
             ManagerId: id,
         }).then((res) => {
 
-        if(res.data.data.length){
-            for(let i=0; i < res.data.data.length; i++){
-                if(res.data.data[i].Images.length){
+            if (res.data.data.length) {
+                for (let i = 0; i < res.data.data.length; i++) {
+                    if (res.data.data[i].Images.length) {
                         arr.push(res.data.data[i])
+                    }
                 }
+                this.setState({ review: res.data.data, imgreview: arr })
             }
-            this.setState({review: res.data.data, imgreview: arr})
-        }
         }).catch((err) => {
             console.log(err)
         });
-        let tab=window.location.href.split("#")[1];
-        if(tab === "Ddetailmenu"){
-            this.setState({list: 2})
-        } else if(tab === "Ddetailreview"){
-            this.setState({list: 3})
-        }else if(tab === "Ddetailinfo"){
-            this.setState({list: 4})
-        } else if(tab === "Ddetailstyle"){
-            this.setState({list: 5})
-        }else if(tab === "Ddetailboard"){
-            this.setState({list: 1})
+        let tab = window.location.href.split("#")[1];
+        if (tab === "Ddetailmenu") {
+            this.setState({ list: 2 })
+        } else if (tab === "Ddetailreview") {
+            this.setState({ list: 3 })
+        } else if (tab === "Ddetailinfo") {
+            this.setState({ list: 4 })
+        } else if (tab === "Ddetailstyle") {
+            this.setState({ list: 5 })
+        } else if (tab === "Ddetailboard") {
+            this.setState({ list: 1 })
         } else {
-            this.setState({list: 5})
+            this.setState({ list: 5 })
         }
 
 
@@ -120,11 +120,11 @@ class Ddetail extends Component {
             expired: this.state.coupon.couponexpired,
             minimum: Number(this.state.coupon.couponlimit),
             ManagerId: this.state.data.id
-        }).then((res)=>{
+        }).then((res) => {
             setTimeout(() => {
                 this.openmodalPhone(`쿠폰발급 완료 :)`)()
             })
-        }).catch((err)=>{
+        }).catch((err) => {
             setTimeout(() => {
                 this.openmodalPhone(`이미 받으신 쿠폰 입니다`)()
             })
@@ -135,11 +135,11 @@ class Ddetail extends Component {
     onclickList = (e) => () => {
         let id = window.location.pathname.split("/")[2];
         let userid = Number(window.localStorage.getItem("id"));
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel='/'
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = '/'
         }
 
         if (userid) {
@@ -166,42 +166,119 @@ class Ddetail extends Component {
         }
 
         this.setState({ list: e })
-    
+
+    }
+
+    onClickReserve = (e)=>() => {
+        let id = window.location.pathname.split("/")[2];
+        let userid = Number(window.localStorage.getItem("id"));
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = '/'
+        }
+        if(1 === Number(e)){
+        if (userid) {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 7,
+                ManagerId: id,
+                UserId: userid,
+                funnel: funnel,
+                tab_num: Number(e)
+            })
+                .then((res) => {
+                    window.location.href = this.state.data.reserve_url
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 7,
+                ManagerId: id,
+                funnel: funnel,
+                tab_num: Number(e)
+            })
+                .then((res) => {
+                    window.location.href = this.state.data.reserve_url
+                }).catch((err) => {
+                });
+        }
+    } else {
+
+        if (userid) {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 7,
+                ManagerId: id,
+                UserId: userid,
+                funnel: funnel,
+                tab_num: Number(e)
+            })
+                .then((res) => {
+                    this.setState({ list: 2 })
+                    window.location.href = "#Ddetailmenu"
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 7,
+                ManagerId: id,
+                funnel: funnel,
+                tab_num: Number(e)
+            })
+                .then((res) => {
+                    this.setState({ list: 2 })
+                    window.location.href = "#Ddetailmenu"
+                }).catch((err) => {
+                });
+            }
+
+    }
+
     }
 
     render() {
         return (
             <>
                 <Header header="clear" />
-                {this.state.data && this.state.data.user_state ===1 ?
+                {this.state.data && this.state.data.user_state === 1 ?
                     <>
                         <Firstsec data={this.state.data} />
                         <DesignerList data={this.state.data} />
                         {
-                            this.state.coupon ? 
-                            <div className="Ddetail_coupon_div">
-                                <div className="Ddetail_coupon" onClick={this.onClickCoupon}>
-                                    <span style={{lineHeight: "48px", paddingLeft: "20px"}}>
-                                        <span style={{font: '700 13px "Montserrat"', color: "#FF6746"}}>{this.state.coupon.couponprice.comma()}원</span>
-                                        <span style={{font: '700 13px "Noto Sans'}}> 할인 쿠폰</span>
-                                        <span style={{marginLeft:"8px", font: '700 12px "Montserrat"', color: "#9C9C9C"}}>{this.state.coupon.couponexpired.slice(2,8).replaceAll("-",".")}01~{this.state.coupon.couponexpired.slice(2,10).replaceAll("-",".")}</span>
-                                    </span>
-                                    <span style={{paddingLeft: "8px"}}><img src={process.env.PUBLIC_URL + "/image/nav/coupon_downlord.svg"} alt="로위 쿠폰 다운로드" /></span>
-                                </div>
-                            </div> :
-                            null
+                            this.state.coupon ?
+                                <div className="Ddetail_coupon_div">
+                                    <div className="Ddetail_coupon" onClick={this.onClickCoupon}>
+                                        <span style={{ lineHeight: "48px", paddingLeft: "20px" }}>
+                                            <span style={{ font: '700 13px "Montserrat"', color: "#FF6746" }}>{this.state.coupon.couponprice.comma()}원</span>
+                                            <span style={{ font: '700 13px "Noto Sans' }}> 할인 쿠폰</span>
+                                            <span style={{ marginLeft: "8px", font: '700 12px "Montserrat"', color: "#9C9C9C" }}>{this.state.coupon.couponexpired.slice(2, 8).replaceAll("-", ".")}01~{this.state.coupon.couponexpired.slice(2, 10).replaceAll("-", ".")}</span>
+                                        </span>
+                                        <span style={{ paddingLeft: "8px" }}><img src={process.env.PUBLIC_URL + "/image/nav/coupon_downlord.svg"} alt="로위 쿠폰 다운로드" /></span>
+                                    </div>
+                                </div> :
+                                null
                         }
-                            <div className="Ddetail-filter">
-                                <p id="Ddetailstyle" className={(this.state.list === 5 ? "push_button" : 'pull_button')} onClick={this.onclickList(5)}>스타일</p>
-                                <p id="Ddetailboard" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>시술</p>
-                                <p id="Ddetailmenu" className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>메뉴</p>
-                                <p id="Ddetailreview" className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>
-                                <p id="Ddetailinfo" className={(this.state.list === 4 ? "push_button" : 'pull_button')} onClick={this.onclickList(4)}>정보</p>
+
+                        <div className="Ddetail_reserve_div">
+                            <div onClick ={this.onClickReserve(1)} style={{border: "1px solid #3EC62A", color: "#3EC62A"}}>
+                                <div>네이버 예약하기</div>
                             </div>
+                            <div onClick ={this.onClickReserve(2)} style={{border: "1px solid #FF5732", color: "#FF5732"}}>
+                                <div className="Lowe_reservation"><img src={process.env.PUBLIC_URL + "/image/nav/lowe_reservation.svg"} alt="로위 쿠폰 다운로드" /></div>
+                                <div style={{zIndex: 1}}>로위몰 예약</div>
+                            </div>
+                        </div>
+                        <div className="Ddetail-filter">
+                            <p id="Ddetailstyle" className={(this.state.list === 5 ? "push_button" : 'pull_button')} onClick={this.onclickList(5)}>스타일</p>
+                            <p id="Ddetailboard" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>시술</p>
+                            <p id="Ddetailmenu" className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>메뉴</p>
+                            <p id="Ddetailreview" className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>
+                            <p id="Ddetailinfo" className={(this.state.list === 4 ? "push_button" : 'pull_button')} onClick={this.onclickList(4)}>정보</p>
+                        </div>
                         <Secondsec list={this.state.list} data={this.state.data} review={this.state.review} imgreview={this.state.imgreview} openmodalPhone={this.openmodalPhone} onclickList={this.onclickList} />
                     </>
-                    : <div style={{ height:"100vh", textAlign: "center",lineHeight: "100vh"}}>
-                       잠시만 기다려 주세요 :)
+                    : <div style={{ height: "100vh", textAlign: "center", lineHeight: "100vh" }}>
+                        잠시만 기다려 주세요 :)
                     </div>
                 }
                 <Footer data={this.state.data} designer={this.state.designer} />

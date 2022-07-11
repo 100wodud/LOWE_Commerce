@@ -1,0 +1,47 @@
+.Reservation_footer_section {
+    width: calc(100% - 24px);
+    max-width: 428px;
+    position: fixed;
+    height: 56px;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-top: 1px solid #F5F5F5;
+    background-color: #FFFFFF;
+}
+
+.Reservation_footer_price{
+    margin: 12px 0 8px;
+    font: 700 16px "Montserrat";
+    line-height: 100%;
+}
+
+.Reservation_footer_price_content {
+    font: 700 12px "Noto Sans";
+    color: #9C9C9C;
+    line-height: 100%;
+}
+
+.Reservation_footer_button {
+    width: 220px;
+    font: 700 16px "Noto Sans";
+    text-align: center;
+    height: 56px;
+    line-height: 56px;
+    background: #FF3D12;
+    border-radius: 8px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.Reservation_footer_button_none {
+    width: 220px;
+    font: 700 16px "Noto Sans";
+    text-align: center;
+    height: 56px;
+    line-height: 56px;
+    background: #DDDDDD;
+    border-radius: 8px;
+    color: #FFFFFF;
+}

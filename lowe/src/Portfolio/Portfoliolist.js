@@ -48,11 +48,14 @@ class Portfoliolist extends Component {
         let scroll = window.location.href.split("#")[1];
         if( document.getElementById(scroll)){
             document.getElementById(scroll).scrollIntoView();
-
         }
     }
 
     render() {
+        let scroll = window.location.href.split("#")[1];
+        if( document.getElementById(scroll)){
+            document.getElementById(scroll).scrollIntoView();
+        }
         return (
             <>
                 <Header />

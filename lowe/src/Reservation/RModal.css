@@ -1,4 +1,4 @@
-.Receipt_footer_section {
+.Reservation_change_footer_section {
     z-index: 150;  
     position: fixed;
     display: flex;
@@ -12,7 +12,7 @@
     -ms-overflow-style: none;
 }
 
-.Receipt_modal_modalInner {
+.Reservation_change_modal_modalInner {
     width: 300px;
     height: 375px;
     margin: auto;
@@ -21,12 +21,12 @@
     border-radius: 16px;
 }
 
-.Receipt_modal_content {
+.Reservation_change_modal_content {
     height: 270px;
     padding: 40px 30px;
 }
 
-.Receipt_modal_circle {
+.Reservation_change_modal_circle {
     width: 40px;
     height: 40px;    
     background: #FF3D12;
@@ -39,18 +39,18 @@
     margin-bottom: 12px;
 }
 
-.Receipt_modal_content_title {
-    margin-bottom: 8px;
+.Reservation_change_modal_content_title {
+    margin-bottom: 4px;
     font:700 12px "Noto Sans";
     color: #9c9c9c
 }
 
-.Receipt_modal_content_content {
+.Reservation_change_modal_content_content {
     margin-bottom: 16px;
     font: 700 14px "Noto Sans";
 }
 
-.Receipt_modal_button {
+.Reservation_change_modal_button {
     display: flex;
     justify-content: space-between;
     background: #FFFFFF;
@@ -59,11 +59,11 @@
     bottom: 0;
 }
 
-.Receipt_modal_button a {
+.Reservation_change_modal_button a {
     display: contents;
     width: calc(50% - 2px);
 }
-.Receipt_modal_button div {
+.Reservation_change_modal_button div {
     height: 50px;
     width: 50%;
     text-align: center;

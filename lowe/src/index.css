@@ -8,9 +8,30 @@ body {
   padding: 0;
   color: #333333;
 }
+  @font-face {
+    font-family: "Montserrat"; 
+    unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
+    font-weight: 400;
+    src:  
+    url("./fonts/Montserrat-Regular.ttf") format("woff2"),
+    url("./fonts/Montserrat-Regular.ttf") format("woff"),
+    url("./fonts/Montserrat-Regular.ttf") format("truetype"),
+    url("./fonts/Montserrat-Regular.ttf") format("embedded-opentype");
+  }
+  
+  @font-face {
+    font-family: 'Noto Sans';
+    unicode-range: U+AC00-D7A3;
+    font-weight: 400;
+    src: 
+    url("./fonts/NotoSansKR-Regular.otf") format("woff2"),
+    url("./fonts/NotoSansKR-Regular.otf") format("woff"),
+    url("./fonts/NotoSansKR-Regular.otf") format("truetype"),
+    url("./fonts/NotoSansKR-Regular.otf") format("embedded-opentype");
+  }
 
 * {
-  font-family: 'Montserrat', sans-serif; 
+  font-family: Montserrat, Noto Sans, sans-serif; 
   margin: 0;
   padding: 0;
   line-height: 100%;
@@ -26,9 +47,19 @@ body input[type="text"], body input[type="radio"], body input[type="textarea"], 
   -webkit-border-radius: 0;
 }
 
+body div:focus{
+	outline:none !important;
+}
+
+
+body button{
+	outline:none !important;
+}
+
 body div{
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+	outline:none;
 }
 body div::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
@@ -56,6 +87,6 @@ body img {
 
 body input[type=number]::-webkit-inner-spin-button,
 body input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;             
-        margin: 0;         
-    } 
+  -webkit-appearance: none;             
+  margin: 0;         
+} 

@@ -18,8 +18,8 @@ class Secondsec extends Component {
                         <div className="Payment_second_title">예약자 정보</div>
                         <div className="Payment_second_content">
                             <div>
-                                <div><span className="Payment_second_content_title" style={{marginBottom: "12px"}}>이름</span><span className="Payment_second_content_content" >{this.props.user.name}</span></div>
-                                <div><span className="Payment_second_content_title">휴대폰번호</span><span className="Payment_second_content_content">{this.props.user.phone.slice(0,3)+"-"+this.props.user.phone.slice(3,7)+"-"+this.props.user.phone.slice(7,this.props.user.phone.length)}</span></div>
+                                <div><span className="Payment_second_content_title" style={{marginBottom: "12px", lineHeight: "100%"}}>이름</span><span className="Payment_second_content_content" >{this.props.user.name}</span></div>
+                                <div><span className="Payment_second_content_title" style={{ lineHeight: "100%" }}>휴대폰번호</span><span className="Payment_second_content_content">{this.props.user.phone.slice(0,3)+"-"+this.props.user.phone.slice(3,7)+"-"+this.props.user.phone.slice(7,this.props.user.phone.length)}</span></div>
                             </div>
                         </div>
                     </div> :

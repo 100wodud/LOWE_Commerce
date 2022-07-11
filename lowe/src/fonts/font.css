@@ -10,6 +10,8 @@
     url("./Montserrat-Regular.ttf") format("woff"),
     url("./Montserrat-Regular.ttf") format("truetype"),
     url("./Montserrat-Regular.ttf") format("embedded-opentype");
+
+  unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
   }
   
   @font-face {
@@ -42,7 +44,8 @@
     url("./NotoSansKR-Regular.otf") format("woff2"),
     url("./NotoSansKR-Regular.otf") format("woff"),
     url("./NotoSansKR-Regular.otf") format("truetype"),
-    url("./NotoSansKR-Regular.otf") format("embedded-opentype"),
+    url("./NotoSansKR-Regular.otf") format("embedded-opentype");
+    unicode-range: U+AC00-D7A3;
 }
 
   @font-face {

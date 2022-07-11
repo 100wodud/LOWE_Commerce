@@ -44,6 +44,9 @@ class PaymentList extends Component {
                         }
                         this.setState({ data: data, refund: refund, done:done });
                     }
+
+                    localStorage.setItem("payment_data", JSON.stringify(res.data));
+
                 })
                 .catch(err => {
                     console.log("에러")
@@ -59,7 +62,7 @@ class PaymentList extends Component {
         let done = this.state.done
         return (
             <>
-                <Header header="결제완료" />
+                <Header header="예약" />
                 <div className='PaymentList_section'>
                     {
                         data.length || refund.length || done.length ?

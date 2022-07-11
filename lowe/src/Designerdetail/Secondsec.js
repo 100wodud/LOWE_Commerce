@@ -109,6 +109,12 @@ class Secondsec extends Component {
         } else {
             funnel = '/'
         }
+        let tab_num = '';
+        if (window.location.href.split("#")[1]) {
+            tab_num = "#" + window.location.href.split("#")[1];
+        } else {
+            tab_num = ''
+        }
 
         if (userid) {
             axios.post("https://server.lowehair.kr/click", {
@@ -116,11 +122,12 @@ class Secondsec extends Component {
                 ManagerId: id,
                 UserId: userid,
                 SurgeryId: Number(e.id),
-                funnel: funnel
+                funnel: funnel,
+                tab_num:tab_num
             })
                 .then((res) => {
                     localStorage.setItem("surgey_payment", JSON.stringify(e));
-                    window.location.href = `/surgery/${e.id}${funnel}`
+                    window.location.href = `/reservation_surgery/${e.id}${funnel}`
                 }).catch((err) => {
                 });
         } else {
@@ -128,11 +135,56 @@ class Secondsec extends Component {
                 type: 6,
                 ManagerId: id,
                 SurgeryId: Number(e.id),
-                funnel: funnel
+                funnel: funnel,
+                tab_num:tab_num
             })
                 .then((res) => {
                     localStorage.setItem("surgey_payment", JSON.stringify(e));
                     window.location.href = `/signin${funnel}`
+                }).catch((err) => {
+                });
+        }
+    }
+
+    boardPay = (e) => () => {
+        let id = window.location.pathname.split("/")[2];
+        let userid = Number(window.localStorage.getItem("id"));
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = '/'
+        }
+        let tab_num = '';
+        if (window.location.href.split("#")[1]) {
+            tab_num = "#" + window.location.href.split("#")[1];
+        } else {
+            tab_num = ''
+        }
+
+        if (userid) {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 8,
+                ManagerId: id,
+                UserId: userid,
+                SurgeryId: Number(e.id),
+                funnel: funnel,
+                tab_num:tab_num
+            })
+                .then((res) => {
+                    window.location.href = `${e.url}${funnel}`
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 6,
+                ManagerId: id,
+                SurgeryId: Number(e.id),
+                funnel: funnel,
+                tab_num:tab_num
+            })
+                .then((res) => {
+                    window.location.href = `${e.url}${funnel}`
                 }).catch((err) => {
                 });
         }
@@ -181,7 +233,7 @@ class Secondsec extends Component {
                                             {this.props.data.Surgeries.map((e, i) => (
                                                 <>
                                                     {(e.Category && e.Category.content === this.state.category) || this.state.category === "전체" ?
-                                                        <Surgery data={e} key={i} SurgeriesPay={this.SurgeriesPay} /> : null
+                                                        <Surgery data={e} key={i} SurgeriesPay={this.SurgeriesPay} boardPay={this.boardPay} /> : null
                                                     }
                                                 </>
                                             ))}

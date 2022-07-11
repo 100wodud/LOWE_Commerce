@@ -48,12 +48,6 @@ class Portfolio extends Component {
     }
 
     render() {
-        let funnel = "";
-        if (window.location.href.split("?")[1]) {
-            funnel = "?" + window.location.href.split("?")[1];
-        } else {
-            funnel = ''
-        }
         let portfolio = decodeURI(window.location.pathname.split("/")[2]);
         let id = window.location.pathname.split("/")[3]
         return (
@@ -74,7 +68,7 @@ class Portfolio extends Component {
                         this.state.data.length ?
                             this.state.data.map((e,i) => (
                                 <div key={e.id}>
-                                    <a href={`/portfoliolist/${portfolio}${id ? "/"+id : ""}#${i}${funnel}`}>
+                                    <a href={`/portfoliolist/${portfolio}${id ? "/"+id : ""}#${i}`}>
                                         
                                     {
                                         e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?

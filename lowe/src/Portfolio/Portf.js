@@ -99,7 +99,7 @@ class Portf extends Component {
                                                     </div>
                                                     <div style={{ marginLeft: "12px" }}>
                                                         <div className="Porf_Board_designer"><strong>{e.designer_name} 원장</strong> {e.store}</div>
-                                                        <div className="Porf_Board_name">{e.content}</div>
+                                                        <div className="Porf_Board_name">{e.name}</div>
                                                         <div className="Porf_Board_price">{e.eventType ? <span>{e.eventPrice + "%"}</span>: null}{e.price.comma()}원</div>
 
                                                     </div>

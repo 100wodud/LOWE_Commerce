@@ -36,3 +36,47 @@
     padding: 2px;
     cursor: pointer;
 }
+
+.Ddetail_reserve_div {
+    margin: 10px 12px 20px 12px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Ddetail_reserve_div div {
+    width: 169px;
+    height: 44px;
+    text-align: center;
+    font: 700 13px "Noto Sans";
+    line-height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.Lowe_reservation {
+    position: absolute;
+    z-index: 10;
+    animation: horizontals 10s ease-in-out normal;
+    transition:all 0.5s;
+    opacity: 0;
+}
+
+@keyframes horizontals {
+    0% {
+        opacity: 0;
+        margin-top: -30px;
+        z-index: -1;
+    }
+    15% {
+        opacity: 1;
+        margin-top: -43px;
+    }
+    85% {
+        opacity: 1;
+        margin-top: -43px;
+    }
+    100% {
+        opacity: 0;
+        margin-top: -30px;
+    }
+  }

@@ -1,7 +1,8 @@
 
 .Receipt_first_section {
     background-position: center;
-    border-top: 8px solid #F5F5F5;
+    margin-top: 60px;
+    border-top: 1px solid #DDDDDD;
     padding: 32px 12px;
 }
 
@@ -16,7 +17,6 @@
 
 .Receipt_first_content {
     width: 100%;
-    height: 81px;
 }
 
 .Receipt_first_content img{
@@ -39,8 +39,13 @@
 
 .Mypayment_state {
     float: right;
-    margin-top: -25px;
-    padding: 3px 6px 5px 6px;
+    font: 700 12px "Noto Sans";
+    width: 52px;
+    height: 22px;
+    line-height: 22px;
+    margin-bottom: 12px;
+    text-align: center;
+    margin-top: -20px;
 }
 
 .Mypayment_state span {
@@ -64,15 +69,52 @@
 .state_red {
     border: 1px solid #FF3D12;
     border-radius: 4px;
-    color: #FF3D12;
+    color: #FF3D12 ;
 }
 
 .Mypayment_box {
-    width: fit-content;
-    padding: 8px 32px;
-    border: 2px solid #DDDDDD;
-    border-radius: 4px;
-    margin-left: 92px;
+    width: calc(100% - 2px);
+    text-align: center;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
     font: 700 13px "Noto Sans";
+    line-height: 44px;
     cursor: pointer;
+}
+
+
+.Mypayment_box_cant {
+    width: calc(100% - 2px);
+    text-align: center;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    background: #D9D9D9;
+    font: 700 13px "Noto Sans";
+    line-height: 44px;
+    color: #ffffff;
+}
+
+
+.Receipt_first_content {
+    width: 100%;
+}
+
+.Receipt_first_content_title {
+    width: 80px;
+    display: inline-block;
+    margin-right: 14px;
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+}
+
+.Receipt_first_content_content {
+    font: 500 14px "Montserrat";
+}
+
+
+.Refund_caution li {
+    margin-top: 8px;
+}
+.Receipt_Contact_li_margin::before {
+    margin-left: 12px;
 }
