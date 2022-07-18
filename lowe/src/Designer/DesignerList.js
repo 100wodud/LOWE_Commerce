@@ -47,11 +47,11 @@ class DesignerList extends React.Component {
     render() {
         let user = window.localStorage.getItem("id");
         let data = this.props.data;
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         return (
             <>
@@ -62,20 +62,37 @@ class DesignerList extends React.Component {
                                 <img src={data.img} alt={data.name} />
                             </div>
                         </div>
-                        <a href={`/designer/${data.id}${funnel}`} className="DesignerList_content_div">
-                            <div className="DesignerList_content">
-                                <strong>{data.name} {data.rank}</strong><span style={{ marginLeft: "8px" }}>{data.store}</span>
-                            </div>
-                            {data.Hashtags.length ?
-                                <div className="DesignerList_content_hash">
-                                    <span>#{data.Hashtags[0].content}</span><span style={{ marginLeft: "8px" }}>#{data.Hashtags[1].content}</span>
-                                </div> :
-                                <div className="DesignerList_content_hash">
-                                    <span>ㅤ</span>
+                        {this.props.detail ?
+                            <a href={`/designer/${data.id}${funnel}`} className="DesignerList_content_div">
+                                <div className="DesignerList_content_time">
+                                    <strong>{data.name} {data.rank}</strong><span style={{ marginLeft: "8px" }}>{data.store}</span>
                                 </div>
-                            }
-                        </a>
-
+                                {data.Hashtags.length ?
+                                    <div className="DesignerList_content_hash_time">
+                                        <span>#{data.Hashtags[0].content}</span><span style={{ marginLeft: "8px" }}>#{data.Hashtags[1].content}</span>
+                                    </div> :
+                                    <div className="DesignerList_content_hash_time">
+                                        <span>ㅤ</span>
+                                    </div>
+                                }
+                                <div className="DesignerList_content_operating_time">
+                                    {data.home} <span style={{marginLeft: "8px"}}>{data.operating_time}</span>
+                                </div>
+                            </a> :
+                            <a href={`/designer/${data.id}${funnel}`} className="DesignerList_content_div">
+                                <div className="DesignerList_content">
+                                    <strong>{data.name} {data.rank}</strong><span style={{ marginLeft: "8px" }}>{data.store}</span>
+                                </div>
+                                {data.Hashtags.length ?
+                                    <div className="DesignerList_content_hash">
+                                        <span>#{data.Hashtags[0].content}</span><span style={{ marginLeft: "8px" }}>#{data.Hashtags[1].content}</span>
+                                    </div> :
+                                    <div className="DesignerList_content_hash">
+                                        <span>ㅤ</span>
+                                    </div>
+                                }
+                            </a>
+                        }
                         <div className="DesignerList_Coupon_div">
                             {JSON.parse(data.coupons) ?
                                 <div style={{ lineHeight: "63px" }}>
@@ -96,7 +113,7 @@ class DesignerList extends React.Component {
                                         <img src={process.env.PUBLIC_URL + "/image/nav/designer_like.svg"} alt="좋아요 버튼" onClick={this.onclickLike} />
                                     </div> :
                                 <div>
-                                    <img src={process.env.PUBLIC_URL + "/image/nav/designer_dislike.svg"} alt="좋아요 버튼" onClick={() => {  window.location.href = `/signin${funnel}` }} />
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/designer_dislike.svg"} alt="좋아요 버튼" onClick={() => { window.location.href = `/signin${funnel}` }} />
                                 </div>
                             }
                             <div>

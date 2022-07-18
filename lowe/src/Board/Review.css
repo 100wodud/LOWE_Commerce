@@ -27,8 +27,10 @@
     font: 500 14px "Noto Sans";
     margin-bottom: 24px;
     max-width: 370px;
-    white-space:pre-line;
     word-break:break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
 }
 
 .review_content_true {
@@ -66,4 +68,12 @@
 
 .rev {
     transform: rotate(180deg);
+}
+
+.review_img_home {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 3px;
+    margin-bottom: 20px;
 }

@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Footer from "../Nav/Footer";
 import Header from "../Nav/Header";
 import axios from "axios";
 import Firstsec from "./Firstsec";
@@ -31,6 +30,20 @@ class Ddetail extends Component {
     };
 
     componentDidMount = () => {
+        document.addEventListener('scroll', function () {
+            var target = document.getElementById("filter_trigger2");
+            var abBottom = window.pageYOffset + target.getBoundingClientRect().top + 50
+            var currentScrollValue = document.documentElement.scrollTop;
+            let header = document.getElementById("scroll2");
+            if (currentScrollValue > abBottom ) {
+                header.classList.add("fixed");
+            }
+            if(currentScrollValue < abBottom){
+                header.classList.remove("fixed");
+            }
+        });
+
+
         let id = window.location.pathname.split("/")[2];
         let userid = Number(window.localStorage.getItem("id"));
         let arr = [];
@@ -47,7 +60,6 @@ class Ddetail extends Component {
             if (res.data.coupons) {
                 coupon = JSON.parse(res.data.coupons)
             }
-
             this.setState({ data: res.data, coupon: coupon })
         }).catch((err) => {
             console.log(err)
@@ -70,18 +82,18 @@ class Ddetail extends Component {
             console.log(err)
         });
         let tab = window.location.href.split("#")[1];
-        if (tab === "Ddetailmenu") {
+        if (tab === "Ddetailmenu" ||tab === "Ddetailmenus") {
             this.setState({ list: 2 })
-        } else if (tab === "Ddetailreview") {
+        } else if (tab === "Ddetailreview" || tab === "Ddetailreviews") {
             this.setState({ list: 3 })
-        } else if (tab === "Ddetailinfo") {
+        } else if (tab === "Ddetailinfo" || tab === "Ddetailinfoes") {
             this.setState({ list: 4 })
-        } else if (tab === "Ddetailstyle") {
+        } else if (tab === "Ddetailstyle" || tab === "Ddetailstyles") {
             this.setState({ list: 5 })
-        } else if (tab === "Ddetailboard") {
+        } else if (tab === "Ddetailhome" || tab === "Ddetailhomes") {
             this.setState({ list: 1 })
         } else {
-            this.setState({ list: 5 })
+            this.setState({ list: 1 })
         }
 
 
@@ -166,6 +178,23 @@ class Ddetail extends Component {
         }
 
         this.setState({ list: e })
+        let rou = window.location.pathname + "#header_trigger2"
+        if (e === 2) {
+            window.location.replace(rou)
+            window.location.href = window.location.pathname + "#Ddetailmenus"
+        } else if (e === 3) {
+            window.location.replace(rou)
+            window.location.href = window.location.pathname + "#Ddetailreviews"
+        } else if (e === 4) {
+            window.location.replace(rou)
+            window.location.href = window.location.pathname + "#Ddetailinfoes"
+        } else if (e === 5) {
+            window.location.replace(rou)
+            window.location.href = window.location.pathname + "#Ddetailstyles"
+        } else if (e === 1) {
+            window.location.replace(rou)
+            window.location.href = window.location.pathname + "#Ddetailhomes"
+        }
 
     }
 
@@ -215,7 +244,7 @@ class Ddetail extends Component {
             })
                 .then((res) => {
                     this.setState({ list: 2 })
-                    window.location.href = "#Ddetailmenu"
+                    window.location.href = window.location.pathname + "#Ddetailmenu"
                 }).catch((err) => {
                 });
         } else {
@@ -227,7 +256,7 @@ class Ddetail extends Component {
             })
                 .then((res) => {
                     this.setState({ list: 2 })
-                    window.location.href = "#Ddetailmenu"
+                    window.location.href = window.location.pathname + "#Ddetailmenu"
                 }).catch((err) => {
                 });
             }
@@ -239,11 +268,11 @@ class Ddetail extends Component {
     render() {
         return (
             <>
-                <Header header="clear" />
+                <Header header="clear" scroll={true}  />
                 {this.state.data && this.state.data.user_state === 1 ?
                     <>
                         <Firstsec data={this.state.data} />
-                        <DesignerList data={this.state.data} />
+                        <DesignerList data={this.state.data} detail={true} />
                         {
                             this.state.coupon ?
                                 <div className="Ddetail_coupon_div">
@@ -268,10 +297,11 @@ class Ddetail extends Component {
                                 <div style={{zIndex: 1}}>로위몰 예약</div>
                             </div>
                         </div>
-                        <div className="Ddetail-filter">
+                        <div id="filter_trigger2" />
+                        <div className="Ddetail-filter"  id="scroll2">
+                            <p id="Ddetailhome" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>홈</p>
+                            <p id="Ddetailmenu" className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>시술</p>
                             <p id="Ddetailstyle" className={(this.state.list === 5 ? "push_button" : 'pull_button')} onClick={this.onclickList(5)}>스타일</p>
-                            <p id="Ddetailboard" className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)}>시술</p>
-                            <p id="Ddetailmenu" className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)}>메뉴</p>
                             <p id="Ddetailreview" className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)}>리뷰</p>
                             <p id="Ddetailinfo" className={(this.state.list === 4 ? "push_button" : 'pull_button')} onClick={this.onclickList(4)}>정보</p>
                         </div>
@@ -281,7 +311,6 @@ class Ddetail extends Component {
                         잠시만 기다려 주세요 :)
                     </div>
                 }
-                <Footer data={this.state.data} designer={this.state.designer} />
                 <ModalPhone open={this.state.modal} closemodal={this.closemodalPhone} comment={this.state.modalcomment} />
             </>
         )

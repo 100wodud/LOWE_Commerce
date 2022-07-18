@@ -59,3 +59,24 @@
     font: 700 10px "Montserrat";
     color: #9C9C9C;
 }
+
+.DesignerList_content_operating_time {
+    font-size: 12px;
+    font-weight: 700;
+    color: #9C9C9C;
+    margin-top: 5px;
+    margin-left: 4px;
+}
+
+.DesignerList_content_time {
+    margin: auto;
+    font: 400 16px "Noto Sans";
+    margin-bottom: 3px;
+    margin-left: 4px;
+}
+
+.DesignerList_content_hash_time {
+    font: 400 12px "Noto Sans";
+    color: #9C9C9C;
+    margin-left: 4px;
+}

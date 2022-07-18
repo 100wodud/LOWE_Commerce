@@ -19,7 +19,7 @@ class Portfolio extends Component {
                     }
                 }
             }
-
+            port.sort((a, b)=> a.order - b.order);
             this.setState({ data: port })
         }
     }

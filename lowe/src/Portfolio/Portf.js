@@ -72,7 +72,7 @@ class Portf extends Component {
         let route = window.location.pathname.split("/")[1]
         return (
             <>
-                <section id={this.props.id} className="Portf_section">
+                <section id={this.props.id} className="Portf_section" style={route==="portfolio" ? {paddingBottom: "80px"}: null}>
                     {
                         route === "portfolio" && this.state.designer ?
                             <DesignerList data={this.state.designer} /> : null

@@ -71,7 +71,7 @@ class Review extends Component {
             <div style={{ paddingBottom: "24px", borderBottom: "1px solid #DDDDDD" }} onClick={this.onClickreview}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: "24px" }}>
                     {
-                    typeof (this.props.data.BoardId) === "number" ?
+                        typeof (this.props.data.BoardId) === "number" ?
                             this.props.data.BoardId !== 122 ?
                                 <a style={{ font: '700 12px "Montserrat"', color: "#FF5732" }} href={`/board/${this.props.data.BoardId}${funnel}`}>{this.props.data.goods}</a> :
                                 <a style={{ font: '700 12px "Montserrat"', color: "#FF5732" }} href={`${window.location.pathname}#Ddetailmenu${funnel}`} onClick={this.props.onclickList(2)}>{this.props.data.goods}</a> :
@@ -122,16 +122,20 @@ class Review extends Component {
                 </div>
                 {
                     this.props.data.Images.length ?
-                        <div id="review_slider" style={{ marginBottom: "20px" }} >
-                            <Slider {...settings}>
-                                {
-                                    this.props.data.Images.map((e) => (
-                                        <img key={e.id} src={e.url} className="review_img" alt="로위 리뷰사진" />
-                                    )
-                                    )
-                                }
-                            </Slider>
-                        </div> : null
+                        !this.props.home ?
+                            <div id="review_slider" style={{ marginBottom: "20px" }} >
+                                <Slider {...settings}>
+                                    {
+                                        this.props.data.Images.map((e) => (
+                                            <img onClick={this.props.onclickimg(this.props.data.id)} key={e.id} src={e.url} className="review_img" alt="로위 리뷰사진" />
+                                        ))
+                                    }
+                                </Slider>
+                            </div> :
+                            this.props.data.Images.map((e) => (
+                                <img onClick={this.props.onclickimg(this.props.data.id)} key={e.id} src={e.url} className="review_img_home" alt="로위 리뷰사진" />
+                            ))
+                        : null
                 }
                 <div>
                     <div className={(this.state.click === false ? "review_content_false" : 'review_content_true')} id="review_content">

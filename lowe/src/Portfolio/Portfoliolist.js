@@ -59,7 +59,7 @@ class Portfoliolist extends Component {
         return (
             <>
                 <Header />
-                <section style={{paddingTop: "61px", paddingBottom: "60px" }}>
+                <section style={{paddingTop: "61px", paddingBottom: "80px" }}>
                     {
                         this.state.data.length ? 
                         this.state.data.map((e, i)=>(

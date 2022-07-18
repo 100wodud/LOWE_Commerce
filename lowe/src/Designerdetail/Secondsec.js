@@ -1,12 +1,12 @@
 import { Component } from "react";
 import ReviewList from "../Board/ReviewList";
-import Goodslist from "../Home/Goodslist";
 import Store from "../data/Store";
 import "./Secondsec.css"
 import axios from "axios";
 import Portfolios from "./Portfolios";
 import Surgery from "./Surgery";
 import ScrollContainer from 'react-indiana-drag-scroll'
+import DMain from "./DMain";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -97,6 +97,7 @@ class Secondsec extends Component {
         }
     }
     onClickcategory = (e) => () => {
+        window.location.replace(window.location.pathname + "#"+e);
         this.setState({ category: e })
     }
 
@@ -192,53 +193,66 @@ class Secondsec extends Component {
 
     render() {
         return (
-            <section className="Ddetail">
+            <section className="Ddetail" id="시그니처">
                 {
                     this.props.list === 1 ?
-                        <div className="goods_list">
-                            {
-                                this.props.data.Boards.length ?
-                                    this.props.data.Boards.map((e, i) => (
-                                        <>
-                                            {e.open === '1' ?
-                                                <div key={i} >
-                                                    <Goodslist e={e} />
-                                                </div> : null
-                                            }
-                                        </>
-                                    )) :
-                                    <div style={{ height: "100px", textAlign: "center", lineHeight: "100px", width: "100%" }}>
-                                        곧 새로운 스타일을 보여드릴게요 :)
-                                    </div>
-                            }
+                        <div>
+                            <DMain data={this.props.data} onclickList={this.props.onclickList} review={this.props.review} imgreview={this.props.imgreview} designer={true}/>
                         </div> :
                         this.props.list === 2 ?
                             this.props.data.Surgeries.length ?
                                 <div className="Ddetail_surgery">
                                     {this.props.data.Categories.length ?
+                                    <div id="filter_category">
                                     <ScrollContainer className="Ddetail_filter_category">
                                         {this.props.data.Categories.map((e, i) => (
                                             <span key={e.id} onClick={this.onClickcategory(e.content)} className={(this.state.category === e.content ? "Ddetail_category_select" : "Ddetail_category_nonselect")}>{e.content}</span>
                                         ))
                                         }
                                     </ScrollContainer>
+                                    </div>
                                     : null}
-                                    <table>
+                                    <table  className="Ddetail_surgery_surgery" style={{paddingTop: "0px"}}>
                                         <thead>
                                             <tr>
-                                                <th className="Ddetail_surgery_title_first">{this.state.category}</th>
+                                                <th className="Ddetail_surgery_title_first">시그니처</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.props.data.Boards.map((e, i) => (
+                                                e.open === "1" ?
+                                                <div className="Ddetail_surgery_boards">
+                                                    <a href={`/board/${e.id}`} >
+                                                    <div><img className="Ddetail_surgery_thunmbnail" src={e.thumbnail} alt={e.name} /></div>
+                                                    <div>
+                                                        <div className="Ddetail_surgery_boards_name" style={{marginTop: "4px",marginBottom: "8px"}}>{e.name}</div>
+                                                        <div className="Ddetail_surgery_boards_name" style={{marginBottom: "12px",lineHeight: "15px"}}>{e.price.comma()}원 <span>{e.eventPrice ? e.eventPrice+"%" : null}</span></div>
+                                                        <div className="Ddetail_surgery_boards_content">{e.content}</div>
+                                                    </div>
+                                                    </a>
+                                                </div> : null
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                    {this.props.data.Categories.length ?
+                                    this.props.data.Categories.slice(1).map((v, i) => (
+                                    <table id={v.content} className="Ddetail_surgery_surgery">
+                                        <thead>
+                                            <tr>
+                                                <th className="Ddetail_surgery_title_first">{v.content}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {this.props.data.Surgeries.map((e, i) => (
                                                 <>
-                                                    {(e.Category && e.Category.content === this.state.category) || this.state.category === "전체" ?
+                                                    {(e.Category && e.Category.content === v.content) ?
                                                         <Surgery data={e} key={i} SurgeriesPay={this.SurgeriesPay} boardPay={this.boardPay} /> : null
                                                     }
                                                 </>
                                             ))}
                                         </tbody>
-                                    </table>
+                                    </table>)):null
+                                    }
                                 </div> :
                                 <div style={{ marginTop: "20px", textAlign: "center" }}>
                                     상품이 없습니다
