@@ -93,7 +93,6 @@ class DMain extends Component {
     }
 
     render() {
-        console.log(this.props.data.Boards)
         let port = this.props.data.Portfolios;
         const Portfolios = port.sort(() => Math.random() - 0.5).slice(0, 9);
         return (

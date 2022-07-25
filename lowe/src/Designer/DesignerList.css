@@ -80,3 +80,20 @@
     color: #9C9C9C;
     margin-left: 4px;
 }
+
+.DesignerList_port_slide {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space:nowrap;
+    height: 112px;
+    margin: auto;
+    display: flex;
+    margin-left: 12px;
+}
+
+.DesignerList_port_slide img, .DesignerList_port_slide video {
+    width: 100px;
+    height: 100px;
+    margin-right: 8px;
+    object-fit: cover;
+}

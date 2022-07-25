@@ -75,7 +75,7 @@ class Mypage extends Component {
                     console.log("에러")
                 })
         } else {
-            window.location.href = `/signin${funnel}`
+            window.location.replace(`/signin${funnel}`)
         }
     }
 

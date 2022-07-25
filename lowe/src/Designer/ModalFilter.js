@@ -14,7 +14,7 @@ class ModalFilter extends React.Component {
 
     render() {
         const category = ["전체", "컷", "펌", "염색", "붙임머리", "클리닉"];
-        const location = ["전체", "강남", "신촌", "합정", "홍대"]
+        const location = ["전체", "강남", "신촌", "합정", "홍대입구", "L7홍대"]
         return (
             <div className="Designer_modalBody" >
                 <div className="Designer_modalclick" onClick={this.handleClose}></div>
@@ -25,10 +25,15 @@ class ModalFilter extends React.Component {
                             <span><img src={process.env.PUBLIC_URL + "/image/nav/reset.svg"} alt="리셋버튼" /></span>
                         </div>
                         <div className="Designer_category">
-                            <div className="Designer_category_title">지역</div>
+                            <div className="Designer_category_title">지점</div>
                             <div className="Designer_categorylist">
                                 {location.map((e, i) => (
-                                    <span key={i} className={(this.props.location === e ? "category_select" : "category_nonselect")} onClick={this.props.onclicklocation(e)}>{e}</span>
+                                    <>
+                                        {e === "전체" ?
+                                            <span key={i} className={(this.props.filterList.indexOf("지역 전체") !== -1 || this.props.location ? "category_select" : "category_nonselect")} onClick={this.props.onclicklocation(e)}>{e}</span> :
+                                            <span key={i} className={(this.props.filterList.indexOf(e) !== -1  ? "category_select" : "category_nonselect")} onClick={this.props.onclickFilterListloc(e)}>{e}</span>
+                                        }
+                                    </>
                                 ))}
                             </div>
                         </div>
@@ -36,7 +41,12 @@ class ModalFilter extends React.Component {
                             <div className="Designer_category_title">시술</div>
                             <div className="Designer_categorylist">
                                 {category.map((e, i) => (
-                                    <span key={i} className={(this.props.category === e ? "category_select" : "category_nonselect")} onClick={this.props.onclickcategory(e)}>{e}</span>
+                                    <>
+                                        {e === "전체" ?
+                                            <span key={i} className={(this.props.filterList.indexOf("시술 전체") !== -1 || this.props.category ? "category_select" : "category_nonselect")} onClick={this.props.onclickcategory(e)}>{e}</span> :
+                                            <span key={i} className={(this.props.filterList.indexOf(e) !== -1 ? "category_select" : "category_nonselect")} onClick={this.props.onclickFilterListcat(e)}>{e}</span>
+                                        }
+                                    </>
                                 ))}
                             </div>
                         </div>

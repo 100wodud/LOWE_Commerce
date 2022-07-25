@@ -178,7 +178,7 @@ class Secondsec extends Component {
                 });
         } else {
             axios.post("https://server.lowehair.kr/click", {
-                type: 6,
+                type: 8,
                 ManagerId: id,
                 SurgeryId: Number(e.id),
                 funnel: funnel,
@@ -186,6 +186,51 @@ class Secondsec extends Component {
             })
                 .then((res) => {
                     window.location.href = `${e.url}${funnel}`
+                }).catch((err) => {
+                });
+        }
+    }
+
+
+    surgeryBoard = (e) => () => {
+        let id = window.location.pathname.split("/")[2];
+        let userid = Number(window.localStorage.getItem("id"));
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = '/'
+        }
+        let tab_num = '';
+        if (window.location.href.split("#")[1]) {
+            tab_num = "#" + window.location.href.split("#")[1];
+        } else {
+            tab_num = ''
+        }
+
+        if (userid) {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 6,
+                ManagerId: id,
+                UserId: userid,
+                BoardId: Number(e),
+                funnel: funnel,
+                tab_num:tab_num
+            })
+                .then((res) => {
+                    window.location.href = `/board/${e}${funnel}`
+                }).catch((err) => {
+                });
+        } else {
+            axios.post("https://server.lowehair.kr/click", {
+                type: 6,
+                ManagerId: id,
+                BoardId: Number(e),
+                funnel: funnel,
+                tab_num:tab_num
+            })
+                .then((res) => {
+                    window.location.href = `/board/${e}${funnel}`
                 }).catch((err) => {
                 });
         }
@@ -222,14 +267,14 @@ class Secondsec extends Component {
                                             {this.props.data.Boards.map((e, i) => (
                                                 e.open === "1" ?
                                                 <div className="Ddetail_surgery_boards">
-                                                    <a href={`/board/${e.id}`} >
+                                                    <div onClick={this.surgeryBoard(e.id)}>
                                                     <div><img className="Ddetail_surgery_thunmbnail" src={e.thumbnail} alt={e.name} /></div>
                                                     <div>
                                                         <div className="Ddetail_surgery_boards_name" style={{marginTop: "4px",marginBottom: "8px"}}>{e.name}</div>
                                                         <div className="Ddetail_surgery_boards_name" style={{marginBottom: "12px",lineHeight: "15px"}}>{e.price.comma()}원 <span>{e.eventPrice ? e.eventPrice+"%" : null}</span></div>
                                                         <div className="Ddetail_surgery_boards_content">{e.content}</div>
                                                     </div>
-                                                    </a>
+                                                    </div>
                                                 </div> : null
                                             ))}
                                         </tbody>

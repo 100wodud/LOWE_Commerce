@@ -1,12 +1,15 @@
 import React from "react";
 import "./DesignerList.css"
 import axios from "axios";
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 class DesignerList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             like: false,
+            data: "",
+            id: this.props.data.id,
         };
         this.onclickLike = this.onclickLike.bind(this);
     }
@@ -28,8 +31,26 @@ class DesignerList extends React.Component {
                 console.log(err)
             });
         }
+        if(this.props.rank){
+            axios.post("https://server.lowehair.kr/getPortfolio", {
+                ManagerId: manager_id,
+            }).then((res)=>{
+                this.setState({data: res.data.portfolio})
+            })
+
+        }
     }
 
+    componentDidUpdate = () => {
+        let manager_id = this.props.data.id;
+        if(this.state.id !== manager_id){
+            axios.post("https://server.lowehair.kr/getPortfolio", {
+                ManagerId: manager_id,
+            }).then((res)=>{
+                this.setState({data: res.data.portfolio, id: manager_id})
+            })
+        }
+    }
     async onclickLike(e) {
         e.preventDefault();
         let manager_id = this.props.data.id;
@@ -56,6 +77,7 @@ class DesignerList extends React.Component {
         return (
             <>
                 {data.user_state === 1 ?
+                <>
                     <div className={this.props.board ? "Designerlist_div border" : "Designerlist_div"}>
                         <div>
                             <div className="DesignerList_profileimg">
@@ -121,6 +143,27 @@ class DesignerList extends React.Component {
                             </div>
                         </div>
                     </div>
+                    {
+                        this.state.data.length && this.props.data ?
+                        <div>
+                            <ScrollContainer className="DesignerList_port_slide">
+                                {
+                                    this.state.data.slice(0,8).map((e)=>(
+                                        <a href={`/portfolio/${e.id}${funnel}`}>
+                                            {
+                                                e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
+                                                    <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >
+                                                        <source src={e.img + "#t=0.5"} />
+                                                    </video> :
+                                                    <img src={e.img} alt="로위 포트폴리오 이미지" />
+                                            }
+                                        </a>
+                                    ))
+                                }
+                            </ScrollContainer>
+                        </div>:null
+                    }
+                    </>
                     : null}
             </>
         );

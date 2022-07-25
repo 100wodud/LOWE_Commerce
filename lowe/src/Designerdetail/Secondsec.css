@@ -51,6 +51,7 @@
     max-width: 217px;
     word-break: keep-all;
     font: 400 13px "Montserrat";
+    cursor: pointer;
 }
 
 .Ddetail_surgery_content_first_content {
@@ -169,8 +170,9 @@
     border-bottom: none;
 }
 
-.Ddetail_surgery_boards a {
+.Ddetail_surgery_boards > div {
     display: flex;
+    cursor: pointer;
 }
 
 .Ddetail_surgery_boards_name {

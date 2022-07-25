@@ -17,7 +17,8 @@ class Portfoliolist extends Component {
 
     componentDidMount = () => {
         let portfolio = decodeURI(window.location.pathname.split("/")[2]);
-        let id = Number(window.location.pathname.split("/")[3])
+        let id = Number(window.location.pathname.split("/")[3]);
+        let scroll = window.location.href.split("#")[1];
         if (id) {
             axios.post("https://server.lowehair.kr/getPortfolio", {
                 ManagerId: id,
@@ -34,6 +35,11 @@ class Portfoliolist extends Component {
                     coupon = JSON.parse(res.data.coupons)
                 }
                 this.setState({ designer: res.data, coupon: coupon })
+                setTimeout(() => {
+                    if( document.getElementById(scroll)){
+                        document.getElementById(scroll).scrollIntoView();
+                    }
+                }, 500);
             }).catch((err) => {
                 console.log(err)
             });
@@ -42,12 +48,12 @@ class Portfoliolist extends Component {
                 hashtag: portfolio
             }).then((res)=>{
                 this.setState({data: res.data.portfolio})
+                setTimeout(() => {
+                    if( document.getElementById(scroll)){
+                        document.getElementById(scroll).scrollIntoView();
+                    }
+                }, 500);
             })
-        }
-
-        let scroll = window.location.href.split("#")[1];
-        if( document.getElementById(scroll)){
-            document.getElementById(scroll).scrollIntoView();
         }
     }
 

@@ -41,6 +41,22 @@ class Signup extends React.Component {
         };
     }
 
+    componentDidMount = () =>{
+        const script2 = document.createElement("script");
+    
+        script2.src = "//wcs.naver.net/wcslog.js";
+        script2.async = true;
+    
+        document.getElementById("script").appendChild(script2);
+        const script = document.createElement("script");
+        script.innerHTML = "window.onload = function() {\n" +
+            'var _nasa={ };\nif (window.wcs) _nasa["cnv"] = wcs.cnv("2","10000");' +
+            "}"
+        script.async = true;
+        document.getElementById("script").appendChild(script);
+    }
+    
+
     openmodal = (e) => () => {
         this.setState({ modalOpen: e });
     };
@@ -49,7 +65,7 @@ class Signup extends React.Component {
     };
 
 
-    openmodalPhone =(e)  => {
+    openmodalPhone = (e) => {
         this.setState({ phonemodal: true, modalcomment: e });
     };
     closemodalPhone = () => {
@@ -58,11 +74,11 @@ class Signup extends React.Component {
 
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
-        if(key === "login_id"){
-            this.setState({idcheck: false, login_id_error: ""})
+        if (key === "login_id") {
+            this.setState({ idcheck: false, login_id_error: "" })
         }
-        if(key === "phone"){
-            this.setState({phonecheck: false, phone_error: ""})
+        if (key === "phone") {
+            this.setState({ phonecheck: false, phone_error: "" })
         }
     };
 
@@ -349,7 +365,7 @@ class Signup extends React.Component {
                     </div>
                     <div>
                         <div className="signUptitle">휴대폰 번호</div>
-                        <input className="signUpinfo" type="text" style={{ maxWidth: "197px", width: "65%" }} placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("phone")}  onInput={this.handleOnInput3()} />
+                        <input className="signUpinfo" type="text" style={{ maxWidth: "197px", width: "65%" }} placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("phone")} onInput={this.handleOnInput3()} />
                         <button className="signUpcheckid" style={{ width: "113px" }} onClick={this.checksignupPhone}>인증번호 받기</button>
                         {
                             this.state.phone_error ?
@@ -415,6 +431,7 @@ class Signup extends React.Component {
                 </section>
                 <SignupModal open={this.state.modalOpen} close={this.closemodal} />
                 <ModalPhone open={this.state.phonemodal} closemodal={this.closemodalPhone} comment={this.state.modalcomment} />
+                <div id="script"></div>
             </>
         );
     }

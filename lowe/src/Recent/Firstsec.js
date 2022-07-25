@@ -29,17 +29,20 @@ class Firstsec extends Component {
     }
 
     render() {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         return (
             <section className="Recent_first_section">
                 <div className="Recent_total">
                     <div className='Recent_total_title'>최근 본 항목</div>
-                    <div className='Recent_total_count'>총 {this.state.Showgoods.length}개</div>
+                    {this.state.Showgoods.length ?
+                        <div className='Recent_total_count'>총 {this.state.Showgoods.length}개</div> :
+                        <div className='Recent_total_count'> </div>
+                    }
                 </div>
                 {
                     this.state.Showgoods.length ?
@@ -50,14 +53,13 @@ class Firstsec extends Component {
                                 ))
                             }
                         </div> :
-
                         <div className="mypage_nolike">
-                            <img src={process.env.PUBLIC_URL + "/image/nav/no_like.svg"} alt="등록한 리뷰가 없습니다"></img>
+                            <img src={process.env.PUBLIC_URL + "/image/nav/like_nolike.svg"} alt="등록한 리뷰가 없습니다"></img>
                             <div>
                                 <div>최근 본 시술이 없습니다</div>
                             </div>
-                            <div className="nolike_button" style={{ lineHeight: "52px", marginTop: "23px" }} >
-                                <a href={`/${funnel}`}>상품 보러가기</a>
+                            <div className="nolike_button" style={{ lineHeight: "34px", marginTop: "20px" }} >
+                                <a href={`/${funnel}`}>상품 더 보기</a>
                             </div>
                         </div>
                 }

@@ -19,94 +19,54 @@ class Footer extends Component {
         }
         return (
             <footer id='footer'>
-                {window.localStorage.getItem("id") ?
-                    <>
-                        <a href={`/${funnel}`}>
-                            {path === '/' ?
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_home_act.svg"} alt="로위 홈 아이콘" /> 
-                                <p><strong>홈</strong></p>
-                            </>:
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_home.svg"} alt="로위 홈 아이콘" />
-                                <p>홈</p>
-                            </>
-                            }
-                        </a>
-                        <a href={`/designers${funnel}`}>
-                            {path === '/designers' ||path.indexOf('/designer') !== -1 ?
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_recent_act.svg"} alt="로위 최신 아이콘" /> 
-                                <p><strong>디자이너</strong></p>
-                            </>:
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_recent.svg"} alt="로위 최신 아이콘" />
-                                <p>디자이너</p>
-                            </>
-                            }
-                        </a>
-                        <a href={`/like${funnel}`}>
-                            {path === '/like' ?
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_like_act.svg"} alt="로위 찜 아이콘" /> 
-                                <p><strong>찜</strong></p>
-                            </>:
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_like.svg"} alt="로위 찜 아이콘" />
-                                <p>찜</p>
-                            </>
-                            }
-                        </a>
-                        <a href={`/mypage${funnel}`}>
-                            {path === '/mypage' || path === '/mycoupons' || path === '/mypayments' || path === '/myreviews'?
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_mypage_act.svg"} alt="로위 마이 아이콘" /> 
-                                <p><strong>마이</strong></p>
-                            </>:
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_mypage.svg"} alt="로위 마이 아이콘" />
-                                <p>마이</p>
-                            </>
-                            }
-                        </a>
-                    </> :
-                    <>
-                        <a href={`/${funnel}`}>
-                            {path === '/' ?
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_home_act.svg"} alt="로위 홈 아이콘" /> 
-                                <p><strong>홈</strong></p>
-                            </>:
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_home.svg"} alt="로위 홈 아이콘" />
-                                <p>홈</p>
-                            </>
-                            }
-                        </a>
-                        <a href={`/designers${funnel}`}>
-                            {path === '/designers' ||path.indexOf('/designer') !== -1 ?
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_recent_act.svg"} alt="로위 최신 아이콘" /> 
-                                <p><strong>디자이너</strong></p>
-                            </>:
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_recent.svg"} alt="로위 최신 아이콘" />
-                                <p>디자이너</p>
-                            </>
-                            }
-                        </a>
-                        <a href={`/signin${funnel}`}>
-                            <>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_like.svg"} alt="로위 찜 아이콘" />
-                                <p>찜</p>
-                            </>
-                        </a>
-                        <a href={`/signin${funnel}`}>
-                                <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_mypage.svg"} alt="로위 마이 아이콘" />
-                                <p>마이</p>
-                        </a>
-                    </>
-                }
+                <a href={`/${funnel}`}>
+                    {path === '/' ?
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_home_act.svg"} alt="로위 홈 아이콘" />
+                            <p><strong>홈</strong></p>
+                        </> :
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_home.svg"} alt="로위 홈 아이콘" />
+                            <p>홈</p>
+                        </>
+                    }
+                </a>
+                <a href={`/designers${funnel}`}>
+                    {path === '/designers' || path.indexOf('/designer') !== -1 ?
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_recent_act.svg"} alt="로위 최신 아이콘" />
+                            <p><strong>모아보기</strong></p>
+                        </> :
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_recent.svg"} alt="로위 최신 아이콘" />
+                            <p>모아보기</p>
+                        </>
+                    }
+                </a>
+                <a href={`/like${funnel}`}>
+                    {path === '/like' ?
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_like_act.svg"} alt="로위 찜 아이콘" />
+                            <p><strong>찜</strong></p>
+                        </> :
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_like.svg"} alt="로위 찜 아이콘" />
+                            <p>찜</p>
+                        </>
+                    }
+                </a>
+                <a href={`/mypage${funnel}`}>
+                    {path === '/mypage' || path === '/mycoupons' || path === '/mypayments' || path === '/myreviews' ?
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_mypage_act.svg"} alt="로위 마이 아이콘" />
+                            <p><strong>마이</strong></p>
+                        </> :
+                        <>
+                            <img className="footer_icon" src={process.env.PUBLIC_URL + "/image/nav/footer_mypage.svg"} alt="로위 마이 아이콘" />
+                            <p>마이</p>
+                        </>
+                    }
+                </a>
             </footer >
         );
     }

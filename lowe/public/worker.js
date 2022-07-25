@@ -1,9 +1,11 @@
+/* eslint-disable no-restricted-globals */
 var CACHE_NAME = 'pwa-task-manager';
 var urlsToCache = [
     '/',
-    "./js/app.min.js",
+    "./js/main.js",
+    "./css/main.css",
     "./manifest.json",
-    { url: '/index.html', revision: '383676' }
+    { url: '/index.html', revision: '383682' }
 ];
 // Install a service worker
 self.addEventListener('install', event => {
@@ -46,9 +48,9 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('push', event => {
-    log('Push ' + event.data.text());
+    console.log('Push ' + event.data.text());
   
-    const title = 'My PWA!';
+    const title = 'LOWE MALL';
     const options = {
       body: event.data.text()
     };
