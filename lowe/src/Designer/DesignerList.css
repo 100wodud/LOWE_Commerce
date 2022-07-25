@@ -59,3 +59,41 @@
     font: 700 10px "Montserrat";
     color: #9C9C9C;
 }
+
+.DesignerList_content_operating_time {
+    font-size: 12px;
+    font-weight: 700;
+    color: #9C9C9C;
+    margin-top: 5px;
+    margin-left: 4px;
+}
+
+.DesignerList_content_time {
+    margin: auto;
+    font: 400 16px "Noto Sans";
+    margin-bottom: 3px;
+    margin-left: 4px;
+}
+
+.DesignerList_content_hash_time {
+    font: 400 12px "Noto Sans";
+    color: #9C9C9C;
+    margin-left: 4px;
+}
+
+.DesignerList_port_slide {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space:nowrap;
+    height: 112px;
+    margin: auto;
+    display: flex;
+    margin-left: 12px;
+}
+
+.DesignerList_port_slide img, .DesignerList_port_slide video {
+    width: 100px;
+    height: 100px;
+    margin-right: 8px;
+    object-fit: cover;
+}

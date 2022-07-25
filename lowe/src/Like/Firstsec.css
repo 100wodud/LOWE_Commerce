@@ -2,6 +2,7 @@
 .Like_first_section {
     background-position: center;
     width: 100%;
+    margin-top: 2px;
 }
 
 .Like_total {
@@ -13,24 +14,21 @@
 
 
 .mypage_nolike {
-    margin-top: 20px;
+    margin-top: 32px;
     text-align: center;
     width: 100%;
     max-width: 428px;
-    margin-bottom: 70px;
+    margin-bottom: 115px;
 }
 .mypage_nolike > div {
-    margin-top: 5px;
-    font: 700 18px "Noto Sans";
+    margin-top: 20px;
+    font: 400 16px "Noto Sans";
     color: #ADADAD;
 }
 
-.mypage_nolike > div > div {
-    margin-top: 5px;
-}
 .nolike_button {
-    width: 160px;
-    height: 52px;
+    width: 96px;
+    height: 34px;
     background-color: #333333;
     margin: auto;
 }
@@ -42,5 +40,35 @@
 
 .mypage_nolike > div a {
     color: #ffffff;
-    font: 700 18px "Noto Sans"
+    font: 700 14px "Noto Sans"
+}
+
+
+.Recent_total_slide {
+    overflow-x: scroll;
+    white-space:nowrap;
+    height: 310px;
+    margin: auto;
+    display: flex;
+
+}
+
+#special_recent_list a , #special_recent_list .goods_thumnail{
+    width: 160px;
+    height: 160px;
+    min-width: 160px;
+    min-height: 160px;
+}
+
+#special_recent_list .goods_title, #special_recent_list .goods_price, #special_recent_list .goods_designer {
+    width: 150px;
+    min-width: 130px;
+}
+
+.Recent_total_slide > span {
+    margin-right: 8px;
+}
+
+.Recent_total_slide div {
+    padding-left: 0px;
 }

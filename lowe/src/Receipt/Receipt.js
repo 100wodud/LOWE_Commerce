@@ -100,6 +100,18 @@ class Receipt extends Component {
                         text: this.state.data.board.board.name,
                         surgery_date: reservation_date
                     }).then((res) => {
+                        const script2 = document.createElement("script");
+
+                        script2.src = "//wcs.naver.net/wcslog.js";
+                        script2.async = true;
+
+                        document.getElementById("script").appendChild(script2);
+                        const script = document.createElement("script");
+                        script.innerHTML = "window.onload = function() {\n" +
+                            `var _nasa={ };\nif (window.wcs) _nasa["cnv"] = wcs.cnv("1",${this.state.data.board.board.price});` +
+                            "}"
+                        script.async = true;
+                        document.getElementById("script").appendChild(script);
                     })
                 } else {
                     window.location.href = `/${funnel}`
@@ -120,6 +132,7 @@ class Receipt extends Component {
                         }
                     }
                 }
+
             }).catch((err) => {
                 console.log(err)
             });
@@ -129,7 +142,6 @@ class Receipt extends Component {
 
     render() {
         let path = window.location.pathname.split("/")[1];
-        console.log(this.state)
         return (
             <>
                 {
@@ -156,7 +168,10 @@ class Receipt extends Component {
                         null :
 
                         this.state.payment ?
-                            <RFooter payment={this.state.payment[0]} date={this.state.surgery_date} /> : null
+                        <>
+                            <RFooter payment={this.state.payment[0]} date={this.state.surgery_date} />
+                            <div id="script"></div>
+                        </> : null
                 }
             </>
         )

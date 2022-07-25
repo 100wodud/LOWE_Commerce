@@ -55,13 +55,14 @@ class Firstsec extends Component {
                                             <div className="Ddesigner_first_img_div"  key={e.id}>
                                                 <a href={e.url+funnel} className="Ddesigner_first_img" onChange={this.onChangeNumber(count)}>
                                                     <img src={e.main} alt="로위 배너" />
-                                                    <div className="Ddesigner_first_img_text"><pre>{e.content ? e.content : null}</pre></div>
+                                                    <div className="Ddesigner_first_img_text" id="header_trigger2"><pre>{e.content ? e.content : null}</pre></div>
                                                 </a>
                                             </div>)
                                     })
                                 }
                             </Slider>
                             <div className="Ddesigner_first_number">{this.state.activeSlide + 1}<span> / {this.state.data.Images.length}</span></div>
+
                         </> :
                         null
                 }

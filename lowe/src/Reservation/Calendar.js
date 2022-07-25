@@ -16,7 +16,7 @@ class Calendar extends Component {
         this.setState({ date: e })
         let kdate = new Date(e.toISOString());
         this.props.selectDate(new Date(kdate.getTime() - (kdate.getTimezoneOffset() * 60000)).toISOString().slice(0, 10))()
-        window.location.href = "#reservation_time"
+        window.location.href = window.location.pathname + "#reservation_time"
     }
 
     render() {

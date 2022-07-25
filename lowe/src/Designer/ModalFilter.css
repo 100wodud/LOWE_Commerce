@@ -86,13 +86,15 @@
 
 .Designer_categorylist .category_select {
     color: #FF3D12;
-    font: 700 14px "Noto Sans";
+    font-size: 14px;
+    font-weight: 700;
     background-color: #FFF4F1;
 }
 
 .Designer_categorylist .category_nonselect {
     color: #9C9C9C;
-    font: 400 14px "Noto Sans";
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .Designer_category_title {
@@ -103,14 +105,14 @@
 
 .Designer_categorylist {
     width: 100%;
-    line-height: 54px;
+    line-height: 48px;
 }
 
 .Designer_categorylist span {
-    padding: 12px 17px 12px 17px;
+    padding: 9px 17px;
     margin-right: 12px;
     background: #F5F5F5;
-    border-radius: 8px;
+    border-radius: 20px;
     display: inline-block;
     word-break: keep-all;
     cursor: pointer;

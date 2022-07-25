@@ -36,7 +36,7 @@
     border-radius: 20px;
     margin-bottom: 25px;
     transform: translate(835%, 0);
-    top: 20px;
+    top: 365px;
     text-align: center;
     font: 700 11px "Montserrat";
     color: #D1D1D1;
@@ -49,13 +49,13 @@
     font-weight: 500;
 }
 
-
 .Ddesigner_first_img_text {
     position: absolute;
     bottom: 42px;
     margin-left: 20px;
     color: #FFFFFF;
     z-index: 10;
+    padding-top: 60px;
 }
 .Ddesigner_first_img_text pre {
     font: 700 20px "Noto Sans";
@@ -65,13 +65,13 @@
 @media screen and (max-width:  428px) {
     .Ddesigner_first_number {
         transform: translate(85vw, 0);
+        top: 85.28037383vw;
     }
     .Ddesigner_first_section img {
         width: 100vw;    
         height: 100vw;
         object-fit: cover;
     }
-
 
     .Ddesigner_first_img_text {
         position: absolute;

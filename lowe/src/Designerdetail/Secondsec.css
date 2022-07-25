@@ -10,7 +10,7 @@
 }
 
 .Ddetail_surgery_title_first  {
-    padding: 20px 12px 0 12px;
+    padding: 0px 12px 0 12px;
     max-width: 217px;
     font: 400 15px "Noto Sans";
 }
@@ -18,8 +18,9 @@
 .Ddetail_filter_category span {
     padding: 6px 12px 6px 12px;
     margin-right: 8px;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
+    border: none;
 }
 
 .Ddetail_filter_category {
@@ -50,6 +51,7 @@
     max-width: 217px;
     word-break: keep-all;
     font: 400 13px "Montserrat";
+    cursor: pointer;
 }
 
 .Ddetail_surgery_content_first_content {
@@ -125,7 +127,12 @@
 .Ddetail_surgery_more_info{
     width: 125%;
     padding: 0px 12px 20px 12px;
-    border-bottom: 1px solid #F5F5F5;;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.Ddetail_surgery_more_info:last-child {
+    border-bottom: none;
+
 }
 
 .Ddetail_surgery_moreview {
@@ -152,4 +159,66 @@
 
 .rev {
     transform: rotate(180deg);
+}
+.Ddetail_surgery_boards{
+    width: 100%;
+    padding: 32px 12px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.Ddetail_surgery_boards:last-child{
+    border-bottom: none;
+}
+
+.Ddetail_surgery_boards > div {
+    display: flex;
+    cursor: pointer;
+}
+
+.Ddetail_surgery_boards_name {
+    font-size: 15px;
+    width: 230px;
+    white-space : pre;
+    overflow: hidden;
+    text-overflow : ellipsis;
+    font-weight: 700;
+}
+
+.Ddetail_surgery_boards_name span {
+    color: #FF3D12;
+    margin-left: 8px;
+}
+
+
+.Ddetail_surgery_boards_content {
+    font-size: 13px;
+    width: 230px;
+    white-space : pre;
+    overflow: hidden;
+    text-overflow : ellipsis;
+    color: #9C9C9C;
+    line-height: 150%;
+}
+
+.Ddetail_surgery_thunmbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.Ddetail_surgery_surgery {
+    width: 100%;
+    padding: 64px 0 0;
+    border-bottom: 8px solid #F5F5F5;
+}
+
+.Ddetail_surgery_surgery:last-child {
+    border-bottom: none;
+}
+
+.Ddetail_marginbottom {
+    margin-top: 35px;
+    background-color: #FFFFFF;
+    height: 55px;
 }

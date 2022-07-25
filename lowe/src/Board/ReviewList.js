@@ -23,6 +23,17 @@ class ReviewList extends Component {
     this.setState({ review: false });
   };
 
+  onclickimg = (e) => () =>{
+    let num = 0
+    for(let i =0; i <this.props.imgdata.length; i++){
+      if(e === this.props.imgdata[i].id){
+        num = i;
+        break
+      }
+    }
+    this.setState({ review: true, slider: num });
+  }
+
   render() {
     return (
       <div>
@@ -39,7 +50,7 @@ class ReviewList extends Component {
         {!this.props.top ?
           this.props.data.length ?
             this.props.data.map((e, i) => (
-              <Review onclickList={this.props.onclickList} key={i} data={e} designer={this.props.designer ? true : null} />
+              <Review onclickimg={this.onclickimg} onclickList={this.props.onclickList} key={i} data={e} designer={this.props.designer ? true : null} home={this.props.home ? true : null}/>
             )) :
             <div className="no_review" >
               <div>
