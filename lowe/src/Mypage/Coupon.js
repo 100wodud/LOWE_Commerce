@@ -25,7 +25,7 @@ class Coupon extends Component {
         }
         let id = window.localStorage.getItem("id");
         if (id) {
-            await axios.post("https://server.lowehair.kr/getOneUser", {
+            await axios.post("http://54.180.117.244:5000/getOneUser", {
                 id: id,
             })
                 .then((res) => {

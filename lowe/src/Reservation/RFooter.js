@@ -10,7 +10,6 @@ class RFooter extends Component {
 
 
     render() {
-        console.log()
         let path = window.location.pathname.split("/")[1];
         return (
             <section className="Reservation_footer_section">

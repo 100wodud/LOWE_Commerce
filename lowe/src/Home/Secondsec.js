@@ -27,7 +27,7 @@ class Secondsec extends Component {
         this.setState({ Allgoods: [], Showgoods: [], category: 0, number: 0 });
         let Allboard = JSON.parse(window.localStorage.getItem("Allboard"));
         if (!Allboard) {
-            axios.get("https://server.lowehair.kr/allBoard", {})
+            axios.get("http://54.180.117.244:5000/allBoard", {})
                 .then((res) => {
                     let arr = [];
                     for (let i = 0; i < res.data.length; i++) {
@@ -42,7 +42,7 @@ class Secondsec extends Component {
             this.setState({ Allgoods: Allboard, Showgoods: Allboard, category: 0, number: 10 })
         }
 
-        axios.post("https://server.lowehair.kr/getAllBoard", {})
+        axios.post("http://54.180.117.244:5000/getAllBoard", {})
             .then((res) => {
                 let arr = [];
                 for (let i = 0; i < res.data.length; i++) {
@@ -55,7 +55,7 @@ class Secondsec extends Component {
             })
 
 
-        axios.post("https://server.lowehair.kr/getAllBanner", {})
+        axios.post("http://54.180.117.244:5000/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {

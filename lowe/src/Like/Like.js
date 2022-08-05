@@ -21,22 +21,7 @@ class Like extends Component {
     let id = window.localStorage.getItem("id")
     if (!id) {
       window.location.replace(`/signin${funnel}`)
-    } else {
-
-      const script2 = document.createElement("script");
-
-      script2.src = "//wcs.naver.net/wcslog.js";
-      script2.async = true;
-
-      document.getElementById("script").appendChild(script2);
-      const script = document.createElement("script");
-      script.innerHTML = "window.onload = function() {\n" +
-          'var _nasa={ };\nif (window.wcs) _nasa["cnv"] = wcs.cnv("5", "10");' +
-          "}"
-      script.async = true;
-      document.getElementById("script").appendChild(script);
-    }
-
+    } 
   }
 
   onclickList = (e) => () => {

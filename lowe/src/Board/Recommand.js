@@ -17,7 +17,7 @@ class Recommand extends Component {
         let id = this.props.e.id;
         let user = window.localStorage.getItem("id");
         if (id && user) {
-          axios.post("https://server.lowehair.kr/boardLikeChk", {
+          axios.post("http://54.180.117.244:5000/boardLikeChk", {
             user: user,
             id: id,
           })
@@ -43,7 +43,7 @@ class Recommand extends Component {
       like = 0;
     }
     if (id && user) {
-      await axios.post("https://server.lowehair.kr/boardLikeUpdate", {
+      await axios.post("http://54.180.117.244:5000/boardLikeUpdate", {
         id: id,
         user: user,
         heart: like

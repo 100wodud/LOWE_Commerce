@@ -41,22 +41,6 @@ class Signup extends React.Component {
         };
     }
 
-    componentDidMount = () =>{
-        const script2 = document.createElement("script");
-    
-        script2.src = "//wcs.naver.net/wcslog.js";
-        script2.async = true;
-    
-        document.getElementById("script").appendChild(script2);
-        const script = document.createElement("script");
-        script.innerHTML = "window.onload = function() {\n" +
-            'var _nasa={ };\nif (window.wcs) _nasa["cnv"] = wcs.cnv("2","10000");' +
-            "}"
-        script.async = true;
-        document.getElementById("script").appendChild(script);
-    }
-    
-
     openmodal = (e) => () => {
         this.setState({ modalOpen: e });
     };
@@ -84,7 +68,7 @@ class Signup extends React.Component {
 
     checksignupID = () => {
         if (this.state.login_id.length > 1) {
-            axios.post("https://server.lowehair.kr/loginIdCheck", {
+            axios.post("http://54.180.117.244:5000/loginIdCheck", {
                 login_id: this.state.login_id,
             }).then((res) => {
                 if (res.data.status === "false") {
@@ -124,7 +108,7 @@ class Signup extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
+            axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -196,7 +180,7 @@ class Signup extends React.Component {
 
         if (this.state.random !== Number(this.state.randomcheck)) {
             this.setState({
-                phonecheck_error: "x 인증번호를 확인해주세요.",
+                phonecheck_error: "인증번호를 확인해주세요.",
                 status: false
             })
         } else {
@@ -207,7 +191,7 @@ class Signup extends React.Component {
 
         if (this.state.password.length < 8) {
             this.setState({
-                password_error: "x 8자 이상 입력",
+                password_error: "8자 이상 입력",
                 status: false
             })
         } else {
@@ -219,7 +203,7 @@ class Signup extends React.Component {
 
         if (this.state.password !== this.state.confirm) {
             this.setState({
-                confirm_error: "x 동일한 비밀번호를 입력해주세요",
+                confirm_error: "동일한 비밀번호를 입력해주세요",
                 status: false
             })
         } else {
@@ -244,7 +228,7 @@ class Signup extends React.Component {
         });
 
         if (this.state.status && this.state.idcheck && this.state.phonecheck && this.state.agree1 && this.state.agree2) {
-            axios.post("https://server.lowehair.kr/joinUser", {
+            axios.post("http://54.180.117.244:5000/joinUser", {
                 name: this.state.name,
                 login_id: this.state.login_id,
                 password: this.state.password,
@@ -260,9 +244,11 @@ class Signup extends React.Component {
                         status: false
                     })
                 } else {
+                    let rou = window.location.pathname + "#signupsuccess";
+                    window.location.replace(rou)
                     let date = new Date();
                     let expired = moment(date).add(3, "months")
-                    axios.post("https://server.lowehair.kr/createCoupon", {
+                    axios.post("http://54.180.117.244:5000/createCoupon", {
                         UserId: res.data.id,
                         price: 10000,
                         content: "[WELCOME] 회원가입 축하 쿠폰",
@@ -270,7 +256,7 @@ class Signup extends React.Component {
                         expired: expired,
                         minimum: 30000
                     })
-                    axios.post("https://server.lowehair.kr/createCoupon", {
+                    axios.post("http://54.180.117.244:5000/createCoupon", {
                         UserId: res.data.id,
                         price: 10000,
                         content: "[WELCOME] 첫 예약 축하 쿠폰",
@@ -375,7 +361,7 @@ class Signup extends React.Component {
                     </div>
                     {this.state.random ?
                         <div>
-                            <div className="signUptitle">휴대폰 번호 인증</div>
+                            <div className="signUptitle">인증번호</div>
                             <input className="signUpinfo" type="number" placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("randomcheck")} />
                             {
                                 this.state.phonecheck_error ?
@@ -396,15 +382,13 @@ class Signup extends React.Component {
                     <div>
                         <div className="signUptitle">성별</div>
                         <span className="signUpinfo_radio">
-                            <input name="gender" type="radio" id="gender1" value="1" />
-                            <label htmlFor="gender1" className="signUp_radio">남자</label>
-                        </span>
-
-                        <span className="signUpinfo_radio">
                             <input name="gender" type="radio" id="gender2" value="2" />
                             <label htmlFor="gender2" className="signUp_radio">여자</label>
                         </span>
-
+                        <span className="signUpinfo_radio">
+                            <input name="gender" type="radio" id="gender1" value="1" />
+                            <label htmlFor="gender1" className="signUp_radio">남자</label>
+                        </span>
                         {
                             this.state.gender_error ?
                                 <div className="signup_error">{this.state.gender_error}</div> :
@@ -431,7 +415,6 @@ class Signup extends React.Component {
                 </section>
                 <SignupModal open={this.state.modalOpen} close={this.closemodal} />
                 <ModalPhone open={this.state.phonemodal} closemodal={this.closemodalPhone} comment={this.state.modalcomment} />
-                <div id="script"></div>
             </>
         );
     }

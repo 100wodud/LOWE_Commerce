@@ -20,11 +20,11 @@ class Portf extends Component {
         if (route === "portfoliolist") {
             this.setState({ data: this.props.data })
         } else {
-            axios.post("https://server.lowehair.kr/getPortfolio", {
+            axios.post("http://54.180.117.244:5000/getPortfolio", {
                 id: id,
             }).then((res) => {
 
-                axios.post("https://server.lowehair.kr/getDesignerDetail", {
+                axios.post("http://54.180.117.244:5000/getDesignerDetail", {
                     id: res.data.portfolio[0].manager_id,
                 }).then((res) => {
                     let coupon = ""

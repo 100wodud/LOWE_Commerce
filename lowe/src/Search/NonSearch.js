@@ -13,7 +13,7 @@ class NonSearch extends Component {
             <div>
                 <div className="nonSearch_title">가장 많이 검색하고 있어요</div>
                 <div className="nonSearch_content">
-                    <span>
+                    <span style={{paddingBottom: "80px"}}>
                         <div>
                             <span className="nonSearch_content_num" style={{width: "32px", color: "#FF3D12"}}>1</span>
                             <span onClick={this.props.handleInputRecommand("히피펌")} className="nonSearch_content_text">히피펌</span>

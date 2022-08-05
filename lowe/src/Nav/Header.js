@@ -93,7 +93,7 @@ class Header extends Component {
                                     <img className="header_logo" src={process.env.PUBLIC_URL + "/image/nav/header_logo.svg"} alt="로위 로고" />
                                 </a>
                                 {this.props.header === "home" ?
-                                    <a href={`/search${funnel}`}>
+                                    <a href={`/search`}>
                                         <img className="header_search" src={process.env.PUBLIC_URL + "/image/nav/header_search.svg"} alt="로위 서치" />
                                     </a> :
                                     <div></div>

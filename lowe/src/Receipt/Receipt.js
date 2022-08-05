@@ -53,7 +53,7 @@ class Receipt extends Component {
                     }
                 }
             }
-            await axios.post("https://server.lowehair.kr/getPayment", {
+            await axios.post("http://54.180.117.244:5000/getPayment", {
                 id: id,
             }).then((res) => {
                 this.setState({ payment: res.data })
@@ -76,12 +76,12 @@ class Receipt extends Component {
             let userid = window.localStorage.getItem("id");
             this.setState({ data: recent_payment, surgery_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
-            await axios.post("https://server.lowehair.kr/getPayment", {
+            await axios.post("http://54.180.117.244:5000/getPayment", {
                 id: id,
             }).then((res) => {
                 if (Number(userid) === res.data[0].User.id) {
                     this.setState({ payment: res.data })
-                    axios.post('https://server.lowehair.kr/updatePayment', {
+                    axios.post('http://54.180.117.244:5000/updatePayment', {
                         id: Number(id), //결제 DB 상의 id 값
                         ManagerId: recent_payment.managerId,
                         BoardId: this.state.data.board.board.id,
@@ -100,18 +100,6 @@ class Receipt extends Component {
                         text: this.state.data.board.board.name,
                         surgery_date: reservation_date
                     }).then((res) => {
-                        const script2 = document.createElement("script");
-
-                        script2.src = "//wcs.naver.net/wcslog.js";
-                        script2.async = true;
-
-                        document.getElementById("script").appendChild(script2);
-                        const script = document.createElement("script");
-                        script.innerHTML = "window.onload = function() {\n" +
-                            `var _nasa={ };\nif (window.wcs) _nasa["cnv"] = wcs.cnv("1",${this.state.data.board.board.price});` +
-                            "}"
-                        script.async = true;
-                        document.getElementById("script").appendChild(script);
                     })
                 } else {
                     window.location.href = `/${funnel}`
@@ -121,7 +109,7 @@ class Receipt extends Component {
                 console.log(err)
             });
 
-            await axios.post("https://server.lowehair.kr/getDesignerDetail", {
+            await axios.post("http://54.180.117.244:5000/getDesignerDetail", {
                 id: recent_payment.managerId,
             }).then((res) => {
                 this.setState({ manager: res.data })

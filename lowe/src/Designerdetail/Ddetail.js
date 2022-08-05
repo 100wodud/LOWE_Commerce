@@ -53,7 +53,7 @@ class Ddetail extends Component {
         } else {
             funnel = '/'
         }
-        axios.post("https://server.lowehair.kr/getDesignerDetail", {
+        axios.post("http://54.180.117.244:5000/getDesignerDetail", {
             id: id,
         }).then((res) => {
             let coupon = ""
@@ -66,7 +66,7 @@ class Ddetail extends Component {
         });
 
 
-        axios.post(`https://server.lowehair.kr/getReview`, {
+        axios.post(`http://54.180.117.244:5000/getReview`, {
             ManagerId: id,
         }).then((res) => {
 
@@ -100,7 +100,7 @@ class Ddetail extends Component {
         if (!this.state.click) {
             this.setState({ click: true })
             if (userid) {
-                axios.post("https://server.lowehair.kr/click", {
+                axios.post("http://54.180.117.244:5000/click", {
                     type: 4,
                     ManagerId: id,
                     UserId: userid,
@@ -110,7 +110,7 @@ class Ddetail extends Component {
                     }).catch((err) => {
                     });
             } else {
-                axios.post("https://server.lowehair.kr/click", {
+                axios.post("http://54.180.117.244:5000/click", {
                     type: 4,
                     ManagerId: id,
                     funnel: funnel
@@ -124,7 +124,7 @@ class Ddetail extends Component {
 
     onClickCoupon = () => {
         let user_id = Number(window.localStorage.getItem("id"));
-        axios.post("https://server.lowehair.kr/createCoupon", {
+        axios.post("http://54.180.117.244:5000/createCoupon", {
             UserId: user_id,
             price: Number(this.state.coupon.couponprice),
             content: this.state.coupon.coupontext,
@@ -155,7 +155,7 @@ class Ddetail extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 5,
                 ManagerId: id,
                 UserId: userid,
@@ -166,7 +166,7 @@ class Ddetail extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 5,
                 ManagerId: id,
                 funnel: funnel,
@@ -209,7 +209,7 @@ class Ddetail extends Component {
         }
         if(1 === Number(e)){
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 UserId: userid,
@@ -221,7 +221,7 @@ class Ddetail extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 funnel: funnel,
@@ -235,7 +235,7 @@ class Ddetail extends Component {
     } else {
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 UserId: userid,
@@ -248,7 +248,7 @@ class Ddetail extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 funnel: funnel,

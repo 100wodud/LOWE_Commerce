@@ -1,15 +1,17 @@
 .SignIn_section {
     margin: auto;
-    margin-top: 118px;
     padding: 24px;
+    padding-top: 61px;
     max-width: 327px;
     width: 100%;
+    padding-bottom: 80px;
 }
 
 .signin_logo {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     width: 100%;
+    margin-top: 20px;
 }
 
 .SignIn_section input {
@@ -27,16 +29,38 @@
     font: 400 12px "Noto Sans"
 }
 
-.signin_find {
+.signin_find div{
     text-align: right;
-    margin-top: 22.5px;
-    margin-bottom: 20px;
+    margin: auto;
+    margin-top: 16px;
     color: #333333;
     line-height: -10px;
     font: 500 13px "Noto Sans";
     height: 16px;
+    padding: 0 20px;
 }
 
+.signin_find_second{
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+}
+
+
+.signin_find {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.signin_button_signin {
+    width: 327px;
+    font: 700 16px "Noto Sans";
+    line-height: 48px;
+    height: 48px;
+    background: #DDDDDD;
+    color: #ffffff;
+    margin: 0 auto;
+}
 
 .signin_button {
     width: 327px;
@@ -56,15 +80,18 @@
 }
 
 .signup_button {
-    width: 323px;
+    width: 327px;
     font: 700 16px "Noto Sans";
-    line-height: 44px;
-    height: 44px;
-    border: 2px solid #CFCFCF;
-    margin: 0 auto;
+    line-height: 48px;
+    height: 48px;
     cursor: pointer;
+    background-color: #03C75A;
 }
-
+.signup_button span {
+    float: left;
+    margin: 8px 0 0 8px;
+    color: #ffffff;
+}
 
 .signIntitle {
     margin-bottom: 12px;

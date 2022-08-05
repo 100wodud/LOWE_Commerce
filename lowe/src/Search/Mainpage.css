@@ -6,6 +6,7 @@
     height: 60px;
     top: 0;
     background-color: white;
+    border-bottom: 1px solid #DDDDDD;
   }
   
   .header_back{
@@ -31,9 +32,8 @@
 }
 
 .nonSearch_title{
-    padding: 32px 12px 40px 12px;
+    padding: 0px 12px 28px 12px;
     font: 700 14px "Noto Sans";
-    margin-top: 40px;
 }
 .nonSearch_content{
     padding-left: 12px;
@@ -47,11 +47,12 @@
     width: 32px;
     font: 700 15px "Montserrat";
     display: inline-block;
-    margin-bottom: 32px;
+    margin-bottom: 25px;
 }
 
 .nonSearch_content_text {
-    font: 500 15px "Noto Sans"
+    font: 500 15px "Noto Sans";
+    cursor: pointer;
 }
 
 .cannot_search {
@@ -77,15 +78,20 @@
     background-color: #ffffff;
     width: 100%;
     overflow: scroll;
+    padding-bottom: 80px;
+}
+.search_board_name_div{
+    margin: 32px 12px 0px 12px;
+    max-width: 375px;
+    width: 100%;
+    display: block;
 
 }
 
 .search_board_name {
-    width: 100%;
-    max-width: 375px;
-    display: block;
-    margin: 35px 12px 0px 12px;
-    font: 500 15px "Noto Sans";
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 10px;
 }
 
 .no_search {
@@ -96,9 +102,25 @@
     height: 100vh;
 }
 
-
 .no_search > img {
     margin-bottom: 20px;
+}
+.no_search_board {
+    width: 100%;
+    margin-top: 160px;
+    text-align: center;
+    padding-bottom: 115px;
+    border-bottom: 8px solid #f5f5f5;
+}
+
+.no_search_board > img {
+    margin-bottom: 20px;
+}
+
+
+.no_search_board >div >div {
+    color: #ADADAD;
+    font-family: "Noto Sans";
 }
 
 .no_search >div >div {
@@ -115,8 +137,9 @@
     padding: 0;
     margin-top: 60px;
 }
-
-
+.can_search span{
+    position: relative;
+}
 .search_filter_recent > div {
     height: 49px;
     line-height: 49px;
@@ -131,3 +154,31 @@
 }
 
 .highlight { font-weight : bold; color: #FF3D12; }
+
+.Search_main_store {
+    margin: 4px 12px 0 12px;
+}
+
+.Search_main_store span {
+    padding: 9px 12px;
+    background: #FFF4F1;
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    color:#FF3D12;
+    margin-right: 8px;
+    display: inline-block;
+    word-break: keep-all;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+.Search_recommand {
+    margin: 32px 12px 16px;
+    font: 700 14px "Noto Sans";
+}
+
+.no_search_recommand {
+    padding: 21px 12px;
+    font: 700 18px "Montserrat";
+}

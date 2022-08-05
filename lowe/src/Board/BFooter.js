@@ -21,7 +21,7 @@ class BFooter extends Component {
             funnel=''
         }
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 1,
                 BoardId: id,
                 UserId: userid,
@@ -32,7 +32,7 @@ class BFooter extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 1,
                 BoardId: id,
                 funnel:funnel

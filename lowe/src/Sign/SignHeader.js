@@ -27,7 +27,7 @@ class SignHeader extends Component {
 
     render() {
         return (
-            <header className="header2">
+            <header className="header2" style={ this.props.header &&(this.props.header === "회원정보 수정" || this.props.header === "회원가입" || this.props.header === " ") ? {borderBottom: "none" }:null}>
                 {this.props.header ?
                     <div className="header_name" >{this.props.header}</div> :
                     <div></div>
@@ -50,6 +50,12 @@ class SignHeader extends Component {
                             <div>
                                 <img className="header_back" onClick={this.gotoBack} src={process.env.PUBLIC_URL + "/image/nav/nav_back.svg"} alt="로위 로고" />
                             </div>
+                }
+                {
+                    this.props.jump ? 
+                    <div className='header_jump' onClick={this.props.gotoSubmit}>
+                        건너뛰기
+                    </div> : null
                 }
             </header>
         );

@@ -27,6 +27,7 @@ import Portfoliolist from "./Portfolio/Portfoliolist";
 import Portf from "./Portfolio/Portf";
 import Promotion3 from "./Promotion/Promotion3";
 import Reservation from "./Reservation/Reservation";
+import SocialSignin from "./Sign/SocialSignin";
 
 class App extends Component {
   constructor(props) {
@@ -73,6 +74,7 @@ class App extends Component {
           <Route path='/reservation_board/:id' component={Reservation} />
           <Route path='/reservation_surgery/:id' component={Reservation} />
           <Route path='/reservation_change/:id' component={Reservation} />
+          <Route path='/naverLogin/:id' component={SocialSignin} />
         </Switch>
       </>
     )

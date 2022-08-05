@@ -12,7 +12,7 @@ class Style extends Component {
     }
     componentDidMount = () => {
 
-        axios.post("https://server.lowehair.kr/getPortfolio", {
+        axios.post("http://54.180.117.244:5000/getPortfolio", {
             hashtag: this.props.data
         }).then((res)=>{
             this.setState({data: res.data.portfolio})
@@ -21,7 +21,6 @@ class Style extends Component {
 
 
     render() {
-        console.log(this.state.data)
         let port = [];
         let Portfolios = [];
         if(this.state.data.length){

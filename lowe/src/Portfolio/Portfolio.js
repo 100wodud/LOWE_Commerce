@@ -18,7 +18,7 @@ class Portfolio extends Component {
         let portfolio = decodeURI(window.location.pathname.split("/")[2]);
         let id = Number(window.location.pathname.split("/")[3])
         if (id) {
-            axios.post("https://server.lowehair.kr/getPortfolio", {
+            axios.post("http://54.180.117.244:5000/getPortfolio", {
                 ManagerId: id,
                 hashtag: portfolio
             }).then((res)=>{
@@ -26,7 +26,7 @@ class Portfolio extends Component {
             })
             
 
-            axios.post("https://server.lowehair.kr/getDesignerDetail", {
+            axios.post("http://54.180.117.244:5000/getDesignerDetail", {
                 id: id,
             }).then((res) => {
                 let coupon = ""
@@ -39,7 +39,7 @@ class Portfolio extends Component {
             });
 
         } else {
-            axios.post("https://server.lowehair.kr/getPortfolio", {
+            axios.post("http://54.180.117.244:5000/getPortfolio", {
                 hashtag: portfolio
             }).then((res)=>{
                 this.setState({data: res.data.portfolio})

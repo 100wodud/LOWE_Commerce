@@ -21,3 +21,13 @@
       line-height: 60px;
       text-align: center;
   }
+
+  .header_jump {
+    position: absolute;
+    right: 0;
+    font: 500 14px "Noto Sans";
+    color: #9C9C9C;
+    margin-top: -40px;
+    margin-right: 12px;
+    cursor: pointer;
+  }

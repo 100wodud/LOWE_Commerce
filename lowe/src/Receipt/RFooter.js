@@ -38,7 +38,7 @@ class RFooter extends Component {
                             </div>
                         </div>
                         <div className="Receipt_modal_button">
-                            <a href={`/${funnel}`}><div style={{ font: '400 14px "Montserrat"', lineHeight: "50px" }}>홈</div></a>
+                            <a href={`/${funnel}`}><div style={{ font: '400 14px "Montserrat"', lineHeight: "50px", borderRight: "1px solid #DDDDDD" }}>홈</div></a>
                             <a href={`/mypayments${funnel}`}><div style={{ color: "#FF3D12", font: '700 14px "Montserrat"', lineHeight: "50px" }}>예약내역</div></a>
                         </div>
                     </div>
