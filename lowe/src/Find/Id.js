@@ -39,14 +39,14 @@ class Id extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
+            axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
             })
 
             setTimeout(() => {
-                this.openmodalPhone(`인증번호가 발송되었습니다.\n카카오톡을 확인해주세요.`)
+                this.openmodalPhone(`인증번호`)
             })
         }
     }
@@ -54,7 +54,7 @@ class Id extends React.Component {
     handlefindId = () => {
         this.setState({ phonecheck_error: "" })
         if (this.state.phonecheck && this.state.random === Number(this.state.randomcheck)) {
-            axios.post("https://server.lowehair.kr/findUserLoginId", {
+            axios.post("http://54.180.117.244:5000/findUserLoginId", {
                 phone: this.state.phone,
             }).then((res) => {
                 if (res.data.data) {
@@ -64,7 +64,7 @@ class Id extends React.Component {
                 this.props.onchangeId("없음")
             })
         } else {
-            this.setState({ phonecheck_error: "x 인증번호를 확인해주세요" })
+            this.setState({ phonecheck_error: "인증번호를 확인해주세요" })
         }
     }
 

@@ -36,7 +36,7 @@ class Pwresult extends React.Component {
     updatePw = () => {
         if (this.state.password.length < 8) {
             this.setState({
-                password_error: "x 8자 이상 입력",
+                password_error: "8자 이상 입력",
             })
         } else {
             this.setState({
@@ -47,7 +47,7 @@ class Pwresult extends React.Component {
 
         if (this.state.password !== this.state.confirm) {
             this.setState({
-                confirm_error: "x 동일한 비밀번호를 입력해주세요",
+                confirm_error: "동일한 비밀번호를 입력해주세요",
             })
         } else {
             this.setState({
@@ -62,7 +62,7 @@ class Pwresult extends React.Component {
 
     sendPw = () => {
         if(!this.state.confirm_error && !this.state.password_error){
-            axios.post("https://server.lowehair.kr/updateUserPassword", {
+            axios.post("http://54.180.117.244:5000/updateUserPassword", {
                 id: this.props.data,
                 password: this.state.password
             }).then((res) => {
@@ -70,7 +70,7 @@ class Pwresult extends React.Component {
             }).catch((err)=>{
             })
         } else {
-            this.setState({phonecheck_error: "x 인증번호를 확인해주세요"})
+            this.setState({phonecheck_error: "인증번호를 확인해주세요"})
         }
     }
 

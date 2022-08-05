@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-restricted-globals */
 var CACHE_NAME = 'pwa-task-manager';
 var urlsToCache = [
@@ -5,7 +6,7 @@ var urlsToCache = [
     "./js/main.js",
     "./css/main.css",
     "./manifest.json",
-    { url: '/index.html', revision: '383682' }
+    { url: '/index.html', revision: '383689' }
 ];
 // Install a service worker
 self.addEventListener('install', event => {

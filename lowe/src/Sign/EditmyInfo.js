@@ -36,11 +36,12 @@ class EditmyInfo extends React.Component {
             agree2: false,
             modalOpen: '',
             agree3: false,
-            phonemodal: false
+            phonemodal: false,
+            naver: false
         };
     }
 
-    openmodalPhone =(e)  => {
+    openmodalPhone = (e) => {
         this.setState({ phonemodal: true, modalcomment: e });
     };
     closemodalPhone = () => {
@@ -48,38 +49,43 @@ class EditmyInfo extends React.Component {
     };
 
     componentDidMount = () => {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         let id = window.localStorage.getItem("id");
-        if(id){
-        axios.post("https://server.lowehair.kr/getOneUser", {
-            id: id,
-        })
-            .then((res) => {
-                let birth = res.data[0].birthday.slice(0, 10).replaceAll("-","")
-                document.getElementById("ename").value = res.data[0].name;
-                document.getElementById("elogin_id").value = res.data[0].login_id;
-                document.getElementById("ephone").value = res.data[0].phone;
-                document.getElementById("ebirthday").value = birth;
-                document.getElementById("eemail").value = res.data[0].email;
-                this.setState({ 
-                    name: res.data[0].name,
-                    login_id: res.data[0].login_id,
-                    phone: res.data[0].phone,
-                    birthday: birth,
-                    gender: res.data[0].gender,
-                    email: res.data[0].email,
-                    agree3: res.data[0].agree
-                })
+        if (id) {
+            axios.post("http://54.180.117.244:5000/getOneUser", {
+                id: id,
+            })
+                .then((res) => {
+                    let birth = ""
+                    let gender = res.data[0].gender
+                    if(res.data[0].birthday.slice(0, 4) !== "0000"){
+                        birth =res.data[0].birthday.slice(0, 10).replaceAll("-", "")
+                        document.getElementById("ebirthday").value = birth;
+                    }
+                    document.getElementById("ename").value = res.data[0].name;
+                    document.getElementById("elogin_id").value = res.data[0].login_id;
+                    document.getElementById("ephone").value = res.data[0].phone;
+                    document.getElementById("eemail").value = res.data[0].email;
+                    this.setState({
+                        name: res.data[0].name,
+                        login_id: res.data[0].login_id,
+                        phone: res.data[0].phone,
+                        birthday: birth,
+                        gender: gender,
+                        email: res.data[0].email,
+                        agree3: res.data[0].agree,
+                        naver: res.data[0].naver
+                    })
 
-            })
-            .catch(err => {
-                console.log("에러")
-            })
+                })
+                .catch(err => {
+                    console.log("에러")
+                })
         } else {
             window.location.href = `/signin${funnel}`
         }
@@ -95,8 +101,8 @@ class EditmyInfo extends React.Component {
 
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
-        if(key === "phone"){
-            this.setState({phonecheck: false, phone_error: ""})
+        if (key === "phone") {
+            this.setState({ phonecheck: false, phone_error: "" })
         }
     };
 
@@ -116,7 +122,7 @@ class EditmyInfo extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
+            axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -140,7 +146,7 @@ class EditmyInfo extends React.Component {
             })
         }
 
-        if (this.state.birthday.length !== 8) {
+        if (this.state.birthday.length !== 8 && !this.state.naver) {
             this.setState({
                 birth_error: "생년월일을 확인해 주세요",
                 status: false
@@ -164,7 +170,7 @@ class EditmyInfo extends React.Component {
 
         }
 
-        if (!this.state.email ||this.state.email.length < 3 || this.state.email.indexOf("@") < 1) {
+        if (!this.state.email || this.state.email.length < 3 || this.state.email.indexOf("@") < 1) {
             this.setState({
                 email_error: "올바른 이메일 형식이 아닙니다. 입력한 메일을 확인해 주세요",
                 status: false
@@ -178,7 +184,7 @@ class EditmyInfo extends React.Component {
 
         if (this.state.random !== Number(this.state.randomcheck)) {
             this.setState({
-                phonecheck_error: "x 인증번호를 확인해주세요.",
+                phonecheck_error: "인증번호를 확인해주세요.",
                 status: false
             })
         } else {
@@ -187,9 +193,9 @@ class EditmyInfo extends React.Component {
             })
         }
 
-        if (this.state.password.length < 8) {
+        if (this.state.password.length < 8 && !this.state.naver) {
             this.setState({
-                password_error: "x 8자 이상 입력",
+                password_error: "8자 이상 입력",
                 status: false
             })
         } else {
@@ -201,7 +207,7 @@ class EditmyInfo extends React.Component {
 
         if (this.state.newpassword.length < 8 && this.state.newpassword) {
             this.setState({
-                newpassword_error: "x 8자 이상 입력",
+                newpassword_error: "8자 이상 입력",
                 status: false
             })
         } else {
@@ -213,7 +219,7 @@ class EditmyInfo extends React.Component {
 
         if (this.state.newpassword !== this.state.confirm) {
             this.setState({
-                confirm_error: "x 동일한 비밀번호를 입력해주세요",
+                confirm_error: "동일한 비밀번호를 입력해주세요",
                 status: false
             })
         } else {
@@ -230,8 +236,7 @@ class EditmyInfo extends React.Component {
 
     sendSignup = () => {
         if (this.state.status && this.state.phonecheck && this.state.agree1 && this.state.agree2) {
-            axios.post("https://server.lowehair.kr/updateUserInfo", {
-                id: window.localStorage.getItem("id"),
+            axios.patch(`http://54.180.117.244:5000/user/${window.localStorage.getItem("id")}`, {
                 name: this.state.name,
                 login_id: this.state.login_id,
                 password: this.state.password,
@@ -242,9 +247,9 @@ class EditmyInfo extends React.Component {
                 agree: this.state.agree3,
                 email: this.state.email
             }).then((res) => {
-                    setTimeout(() => {
-                        this.openmodalPhone(`회원정보가 수정되었습니다`)
-                    })
+                setTimeout(() => {
+                    this.openmodalPhone(`회원정보가 수정되었습니다`)
+                })
             }).catch(err => {
                 this.setState({
                     password_error: "비밀번호를 확인해 주세요",
@@ -253,7 +258,7 @@ class EditmyInfo extends React.Component {
                     this.openmodalPhone(`잘못 입력한 항목이 있습니다.\n다시 입력해 주세요`)
                 })
             })
-        }else {
+        } else {
             setTimeout(() => {
                 this.openmodalPhone(`잘못 입력한 항목이 있습니다.\n다시 입력해 주세요`)
             })
@@ -295,38 +300,42 @@ class EditmyInfo extends React.Component {
                                 <div className="signup_error"></div>
                         }
                     </div>
-                    <div>
-                        <div className="signUptitle">아이디</div>
-                        <input id="elogin_id" className="signUpinfo"  type="text" placeholder="예 : lowe1234" onChange={this.handleInputValue("login_id")} onInput={this.handleOnInput()} disabled />
-                        <div className="signup_error"></div>
-                    </div>
-                    <div>
-                        <div className="signUptitle">비밀번호</div>
-                        <input className="signUpinfo" type="password" placeholder="비밀번호를 입력해주세요" onChange={this.handleInputValue("password")} />
-                        {
-                            this.state.password_error ?
-                                <div className="signup_error">{this.state.password_error}</div> :
+                    {this.state.naver ? null :
+                        <>
+                            <div>
+                                <div className="signUptitle">아이디</div>
+                                <input id="elogin_id" className="signUpinfo" type="text" placeholder="예 : lowe1234" onChange={this.handleInputValue("login_id")} onInput={this.handleOnInput()} disabled />
                                 <div className="signup_error"></div>
-                        }
-                    </div>
-                    <div>
-                        <div className="signUptitle">새 비밀번호</div>
-                        <input className="signUpinfo" type="password" placeholder="비밀번호를 한번 더 입력해주세요" onChange={this.handleInputValue("newpassword")} />
-                        {
-                            this.state.newpassword_error ?
-                                <div className="signup_error">{this.state.newpassword_error}</div> :
-                                <div className="signup_error"></div>
-                        }
-                    </div>
-                    <div>
-                        <div className="signUptitle">새 비밀번호 확인</div>
-                        <input className="signUpinfo" type="password" placeholder="비밀번호를 한번 더 입력해주세요" onChange={this.handleInputValue("confirm")} />
-                        {
-                            this.state.confirm_error ?
-                                <div className="signup_error">{this.state.confirm_error}</div> :
-                                <div className="signup_error"></div>
-                        }
-                    </div>
+                            </div>
+                            <div>
+                                <div className="signUptitle">비밀번호</div>
+                                <input className="signUpinfo" type="password" placeholder="비밀번호를 입력해주세요" onChange={this.handleInputValue("password")} />
+                                {
+                                    this.state.password_error ?
+                                        <div className="signup_error">{this.state.password_error}</div> :
+                                        <div className="signup_error"></div>
+                                }
+                            </div>
+                            <div>
+                                <div className="signUptitle">새 비밀번호</div>
+                                <input className="signUpinfo" type="password" placeholder="비밀번호를 한번 더 입력해주세요" onChange={this.handleInputValue("newpassword")} />
+                                {
+                                    this.state.newpassword_error ?
+                                        <div className="signup_error">{this.state.newpassword_error}</div> :
+                                        <div className="signup_error"></div>
+                                }
+                            </div>
+                            <div>
+                                <div className="signUptitle">새 비밀번호 확인</div>
+                                <input className="signUpinfo" type="password" placeholder="비밀번호를 한번 더 입력해주세요" onChange={this.handleInputValue("confirm")} />
+                                {
+                                    this.state.confirm_error ?
+                                        <div className="signup_error">{this.state.confirm_error}</div> :
+                                        <div className="signup_error"></div>
+                                }
+                            </div>
+                        </>
+                    }
                     <div>
                         <div className="signUptitle">이메일</div>
                         <input id="eemail" className="signUpinfo" type="text" placeholder="예 : lowe@lowe.com" onChange={this.handleInputValue("email")} onInput={this.handleOnInput4()} />
@@ -338,7 +347,7 @@ class EditmyInfo extends React.Component {
                     </div>
                     <div>
                         <div className="signUptitle">휴대폰 번호</div>
-                        <input id="ephone" className="signUpinfo" type="text" style={{ maxWidth: "197px", width: "65%" }} placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("phone")}  onInput={this.handleOnInput3()} />
+                        <input id="ephone" className="signUpinfo" type="text" style={{ maxWidth: "197px", width: "65%" }} placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("phone")} onInput={this.handleOnInput3()} />
                         <button className="signUpcheckid" style={{ width: "113px" }} onClick={this.checksignupPhone}>인증번호 받기</button>
                         {
                             this.state.phone_error ?
@@ -348,7 +357,7 @@ class EditmyInfo extends React.Component {
                     </div>
                     {this.state.random ?
                         <div>
-                            <div className="signUptitle">휴대폰 번호 인증</div>
+                            <div className="signUptitle">인증번호</div>
                             <input className="signUpinfo" type="number" placeholder="숫자만 입력해주세요" onChange={this.handleInputValue("randomcheck")} />
                             {
                                 this.state.phonecheck_error ?
@@ -366,24 +375,28 @@ class EditmyInfo extends React.Component {
                                 <div className="signup_error"></div>
                         }
                     </div>
+                    {this.state.naver ? null :
                     <div>
                         <div className="signUptitle">성별</div>
-                        <span className="signUpinfo_radio">
-                            <input name="gender" type="radio" id="gender1" value="1" checked={this.state.gender === 1 ? true : false} readOnly disabled />
-                            <label htmlFor="gender1" className="signUp_radio">남자</label>
+                        <span className="signUpinfo_radio" style={{display: "none"}}>
+                            <input name="gender" type="radio" id="gender0" value="0" checked={this.state.gender === 0 ? true : false} readOnly disabled />
+                            <label htmlFor="gender0" className="signUp_radio">남자</label>
                         </span>
-
                         <span className="signUpinfo_radio">
                             <input name="gender" type="radio" id="gender2" value="2" checked={this.state.gender === 2 ? true : false} readOnly disabled />
                             <label htmlFor="gender2" className="signUp_radio">여자</label>
                         </span>
-
+                        <span className="signUpinfo_radio">
+                            <input name="gender" type="radio" id="gender1" value="1" checked={this.state.gender === 1 ? true : false} readOnly disabled />
+                            <label htmlFor="gender1" className="signUp_radio">남자</label>
+                        </span>
                         {
                             this.state.gender_error ?
                                 <div className="signup_error">{this.state.gender_error}</div> :
                                 <div className="signup_error"></div>
                         }
                     </div>
+                    }
                     <div>
                         <div >
                             <input className="signup_agree" name="agree" id="agree1" type="checkbox" value="1" onClick={() => { this.setState({ agree1: !this.state.agree1 }) }} />
@@ -398,8 +411,8 @@ class EditmyInfo extends React.Component {
                             <label htmlFor="agree3" className="signup_agree_text"><span onClick={this.openmodal(2)} className="signup_agree_text" style={{ fontWeight: "700" }}>마케팅 활용</span>에 동의합니다(선택)</label>
                         </div>
                     </div>
-                    <div style={{textAlign: "right", marginBottom: "20px", marginTop: "40px"}}>
-                        <span><a href="/withdrawal" style={{font: "700 14px Noto Sans", marginRight: "2px"}}>회원탈퇴</a></span><span><img src={process.env.PUBLIC_URL + "/image/nav/next_arrow.svg"} alt="다음" /></span>
+                    <div style={{ textAlign: "right", marginBottom: "20px", marginTop: "40px" }}>
+                        <span><a href="/withdrawal" style={{ font: "700 14px Noto Sans", marginRight: "2px" }}>회원탈퇴</a></span><span><img src={process.env.PUBLIC_URL + "/image/nav/next_arrow.svg"} alt="다음" /></span>
                     </div>
                     <div className="signin_buttonbox">
                         <div className="signin_button" style={{ height: "60px", lineHeight: "60px" }} onClick={this.handleSignUp}> 회원정보 수정 </div>

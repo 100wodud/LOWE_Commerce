@@ -118,7 +118,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 UserId: userid,
@@ -132,7 +132,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 SurgeryId: Number(e.id),
@@ -164,7 +164,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 8,
                 ManagerId: id,
                 UserId: userid,
@@ -177,7 +177,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 8,
                 ManagerId: id,
                 SurgeryId: Number(e.id),
@@ -209,7 +209,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 UserId: userid,
@@ -222,7 +222,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 BoardId: Number(e),

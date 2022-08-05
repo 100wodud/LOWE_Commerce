@@ -27,7 +27,7 @@ class ModalFilter extends React.Component {
                             <span><img src={process.env.PUBLIC_URL + "/image/nav/reset.svg"} alt="리셋버튼" /></span>
                         </div>
                         <div className="Designer_category">
-                            <div className="Designer_category_title">지역</div>
+                            <div className="Designer_category_title">지점</div>
                             <div className="Designer_categorylist">
                                 {location.map((e, i) => (
                                     <span key={i} onClick={this.props.onclicklocation(e)} className={(this.props.location === e ? "category_select" : "category_nonselect")}>{e}</span>

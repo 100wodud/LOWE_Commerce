@@ -62,9 +62,9 @@ class Filter extends Component {
     render() {
         return (
             <div className="Board_third_filter" id="scroll">
-                <a className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)} href="#goods">상품설명</a>
-                <a className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)} href="#review">리뷰({this.props.data.board.Reviews.length})</a>
-                <a className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)} href="#location">매장 위치</a>
+                <a className={(this.state.list === 1 ? "push_button" : 'pull_button')} onClick={this.onclickList(1)} href={`${window.location.pathname}#goods`}>상품설명</a>
+                <a className={(this.state.list === 2 ? "push_button" : 'pull_button')} onClick={this.onclickList(2)} href={`${window.location.pathname}#review`}>리뷰({this.props.data.board.Reviews.length})</a>
+                <a className={(this.state.list === 3 ? "push_button" : 'pull_button')} onClick={this.onclickList(3)} href={`${window.location.pathname}#location`}>매장 위치</a>
             </div> 
         )
     }

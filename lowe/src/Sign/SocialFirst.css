@@ -1,0 +1,63 @@
+
+.Social_First_section {
+    background-position: center;
+    margin-top: 10px;
+}
+.Social_First_section > div {
+    width: 100%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.Social_First_title {
+    font: 700 16px "Noto Sans";
+    margin-bottom: 20px;
+    float: left;
+}
+
+.Social_First_span {
+    float: left;
+    margin-right: 8px;
+    font: 400 14px "Noto Sans"
+}
+
+.Pagreeall img {
+    margin-top: 5px;
+}
+
+.Pagree img {
+    margin-top: 3px;
+}
+
+.Social_First_caution li {
+    font: 400 13px "Noto Sans";
+    list-style: none;
+    margin-left: 6px;
+}
+
+.Social_First_caution li span {
+    font: 400 13px "Noto Sans";
+    color: #FF3D12;
+}
+
+.Social_First_li {
+    margin-top: 8px;
+}
+.Social_First_li:first-child {
+    margin-top: 0;
+}
+.Social_First_li::before {
+    margin-left: 14px;
+}
+
+.Social_First_li_margin::before {
+    margin-left: 27px;
+}
+
+.Social_First_caution li::before {
+    content: "•";
+    color: #9C9C9C;
+    display: inline-block;
+    width: 11px;
+    font-size: 14px;
+}

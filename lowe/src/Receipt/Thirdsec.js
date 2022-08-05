@@ -10,7 +10,6 @@ class Thirdsec extends Component {
 
 
     render() {
-        console.log(this.props.payment)
         return (
             <section className="Payment_fifth_section">
                 {

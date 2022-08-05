@@ -16,7 +16,7 @@ class Firstsec extends Component {
         if (recent) {
             let arr = [];
             for (let i = 0; i < recent.length; i++) {
-                await axios.post("https://server.lowehair.kr/getBoardDetail", {
+                await axios.post("http://54.180.117.244:5000/getBoardDetail", {
                     id: recent[i],
                 })
                     .then((res) => {
@@ -49,7 +49,8 @@ class Firstsec extends Component {
                         <div className="goods_list">
                             {
                                 this.state.Showgoods.map((e) => (
-                                    <Goodslist e={e} key={e.id} />
+                                    e.open === "1" ?
+                                    <Goodslist e={e} key={e.id} /> : null
                                 ))
                             }
                         </div> :

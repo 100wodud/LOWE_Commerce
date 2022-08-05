@@ -37,7 +37,7 @@ class Mypage extends Component {
         }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("https://server.lowehair.kr/getOneUser", {
+            axios.post("http://54.180.117.244:5000/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -47,7 +47,7 @@ class Mypage extends Component {
                     console.log("에러")
                 })
 
-            axios.post("https://server.lowehair.kr/getPayment", {
+            axios.post("http://54.180.117.244:5000/getPayment", {
                 UserId: Number(id),
             })
                 .then((res) => {
@@ -92,7 +92,7 @@ class Mypage extends Component {
                 <section>
                     {data ?
                         <>
-                            <div className="login_id">{data.login_id}님</div>
+                            <div className="login_id">{data.login_id ? data.login_id : data.name}님</div>
                             <div className="mypage-filter">
                                 <a href={`/mycoupons${funnel}`}>
                                     <img style={{ margin: "8px 0px" }} src={process.env.PUBLIC_URL + "/image/nav/mypage_coupon.svg"} alt="로위 쿠폰" />

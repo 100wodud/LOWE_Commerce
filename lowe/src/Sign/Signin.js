@@ -33,7 +33,7 @@ class Signin extends React.Component {
     handleSignIn = () => {
         this.setState({ error: "" });
         if (this.state.login_id.length > 1) {
-            axios.post("https://server.lowehair.kr/loginIdCheck", {
+            axios.post("http://54.180.117.244:5000/loginIdCheck", {
                 login_id: this.state.login_id,
             }).then((res) => {
                 if (res.data.status === "false") {
@@ -53,7 +53,7 @@ class Signin extends React.Component {
             })
         }
 
-        axios.post("https://server.lowehair.kr/loginUser", {
+        axios.post("http://54.180.117.244:5000/loginUser", {
             login_id: this.state.login_id,
             password: this.state.password,
         })
@@ -70,6 +70,21 @@ class Signin extends React.Component {
             })
     }
 
+    onClickNaver = () => {
+        let host = "http://54.180.117.244:5000/"
+        //     let type = '/test';
+        //     let client_id = 'L1LG3ZXKVBWzG4K_xg96';
+        //     const redirect_uri = host + 'oauth/naver' + type;;
+        //     if (type === '/local') client_id = 'VDCjWganBityopCwtNRR';
+        //     if (type === '/test') client_id = '6qt2bUAEaty7WfFiqDPW';
+        //     const state = 'lowehair_naver_state';
+        //     window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
+        const redirect_uri = host + '/oauth/naver';
+        const client_id = 'L1LG3ZXKVBWzG4K_xg96';
+        const state = 'lowehair_naver_state';
+        window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
+    }
+
     render() {
         let funnel ="";
         if(window.location.href.split("?")[1]){
@@ -83,12 +98,12 @@ class Signin extends React.Component {
                 <section className="SignIn_section">
                     <div className="signin_logo" >
                         <a href={`/${funnel}`} className="signin_logo" >
-                            <img src={process.env.PUBLIC_URL + "/image/nav/header_logo.svg"} alt="로위 로고" />
+                            <img src={process.env.PUBLIC_URL + "/image/nav/signin_logo.svg"} alt="로위 로고" />
                         </a>
                     </div>
                     <div>
                         <div className="signIntitle">아이디</div>
-                        <input className="signUpinfo" onKeyPress={this.onclickEnter} type="text" placeholder="예 : lowe1234" onChange={this.handleInputValue("login_id")} />
+                        <input className="signUpinfo" onKeyPress={this.onclickEnter} type="text" placeholder="아이디를 입력해주세요" onChange={this.handleInputValue("login_id")} />
                         {
                             this.state.id_error ?
                                 <div className="signin_error">{this.state.id_error}</div> :
@@ -100,18 +115,26 @@ class Signin extends React.Component {
                         <input className="signUpinfo" onKeyPress={this.onclickEnter} type="password" placeholder="비밀번호를 입력해주세요" onChange={this.handleInputValue("password")} />
                         {
                             this.state.error ?
-                                <div className="signin_error">{this.state.error}</div> :
-                                <div className="signin_error"></div>
+                                <div className="signin_error" style={{paddingBottom: "20px"}}>{this.state.error}</div> :
+                                <div className="signin_error" style={{paddingBottom: "20px"}}></div>
                         }
                     </div>
-                    <div>
-                        <div className="signin_find"><a href={`/findmyid${funnel}`}>아이디 / 비밀번호 찾기 </a><span><img src={process.env.PUBLIC_URL + "/image/nav/next_arrow.svg"} alt="다음" /></span></div>
+                    <div className="signin_buttonbox">
+                        <div className={this.state.login_id && this.state.password ?"signin_button" : "signin_button_signin"} onClick={this.state.login_id && this.state.password ?this.handleSignIn : null}>로그인</div>
                     </div>
                     <div className="signin_buttonbox">
-                        <div className="signin_button" onClick={this.handleSignIn}>로그인</div>
+                        <div className="signup_button" onClick={this.onClickNaver}><span><img style={{position: "absolute"}} src={process.env.PUBLIC_URL + "/image/nav/sign_up.svg"} alt="네이버 소셜로그인" /></span><span style={{float: "none", margin: "0"}}>네이버로 로그인</span></div>
                     </div>
-                    <div className="signin_buttonbox">
-                        <div className="signup_button"><a href={`/signup${funnel}`}>회원가입</a></div>
+                    <div className="signin_find">
+                        <div>
+                            <a href={`/findmyid${funnel}`}>아이디 찾기 </a>
+                        </div>
+                        <div className="signin_find_second">
+                            <a href={`/findmyid#pw${funnel}`}>비밀번호 찾기 </a>
+                        </div>
+                        <div >
+                            <a href={`/signup${funnel}`}>회원가입</a>
+                        </div>
                     </div>
                 </section>
             </>

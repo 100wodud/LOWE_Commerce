@@ -13,7 +13,7 @@ class ModalContent extends Component {
 
     componentDidMount = () => {
         if (typeof (this.props.data.UserId) === "number") {
-            axios.post("https://server.lowehair.kr/getOneUser", {
+            axios.post("http://54.180.117.244:5000/getOneUser", {
                 id: this.props.data.UserId,
             })
                 .then((res) => {

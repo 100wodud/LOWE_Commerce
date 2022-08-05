@@ -25,7 +25,7 @@ class ReviewList extends Component {
         }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("https://server.lowehair.kr/getOneUser", {
+            axios.post("http://54.180.117.244:5000/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -35,7 +35,7 @@ class ReviewList extends Component {
                     console.log("에러")
                 })
 
-            axios.post("https://server.lowehair.kr/getPayment", {
+            axios.post("http://54.180.117.244:5000/getPayment", {
                 UserId: Number(id),
             })
                 .then((res) => {
@@ -65,7 +65,6 @@ class ReviewList extends Component {
 
     render() {
         let data = this.state.data
-        console.log(data)
         return (
             <>
                 <Header header="리뷰" />

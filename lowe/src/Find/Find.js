@@ -15,6 +15,14 @@ class Find extends React.Component {
             result: "",
         };
     }
+
+    componentDidMount = () => {
+        let route = window.location.href.split("#")[1];
+        if(route === "pw"){
+            this.setState({ list: 2 })
+        }
+    }
+
     onclickList = (e) => () => {
         this.setState({ list: e })
     }
