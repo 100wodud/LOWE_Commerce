@@ -35,7 +35,6 @@
 
 .Recent_total_list {
     margin-bottom: 30px;
-    padding-left: 12px;
 }
 
 .mypage_nolike > div a {
@@ -66,8 +65,28 @@
 }
 
 .Recent_total_slide > span {
-    margin-right: 8px;
+    margin-left: 8px;
 }
+.Recent_total_slide > span:first-child {
+    margin-left: 12px;
+}
+
+.Recent_total_slide > span:last-child {
+    margin-right: 12px;
+}
+
+
+.Recent_total_slide > div {
+    margin-left: 8px;
+}
+.Recent_total_slide > div:first-child {
+    margin-left: 12px;
+}
+
+.Recent_total_slide > div:last-child {
+    margin-right: 12px;
+}
+
 
 .Recent_total_slide div {
     padding-left: 0px;

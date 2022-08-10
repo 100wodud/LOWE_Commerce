@@ -34,7 +34,7 @@ class DMain extends Component {
                                     "item": `${itemid}`,
                                     "bookingBusinessId": `${bookingid}`,
                                     "page": 1,
-                                    "display": 100,
+                                    "display": 50,
                                     "isPhotoUsed": false,
                                     "includeContent": true,
                                     "getAuthorInfo": true,

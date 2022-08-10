@@ -65,9 +65,9 @@ const Store = [
         store: "이수역점",
         address: "서초구 방배동 1715 이수파이브(ISUFIVE), 3층",
         location: ["이수역 5번 출구 도보 30초"],
-        map: "/image/store/gangnam.png",
+        map: "/image/store/isu.png",
         profile: "https://lo-we.kr/reservation/lowe_shinchon_p",
-        mapurl: "https://map.kakao.com/?itemId=1044276392",
+        mapurl: "https://map.kakao.com/?itemId=1961080566",
         private: ["/image/store/gangnam/0.jpg", "/image/store/gangnam/1.jpg","/image/store/gangnam/2.jpg"],
         phone: "-",
         number: "1772319921"

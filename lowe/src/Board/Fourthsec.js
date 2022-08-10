@@ -14,7 +14,7 @@ class Fourthsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://54.180.117.244:5000/getBoardRelation", {
+        axios.post("https://server.lowehair.kr/getBoardRelation", {
             category: this.props.data.board.category,
             gender: this.props.data.board.gender,
             length: this.props.data.board.length,

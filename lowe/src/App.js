@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Route, Switch, withRouter} from "react-router-dom";
+import moment from 'moment';
 import Home from "./Home/Home";
 import Signup from "./Sign/Signup";
 import Signin from "./Sign/Signin";
@@ -28,20 +29,46 @@ import Portf from "./Portfolio/Portf";
 import Promotion3 from "./Promotion/Promotion3";
 import Reservation from "./Reservation/Reservation";
 import SocialSignin from "./Sign/SocialSignin";
+import Mainpage from "./Mainpage/Mainpage";
+import Popup from "./Nav/Popup";
+import MainSytle from "./Home/MainStyle";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-  
+      popup: false
     };
+  }
+
+  componentDidMount = () => {
+    let lasttime =  window.localStorage.getItem("popup");
+    let path = window.location.pathname.split('/')[1]
+    let between = 2;
+    if (lasttime) {
+      between = moment(new Date(lasttime).setHours(0,0,0,0)).diff(moment(new Date().setHours(0,0,0,0)), 'days')
+    }
+    if(between > 0 && (path === "" || path=== "designer" || path === "board")){
+      this.setState({popup: true})
+    }
+
+  }
+  
+  popupClose = () =>{
+    this.setState({popup: false})
+    let date = new Date()
+    localStorage.setItem("popup", date);
+  }
+
+  closePopup = () =>{
+    this.setState({popup: false})
   }
 
   render() {
     return (
       <>
         <span id="header_trigger"></span>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Mainpage} />
         <Switch>
           <Route path='/signin' component={Signin} />
           <Route path='/signup' component={Signup} />
@@ -70,12 +97,18 @@ class App extends Component {
           <Route path='/portfolios/:id' component={Portfolio} />
           <Route path='/portfoliolist/:id' component={Portfoliolist} />
           <Route path='/portfolio/:id' component={Portf} />
+          <Route path='/styles/:id' component={MainSytle} />
           <Route path='/event_review01' component={Promotion3} />
           <Route path='/reservation_board/:id' component={Reservation} />
           <Route path='/reservation_surgery/:id' component={Reservation} />
           <Route path='/reservation_change/:id' component={Reservation} />
           <Route path='/naverLogin/:id' component={SocialSignin} />
+          <Route path='/category/:id' component={Home} />
         </Switch>
+        {
+          this.state.popup ?
+          <Popup dayclose={this.popupClose} close={this.closePopup}/> : null
+        }
       </>
     )
   }

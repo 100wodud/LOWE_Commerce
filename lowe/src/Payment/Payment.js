@@ -40,7 +40,7 @@ class Payment extends Component {
         let path = window.location.pathname.split("/")[1];
         if (path === "payment") {
             let res_date = decodeURI(window.location.pathname.split("/")[3]);
-            axios.post("http://54.180.117.244:5000/getBoardDetail", {
+            axios.post("https://server.lowehair.kr/getBoardDetail", {
                 id: id,
             }).then((res) => {
                 this.setState({ data: res.data, reservation: res_date });
@@ -50,7 +50,7 @@ class Payment extends Component {
         } else if (path === "surgery") {
             let res_date = decodeURI(window.location.pathname.split("/")[3]);
             let data = {}
-            axios.get(`http://54.180.117.244:5000/surgery?id=${id}`, {
+            axios.get(`https://server.lowehair.kr/surgery?id=${id}`, {
             }).then((res) => {
                 data = {
                     board: {
@@ -74,7 +74,7 @@ class Payment extends Component {
 
         let user = window.localStorage.getItem("id");
         if (user) {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: user
             })
                 .then((res) => {
@@ -112,7 +112,7 @@ class Payment extends Component {
                 const formData = new FormData();
                 formData.append("file", img);
                 await axios
-                    .post("http://54.180.117.244:5000/addImg", formData, {
+                    .post("https://server.lowehair.kr/addImg", formData, {
                         headers: {
                             "content-type": "multipart/form-data",
                         },
@@ -214,7 +214,7 @@ class Payment extends Component {
             // const data2 = { user_request: 'input text' };
             const dataString2 = JSON.stringify(define2);
             const replaceData2 = dataString2.replaceAll('"', '&quot;');
-            axios.post('http://54.180.117.244:5000/payAuth')
+            axios.post('https://server.lowehair.kr/payAuth')
                 .then((response) => {
                     if (response.status === 200) {
                         e.preventDefault();
@@ -233,7 +233,7 @@ class Payment extends Component {
                         //
                         obj.PCD_PAY_GOODS = this.state.data.board.name;
                         obj.PCD_PAY_TOTAL = price; //board.price;
-                        obj.PCD_RST_URL = `http://54.180.117.244:5000/payment_result`;
+                        obj.PCD_RST_URL = `https://server.lowehair.kr/payment_result`;
                         obj.PCD_PAYER_NO = this.state.user.id;
                         obj.PCD_PAYER_NAME = this.state.user.name; //user.name
                         obj.PCD_PAYER_EMAIL = this.state.user.email; //user.email

@@ -14,7 +14,7 @@ class Review extends Component {
 
     componentDidMount = () => {
         if (this.props.data.BoardId !== 122) {
-            axios.post("http://54.180.117.244:5000/getBoardDetail", {
+            axios.post("https://server.lowehair.kr/getBoardDetail", {
                 id: this.props.data.BoardId,
             })
                 .then((res) => {

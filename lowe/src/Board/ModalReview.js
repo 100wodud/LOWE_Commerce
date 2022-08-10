@@ -54,7 +54,7 @@ class ModalReview extends React.Component {
                             <Slider {...setting} ref={slider => (this.slider = slider)}>
                                 {
                                     this.props.data.map((e, i) => (
-                                        <ModalContent key={e.id} data={e} />
+                                        <ModalContent key={e.id} data={e} mainpage={this.props.mainpage}  />
                                     ))
                                 }
                             </Slider>

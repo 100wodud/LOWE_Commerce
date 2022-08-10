@@ -15,7 +15,7 @@ class Goodslist extends Component {
     let id = this.props.e.id;
     let user = window.localStorage.getItem("id");
     if (id && user) {
-      axios.post("http://54.180.117.244:5000/boardLikeChk", {
+      axios.post("https://server.lowehair.kr/boardLikeChk", {
         user: user,
         id: id,
       })
@@ -39,7 +39,7 @@ class Goodslist extends Component {
       like = 0;
     }
     if (id && user) {
-      await axios.post("http://54.180.117.244:5000/boardLikeUpdate", {
+      await axios.post("https://server.lowehair.kr/boardLikeUpdate", {
         id: id,
         user: user,
         heart: like

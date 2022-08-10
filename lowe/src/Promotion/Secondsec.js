@@ -16,7 +16,7 @@ class Secondsec extends Component {
         let board = [23,26,62,51,53,69,70,80,78,11]
 
         for(let i=0; i < board.length; i++){
-            axios.post("http://54.180.117.244:5000/getBoardDetail", {
+            axios.post("https://server.lowehair.kr/getBoardDetail", {
                 id: board[i],
             })
                 .then((res) => {

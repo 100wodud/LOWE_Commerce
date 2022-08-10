@@ -1,0 +1,62 @@
+.Mainpage_first_section img {
+    height:53.333vw;
+    max-height: 228px;
+    width: 100% ;
+}
+.Mainpage_first_section {
+    background-position: center;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.banner_img {
+    height:53.333vw;
+    max-height: 228px;
+    max-width: 428px ;
+    outline: none;
+}
+
+.Mainpage_first_section .slick-slider div {
+    height:53.333vw;
+    max-height: 228px;
+}
+
+
+.Mainpage_first_number {
+    position: absolute;
+    width: 44px;
+    height: 20px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    transform: translate(840%, 950%);
+    text-align: center;
+    font: 700 11px "Montserrat";
+    color: #000000;
+    line-height: 20px;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    z-index: 2;
+}
+
+.Mainpage_first_number > span{
+    font-weight: 500;
+}
+
+
+@media screen and (max-width:  428px) {
+
+    .Mainpage_first_number {
+        transform: translate(0, 950%);
+        right: 10px;
+    }
+}
+
+
+@media screen and (max-width:  400px) {
+
+    .Mainpage_first_number {
+        transform: translate(0, 820%);
+        right: 10px;
+    }
+}

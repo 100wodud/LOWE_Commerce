@@ -20,7 +20,7 @@ class Secondsec extends Component {
         let id = this.props.data.board.id;
         let user = Number(window.localStorage.getItem("id"));
         if (id && user) {
-            axios.post("http://54.180.117.244:5000/boardLikeChk", {
+            axios.post("https://server.lowehair.kr/boardLikeChk", {
                 user: user,
                 id: id,
             })
@@ -34,7 +34,7 @@ class Secondsec extends Component {
         }
 
 
-        axios.post("http://54.180.117.244:5000/getAllBanner", {})
+        axios.post("https://server.lowehair.kr/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {
@@ -64,7 +64,7 @@ class Secondsec extends Component {
             like = 0;
         }
         if (id && user) {
-            await axios.post("http://54.180.117.244:5000/boardLikeUpdate", {
+            await axios.post("https://server.lowehair.kr/boardLikeUpdate", {
                 id: id,
                 user: user,
                 heart: like
@@ -101,7 +101,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("http://54.180.117.244:5000/click", {
+            axios.post("https://server.lowehair.kr/click", {
                 type: 7,
                 BoardId: id,
                 ManagerId: this.props.data.board.ManagerId,
@@ -114,7 +114,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("http://54.180.117.244:5000/click", {
+            axios.post("https://server.lowehair.kr/click", {
                 type: 7,
                 BoardId: id,
                 ManagerId: this.props.data.board.ManagerId,

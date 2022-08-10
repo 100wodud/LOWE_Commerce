@@ -30,7 +30,7 @@ class Designer extends React.Component {
             localStorage.setItem("designer_list", JSON.stringify([]));
         }
         this.setState({ data: designer, showdata: designer })
-        axios.post("http://54.180.117.244:5000/getDesignerList", {
+        axios.post("https://server.lowehair.kr/getDesignerList", {
         }).then((res) => {
             let arr = []
             for (let i = 0; i < res.data.length; i++) {
@@ -57,7 +57,7 @@ class Designer extends React.Component {
     }
 
     onclicklocation = (e) => () => {
-        const location = ["강남", "신촌", "합정", "홍대입구", "L7홍대"]
+        const location = ["전체", "강남", "신촌", "합정", "홍대입구역", "L7홍대", "이수역"]
         let filters = this.state.filterList;
         let filterList = filters.filter((element, index) => {
             return location.indexOf(element) === -1;
@@ -67,7 +67,7 @@ class Designer extends React.Component {
     }
 
     onclickcategory = (e) => () => {
-        const category = ["컷", "펌", "염색", "붙임머리", "클리닉"];
+        const category = ["컷", "펌", "염색", "클리닉"];
         let filters = this.state.filterList;
         let filterList = filters.filter((element, index) => {
             return category.indexOf(element) === -1;
@@ -77,32 +77,32 @@ class Designer extends React.Component {
     }
 
     onclickFilterListloc = (e) => () => {
-        const location = ["강남", "신촌", "합정", "홍대입구", "L7홍대"]
+        const location = ["전체", "강남", "신촌", "합정", "홍대입구역", "L7홍대", "이수역"]
         let filters = this.state.filterList;
         let f = [];
         if (filters.indexOf(e) === -1) {
             filters.push(e)
             f = filters.filter((element, index) => {
                 return element !== "지역 전체";
-            }); 
-            this.setState({location: false})
+            });
+            this.setState({ location: false })
         } else {
             f = filters.filter((element, index) => {
                 return element !== e;
             });
             let loc = true
-            for(let i=0; i < location.length; i++){
-                if(f.indexOf(location[i]) !== -1){
+            for (let i = 0; i < location.length; i++) {
+                if (f.indexOf(location[i]) !== -1) {
                     loc = false
                 }
             }
-            this.setState({location: loc})
+            this.setState({ location: loc })
         }
         this.setState({ filterList: f })
     }
 
     onclickFilterListcat = (e) => () => {
-        const category = ["컷", "펌", "염색", "붙임머리", "클리닉"];
+        const category = ["컷", "펌", "염색", "클리닉"];
         let filters = this.state.filterList;
         let f = [];
         if (filters.indexOf(e) === -1) {
@@ -110,18 +110,18 @@ class Designer extends React.Component {
             f = filters.filter((element, index) => {
                 return element !== "시술 전체";
             });
-            this.setState({category: false})
+            this.setState({ category: false })
         } else {
             f = filters.filter((element, index) => {
                 return element !== e;
             });
             let cat = true
-            for(let i=0; i < category.length; i++){
-                if(f.indexOf(category[i]) !== -1){
+            for (let i = 0; i < category.length; i++) {
+                if (f.indexOf(category[i]) !== -1) {
                     cat = false
                 }
             }
-            this.setState({category: cat})
+            this.setState({ category: cat })
         }
         this.setState({ filterList: f })
     }
@@ -182,10 +182,10 @@ class Designer extends React.Component {
         if (this.state.filterList.length) {
             for (let i = 0; i < data.length; i++) {
                 for (let k = 0; k < this.state.filterList.length; k++) {
-                    if (this.state.filterList[k] === "홍대입구" || this.state.filterList[k] === "강남" || this.state.filterList[k] === "신촌" || this.state.filterList[k] === "합정" || this.state.filterList[k] === "L7홍대") {
+                    if (this.state.filterList[k] === "홍대입구역" || this.state.filterList[k] === "강남" || this.state.filterList[k] === "신촌" || this.state.filterList[k] === "합정" || this.state.filterList[k] === "L7홍대" || this.state.filterList[k] === "이수역") {
                         loc = this.state.filterList[k];
                         l = false;
-                    } else if (this.state.filterList[k] === "컷" || this.state.filterList[k] === "펌" || this.state.filterList[k] === "염색" || this.state.filterList[k] === "붙임머리" || this.state.filterList[k] === "클리닉") {
+                    } else if (this.state.filterList[k] === "컷" || this.state.filterList[k] === "펌" || this.state.filterList[k] === "염색" || this.state.filterList[k] === "클리닉") {
                         c = false;
                     }
                     if (data[i].store.indexOf(loc) !== -1 || l === true || this.state.filterList[k] === "지역 전체") {
@@ -227,7 +227,7 @@ class Designer extends React.Component {
                                             </span>
 
                                             <ScrollContainer className="Designer_filter_slide">
-                                                {this.state.filterList.map((e,i) => (
+                                                {this.state.filterList.map((e, i) => (
                                                     <>
                                                         {e === "지역 전체" || e === "시술 전체" ? null :
                                                             <div onClick={this.onclickFilterdelete(e)} className="Designer_filter_slide_span"><span>{e}</span><span style={{ marginLeft: "8px" }}><img src={process.env.PUBLIC_URL + "/image/nav/DesignerList_filter_delete.svg"} alt="필터 보기" /></span></div>

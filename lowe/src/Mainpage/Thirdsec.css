@@ -1,0 +1,23 @@
+.Mainpage_third_section {
+    padding: 20px 0px 40px;
+}
+
+.Mainpage_third_review > div{
+    padding-left: 12px;
+    font: 700 18px "Noto Sans";
+}
+
+
+.Mainpage_third_recommand {
+    font: 700 18px "Noto Sans";
+    margin-top: 64px;
+}
+
+.Mainpage_third_banner {
+    width: 100%;
+    margin: auto;
+}
+
+.Mainpage_third_banner img {
+    width: 100%;
+}

@@ -18,15 +18,15 @@ class Portfolio extends Component {
         let portfolio = decodeURI(window.location.pathname.split("/")[2]);
         let id = Number(window.location.pathname.split("/")[3])
         if (id) {
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
+            axios.post("https://server.lowehair.kr/getPortfolio", {
                 ManagerId: id,
                 hashtag: portfolio
-            }).then((res)=>{
-                this.setState({data: res.data.portfolio})
+            }).then((res) => {
+                this.setState({ data: res.data.portfolio })
             })
-            
 
-            axios.post("http://54.180.117.244:5000/getDesignerDetail", {
+
+            axios.post("https://server.lowehair.kr/getDesignerDetail", {
                 id: id,
             }).then((res) => {
                 let coupon = ""
@@ -39,11 +39,19 @@ class Portfolio extends Component {
             });
 
         } else {
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
-                hashtag: portfolio
-            }).then((res)=>{
-                this.setState({data: res.data.portfolio})
-            })
+            if (portfolio === "") {
+                axios.post("https://server.lowehair.kr/getPortfolio", {
+                }).then((res) => {
+                    this.setState({ data: res.data.portfolio })
+                })
+
+            } else {
+                axios.post("https://server.lowehair.kr/getPortfolio", {
+                    hashtag: portfolio
+                }).then((res) => {
+                    this.setState({ data: res.data.portfolio })
+                })
+            }
         }
     }
 
@@ -66,17 +74,17 @@ class Portfolio extends Component {
                 <div className="Portfoliolist_images">
                     {
                         this.state.data.length ?
-                            this.state.data.map((e,i) => (
+                            this.state.data.map((e, i) => (
                                 <div key={e.id}>
-                                    <a href={`/portfoliolist/${portfolio}${id ? "/"+id : ""}#${i}`}>
-                                        
-                                    {
-                                        e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
-                                        <video preload="metadata" className="Portf_image"  alt="포트폴리오 사진" > 
-                                            <source src={e.img+"#t=0.5"} />
-                                        </video>:
-                                        <img src={e.img} alt="로위 포트폴리오 이미지" />
-                                    }
+                                    <a href={`/portfoliolist/${portfolio}${id ? "/" + id : ""}#${i}`}>
+
+                                        {
+                                            e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
+                                                <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >
+                                                    <source src={e.img + "#t=0.5"} />
+                                                </video> :
+                                                <img src={e.img} alt="로위 포트폴리오 이미지" />
+                                        }
                                     </a>
                                 </div>
                             )) : null
