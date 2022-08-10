@@ -13,8 +13,8 @@ class ModalFilter extends React.Component {
     }
 
     render() {
-        const category = ["전체", "컷", "펌", "염색", "붙임머리", "클리닉"];
-        const location = ["전체", "강남", "신촌", "합정", "홍대입구", "L7홍대"]
+        const category = ["전체", "컷", "펌", "염색", "클리닉"];
+        const location = ["전체", "강남", "신촌", "합정", "홍대입구역", "L7홍대", "이수역"]
         return (
             <div className="Designer_modalBody" >
                 <div className="Designer_modalclick" onClick={this.handleClose}></div>

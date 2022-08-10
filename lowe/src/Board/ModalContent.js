@@ -13,7 +13,7 @@ class ModalContent extends Component {
 
     componentDidMount = () => {
         if (typeof (this.props.data.UserId) === "number") {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: this.props.data.UserId,
             })
                 .then((res) => {
@@ -82,6 +82,24 @@ class ModalContent extends Component {
                     <div className='review_modal_content_true ' id="review_modal_content">
                         {this.props.data.content}
                     </div>
+                    {
+                        this.props.mainpage ?
+
+                            <a href={`/board/${this.props.data.Board.id}`} >
+                                <div className="Porf_Board" style={{ margin: "20px 0 120px" }}>
+                                    <div>
+                                        <img src={this.props.data.Board.thumbnail} alt={this.props.data.Board.content} />
+                                    </div>
+                                    <div style={{ marginLeft: "12px" }}>
+                                        <div className="Porf_Board_designer"><strong>{this.props.data.Board.designer_name} 원장</strong> {this.props.data.Board.store}</div>
+                                        <div className="Porf_Board_name">{this.props.data.Board.name}</div>
+                                        <div className="Porf_Board_price">{this.props.data.Board.eventType ? <span>{this.props.data.Board.eventPrice + "%"}</span> : null}{this.props.data.Board.price.comma()}원</div>
+
+                                    </div>
+                                </div>
+                            </a> :
+                            <div style={{ marginBottom: "120px" }}></div>
+                    }
                 </div>
             </div>
         )

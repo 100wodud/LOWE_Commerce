@@ -68,7 +68,7 @@ class Signup extends React.Component {
 
     checksignupID = () => {
         if (this.state.login_id.length > 1) {
-            axios.post("http://54.180.117.244:5000/loginIdCheck", {
+            axios.post("https://server.lowehair.kr/loginIdCheck", {
                 login_id: this.state.login_id,
             }).then((res) => {
                 if (res.data.status === "false") {
@@ -108,7 +108,7 @@ class Signup extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
+            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -228,7 +228,7 @@ class Signup extends React.Component {
         });
 
         if (this.state.status && this.state.idcheck && this.state.phonecheck && this.state.agree1 && this.state.agree2) {
-            axios.post("http://54.180.117.244:5000/joinUser", {
+            axios.post("https://server.lowehair.kr/joinUser", {
                 name: this.state.name,
                 login_id: this.state.login_id,
                 password: this.state.password,
@@ -248,7 +248,7 @@ class Signup extends React.Component {
                     window.location.replace(rou)
                     let date = new Date();
                     let expired = moment(date).add(3, "months")
-                    axios.post("http://54.180.117.244:5000/createCoupon", {
+                    axios.post("https://server.lowehair.kr/createCoupon", {
                         UserId: res.data.id,
                         price: 10000,
                         content: "[WELCOME] 회원가입 축하 쿠폰",
@@ -256,7 +256,7 @@ class Signup extends React.Component {
                         expired: expired,
                         minimum: 30000
                     })
-                    axios.post("http://54.180.117.244:5000/createCoupon", {
+                    axios.post("https://server.lowehair.kr/createCoupon", {
                         UserId: res.data.id,
                         price: 10000,
                         content: "[WELCOME] 첫 예약 축하 쿠폰",

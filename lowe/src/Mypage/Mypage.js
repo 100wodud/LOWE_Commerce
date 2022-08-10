@@ -37,7 +37,7 @@ class Mypage extends Component {
         }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -47,7 +47,7 @@ class Mypage extends Component {
                     console.log("에러")
                 })
 
-            axios.post("http://54.180.117.244:5000/getPayment", {
+            axios.post("https://server.lowehair.kr/getPayment", {
                 UserId: Number(id),
             })
                 .then((res) => {

@@ -34,11 +34,11 @@
 
 .filter_category {
     width: 100vw;
-    padding-left: 12px;
     overflow-x: scroll;
     white-space:nowrap;
     height: 53px;
     margin: auto;
+    margin-left: 12px;
     line-height: 53px;
 }
 

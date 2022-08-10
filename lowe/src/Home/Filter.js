@@ -1,6 +1,5 @@
 import { Component } from "react";
 import "./Filter.css";
-import ScrollContainer from 'react-indiana-drag-scroll'
 import FilterModal from "./FilterModal";
 import ModalFilter from './ModalFilter';
 
@@ -29,16 +28,6 @@ class Filter extends Component {
     render() {
         return (
             <>
-                <div className="filter-promotion">
-                    <p style={{lineHeight:"39px"}} className={(this.props.promotion ? "pull_button" : 'push_button')} onClick={this.props.onclickAll}>all</p>
-                    <p style={{lineHeight:"39px"}} className={(this.props.promotion ? "push_button" : 'pull_button')} onClick={this.props.onclickPromotion}>event</p>
-                </div>
-                <ScrollContainer className="filter_category">
-                        {this.props.category.map((e, i) => (
-                            <span key={e.id} className={(this.props.categorySelect === e.id ? "category_select" : "category_nonselect")} onClick={this.props.onclickCategory(e.id)}>{e.category}</span>
-                        ))
-                        }
-                </ScrollContainer>
                 <div className="filter_recent">
                     <div onClick={this.props.onClickOpens}>
                         <img src={process.env.PUBLIC_URL + "/image/nav/filter.svg"} alt="로위 필터" />
@@ -61,9 +50,11 @@ class Filter extends Component {
                     onclicklength={this.props.onclicklength} 
                     onclickgender={this.props.onclickgender}
                     onclicklocation={this.props.onclicklocation}
+                    onclickCategory={this.props.onclickCategory}
                     length={this.props.length} 
                     gender={this.props.gender} 
                     location={this.props.location} 
+                    category={this.props.category}
                     onclickReset={this.props.onclickReset}
                     onclicksearching={this.props.onclicksearching} />
                     : null

@@ -7,7 +7,7 @@ import SignupModal from "./SignupModal";
 if(window.location.pathname.split("/")[1] === "naverLogin"){
     window.history.back = () => {
 
-        axios.post("http://54.180.117.244:5000/withdrawalUser", { 
+        axios.post("https://server.lowehair.kr/withdrawalUser", { 
             id: window.location.pathname.split("/")[2], 
             withdrawalReason: "" 
         }).then((res) => {
@@ -72,13 +72,13 @@ class SocialFirst extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("http://54.180.117.244:5000/phoneCheck", {
+            axios.post("https://server.lowehair.kr/phoneCheck", {
                 phone: this.state.phone,
             }).then((res) => {
                 if (res.data.status === false) {
                     this.openmodalPhone(`네이버가입된번호 ${this.state.phone}`)
                 } else {
-                    axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
+                    axios.post("https://server.lowehair.kr/checkPhoneNumber", {
                         phone: this.state.phone,
                         number: number
                     }).then(() => {

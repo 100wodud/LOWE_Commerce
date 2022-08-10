@@ -53,7 +53,7 @@ class Receipt extends Component {
                     }
                 }
             }
-            await axios.post("http://54.180.117.244:5000/getPayment", {
+            await axios.post("https://server.lowehair.kr/getPayment", {
                 id: id,
             }).then((res) => {
                 this.setState({ payment: res.data })
@@ -76,12 +76,12 @@ class Receipt extends Component {
             let userid = window.localStorage.getItem("id");
             this.setState({ data: recent_payment, surgery_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
-            await axios.post("http://54.180.117.244:5000/getPayment", {
+            await axios.post("https://server.lowehair.kr/getPayment", {
                 id: id,
             }).then((res) => {
                 if (Number(userid) === res.data[0].User.id) {
                     this.setState({ payment: res.data })
-                    axios.post('http://54.180.117.244:5000/updatePayment', {
+                    axios.post('https://server.lowehair.kr/updatePayment', {
                         id: Number(id), //결제 DB 상의 id 값
                         ManagerId: recent_payment.managerId,
                         BoardId: this.state.data.board.board.id,
@@ -109,7 +109,7 @@ class Receipt extends Component {
                 console.log(err)
             });
 
-            await axios.post("http://54.180.117.244:5000/getDesignerDetail", {
+            await axios.post("https://server.lowehair.kr/getDesignerDetail", {
                 id: recent_payment.managerId,
             }).then((res) => {
                 this.setState({ manager: res.data })

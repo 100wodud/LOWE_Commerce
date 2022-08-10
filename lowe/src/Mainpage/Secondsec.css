@@ -1,0 +1,93 @@
+.Mainpage_second_section {
+    padding-top: 20px
+}
+
+.Mainpage_second_recommand {
+    font: 700 18px "Noto Sans";
+}
+
+.Mainpage_second_search {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 24px;
+}
+
+.Mainpage_second_search > div > a >div {
+    text-align: center;
+    font: 400 12px "Noto Sans";
+    line-height: 100%;
+}
+
+.Mainpage_second_search img {
+    width: 15.2vw;
+    height: 15.2vw;
+    max-width: 68px;
+    max-height: 68px;
+}
+
+.Mainpage_second_store {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Mainpage_second_store > div {
+    font: 400 16px "Noto Sans";
+    height: 25px;
+    margin-bottom: 20px;
+    margin: 0 12px 0;
+}
+
+.Mainpage_second_store strong{
+    font: 700 18px "Noto Sans";
+    height: 25px;
+}
+
+.Mainpage_second_store span {
+    font: 500 14px "Noto Sans";
+    line-height: 25px;
+    cursor: pointer;
+}
+
+.Mainpage_second_store img {
+    margin-bottom: -2px;
+}
+
+
+.Mainpage_second_store_slide {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.Mainpage_second_store_slides {
+    overflow-x: scroll;
+    white-space:nowrap;
+    margin: auto;
+    height: 85px;
+    display: flex;
+}
+
+.Mainpage_second_store_slide_list{
+    position: relative;
+    margin-right: 8px;
+    width: 80px;
+    height: 80px;
+}
+
+.Mainpage_second_store_slide_list:first-child{
+    margin-left: 12px;
+
+}
+.Mainpage_second_store_slide_list:last-child{
+    margin-right: 12px;
+
+}
+.Mainpage_second_store_slide_list div {
+    position: absolute;
+    color: #ffffff;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 13px;
+}

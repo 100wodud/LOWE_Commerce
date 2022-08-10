@@ -39,7 +39,7 @@ class Id extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
+            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -54,7 +54,7 @@ class Id extends React.Component {
     handlefindId = () => {
         this.setState({ phonecheck_error: "" })
         if (this.state.phonecheck && this.state.random === Number(this.state.randomcheck)) {
-            axios.post("http://54.180.117.244:5000/findUserLoginId", {
+            axios.post("https://server.lowehair.kr/findUserLoginId", {
                 phone: this.state.phone,
             }).then((res) => {
                 if (res.data.data) {

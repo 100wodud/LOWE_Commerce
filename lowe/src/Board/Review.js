@@ -17,7 +17,7 @@ class Review extends Component {
 
     componentDidMount = () => {
         if (typeof (this.props.data.UserId) === "number") {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: this.props.data.UserId,
             })
                 .then((res) => {
@@ -32,7 +32,7 @@ class Review extends Component {
         }
         if (this.props.designer) {
             if (typeof (this.props.data.BoardId) === "number") {
-                axios.post("http://54.180.117.244:5000/getBoardDetail", {
+                axios.post("https://server.lowehair.kr/getBoardDetail", {
                     id: this.props.data.BoardId,
                 })
                     .then((res) => {

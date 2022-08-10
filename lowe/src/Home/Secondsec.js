@@ -11,7 +11,7 @@ class Secondsec extends Component {
             Allgoods: [],
             Showgoods: [],
             promotion: "",
-            category: "",
+            category: 0,
             filter: false,
             status: "최신순",
             banner: '',
@@ -25,37 +25,43 @@ class Secondsec extends Component {
 
     componentDidMount = () => {
         this.setState({ Allgoods: [], Showgoods: [], category: 0, number: 0 });
-        let Allboard = JSON.parse(window.localStorage.getItem("Allboard"));
-        if (!Allboard) {
-            axios.get("http://54.180.117.244:5000/allBoard", {})
-                .then((res) => {
-                    let arr = [];
-                    for (let i = 0; i < res.data.length; i++) {
-                        if (res.data[i].open === '1') {
-                            arr.push(res.data[i])
-                        }
-                    }
-                    this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
+        if (window.location.pathname.split('/')[2] === "tag") {
+            if (window.location.pathname.split('/')[3] === "event") {
 
+                axios.post("https://server.lowehair.kr/getBoard", {
+                    event_type: true, open: "1", isWish: true, isReview: true
                 })
-        } else {
-            this.setState({ Allgoods: Allboard, Showgoods: Allboard, category: 0, number: 10 })
+                    .then((res) => {
+                        this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
+                    })
+            } else {
+                axios.post("https://server.lowehair.kr/getBoard", {
+                    category: window.location.pathname.split('/')[3], open: "1", isWish: true, isReview: true
+                })
+                    .then((res) => {
+                        this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
+                    })
+
+            }
+        } else if (window.location.pathname.split('/')[2] === "store") {
+            if (window.location.pathname.split('/')[3] === "all") {
+                axios.post("https://server.lowehair.kr/getBoard", {
+                    open: "1", isWish: true, isReview: true
+                })
+                    .then((res) => {
+                        this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
+                    })
+            } else {
+                axios.post("https://server.lowehair.kr/getBoard", {
+                    store: decodeURI(window.location.pathname.split('/')[3]), open: "1", isWish: true, isReview: true
+                })
+                    .then((res) => {
+                        this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
+                    })
+            }
         }
 
-        axios.post("http://54.180.117.244:5000/getAllBoard", {})
-            .then((res) => {
-                let arr = [];
-                for (let i = 0; i < res.data.length; i++) {
-                    if (res.data[i].open === '1') {
-                        arr.push(res.data[i])
-                    }
-                }
-                this.setState({ Allgoods: arr, Showgoods: arr, category: 0, number: 10 });
-                localStorage.setItem("Allboard", JSON.stringify(arr.slice(0,30)));
-            })
-
-
-        axios.post("http://54.180.117.244:5000/getAllBanner", {})
+        axios.post("https://server.lowehair.kr/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {
@@ -85,49 +91,9 @@ class Secondsec extends Component {
         }
     };
 
-    onclickPromotion = () => {
-        let arr = [];
-        for (let i = 0; i < this.state.Allgoods.length; i++) {
-            if (this.state.Allgoods[i].eventType) {
-                arr.push(this.state.Allgoods[i]);
-            }
-        }
-        this.setState({ Showgoods: arr, promotion: "promotion", category: 0, status: "최신순", number: 10, location: "전체", gender: 0, length: 0, });
-    }
-
-    onclickAll = () => {
-        this.setState({ Showgoods: this.state.Allgoods, promotion: "", category: 0, status: "최신순", number: 10, location: "전체", gender: 0, length: 0, })
-    }
-
     onclickCategory = (e) => () => {
-        let arr = [];
-
-        if (e === 0) {
-            if (!this.state.promotion) {
-                arr = this.state.Allgoods;
-            } else {
-                for (let i = 0; i < this.state.Allgoods.length; i++) {
-                    if (this.state.Allgoods[i].eventType) {
-                        arr.push(this.state.Allgoods[i]);
-                    }
-                }
-            }
-        } else {
-            if (!this.state.promotion) {
-                for (let i = 0; i < this.state.Allgoods.length; i++) {
-                    if (this.state.Allgoods[i].category === e) {
-                        arr.push(this.state.Allgoods[i]);
-                    }
-                }
-            } else {
-                for (let i = 0; i < this.state.Allgoods.length; i++) {
-                    if (this.state.Allgoods[i].category === e && this.state.Allgoods[i].eventType) {
-                        arr.push(this.state.Allgoods[i]);
-                    }
-                }
-            }
-        }
-        this.setState({ category: e, Showgoods: arr, status: "최신순", number: 10, location: "전체", gender: 0, length: 0, })
+        console.log(e)
+        this.setState({ category: e.id })
     }
 
 
@@ -262,29 +228,23 @@ class Secondsec extends Component {
 
 
     render() {
-        const category = [{ id: 0, category: "전체" }, { id: 1, category: "컷" }, { id: 2, category: "펌" }, { id: 3, category: "염색" }, { id: 5, category: "클리닉" }];
         return (
             <>
-                <section className="Mainpage_second_section">
+                <section className="Home_second_section">
                     <Filter
-                        onclickPromotion={this.onclickPromotion}
-                        onclickAll={this.onclickAll}
-                        promotion={this.state.promotion}
-                        category={category}
-                        onclickCategory={this.onclickCategory}
-                        categorySelect={this.state.category}
                         onClickFilter={this.onClickFilter}
                         onClickclose={this.onClickclose}
                         filter={this.state.filter}
                         status={this.state.status}
                         onclickdataFilter={this.onclickdataFilter}
-
+                        onclickCategory={this.onclickCategory}
                         onClickCloses={this.onClickCloses}
                         onClickOpens={this.onClickOpens}
                         onclicklength={this.onclicklength}
                         onclickgender={this.onclickgender}
                         onclicklocation={this.onclicklocation}
                         length={this.state.length}
+                        category={this.state.category}
                         gender={this.state.gender}
                         location={this.state.location}
                         onclickReset={this.onclickReset}

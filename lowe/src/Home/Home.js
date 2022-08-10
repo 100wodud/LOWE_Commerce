@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Firstsec from "./Firstsec";
 import Header from "../Nav/Header";
 import Footer from "../Nav/Footer";
 import Secondsec from "./Secondsec";
@@ -16,7 +15,6 @@ class Home extends Component {
     return (
       <>
         <Header header="home" />
-        <Firstsec />
         <Secondsec />
         <Footer />
       </>

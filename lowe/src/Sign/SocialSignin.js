@@ -40,7 +40,7 @@ class SocialSignin extends React.Component {
         this.setState({ data: e })
         let rou = window.location.pathname + "#signupsuccess";
         window.location.replace(rou)
-        axios.patch(`http://54.180.117.244:5000/user/${this.state.id}`, {
+        axios.patch(`https://server.lowehair.kr/user/${this.state.id}`, {
             name: e.name,
             phone: e.phone,
             birthday: e.birth.slice(0, 4) + '-' + e.birth.slice(4, 6) + '-' + e.birth.slice(6, 8),
@@ -49,7 +49,7 @@ class SocialSignin extends React.Component {
         }).then((res) => {
             let date = new Date();
             let expired = moment(date).add(3, "months")
-            axios.post("http://54.180.117.244:5000/createCoupon", {
+            axios.post("https://server.lowehair.kr/createCoupon", {
                 UserId: this.state.id,
                 price: 10000,
                 content: "[WELCOME] 회원가입 축하 쿠폰",
@@ -57,7 +57,7 @@ class SocialSignin extends React.Component {
                 expired: expired,
                 minimum: 30000
             })
-            axios.post("http://54.180.117.244:5000/createCoupon", {
+            axios.post("https://server.lowehair.kr/createCoupon", {
                 UserId: this.state.id,
                 price: 10000,
                 content: "[WELCOME] 첫 예약 축하 쿠폰",
