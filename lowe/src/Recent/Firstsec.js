@@ -16,11 +16,11 @@ class Firstsec extends Component {
         if (recent) {
             let arr = [];
             for (let i = 0; i < recent.length; i++) {
-                await axios.post("https://server.lowehair.kr/getBoardDetail", {
+                await axios.post("http://54.180.117.244:5000/getBoard", {
                     id: recent[i],
                 })
                     .then((res) => {
-                        arr.push(res.data.board)
+                        arr.push(res.data[0])
                     });
 
             }

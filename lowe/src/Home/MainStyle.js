@@ -19,13 +19,13 @@ class MainStyle extends Component {
     componentDidMount = () => {
         let portfolio = decodeURI(window.location.pathname.split("/")[2]);
             if (portfolio === "") {
-                axios.post("https://server.lowehair.kr/getPortfolio", {
+                axios.post("http://54.180.117.244:5000/getPortfolio", {
                 }).then((res) => {
                     this.setState({ data: res.data.portfolio })
                 })
 
             } else {
-                axios.post("https://server.lowehair.kr/getPortfolio", {
+                axios.post("http://54.180.117.244:5000/getPortfolio", {
                     hashtag: portfolio
                 }).then((res) => {
                     this.setState({ data: res.data.portfolio, style: portfolio })
@@ -36,7 +36,7 @@ class MainStyle extends Component {
     onClickstylefilter = (e) => () => {
         this.setState({ style: e })
 
-        axios.post("https://server.lowehair.kr/getPortfolio", {
+        axios.post("http://54.180.117.244:5000/getPortfolio", {
             hashtag: e
         }).then((res) => {
             this.setState({ data: res.data.portfolio })
@@ -61,7 +61,7 @@ class MainStyle extends Component {
 
                 <ScrollContainer className="filter_category" style={{width: "initial", marginLeft: "0"}}>
                         {category2.map((e, i) => (
-                            <span key={e.id} className={(this.state.style === e.category ? "category_select" : "Portfolio_title_content")} onClick={this.onClickstylefilter(e.category)} style={{padding: "5px 12px", fontSize: "13px"}}>#{e.category}</span>
+                            <span key={e.category} className={(this.state.style === e.category ? "category_select" : "Portfolio_title_content")} onClick={this.onClickstylefilter(e.category)} style={{padding: "5px 12px", fontSize: "13px"}}>#{e.category}</span>
                         ))
                         }
                     </ScrollContainer>

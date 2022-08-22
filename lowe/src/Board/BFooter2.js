@@ -49,7 +49,7 @@ class BFooter2 extends Component {
     render() {
         return (
             <footer className='BFooter2' id="footers" onClick={this.onClickFooter}>
-                <strong>로위몰</strong> 회원가입하고 <strong>쿠폰받기</strong><img src={process.env.PUBLIC_URL + "/image/nav/footer_redarrow.svg"} alt="쿠폰 받기" />
+               회원가입하고 <strong>20,000원 쿠폰받기</strong><img src={process.env.PUBLIC_URL + "/image/nav/footer_redarrow.svg"} alt="쿠폰 받기" />
             </footer >
         );
     }

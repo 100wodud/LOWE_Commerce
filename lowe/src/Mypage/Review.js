@@ -14,11 +14,11 @@ class Review extends Component {
 
     componentDidMount = () => {
         if (this.props.data.BoardId !== 122) {
-            axios.post("https://server.lowehair.kr/getBoardDetail", {
-                id: this.props.data.BoardId,
+            axios.post("http://54.180.117.244:5000/getBoard", {
+                id: this.props.data.BoardId, isImage: true, isReview: true
             })
                 .then((res) => {
-                    this.setState({ data: res.data.board })
+                    this.setState({ data: res.data[0] })
                 });
         }
     }

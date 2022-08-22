@@ -20,18 +20,18 @@ class Portf extends Component {
         if (route === "portfoliolist") {
             this.setState({ data: this.props.data })
         } else {
-            axios.post("https://server.lowehair.kr/getPortfolio", {
-                id: id,
+            axios.post("http://54.180.117.244:5000/getPortfolio", {
+                id: id
             }).then((res) => {
 
-                axios.post("https://server.lowehair.kr/getDesignerDetail", {
-                    id: res.data.portfolio[0].manager_id,
+                axios.post("http://54.180.117.244:5000/getDesigner", {
+                    id: res.data.portfolio[0].manager_id, isHashtag: true, isFavorite: true
                 }).then((res) => {
                     let coupon = ""
-                    if (res.data.coupons) {
-                        coupon = JSON.parse(res.data.coupons)
+                    if (res.data[0].coupons) {
+                        coupon = JSON.parse(res.data[0].coupons)
                     }
-                    this.setState({ designer: res.data, coupon: coupon })
+                    this.setState({ designer: res.data[0], coupon: coupon })
                 }).catch((err) => {
                     console.log(err)
                 });

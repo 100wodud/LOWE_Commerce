@@ -15,6 +15,8 @@ class SocialSignin extends React.Component {
             agree1: false,
             agree2: false,
             agree3: false,
+            agree4: false,
+            agree5: false,
             randomcheck: "",
             phone: "",
             list: 1
@@ -40,16 +42,16 @@ class SocialSignin extends React.Component {
         this.setState({ data: e })
         let rou = window.location.pathname + "#signupsuccess";
         window.location.replace(rou)
-        axios.patch(`https://server.lowehair.kr/user/${this.state.id}`, {
+        axios.patch(`http://54.180.117.244:5000/user/${this.state.id}`, {
             name: e.name,
             phone: e.phone,
             birthday: e.birth.slice(0, 4) + '-' + e.birth.slice(4, 6) + '-' + e.birth.slice(6, 8),
             gender: Number(e.gender),
-            agree: this.state.agree3,
+            agree: this.state.agree5,
         }).then((res) => {
             let date = new Date();
             let expired = moment(date).add(3, "months")
-            axios.post("https://server.lowehair.kr/createCoupon", {
+            axios.post("http://54.180.117.244:5000/createCoupon", {
                 UserId: this.state.id,
                 price: 10000,
                 content: "[WELCOME] 회원가입 축하 쿠폰",
@@ -57,7 +59,7 @@ class SocialSignin extends React.Component {
                 expired: expired,
                 minimum: 30000
             })
-            axios.post("https://server.lowehair.kr/createCoupon", {
+            axios.post("http://54.180.117.244:5000/createCoupon", {
                 UserId: this.state.id,
                 price: 10000,
                 content: "[WELCOME] 첫 예약 축하 쿠폰",
@@ -78,11 +80,15 @@ class SocialSignin extends React.Component {
             this.setState({ agree2: !this.state.agree2 });
         } else if (key === "agree3") {
             this.setState({ agree3: !this.state.agree3 });
+        } else if (key === "agree4") {
+            this.setState({ agree4: !this.state.agree4 });
+        } else if (key === "agree5") {
+            this.setState({ agree5: !this.state.agree5 });
         } else if (key === "agree") {
-            if (this.state.agree1 && this.state.agree2 && this.state.agree3) {
-                this.setState({ agree1: false, agree2: false, agree3: false });
+            if (this.state.agree1 && this.state.agree2 && this.state.agree3 && this.state.agree4 && this.state.agree5) {
+                this.setState({ agree1: false, agree2: false, agree3: false, agree4: false, agree5: false });
             } else {
-                this.setState({ agree1: true, agree2: true, agree3: true });
+                this.setState({ agree1: true, agree2: true, agree3: true, agree4: true, agree5: true });
             }
         }
     }

@@ -23,7 +23,7 @@ class Thirdsec extends Component {
 
     componentDidMount = () => {
 
-        axios.post("https://server.lowehair.kr/getAllBanner", {})
+        axios.post("http://54.180.117.244:5000/getAllBanner", {})
         .then((res)=>{
             let arr = [];
             if(res.data.length){
@@ -38,13 +38,13 @@ class Thirdsec extends Component {
             console.log(err)
         })
 
-        axios.post("https://server.lowehair.kr/getBoard", {
+        axios.post("http://54.180.117.244:5000/getBoard", {
             order: "payment", isPayment: true, open: "1"
         }).then((res) => {
             this.setState({ favorite: res.data.slice(0, 8) })
         })
 
-        axios.post("https://server.lowehair.kr/getReview", {
+        axios.post("http://54.180.117.244:5000/getReview", {
         }).then((res) => {
             let review = []
             for (let i = 0; i < res.data.length; i++) {

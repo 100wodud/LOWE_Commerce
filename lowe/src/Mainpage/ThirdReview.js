@@ -15,12 +15,12 @@ class ThirdReview extends Component {
         let id = this.props.e.Board.id;
         let user = window.localStorage.getItem("id");
         if (id && user) {
-            axios.post("https://server.lowehair.kr/boardLikeChk", {
+            axios.post("http://54.180.117.244:5000/boardLikeChk", {
                 user: user,
                 id: id,
             })
                 .then((res) => {
-                    if (res.data.heart === 1) {
+                    if (res.data && res.data.heart === 1) {
                         this.setState({ like: true })
                     } else {
                         this.setState({ like: false })
@@ -39,7 +39,7 @@ class ThirdReview extends Component {
             like = 0;
         }
         if (id && user) {
-            await axios.post("https://server.lowehair.kr/boardLikeUpdate", {
+            await axios.post("http://54.180.117.244:5000/boardLikeUpdate", {
                 id: id,
                 user: user,
                 heart: like

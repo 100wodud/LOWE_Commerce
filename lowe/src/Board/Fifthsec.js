@@ -44,7 +44,7 @@ class Fifthsec extends Component {
             <>
             { this.props.top && !this.state.imgreview.length ? null :
             <section className={this.props.top ?"Board_fifth_section_top":"Board_fifth_section"} id={this.props.top ?"":"review"}>
-            <div style={this.props.top ?{paddingTop: "20px" }:{ paddingTop: "60px" }}>
+            <div style={this.props.top ?{paddingTop: "20px" }:{ paddingTop: "40px" }}>
                     <div className="review_title_div">
                         <span className="review_title">포토리뷰</span>
                         <span >
@@ -54,7 +54,7 @@ class Fifthsec extends Component {
                             }
                         </span>
                     </div>
-                    <ReviewList top={this.props.top} ManagerId={this.props.data.board.ManagerId} data={this.state.showreview} imgdata={this.state.imgreview} onClickmoreview={this.onClickmoreview} moreview={this.state.moreview} number={this.state.number} />
+                    <ReviewList top={this.props.top} ManagerId={this.props.data.board.ManagerId} data={this.state.showreview} imgdata={this.state.imgreview} onClickmoreview={this.onClickmoreview} moreview={this.state.moreview} number={this.state.number} home={true} />
                 </div>
             </section>
     }

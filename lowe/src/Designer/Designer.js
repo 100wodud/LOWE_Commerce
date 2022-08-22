@@ -30,7 +30,8 @@ class Designer extends React.Component {
             localStorage.setItem("designer_list", JSON.stringify([]));
         }
         this.setState({ data: designer, showdata: designer })
-        axios.post("https://server.lowehair.kr/getDesignerList", {
+        axios.post("http://54.180.117.244:5000/getDesigner", {
+            isRank: true, isFavorite:true, isReview:true, isPayment:true, isPortfolio:true, isHashtag: true
         }).then((res) => {
             let arr = []
             for (let i = 0; i < res.data.length; i++) {
@@ -230,7 +231,7 @@ class Designer extends React.Component {
                                                 {this.state.filterList.map((e, i) => (
                                                     <>
                                                         {e === "지역 전체" || e === "시술 전체" ? null :
-                                                            <div onClick={this.onclickFilterdelete(e)} className="Designer_filter_slide_span"><span>{e}</span><span style={{ marginLeft: "8px" }}><img src={process.env.PUBLIC_URL + "/image/nav/DesignerList_filter_delete.svg"} alt="필터 보기" /></span></div>
+                                                            <div key={e} onClick={this.onclickFilterdelete(e)} className="Designer_filter_slide_span"><span>{e}</span><span style={{ marginLeft: "8px" }}><img src={process.env.PUBLIC_URL + "/image/nav/DesignerList_filter_delete.svg"} alt="필터 보기" /></span></div>
                                                         }
                                                     </>
                                                 ))
@@ -243,7 +244,7 @@ class Designer extends React.Component {
                                         </div>
                                     </div>
                                     {this.state.showdata.map((e, i) => (
-                                        <div>
+                                        <div key={e.id}>
                                             <div className={String(i + 1).length < 3 ? "Designer_ranking_number" : "Designer_ranking_number_three"}>{i + 1}</div>
                                             <DesignerList data={e} rank={e.id} />
                                         </div>
@@ -258,7 +259,7 @@ class Designer extends React.Component {
                             <>
                                 {
                                     style.map((e, i) => (
-                                        <Style data={e} key={i} />
+                                        <Style data={e} key={e.style} />
                                     ))
                                 }
                             </>

@@ -15,13 +15,13 @@ class Fourthsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("https://server.lowehair.kr/getDesigner", {
+        axios.post("http://54.180.117.244:5000/getDesigner", {
             isRank: true, store: "신촌", isHashtag: true
         }).then((res) => {
             this.setState({ data: res.data.slice(0, 3) })
         })
 
-        axios.post("https://server.lowehair.kr/getPortfolio", {
+        axios.post("http://54.180.117.244:5000/getPortfolio", {
             hashtag: "컷"
         }).then((res) => {
             this.setState({ styledata: res.data.portfolio.slice(0,9) })
@@ -31,7 +31,7 @@ class Fourthsec extends Component {
     onClickfilter = (e) => () => {
         this.setState({ category: e })
 
-        axios.post("https://server.lowehair.kr/getDesigner", {
+        axios.post("http://54.180.117.244:5000/getDesigner", {
             isRank: true, store: e, isHashtag: true
         }).then((res) => {
             this.setState({ data: res.data.slice(0, 3) })
@@ -42,7 +42,7 @@ class Fourthsec extends Component {
     onClickstylefilter = (e) => () => {
         this.setState({ style: e })
 
-        axios.post("https://server.lowehair.kr/getPortfolio", {
+        axios.post("http://54.180.117.244:5000/getPortfolio", {
             hashtag: e
         }).then((res) => {
             this.setState({ styledata: res.data.portfolio.slice(0, 9) })
@@ -75,22 +75,22 @@ class Fourthsec extends Component {
 
                     <ScrollContainer className="filter_category" style={{width: "initial", marginBottom: "12px"}}>
                         {category.map((e, i) => (
-                            <span key={e.id} className={(this.state.category === e.category ? "category_select" : "category_nonselect")} onClick={this.onClickfilter(e.category)}>{e.category}</span>
+                            <span key={e.category} className={(this.state.category === e.category ? "category_select" : "category_nonselect")} onClick={this.onClickfilter(e.category)}  style={this.state.category === e.category ? {padding: "4px 16px 5px"}: null}>{e.category}</span>
                         ))
                         }
                     </ScrollContainer>
                 </div>
                 <div className="Mainpage_fourth_designer">
                     {this.state.data.map((e) => (
-                        <div>
+                        <div key={e.id}>
                             <a href={`/designer/${e.id}`}>
                                 <div>
                                     <img className="Mainpage_fourth_designer_img" src={e.img} alt="디자이너" />
                                 </div>
                                 <div>
                                     <div className="Mainpage_fourth_designer_name">{e.name} {e.rank}</div>
-                                    <div className="Mainpage_fourth_designer_hash">#{e.Hashtags[0].Hashtag.content}</div>
-                                    <div className="Mainpage_fourth_designer_hash">#{e.Hashtags[1].Hashtag.content}</div>
+                                    <div className="Mainpage_fourth_designer_hash">#{e.Hashtags[0].content}</div>
+                                    <div className="Mainpage_fourth_designer_hash">#{e.Hashtags[1].content}</div>
                                 </div>
                             </a>
                         </div>
@@ -113,7 +113,7 @@ class Fourthsec extends Component {
                 <div>
                     <ScrollContainer className="filter_category" style={{width: "initial"}}>
                         {category2.map((e, i) => (
-                            <span key={e.id} className={(this.state.style === e.category ? "category_select" : "Portfolio_title_content")} onClick={this.onClickstylefilter(e.category)} style={{padding: "5px 12px", fontSize: "13px"}}>#{e.category}</span>
+                            <span key={e.category} className={(this.state.style === e.category ? "category_select" : "Portfolio_title_content")} onClick={this.onClickstylefilter(e.category)} style={{padding: "5px 12px", fontSize: "13px"}}>#{e.category}</span>
                         ))
                         }
                     </ScrollContainer>

@@ -17,11 +17,16 @@ class Review extends Component {
 
     componentDidMount = () => {
         if (typeof (this.props.data.UserId) === "number") {
-            axios.post("https://server.lowehair.kr/getOneUser", {
+            axios.post("http://54.180.117.244:5000/getOneUser", {
                 id: this.props.data.UserId,
             })
                 .then((res) => {
-                    this.setState({ user: res.data[0].login_id })
+                    if(res.data[0].login_id){
+                        this.setState({ user: res.data[0].login_id })
+
+                    } else{
+                        this.setState({ user: res.data[0].name })
+                    }
                 })
                 .catch(err => {
                     console.log("에러")
@@ -31,19 +36,8 @@ class Review extends Component {
 
         }
         if (this.props.designer) {
-            if (typeof (this.props.data.BoardId) === "number") {
-                axios.post("https://server.lowehair.kr/getBoardDetail", {
-                    id: this.props.data.BoardId,
-                })
-                    .then((res) => {
-                        this.setState({ board: res.data.board })
-                    })
-                    .catch(err => {
-                        console.log("에러")
-                    })
-            } else {
+            if (typeof (this.props.data.BoardId) !== "number") {
                 this.setState({ board: this.props.data.BoardId })
-
             }
         }
     }

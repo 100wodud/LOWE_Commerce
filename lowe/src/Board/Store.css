@@ -3,11 +3,32 @@
     max-height: 200px;
     margin-bottom: 10px;
     object-fit: cover;
+    cursor: pointer;
+}
+
+.store_address_copy {
+    padding: 2px 6px;
+    margin-left: 4px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    font: 400 11px "Noto Sans";
+    color: #9C9C9C;
+    margin-top: -5px;
+}
+
+.store_address {
+    font-size: 15px;
+    font-weight: 400;
+}
+.store_location {
+    color: #9C9C9C;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 20px;
 }
 
 .store_box {
-    max-width: 196px;
-    width: 45.8vw;
+    width: 100%;
     text-align: center;
     height: 54px;
     border: 1px solid #DDDDDD;
@@ -15,6 +36,4 @@
     font: 700 15px "Noto Sans";
     cursor:pointer;
 }
-.store_box a{
-    font: 700 15px "Noto Sans";
-}
+

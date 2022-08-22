@@ -32,6 +32,7 @@ import SocialSignin from "./Sign/SocialSignin";
 import Mainpage from "./Mainpage/Mainpage";
 import Popup from "./Nav/Popup";
 import MainSytle from "./Home/MainStyle";
+import BoardStyle from "./Board/BoardStyle";
 
 class App extends Component {
   constructor(props) {
@@ -98,6 +99,7 @@ class App extends Component {
           <Route path='/portfoliolist/:id' component={Portfoliolist} />
           <Route path='/portfolio/:id' component={Portf} />
           <Route path='/styles/:id' component={MainSytle} />
+          <Route path='/boardstyles/:id' component={BoardStyle} />
           <Route path='/event_review01' component={Promotion3} />
           <Route path='/reservation_board/:id' component={Reservation} />
           <Route path='/reservation_surgery/:id' component={Reservation} />

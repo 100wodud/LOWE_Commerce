@@ -18,7 +18,7 @@ class DesignerList extends React.Component {
         let manager_id = this.props.data.id;
         let user_id = Number(window.localStorage.getItem("id"));
         if (manager_id && user_id) {
-            axios.post(`https://server.lowehair.kr/getFavorite`, {
+            axios.post(`http://54.180.117.244:5000/getFavorite`, {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
@@ -31,32 +31,14 @@ class DesignerList extends React.Component {
                 console.log(err)
             });
         }
-        if(this.props.rank){
-            axios.post("https://server.lowehair.kr/getPortfolio", {
-                ManagerId: manager_id,
-            }).then((res)=>{
-                this.setState({data: res.data.portfolio})
-            })
-
-        }
     }
 
-    componentDidUpdate = () => {
-        let manager_id = this.props.data.id;
-        if(this.state.id !== manager_id){
-            axios.post("https://server.lowehair.kr/getPortfolio", {
-                ManagerId: manager_id,
-            }).then((res)=>{
-                this.setState({data: res.data.portfolio, id: manager_id})
-            })
-        }
-    }
     async onclickLike(e) {
         e.preventDefault();
         let manager_id = this.props.data.id;
         let user_id = Number(window.localStorage.getItem("id"));
         if (user_id && manager_id) {
-            await axios.post("https://server.lowehair.kr/favorite", {
+            await axios.post("http://54.180.117.244:5000/favorite", {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
@@ -144,12 +126,12 @@ class DesignerList extends React.Component {
                         </div>
                     </div>
                     {
-                        this.state.data.length && this.props.data ?
+                        this.props.data.Portfolios && this.props.rank ?
                         <div>
                             <ScrollContainer className="DesignerList_port_slide">
                                 {
-                                    this.state.data.slice(0,8).map((e)=>(
-                                        <a href={`/portfolio/${e.id}${funnel}`}>
+                                    this.props.data.Portfolios.slice(0,8).map((e)=>(
+                                        <a href={`/portfolio/${e.id}${funnel}`} key={e.id}>
                                             {
                                                 e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
                                                     <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >

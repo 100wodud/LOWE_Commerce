@@ -13,7 +13,6 @@ class Thirdsec extends Component {
             BAimg: [],
             subimg: [],
             store: "",
-            moreview: false
         };
     }
 
@@ -46,18 +45,14 @@ class Thirdsec extends Component {
 
     }
 
-    onClickmoreView = () => {
-        this.setState({ moreview: true })
-    }
-
     render() {
         return (
             <>
-                <section className={this.state.moreview ? "Board_third_section" : "Board_third_section_moreview"} id="goods">
+                <section className={ "Board_third_section" } id="goods">
                     {
                         this.state.mainimg.length ?
                             <div className="Board_mainimg">
-                                <Mainimg data={this.state.mainimg} sub={this.state.subimg} />
+                                <Mainimg data={this.state.mainimg} sub={this.state.subimg} board={this.props.data.board} />
                             </div>
                             : null
                     }
@@ -76,23 +71,6 @@ class Thirdsec extends Component {
                     <div className="Board_caution">
                         <Caution data={this.props.data.board.category} />
                     </div>
-                    <div className="private">Private Room</div>
-                    <div className="private_div" >
-                        {
-                            this.state.store ?
-                                this.state.store.private.map((e, i) => (
-                                    <img src={process.env.PUBLIC_URL + e} key={i} alt="사진리뷰" className="private_img" />
-                                )) : null
-                        }
-                    </div>
-                {
-                    this.state.moreview ? null :
-                        <div className="Board_third_moreview">
-                            <div className="Board_third_moreview_button" onClick={this.onClickmoreView}>
-                                상품정보 더보기<span style={{ marginLeft: "8px" }}><img style={{marginBottom: "-5px"}} src={process.env.PUBLIC_URL + "/image/nav/board_moreview.svg"} alt="moreview" /></span>
-                            </div>
-                        </div>
-                }
                 </section>
             </>
         )

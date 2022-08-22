@@ -42,7 +42,7 @@ class ReviewList extends Component {
             <div className="imgreviewlist_div" >
               {this.props.imgdata.map((e, i) => (
                 e.Images.map((image) => (
-                  <img onClick={this.openmodal(i)} src={image.url} key={e.id} alt="사진리뷰" className="imgreview_img" />
+                  <img onClick={this.openmodal(i)} src={image.url} key={image.url} alt="사진리뷰" className="imgreview_img" />
                 ))
               ))}
             </div> : null

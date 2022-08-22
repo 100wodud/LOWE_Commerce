@@ -14,7 +14,7 @@ class Secondsec extends Component {
 
         let user_id = Number(window.localStorage.getItem("id"));
         if (user_id) {
-            axios.post(`https://server.lowehair.kr/getFavorite`, {
+            axios.post(`http://54.180.117.244:5000/getFavorite`, {
                 user_id: user_id,
             })
                 .then((res) => {
