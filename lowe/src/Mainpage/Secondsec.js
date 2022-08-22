@@ -13,7 +13,7 @@ class Secondsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("https://server.lowehair.kr/getBoard", {
+        axios.post("http://54.180.117.244:5000/getBoard", {
             order: "click", isClick: true, open: "1"
         }).then((res) => {
             this.setState({ favorite: res.data.slice(0, 8) })
@@ -21,7 +21,7 @@ class Secondsec extends Component {
 
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("https://server.lowehair.kr/getOneUser", {
+            axios.post("http://54.180.117.244:5000/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -30,7 +30,7 @@ class Secondsec extends Component {
                 .catch(err => {
                     console.log("에러")
                 })
-            }
+        }
     }
 
     render() {
@@ -39,42 +39,42 @@ class Secondsec extends Component {
                 <div className="Mainpage_second_search">
                     <div>
                         <a href="/category/tag/event">
-                        <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon1.png"} alt="메인페이지 아이콘" />
-                        <div>이벤트</div>
+                            <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon1.png"} alt="메인페이지 아이콘" />
+                            <div>이벤트</div>
                         </a>
                     </div>
                     <div>
                         <a href="/category/tag/1">
-                        <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon2.svg"} alt="메인페이지 아이콘" />
-                        <div>컷</div>
+                            <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon2.svg"} alt="메인페이지 아이콘" />
+                            <div>컷</div>
                         </a>
                     </div>
                     <div>
                         <a href="/category/tag/2">
-                        <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon3.svg"} alt="메인페이지 아이콘" />
-                        <div>펌</div>
+                            <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon3.svg"} alt="메인페이지 아이콘" />
+                            <div>펌</div>
                         </a>
                     </div>
                     <div>
                         <a href="/category/tag/3">
-                        <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon4.svg"} alt="메인페이지 아이콘" />
-                        <div>염색</div>
+                            <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon4.svg"} alt="메인페이지 아이콘" />
+                            <div>염색</div>
                         </a>
                     </div>
                     <div>
                         <a href="/category/tag/5">
-                        <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon5.svg"} alt="메인페이지 아이콘" />
-                        <div>클리닉</div>
+                            <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_icon5.svg"} alt="메인페이지 아이콘" />
+                            <div>클리닉</div>
                         </a>
                     </div>
                 </div>
                 <div className="Mainpage_second_recommand">
-                    <div style={{ paddingLeft: "12px" }}>{this.state.user ? this.state.user.login_id ? this.state.user.login_id  +"님,": this.state.user.name +"님," : null} 이 시술 어때요? 😉</div>
-                    <div className="Recent_total_list" id="special_recent_list" style={{paddingLeft: "0"}}>
+                    <div style={{ paddingLeft: "12px" }}>{this.state.user ? this.state.user.login_id ? this.state.user.login_id + "님," : this.state.user.name + "님," : null} 이 시술 어때요? 😉</div>
+                    <div className="Recent_total_list" id="special_recent_list" style={{ paddingLeft: "0" }}>
                         <ScrollContainer className="Recent_total_slide" style={{ marginTop: "20px", height: "280px" }} >
                             {
                                 this.state.favorite.map((e) => (
-                                        <Goodslist e={e} key={e.id} />
+                                    <Goodslist e={e} key={e.id} />
                                 ))
                             }
                         </ScrollContainer>
@@ -94,7 +94,7 @@ class Secondsec extends Component {
                     </div>
                 </div>
 
-                <div style={{marginBottom: "44px"}}>
+                <div style={{ marginBottom: "44px" }}>
                     <div className="Mainpage_second_store_slide">
                         <ScrollContainer className="Mainpage_second_store_slides" >
                             <div className="Mainpage_second_store_slide_list">

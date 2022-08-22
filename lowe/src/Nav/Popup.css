@@ -81,3 +81,22 @@
 .popup_close div {
     margin: 20px;
 }
+
+
+.policy_content {
+    width: 100%;
+    height: 535px;
+    max-width: 300px;
+    margin: auto;
+}
+
+.policy_content > div >div {
+    text-align: center;
+    font: 400 14px "Noto Sans";
+}
+
+
+.policy_content > div >pre {
+    text-align: center;
+    font: 400 14px "Noto Sans";
+}

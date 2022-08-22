@@ -1,6 +1,5 @@
 .Mainimg_img {
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .Mainimg_main {
@@ -14,4 +13,72 @@
     font: 400 16px "Noto Sans";
     margin-bottom: 40px;
     line-height: 150%;
+}
+
+.Mainimg_img_contents {
+    margin-top: -4px;
+    padding: 32px 20px;
+    background-color: #F5F5F5;
+    margin-bottom: 80px;
+}
+
+.Mainimg_img_contents_title {
+    font-weight: 700;
+    font-size: 20px ;
+    line-height: 140%;
+}
+
+.Mainimg_img_contents_content{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    margin: 12px 0 32px;
+    word-break: keep-all;
+}
+
+.Mainimg_img_contents_portfolio {
+    width: 196px;
+    height: 49px;
+    border: 1px solid #333333;
+    line-height: 49px;
+}
+
+.Mainimg_img_contents_portfolio_title {
+    font-weight: 700;
+    font-size: 12px ;
+    line-height: 140%;
+    margin: 0 65px 0 20px;
+}
+
+.Mainimg_img_contents_portfolio_arrow img{
+    margin-bottom: -2px;
+}
+
+.Mainimg_img_tips {
+    font-weight: 700;
+    font-size: 18px ;
+    margin-right: 12px;
+    margin-bottom: 24px;
+}
+
+.Mainimg_img_tips_line {
+    margin-bottom: 4px;
+    width: calc(100% - 125px);
+    height: 2px;
+    object-fit:cover;
+}
+
+.Mainimg_img_tips_recommand_title {
+    font-weight: 700;
+    font-size: 14px ;
+    margin-left: 9px;
+}
+
+.Mainimg_img_tips_recommand {
+    font-weight: 400;
+    font-size: 14px ;
+    line-height: 140%;
+    margin-top: 8px;
+    white-space: pre-line;
+    line-height: 21px;
 }

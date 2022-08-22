@@ -14,7 +14,7 @@ class Fourthsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("https://server.lowehair.kr/getBoardRelation", {
+        axios.post("http://54.180.117.244:5000/getBoardRelation", {
             category: this.props.data.board.category,
             gender: this.props.data.board.gender,
             length: this.props.data.board.length,
@@ -31,16 +31,16 @@ class Fourthsec extends Component {
     render() {
         return (
             <section className="Board_fourth_section" id="location">
-                <div style={{ paddingTop: "120px", marginBottom: "60px" }}>
+                <div style={{ paddingTop: "60px" }}>
                     <div>
                         <div className="store_title">매장 위치</div>
                             <Store data={this.props.data.board.store} />
                     </div>
                     {this.state.data.length > 1 ?
                         <>
-                            <div className="store_title" style={{marginTop: "60px"}}>추천시술</div>
+                            <div className="store_title" style={{marginTop: "40px"}}>추천시술</div>
                             
-                                    <ScrollContainer className="recommand_scroll">
+                                    <ScrollContainer className="recommand_scroll" style={{paddingBottom: "40px"}}>
                                     {
                                         this.state.data.map((e => (
                                             <Recommand key={e.id} e={e} />

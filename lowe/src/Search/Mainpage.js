@@ -33,7 +33,7 @@ class Mainpage extends Component {
         let recently = JSON.parse(window.localStorage.getItem("recentWord"));
         let set = new Set(recently);
         let recent = [...set];
-        axios.post("https://server.lowehair.kr/getBoard", {
+        axios.post("http://54.180.117.244:5000/getBoard", {
             order: "payment", isPayment: true
         }).then((res) => {
             this.setState({ favorite: res.data.slice(0, 8) })
@@ -47,7 +47,7 @@ class Mainpage extends Component {
             recent = [...set];
             document.getElementById("header_search").value = funnel
 
-            axios.post(`https://server.lowehair.kr/getSearch`, {
+            axios.post(`http://54.180.117.244:5000/getSearch`, {
                 keyword: funnel,
                 isBoard: true,
                 isDesigner: true,
@@ -62,13 +62,13 @@ class Mainpage extends Component {
                     }
                     let userid = Number(window.localStorage.getItem("id"));
                     if (userid) {
-                        axios.post("https://server.lowehair.kr/click", {
+                        axios.post("http://54.180.117.244:5000/click", {
                             type: 3,
                             UserId: userid,
                             funnel: "skeyword=" + decodeURI(window.location.href.split("?skeyword=")[1])
                         })
                     } else {
-                        axios.post("https://server.lowehair.kr/click", {
+                        axios.post("http://54.180.117.244:5000/click", {
                             type: 3,
                             funnel: "skeyword=" + decodeURI(window.location.href.split("?skeyword=")[1])
                         })
@@ -125,7 +125,7 @@ class Mainpage extends Component {
 
     handleInputValue = (key) => async (e) => {
         this.setState({ [key]: e.target.value, result: false });
-        await axios.get(`https://server.lowehair.kr/search?keyword=${e.target.value}&isDesigner=true&isHashtag=true&isBoard=true`, {
+        await axios.get(`http://54.180.117.244:5000/search?keyword=${e.target.value}&isDesigner=true&isHashtag=true&isBoard=true`, {
         }).then((res) => {
             this.setState({ name: res.data })
         })

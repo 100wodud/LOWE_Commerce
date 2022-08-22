@@ -53,7 +53,7 @@ class Ddetail extends Component {
         } else {
             funnel = '/'
         }
-        axios.post("https://server.lowehair.kr/getDesignerDetail", {
+        axios.post("http://54.180.117.244:5000/getDesignerDetail", {
             id: id,
         }).then((res) => {
             let coupon = ""
@@ -66,11 +66,9 @@ class Ddetail extends Component {
         });
 
 
-        axios.post(`https://server.lowehair.kr/getReview`, {
+        axios.post(`http://54.180.117.244:5000/getReview`, {
             ManagerId: id,
         }).then((res) => {
-            console.log(res.data)
-
             if (res.data.length) {
                 for (let i = 0; i < res.data.length; i++) {
                     if (res.data[i].Images.length) {
@@ -101,7 +99,7 @@ class Ddetail extends Component {
         if (!this.state.click) {
             this.setState({ click: true })
             if (userid) {
-                axios.post("https://server.lowehair.kr/click", {
+                axios.post("http://54.180.117.244:5000/click", {
                     type: 4,
                     ManagerId: id,
                     UserId: userid,
@@ -111,7 +109,7 @@ class Ddetail extends Component {
                     }).catch((err) => {
                     });
             } else {
-                axios.post("https://server.lowehair.kr/click", {
+                axios.post("http://54.180.117.244:5000/click", {
                     type: 4,
                     ManagerId: id,
                     funnel: funnel
@@ -125,7 +123,7 @@ class Ddetail extends Component {
 
     onClickCoupon = () => {
         let user_id = Number(window.localStorage.getItem("id"));
-        axios.post("https://server.lowehair.kr/createCoupon", {
+        axios.post("http://54.180.117.244:5000/createCoupon", {
             UserId: user_id,
             price: Number(this.state.coupon.couponprice),
             content: this.state.coupon.coupontext,
@@ -156,7 +154,7 @@ class Ddetail extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 5,
                 ManagerId: id,
                 UserId: userid,
@@ -167,7 +165,7 @@ class Ddetail extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 5,
                 ManagerId: id,
                 funnel: funnel,
@@ -210,7 +208,7 @@ class Ddetail extends Component {
         }
         if(1 === Number(e)){
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 UserId: userid,
@@ -222,7 +220,7 @@ class Ddetail extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 funnel: funnel,
@@ -236,7 +234,7 @@ class Ddetail extends Component {
     } else {
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 UserId: userid,
@@ -249,7 +247,7 @@ class Ddetail extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 ManagerId: id,
                 funnel: funnel,
@@ -267,7 +265,6 @@ class Ddetail extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <>
                 <Header header="clear" scroll={true}  />
@@ -294,7 +291,7 @@ class Ddetail extends Component {
                             <div onClick ={this.onClickReserve(1)} style={{border: "1px solid #3EC62A", color: "#3EC62A"}}>
                                 <div>네이버 예약하기</div>
                             </div>
-                            <div onClick ={this.onClickReserve(2)} style={{border: "1px solid #FF5732", color: "#FF5732"}}>
+                            <div onClick ={this.onClickReserve(2)} style={{border: "1px solid #FF5732", color: "#FF5732", zIndex: 5}}>
                                 <div className="Lowe_reservation"><img src={process.env.PUBLIC_URL + "/image/nav/lowe_reservation.svg"} alt="로위 쿠폰 다운로드" /></div>
                                 <div style={{zIndex: 1}}>로위몰 예약</div>
                             </div>

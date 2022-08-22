@@ -118,7 +118,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 UserId: userid,
@@ -132,7 +132,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 SurgeryId: Number(e.id),
@@ -164,7 +164,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 8,
                 ManagerId: id,
                 UserId: userid,
@@ -177,7 +177,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 8,
                 ManagerId: id,
                 SurgeryId: Number(e.id),
@@ -209,7 +209,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 UserId: userid,
@@ -222,7 +222,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 6,
                 ManagerId: id,
                 BoardId: Number(e),
@@ -251,7 +251,7 @@ class Secondsec extends Component {
                                     <div id="filter_category">
                                     <ScrollContainer className="Ddetail_filter_category">
                                         {this.props.data.Categories.map((e, i) => (
-                                            <span key={e.id} onClick={this.onClickcategory(e.content)} className={(this.state.category === e.content ? "Ddetail_category_select" : "Ddetail_category_nonselect")}>{e.content}</span>
+                                            <span key={e.content} onClick={this.onClickcategory(e.content)} className={(this.state.category === e.content ? "Ddetail_category_select" : "Ddetail_category_nonselect")}>{e.content}</span>
                                         ))
                                         }
                                     </ScrollContainer>
@@ -266,7 +266,7 @@ class Secondsec extends Component {
                                         <tbody>
                                             {this.props.data.Boards.map((e, i) => (
                                                 e.open === "1" ?
-                                                <div className="Ddetail_surgery_boards">
+                                                <div className="Ddetail_surgery_boards" key={e.id}>
                                                     <div onClick={this.surgeryBoard(e.id)}>
                                                     <div><img className="Ddetail_surgery_thunmbnail" src={e.thumbnail} alt={e.name} /></div>
                                                     <div>

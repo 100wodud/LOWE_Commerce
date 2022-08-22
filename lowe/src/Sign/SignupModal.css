@@ -56,8 +56,10 @@
 .Signup_sub {
     font: 700 14px "Noto Sans";
     margin-bottom: 16px;
+    white-space: pre-line;
 }
 
 .Signup_content {
     font: 400 12px "Noto Sans";
+    white-space: pre-line;
 }

@@ -31,7 +31,7 @@ class Withdrawal extends Component {
     userWithdrawal = () => {
         let user = window.localStorage.getItem("id");
         if (this.state.reason.length > 1 && user) {
-            axios.post("https://server.lowehair.kr/withdrawalUser", { id: user, withdrawalReason: this.state.reason })
+            axios.post("http://54.180.117.244:5000/withdrawalUser", { id: user, withdrawalReason: this.state.reason })
                 .then((res) => {
                     setTimeout(() => {
                         window.localStorage.removeItem("id");

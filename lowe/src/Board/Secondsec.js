@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Secondsec.css"
 import DesignerList from "../Designer/DesignerList";
 import Fifthsec from "./Fifthsec";
+import ModalPhone from "../Sign/ModalPhone";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -11,21 +12,30 @@ class Secondsec extends Component {
             data: "",
             like: false,
             banner: '',
-            designer: []
+            designer: [],
+            phonemodal: false,
+            modalcomment: '',
         };
         this.onclickLike = this.onclickLike.bind(this);
     }
+
+    openmodalPhone =(e)=>()  => {
+        this.setState({ phonemodal: true, modalcomment: e });
+    };
+    closemodalPhone = () => {
+        this.setState({ phonemodal: false, modalcomment: "" });
+    };
 
     componentDidMount = () => {
         let id = this.props.data.board.id;
         let user = Number(window.localStorage.getItem("id"));
         if (id && user) {
-            axios.post("https://server.lowehair.kr/boardLikeChk", {
+            axios.post("http://54.180.117.244:5000/boardLikeChk", {
                 user: user,
                 id: id,
             })
                 .then((res) => {
-                    if (res.data.heart === 1) {
+                    if (res.data && res.data.heart === 1) {
                         this.setState({ like: true })
                     } else {
                         this.setState({ like: false })
@@ -34,7 +44,7 @@ class Secondsec extends Component {
         }
 
 
-        axios.post("https://server.lowehair.kr/getAllBanner", {})
+        axios.post("http://54.180.117.244:5000/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {
@@ -64,7 +74,7 @@ class Secondsec extends Component {
             like = 0;
         }
         if (id && user) {
-            await axios.post("https://server.lowehair.kr/boardLikeUpdate", {
+            await axios.post("http://54.180.117.244:5000/boardLikeUpdate", {
                 id: id,
                 user: user,
                 heart: like
@@ -101,7 +111,7 @@ class Secondsec extends Component {
         }
 
         if (userid) {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 BoardId: id,
                 ManagerId: this.props.data.board.ManagerId,
@@ -114,7 +124,7 @@ class Secondsec extends Component {
                 }).catch((err) => {
                 });
         } else {
-            axios.post("https://server.lowehair.kr/click", {
+            axios.post("http://54.180.117.244:5000/click", {
                 type: 7,
                 BoardId: id,
                 ManagerId: this.props.data.board.ManagerId,
@@ -140,6 +150,7 @@ class Secondsec extends Component {
             funnel=''
         }
         return (
+            <>
             <section className="Board_second">
                 <div className="Board_second_section">
                     <div className="Board_title">{this.props.data.board.name}</div>
@@ -161,20 +172,23 @@ class Secondsec extends Component {
                                 this.state.like === false ?
                                     <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike2.svg"} className="Board_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
                                     <img src={process.env.PUBLIC_URL + "/image/nav/goods_like2.svg"} className="Board_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
-                                <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike2.svg"} className="Board_like" alt="로위 상품 찜" onClick={() => { alert("로그인을 해주세요") }} />
+                                <img src={process.env.PUBLIC_URL + "/image/nav/goods_dislike2.svg"} className="Board_like" alt="로위 상품 찜" onClick={this.openmodalPhone("로그인이 필요한 서비스 입니다")} />
                             }
                             <img onClick={this.handleShare} src={process.env.PUBLIC_URL + "/image/nav/board_share.svg"} className="Board_share" alt="로위 상품 찜" /> 
                         </div>
                     </div>
                     <div className="Board_second_addprice">
-                        <div style={{ width: "80px", fontWeight: "700" }}>추가금액</div>
-                        <div style={{ width: "67%", maxWidth: "270px", whiteSpace: "pre-line" }}>{this.props.data.board.addPrice}</div>
-                    </div>
+                        <div style={{ width: "80px", fontWeight: "700" }}>시술시간</div>
+                        <div style={{ width: "calc(100% - 180px)", maxWidth: "270px", whiteSpace: "pre-line" }}>약 {Math.floor(this.props.data.board.taken / 60)}시간 {this.props.data.board.taken % 60 !== 0 ? this.props.data.board.taken % 60+ "분" : null}</div>
                     <div className="Board_second_naver">
                         <div>
-                            <img src={process.env.PUBLIC_URL + "/image/nav/board_naver.svg"} alt="네이버" />
-                            <div onClick={this.onClickReserve}><span>네이버 예약하기</span></div>
+                            <img onClick={this.onClickReserve} src={process.env.PUBLIC_URL + "/image/nav/boarddetail_naver.svg"} alt="네이버" />
                         </div>
+                    </div>
+                    </div>
+                    <div className="Board_second_addprice">
+                        <div style={{ width: "80px", fontWeight: "700" }}>추가금액</div>
+                        <div style={{ width: "calc(100% - 80px)", whiteSpace: "pre-line" ,marginBottom: "20px"}}>{this.props.data.board.addPrice}</div>
                     </div>
                     <div>
                         {this.props.designer ?
@@ -189,6 +203,8 @@ class Secondsec extends Component {
                 </a>
                 <div id="filter_trigger" />
             </section>
+<ModalPhone open={this.state.phonemodal} closemodal={this.closemodalPhone} comment={this.state.modalcomment} />
+            </>
         )
     }
 }

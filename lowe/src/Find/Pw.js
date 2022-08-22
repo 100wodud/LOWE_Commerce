@@ -46,7 +46,7 @@ class Pw extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
+            axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -61,7 +61,7 @@ class Pw extends React.Component {
 
     handlefindPw = () => {
 
-        axios.post("https://server.lowehair.kr/loginIdCheck", {
+        axios.post("http://54.180.117.244:5000/loginIdCheck", {
             login_id: this.state.login_id,
         }).then((res) => {
             if (res.data.status === "false") {
@@ -77,7 +77,7 @@ class Pw extends React.Component {
         })
         this.setState({ phonecheck_error: "" })
         if (this.state.phonecheck && this.state.random === Number(this.state.randomcheck) && !this.state.login_id_error) {
-            axios.post("https://server.lowehair.kr/checkUserIdAndPhone", {
+            axios.post("http://54.180.117.244:5000/checkUserIdAndPhone", {
                 phone: this.state.phone,
                 login_id: this.state.login_id
             }).then((res) => {

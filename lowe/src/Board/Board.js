@@ -24,22 +24,21 @@ class Board extends Component {
     componentDidMount = (e) => {
         let id = window.location.pathname.split("/")[2];
         let userid = Number(window.localStorage.getItem("id"));
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel='/'
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = '/'
         }
-        axios.post("https://server.lowehair.kr/getBoardDetail", {
+        axios.post("http://54.180.117.244:5000/getBoardDetail", {
             id: id,
         }).then((res) => {
             this.setState({ data: res.data });
-            axios.post("https://server.lowehair.kr/getDesignerDetail", {
-                id: res.data.board.ManagerId,
-            })
-                .then((res) => {
-                    this.setState({ designer: res.data });
-                });
+            axios.post("http://54.180.117.244:5000/getDesigner", {
+                id: res.data.board.ManagerId, isHashtag: true, isFavorite: true
+            }).then((res) => {
+                this.setState({ designer: res.data[0] });
+            });
 
         }).catch((err) => {
             console.log(err)
@@ -48,7 +47,7 @@ class Board extends Component {
         if (!this.state.click) {
             this.setState({ click: true })
             if (userid) {
-                axios.post("https://server.lowehair.kr/click", {
+                axios.post("http://54.180.117.244:5000/click", {
                     type: 2,
                     BoardId: id,
                     UserId: userid,
@@ -58,7 +57,7 @@ class Board extends Component {
                     }).catch((err) => {
                     });
             } else {
-                axios.post("https://server.lowehair.kr/click", {
+                axios.post("http://54.180.117.244:5000/click", {
                     type: 2,
                     BoardId: id,
                     funnel: funnel
@@ -74,7 +73,7 @@ class Board extends Component {
     render() {
         return (
             <>
-                <Header header="clear" />
+                <Header header="clear"  scroll={true}  />
                 {this.state.data && this.state.designer && this.state.data.board.open === "1" ?
                     <>
                         <Firstsec data={this.state.data} />

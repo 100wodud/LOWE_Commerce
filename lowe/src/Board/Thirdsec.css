@@ -11,9 +11,9 @@
 }
 
 .Board_mainimg {
-    padding-top: 120px;
+    padding-top: 80px;
     width: 100%;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
 }
 
 .BaA {
@@ -24,11 +24,9 @@
 }
 
 .Board_caution {
-    padding: 40px 7px 40px 7px;
-    margin-top: 120px;
-    border-top: 1px solid #8E8E8E;
-    border-bottom: 1px solid #8E8E8E;;
+    padding: 40px 0 20px 0;
 }
+
 
 .private {
     font: 700 24px "Montserrat";
@@ -48,28 +46,4 @@
     overflow-x: scroll;
     white-space:nowrap;
     display: flex;
-}
-
-.Board_third_moreview {
-    background: linear-gradient(0.16deg, #FFFFFF 0.14%, rgba(255, 255, 255, 0) 99.85%, rgba(255, 255, 255, 0) 99.86%);
-    height: 220px;
-    width: 100%;
-    z-index: 10;
-    bottom:0;
-    position: absolute;
-}
-
-.Board_third_moreview_button {
-    max-width: 402px;
-    width: 99.5%;
-    height: 56px;
-    font: 700 14px "Noto Sans";
-    line-height: 56px;
-    border: 1px solid #DDDDDD;
-    text-align: center;
-    border-radius: 8px;
-    background-color: #FFFFFF;
-    bottom: 0;
-    margin-top: 145px;
-    cursor: pointer;
 }

@@ -53,7 +53,7 @@ class Receipt extends Component {
                     }
                 }
             }
-            await axios.post("https://server.lowehair.kr/getPayment", {
+            await axios.post("http://54.180.117.244:5000/getPayment", {
                 id: id,
             }).then((res) => {
                 this.setState({ payment: res.data })
@@ -76,12 +76,12 @@ class Receipt extends Component {
             let userid = window.localStorage.getItem("id");
             this.setState({ data: recent_payment, surgery_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
-            await axios.post("https://server.lowehair.kr/getPayment", {
+            await axios.post("http://54.180.117.244:5000/getPayment", {
                 id: id,
             }).then((res) => {
                 if (Number(userid) === res.data[0].User.id) {
                     this.setState({ payment: res.data })
-                    axios.post('https://server.lowehair.kr/updatePayment', {
+                    axios.post('http://54.180.117.244:5000/updatePayment', {
                         id: Number(id), //결제 DB 상의 id 값
                         ManagerId: recent_payment.managerId,
                         BoardId: this.state.data.board.board.id,
@@ -109,13 +109,13 @@ class Receipt extends Component {
                 console.log(err)
             });
 
-            await axios.post("https://server.lowehair.kr/getDesignerDetail", {
-                id: recent_payment.managerId,
+            await axios.post("http://54.180.117.244:5000/getDesigner", {
+                id: recent_payment.managerId
             }).then((res) => {
-                this.setState({ manager: res.data })
-                if (res.data.store) {
+                this.setState({ manager: res.data[0] })
+                if (res.data[0].store) {
                     for (let i = 0; i < Store.length; i++) {
-                        if (Store[i].store.indexOf(res.data.store) !== -1) {
+                        if (Store[i].store.indexOf(res.data[0].store) !== -1) {
                             this.setState({ store: Store[i] })
                         }
                     }

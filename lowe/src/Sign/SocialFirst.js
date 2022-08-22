@@ -7,7 +7,7 @@ import SignupModal from "./SignupModal";
 if(window.location.pathname.split("/")[1] === "naverLogin"){
     window.history.back = () => {
 
-        axios.post("https://server.lowehair.kr/withdrawalUser", { 
+        axios.post("http://54.180.117.244:5000/withdrawalUser", { 
             id: window.location.pathname.split("/")[2], 
             withdrawalReason: "" 
         }).then((res) => {
@@ -72,13 +72,13 @@ class SocialFirst extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("https://server.lowehair.kr/phoneCheck", {
+            axios.post("http://54.180.117.244:5000/phoneCheck", {
                 phone: this.state.phone,
             }).then((res) => {
                 if (res.data.status === false) {
                     this.openmodalPhone(`네이버가입된번호 ${this.state.phone}`)
                 } else {
-                    axios.post("https://server.lowehair.kr/checkPhoneNumber", {
+                    axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
                         phone: this.state.phone,
                         number: number
                     }).then(() => {
@@ -139,44 +139,62 @@ class SocialFirst extends React.Component {
                     <div className="Social_First_section">
                         <div onClick={this.props.onClickAgree("agree")} >
                             <span className="Social_First_span Pagreeall">
-                                {this.props.state.agree1 && this.props.state.agree2 && this.props.state.agree3 ?
+                                {this.props.state.agree1 && this.props.state.agree2 && this.props.state.agree3 && this.props.state.agree4 && this.props.state.agree5 ?
                                     <img src={process.env.PUBLIC_URL + "/image/nav/agree_check.svg"} alt="체크" /> :
                                     <img src={process.env.PUBLIC_URL + "/image/nav/agree_uncheck.svg"} alt="언체크" />
                                 }
                             </span>
-                            <span className="Social_First_title">가입 진행 전체 동의</span>
+                            <span className="Social_First_title">전체동의</span>
                         </div>
-                        <div onClick={this.props.onClickAgree("agree1")} >
+                        <div onClick={this.props.onClickAgree("agree1")} style={{ marginBottom: "6px" }}>
                             <span className="Social_First_span Pagree">
                                 {this.props.state.agree1 ?
                                     <img src={process.env.PUBLIC_URL + "/image/nav/allagree_check.svg"} alt="체크" /> :
                                     <img src={process.env.PUBLIC_URL + "/image/nav/allagree_uncheck.svg"} alt="언체크" />
                                 }
                             </span>
-                            <span className="Social_First_span" >본인은 만 14세 이상입니다(필수)</span>
+                            <span className="Social_First_span"  >(필수) <span onClick={this.openmodal(1)} style={{ textDecorationLine: "underline" }}>서비스 이용약관에 동의합니다</span></span>
                         </div>
-                        <div onClick={this.props.onClickAgree("agree2")} style={{ margin: "10px 0px" }}>
+                        <div onClick={this.props.onClickAgree("agree2")} style={{ margin: "6px 0px" }}>
                             <span className="Social_First_span Pagree">
                                 {this.props.state.agree2 ?
                                     <img src={process.env.PUBLIC_URL + "/image/nav/allagree_check.svg"} alt="체크" /> :
                                     <img src={process.env.PUBLIC_URL + "/image/nav/allagree_uncheck.svg"} alt="언체크" />
                                 }
                             </span>
-                            <span className="Social_First_span"  onClick={this.openmodal(1)} style={{textDecorationLine: "underline"}}>개인정보 수집 및 이용 약관 동의(필수)</span>
+                            <span className="Social_First_span"  >(필수) <span onClick={this.openmodal(4)} style={{ textDecorationLine: "underline" }}>제 3자 제공 동의에 동의합니다</span></span>
                         </div>
-                        <div onClick={this.props.onClickAgree("agree3")} style={{ marginBottom: "40px" }}>
+                        <div onClick={this.props.onClickAgree("agree3")} style={{ margin: "6px 0px" }}>
                             <span className="Social_First_span Pagree">
                                 {this.props.state.agree3 ?
                                     <img src={process.env.PUBLIC_URL + "/image/nav/allagree_check.svg"} alt="체크" /> :
                                     <img src={process.env.PUBLIC_URL + "/image/nav/allagree_uncheck.svg"} alt="언체크" />
                                 }
                             </span>
-                            <span className="Social_First_span" >이벤트 및 할인 혜택 안내 동의(선택)</span>
+                            <span className="Social_First_span"  >(필수) <span onClick={this.openmodal(3)} style={{ textDecorationLine: "underline" }}>개인정보 처리 방침에 동의합니다</span></span>
+                        </div>
+                        <div onClick={this.props.onClickAgree("agree4")} style={{ margin: "6px 0px" }}>
+                            <span className="Social_First_span Pagree">
+                                {this.props.state.agree4 ?
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/allagree_check.svg"} alt="체크" /> :
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/allagree_uncheck.svg"} alt="언체크" />
+                                }
+                            </span>
+                            <span className="Social_First_span" >(필수) 본인은 만 14세 이상입니다</span>
+                        </div>
+                        <div onClick={this.props.onClickAgree("agree5")} style={{ margin: "6px 0 40px" }}>
+                            <span className="Social_First_span Pagree">
+                                {this.props.state.agree5 ?
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/allagree_check.svg"} alt="체크" /> :
+                                    <img src={process.env.PUBLIC_URL + "/image/nav/allagree_uncheck.svg"} alt="언체크" />
+                                }
+                            </span>
+                            <span className="Social_First_span"  >(선택) <span onClick={this.openmodal(2)} style={{ textDecorationLine: "underline" }}>이벤트 알림 서비스에 동의합니다</span></span>
                         </div>
 
                         <div className="signin_buttonbox" style={{marginBottom: "56px"}}>
-                            <div className={this.state.name && this.state.phone && this.state.randomcheck && this.props.state.agree1 && this.props.state.agree2 ? "signin_button":"signin_button_signin"}  
-                            onClick={this.state.name && this.state.phone && this.state.randomcheck && this.props.state.agree1 && this.props.state.agree2 ? this.gotoNext: null}> 다음 </div>
+                            <div className={this.state.name && this.state.phone && this.state.randomcheck && this.props.state.agree1 && this.props.state.agree2&& this.props.state.agree3&& this.props.state.agree4 ? "signin_button":"signin_button_signin"}  
+                            onClick={this.state.name && this.state.phone && this.state.randomcheck && this.props.state.agree1 && this.props.state.agree2&& this.props.state.agree3&& this.props.state.agree4 ? this.gotoNext: null}> 다음 </div>
                         </div>
                     </div>
 

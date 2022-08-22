@@ -34,7 +34,7 @@ class DMain extends Component {
                                     "item": `${itemid}`,
                                     "bookingBusinessId": `${bookingid}`,
                                     "page": 1,
-                                    "display": 50,
+                                    "display": 3,
                                     "isPhotoUsed": false,
                                     "includeContent": true,
                                     "getAuthorInfo": true,
@@ -118,7 +118,7 @@ class DMain extends Component {
                                         {
                                             this.props.data.Boards.map((e) => (
                                                 e.open === "1" ?
-                                                <Goodslist e={e} /> : null
+                                                <Goodslist e={e} key={e.id} /> : null
                                             ))
                                         }
                                         <div style={{ width: "140px" }}>

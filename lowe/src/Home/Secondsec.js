@@ -28,14 +28,14 @@ class Secondsec extends Component {
         if (window.location.pathname.split('/')[2] === "tag") {
             if (window.location.pathname.split('/')[3] === "event") {
 
-                axios.post("https://server.lowehair.kr/getBoard", {
+                axios.post("http://54.180.117.244:5000/getBoard", {
                     event_type: true, open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
                     })
             } else {
-                axios.post("https://server.lowehair.kr/getBoard", {
+                axios.post("http://54.180.117.244:5000/getBoard", {
                     category: window.location.pathname.split('/')[3], open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
@@ -45,14 +45,14 @@ class Secondsec extends Component {
             }
         } else if (window.location.pathname.split('/')[2] === "store") {
             if (window.location.pathname.split('/')[3] === "all") {
-                axios.post("https://server.lowehair.kr/getBoard", {
+                axios.post("http://54.180.117.244:5000/getBoard", {
                     open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
                     })
             } else {
-                axios.post("https://server.lowehair.kr/getBoard", {
+                axios.post("http://54.180.117.244:5000/getBoard", {
                     store: decodeURI(window.location.pathname.split('/')[3]), open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
@@ -61,7 +61,7 @@ class Secondsec extends Component {
             }
         }
 
-        axios.post("https://server.lowehair.kr/getAllBanner", {})
+        axios.post("http://54.180.117.244:5000/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {
@@ -255,12 +255,12 @@ class Secondsec extends Component {
                             this.state.Showgoods.length ?
                                 this.state.Showgoods.slice(0, this.state.number).map((e, i) => (
                                     <>
-                                        <div key={e.id}>
+                                        <div key={e.content}>
                                             <Goodslist e={e} />
                                         </div>
                                         {
                                             (i + 1) % 10 === 0 ?
-                                                <a key={i} href={this.state.banner.url} className="middle_banner" >
+                                                <a href={this.state.banner.url} className="middle_banner" >
                                                     <img src={this.state.banner.img} alt="띠 배너" />
                                                 </a> : null
                                         }
