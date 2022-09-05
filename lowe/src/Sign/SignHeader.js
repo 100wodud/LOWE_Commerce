@@ -27,7 +27,7 @@ class SignHeader extends Component {
 
     render() {
         return (
-            <header className="header2" style={ this.props.header &&(this.props.header === "회원정보 수정" || this.props.header === "회원가입" || this.props.header === " ") ? {borderBottom: "none" }:null}>
+            <header className="header2" style={ this.props.header &&(this.props.header === "회원정보 수정" || this.props.header === "회원가입" || this.props.header === " " || this.props.header === "리뷰쓰기") ? {borderBottom: "none" }:null}>
                 {this.props.header ?
                     <div className="header_name" >{this.props.header}</div> :
                     <div></div>

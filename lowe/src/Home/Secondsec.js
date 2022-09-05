@@ -28,14 +28,14 @@ class Secondsec extends Component {
         if (window.location.pathname.split('/')[2] === "tag") {
             if (window.location.pathname.split('/')[3] === "event") {
 
-                axios.post("http://54.180.117.244:5000/getBoard", {
+                axios.post("https://server.lowehair.kr/getBoard", {
                     event_type: true, open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
                     })
             } else {
-                axios.post("http://54.180.117.244:5000/getBoard", {
+                axios.post("https://server.lowehair.kr/getBoard", {
                     category: window.location.pathname.split('/')[3], open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
@@ -45,14 +45,14 @@ class Secondsec extends Component {
             }
         } else if (window.location.pathname.split('/')[2] === "store") {
             if (window.location.pathname.split('/')[3] === "all") {
-                axios.post("http://54.180.117.244:5000/getBoard", {
+                axios.post("https://server.lowehair.kr/getBoard", {
                     open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
                     })
             } else {
-                axios.post("http://54.180.117.244:5000/getBoard", {
+                axios.post("https://server.lowehair.kr/getBoard", {
                     store: decodeURI(window.location.pathname.split('/')[3]), open: "1", isWish: true, isReview: true
                 })
                     .then((res) => {
@@ -61,7 +61,7 @@ class Secondsec extends Component {
             }
         }
 
-        axios.post("http://54.180.117.244:5000/getAllBanner", {})
+        axios.post("https://server.lowehair.kr/getAllBanner", {})
             .then((res) => {
                 if (res.data.length) {
                     for (let i = 0; i < res.data.length; i++) {

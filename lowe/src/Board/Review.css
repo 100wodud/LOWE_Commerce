@@ -27,6 +27,7 @@
     font: 500 14px "Noto Sans";
     margin-bottom: 24px;
     max-width: 370px;
+    width: calc(100% - 24px);
     word-break:break-word;
     display: -webkit-box;
     -webkit-line-clamp: 3; 
@@ -38,6 +39,7 @@
     font: 500 14px "Noto Sans";
     margin-bottom: 24px;
     max-width: 370px;
+    width: calc(100% - 24px);
     white-space:pre-line;
     word-break:break-word;
 }

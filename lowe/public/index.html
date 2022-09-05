@@ -77,6 +77,7 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTH2G6K" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
 </head>
 
 <body>
@@ -84,49 +85,62 @@
 
   <script>
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('worker.js').then(function(registration) {
-            }, function(err) {
-                console.log('Worker registration failed', err);
-            }).catch(function(err) {
-                console.log(err);
-            });
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('worker.js').then(function (registration) {
+        }, function (err) {
+          console.log('Worker registration failed', err);
+        }).catch(function (err) {
+          console.log(err);
         });
+      });
     } else {
-        console.log('Service Worker is not supported by browser.');
+      console.log('Service Worker is not supported by browser.');
     }
   </script>
 
   <script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
+  <script>
+    naverInnerScript = function (e) {
+      if (window.location.pathname.split("/")[1] === "receipt") {
+        var _nasa = {};
+        if (window.wcs) _nasa["cnv"] = wcs.cnv("1", e);
+      } else if (e === 2) {
+        var _nasa = {};
+        if (window.wcs) _nasa["cnv"] = wcs.cnv("5", "10");
+      }
+    }
+  </script>
   <script type="text/javascript">
-    if((window.location.pathname.split("/")[1] === "naverLogin" || window.location.pathname.split("/")[1] === "signup") && window.location.hash === "#signupsuccess"){
-      var _nasa={ };
-      if (window.wcs) _nasa["cnv"] = wcs.cnv("2","10000");
-    } else if(window.location.pathname.split("/")[1] === "receipt"){
-      let recent_payment = JSON.parse(window.localStorage.getItem("recent_payment"));
-      var _nasa={ };
-      if (window.wcs) _nasa["cnv"] = wcs.cnv("1",recent_payment.board.board.price);
-    } else if(window.location.pathname.split("/")[1] === "like"){
-      var _nasa={ };
-      if (window.wcs) _nasa["cnv"] = wcs.cnv("5", "10");
+    if ((window.location.pathname.split("/")[1] === "naverLogin" || window.location.pathname.split("/")[1] === "signup") && window.location.hash === "#signupsuccess") {
+      var _nasa = {};
+      if (window.wcs) _nasa["cnv"] = wcs.cnv("2", "10000");
     }
   </script>
-  <!-- 공통 적용 스크립트 , 모든 페이지에 노출되도록 설치. 단 전환페이지 설정값보다 항상 하단에 위치해야함 --> 
-  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script> 
-  <script type="text/javascript"> 
-    if (!wcs_add) var wcs_add={};
+  <!-- 공통 적용 스크립트 , 모든 페이지에 노출되도록 설치. 단 전환페이지 설정값보다 항상 하단에 위치해야함 -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
+  <script type="text/javascript">
+    naverOuterScript = function () {
+      if (!wcs_add) var wcs_add = {};
+      wcs_add["wa"] = "s_49d1d4f99b44";
+      if (!_nasa) var _nasa = {};
+      if (window.wcs) {
+        wcs.inflow("lowehair.kr");
+        wcs_do(_nasa);
+      }
+    }
+    if (!wcs_add) var wcs_add = {};
     wcs_add["wa"] = "s_49d1d4f99b44";
-    if (!_nasa) var _nasa={};
-    if(window.wcs){
-    wcs.inflow("lowehair.kr");
-    wcs_do(_nasa);
+    if (!_nasa) var _nasa = {};
+    if (window.wcs) {
+      wcs.inflow("lowehair.kr");
+      wcs_do(_nasa);
     }
   </script>
-
 </body>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<!-- <script type="text/javascript" src="https://democpay.payple.kr/js/cpay.payple.1.0.1.js"></script>  -->
- <script type="text/javascript" src="https://cpay.payple.kr/js/cpay.payple.1.0.1.js"></script>
+<!-- <script type="text/javascript" src="https://democpay.payple.kr/js/cpay.payple.1.0.1.js"></script> -->
+<script type="text/javascript" src="https://cpay.payple.kr/js/cpay.payple.1.0.1.js"></script>
+
 </html>

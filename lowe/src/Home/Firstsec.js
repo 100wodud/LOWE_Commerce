@@ -15,7 +15,7 @@ class Firstsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://54.180.117.244:5000/getAllBanner", {})
+        axios.post("https://server.lowehair.kr/getAllBanner", {})
         .then((res)=>{
             let arr = [];
             if(res.data.length){

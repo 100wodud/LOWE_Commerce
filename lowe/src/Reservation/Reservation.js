@@ -25,7 +25,7 @@ class Reservation extends React.Component {
         let id = window.location.pathname.split("/")[2];
         let path = window.location.pathname.split("/")[1];
         if (path === "reservation_board") {
-            axios.post("http://54.180.117.244:5000/getBoard", {
+            axios.post("https://server.lowehair.kr/getBoard", {
                 id: id,
             }).then((res) => {
                 this.setState({ data: {board: res.data[0]} });
@@ -34,7 +34,7 @@ class Reservation extends React.Component {
             });
         } else if (path === "reservation_surgery") {
             let data = {}
-            axios.get(`http://54.180.117.244:5000/surgery?id=${id}`, {
+            axios.get(`https://server.lowehair.kr/surgery?id=${id}`, {
             }).then((res) => {
                 data = {
                     board: {
@@ -55,7 +55,7 @@ class Reservation extends React.Component {
 
         } else if (path === "reservation_change") {
             let id = window.location.pathname.split("/")[2];
-            axios.post("http://54.180.117.244:5000/getPayment", {
+            axios.post("https://server.lowehair.kr/getPayment", {
                 id: id,
             }).then((res) => {
                 if (res.data[0].SurgeryId) {
@@ -93,7 +93,7 @@ class Reservation extends React.Component {
         { time: "17:30", type: "오후", show: "05:30" }, { time: "18:00", type: "오후", show: "06:00" }, { time: "18:30", type: "오후", show: "06:30" },
         { time: "19:00", type: "오후", show: "07:00" }, { time: "19:30", type: "오후", show: "07:30" }, { time: "none", type: "오후", show: "none" }]
 
-        axios.post(`http://54.180.117.244:5000/getSchedule`, {
+        axios.post(`https://server.lowehair.kr/getSchedule`, {
             scheduleDate: v,
             ManagerId: this.state.data.board.ManagerId
         }).then((res) => {
@@ -141,13 +141,13 @@ class Reservation extends React.Component {
         let paymentid = window.location.pathname.split("/")[2];
         if (this.state.date && this.state.time) {
             let reservation_date = this.state.date + " " + this.state.time;
-             axios.patch('http://54.180.117.244:5000/schedule', {
+             axios.patch('https://server.lowehair.kr/schedule', {
                 PaymentId: paymentid,
                 state: '예약변경',
                 schedule_confirm: false,
                 startTime: reservation_date,
           }).then(()=>{
-                axios.post("http://54.180.117.244:5000/alert", {
+                axios.post("https://server.lowehair.kr/alert", {
                     type: "reserveChange",
                     PaymentId: paymentid,
                     isUser: true,

@@ -20,14 +20,14 @@ class Portfoliolist extends Component {
         let id = Number(window.location.pathname.split("/")[3]);
         let scroll = window.location.href.split("#")[1];
         if (id) {
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
+            axios.post("https://server.lowehair.kr/getPortfolio", {
                 ManagerId: id,
-                hashtag: portfolio
+                hashtag: portfolio, isDesigner: true
             }).then((res)=>{
                 this.setState({data: res.data.portfolio})
             })
 
-            axios.post("http://54.180.117.244:5000/getDesigner", {
+            axios.post("https://server.lowehair.kr/getDesigner", {
                 id: id, isHashtag: true, isFavorite: true
             }).then((res) => {
                 let coupon = ""
@@ -44,8 +44,8 @@ class Portfoliolist extends Component {
                 console.log(err)
             });
         } else {
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
-                hashtag: portfolio
+            axios.post("https://server.lowehair.kr/getPortfolio", {
+                hashtag: portfolio, isDesigner: true
             }).then((res)=>{
                 this.setState({data: res.data.portfolio})
                 setTimeout(() => {

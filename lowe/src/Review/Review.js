@@ -19,6 +19,7 @@ class Review extends Component {
             phonemodal: false,
             modalcomment: '',
             payment: "",
+            happy: "",
 
         };
     }
@@ -34,6 +35,9 @@ class Review extends Component {
         let id = window.location.pathname.split("/")[4];
         let ManagerId = window.location.pathname.split("/")[3];
         let user = window.localStorage.getItem("id");
+        if (!user) {
+            window.location.href = '/signin'
+        }
 
         if (window.location.pathname.split("/")[5]) {
 
@@ -63,6 +67,7 @@ class Review extends Component {
                 Amout: Number(this.props.location.state.hair_amout),
                 Thick: Number(this.props.location.state.hair_thick),
                 content: this.props.location.state.content,
+                happy: this.props.location.state.happy,
                 imgs: arr
             })
         }
@@ -71,11 +76,11 @@ class Review extends Component {
     onClicksubmit = () => {
         const img = this.state.imgs;
         let boardid = window.location.pathname.split("/")[4];
-        if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content) {
+        if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content && this.state.happy) {
             if (this.state.payment) {
                 if (boardid !== "122") {
                     axios
-                        .post("http://54.180.117.244:5000/createReview", {
+                        .post("https://server.lowehair.kr/review", {
                             user: Number(this.state.user),
                             PaymentId: Number(this.state.payment),
                             BoardId: Number(boardid),
@@ -84,6 +89,7 @@ class Review extends Component {
                             hair_amout: this.state.Amout,
                             hair_thick: this.state.Thick,
                             content: this.state.content,
+                            happy: this.state.happy,
                             img,
                         })
                         .then((res) => {
@@ -92,7 +98,7 @@ class Review extends Component {
                 } else {
 
                     axios
-                        .post("http://54.180.117.244:5000/createReview", {
+                        .post("https://server.lowehair.kr/review", {
                             user: Number(this.state.user),
                             PaymentId: Number(this.state.payment),
                             SurgeryId: Number(this.state.surgeryId),
@@ -102,6 +108,7 @@ class Review extends Component {
                             hair_amout: this.state.Amout,
                             hair_thick: this.state.Thick,
                             content: this.state.content,
+                            happy: this.state.happy,
                             img,
                         })
                         .then((res) => {
@@ -111,7 +118,7 @@ class Review extends Component {
 
             } else {
                 axios
-                    .post("http://54.180.117.244:5000/createReview", {
+                    .post("https://server.lowehair.kr/review", {
                         user: Number(this.state.user),
                         BoardId: Number(this.state.id),
                         ManagerId: Number(this.state.ManagerId),
@@ -119,6 +126,7 @@ class Review extends Component {
                         hair_amout: this.state.Amout,
                         hair_thick: this.state.Thick,
                         content: this.state.content,
+                        happy: this.state.happy,
                         img
                     })
                     .then((res) => {
@@ -134,12 +142,13 @@ class Review extends Component {
         const img = this.state.imgs
         if (this.state.Color && this.state.Amout && this.state.Thick && this.state.content) {
             axios
-                .post("http://54.180.117.244:5000/updateReview", {
+                .patch("https://server.lowehair.kr/review", {
                     id: this.props.location.state.id,
                     hair_color: this.state.Color,
                     hair_amout: this.state.Amout,
                     hair_thick: this.state.Thick,
                     content: this.state.content,
+                    happy: this.state.happy,
                     img
                 })
                 .then((res) => {
@@ -167,7 +176,7 @@ class Review extends Component {
                 const formData = new FormData();
                 formData.append("file", img);
                 await axios
-                    .post("http://54.180.117.244:5000/addImg", formData, {
+                    .post("https://server.lowehair.kr/addImg", formData, {
                         headers: {
                             "content-type": "multipart/form-data",
                         },
@@ -199,6 +208,11 @@ class Review extends Component {
         this.setState({ Thick: e })
     }
 
+    onclickHappy = (e) => () => {
+        this.setState({ happy: e })
+    }
+
+
 
 
     onClickDelimg = (i) => () => {
@@ -213,6 +227,19 @@ class Review extends Component {
             <>
                 <Header header="리뷰쓰기" />
                 <section className="review_write_section">
+                    <div>
+                        <div className="review_write_main">시술 경험은 어떠셨나요?</div>
+                    </div>
+                    <div style={{ margin: "20px 0px 36px 12px" }}>
+                        <div className="review_write-filter">
+                            <p className={(this.state.happy === "good" ? "click_button" : 'unclick_button')} onClick={this.onclickHappy("good")}>최고예요😁</p>
+                            <p className={(this.state.happy === "soso" ? "click_button" : 'unclick_button')} onClick={this.onclickHappy("soso")}>괜찮아요🙂</p>
+                            <p className={(this.state.happy === "bad" ? "click_button" : 'unclick_button')} onClick={this.onclickHappy("bad")}>아쉬워요🥲</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="review_write_main">시술 경험을 더 상세하게 평가해주세요.</div>
+                    </div>
                     <div>
                         <div className="review_write_title">탈색한 적이 있으신가요?</div>
                         <div className="review_write-filter">
@@ -238,13 +265,15 @@ class Review extends Component {
                     </div>
 
                     <div>
-                        <div className="review_write_title">상세한 후기를 써주세요.</div>
                         <textarea
                             onChange={this.handleInputValue("content")}
-                            placeholder="시술 후기를 남겨주시면 다른 고객님들에게도 도움이 돼요!"
+                            placeholder={`리뷰작성에 따른 포인트 적립\n20자 이상 텍스트 리뷰: 500p\n20자 이상 텍스트+사진 리뷰: 1,000p\n\n* 포인트 지급은 리뷰 작성 후 최대 3일 소요될 수 있습니다.\n* 광고, 비방, 부적절한 사진은 무통보 삭제될 수 있습니다.`}
                         >
                             {content ? this.props.location.state.content : null}
                         </textarea>
+                    </div>
+                    <div className="review_write_length">
+                        <strong>{this.state.content.length}</strong>/20
                     </div>
                     <div className="reviewimg_scroll">
 
@@ -272,8 +301,8 @@ class Review extends Component {
                     </div>
                     {
                         this.props.location.state ?
-                            <div className="review_write_submit" style={{ marginLeft: 0 }} onClick={this.onClickEdit}>수정 완료</div> :
-                            <div className="review_write_submit" style={{ marginLeft: 0 }} onClick={this.onClicksubmit}>작성 완료</div>
+                            <div className={this.state.content.length >= 20 ? "review_write_submit" : "review_write_submit_gray"} style={{ marginLeft: 0 }} onClick={this.state.content.length >= 20 ? this.onClickEdit : null}>수정 완료</div> :
+                            <div className={this.state.content.length >= 20 ? "review_write_submit" : "review_write_submit_gray"} style={{ marginLeft: 0 }} onClick={this.state.content.length >= 20 ? this.onClicksubmit : null}>작성 완료</div>
                     }
                 </section>
                 <ReviewModal open={this.state.phonemodal} closemodal={this.closemodalReview} comment={this.state.modalcomment} />

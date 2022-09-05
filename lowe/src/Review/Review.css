@@ -4,10 +4,12 @@
     margin-top: 80px;
     overflow: hidden;
 }
-
+.review_write_main {
+    font: 700 16px "Noto Sans"
+}
 .review_write_title {
-    margin-top: 20px;
-    font: 700 14px "Noto Sans";
+    margin-top: 16px;
+    font: 400 14px "Noto Sans";
     margin-bottom: 12px;
 }
 .review_write-filter {
@@ -20,23 +22,36 @@
     padding: 6.5px 16px 8.5px 16px;
     cursor: pointer;
     border-radius: 20px;
+    line-height: 140%;
 
 }
 
 .review_write_section textarea {
-    width: 100%;
-    max-width: 327px;
+    width: calc(100% - 36px);
     height: 128px;
     padding: 16px 12px;
     font: 400 15px "Noto Sans";
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     outline: none;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    margin-top: 16px;
+}
+
+.review_write_section textarea:focus {
     border: 1px solid #333333;
 }
 
 
 .review_write_section textarea::placeholder {
-    font: 700 13px "Noto Sans";
+    font: 400 13px "Noto Sans";
+    line-height: 150%;
+}
+
+.review_write_length{
+    font: 400 12px "Montserrat";
+    text-align: right;
+    margin-right: 12px;
 }
 
 .click_button {
@@ -61,7 +76,7 @@
     text-align: center;
     background: #7C7C7C;
     border-radius: 6px;
-    font: 700 11px "Montserrat";
+    font: 400 11px "Montserrat";
     color: #ffffff;
     cursor: pointer;
     line-height: 80px; 
@@ -94,10 +109,10 @@
 }
 .reviewimg_scroll {
     width: 100%;
-overflow-x: scroll;
-white-space:nowrap;
-display: flex;
-margin-bottom: 80px;
+    overflow-x: scroll;
+    white-space:nowrap;
+    display: flex;
+    margin-bottom: 140px;
 }
 
 .review_write_submit {
@@ -111,7 +126,23 @@ margin-bottom: 80px;
     line-height: 60px;
     text-align: center;
     color: #ffffff;
+    padding-bottom: 20px;
     cursor: pointer;
+}
+
+
+.review_write_submit_gray {
+    bottom: 0;
+    max-width: 428px;
+    width: 100%;
+    background: #DDDDDD;
+    position:fixed;
+    height: 60px;
+    font: 700 15px "Noto Sans";
+    line-height: 60px;
+    text-align: center;
+    color: #ffffff;
+    padding-bottom: 20px;
 }
 
 .review_write_section > div {

@@ -17,34 +17,35 @@ class Thirdsec extends Component {
             slider: "",
             modal: false,
             favorite: [],
-            banner: []
+            banner: [],
         };
     }
 
     componentDidMount = () => {
 
-        axios.post("http://54.180.117.244:5000/getAllBanner", {})
-        .then((res)=>{
-            let arr = [];
-            if(res.data.length){
-                for(let i =0; i < res.data.length; i++){
-                    if(res.data[i].type === 2){
-                        arr.push(res.data[i]);
+        axios.post("https://server.lowehair.kr/getAllBanner", {})
+            .then((res) => {
+                let arr = [];
+                if (res.data.length) {
+                    for (let i = 0; i < res.data.length; i++) {
+                        if (res.data[i].type === 2) {
+                            arr.push(res.data[i]);
+                        }
                     }
+                    this.setState({ banner: arr })
                 }
-                this.setState({banner: arr})
-            }
-        }).catch((err)=>{
-            console.log(err)
-        })
+            }).catch((err) => {
+                console.log(err)
+            })
 
-        axios.post("http://54.180.117.244:5000/getBoard", {
-            order: "payment", isPayment: true, open: "1"
+        axios.post("https://server.lowehair.kr/getBoard", {
+            order: "payment", isPayment: true, open: "1", isDesigner: true
         }).then((res) => {
             this.setState({ favorite: res.data.slice(0, 8) })
         })
 
-        axios.post("http://54.180.117.244:5000/getReview", {
+        axios.post("https://server.lowehair.kr/getReview", {
+            isDesigner: true
         }).then((res) => {
             let review = []
             for (let i = 0; i < res.data.length; i++) {
@@ -78,7 +79,6 @@ class Thirdsec extends Component {
         this.setState({ modal: true, slider: num });
     }
 
-
     render() {
         var setting = {
             dots: true,
@@ -100,7 +100,7 @@ class Thirdsec extends Component {
                 <ScrollContainer className="Recent_total_slide" style={{ marginTop: "20px", height: "345px" }} >
                     {this.state.review.length ?
                         this.state.review.map((e) => (
-                            <ThirdReview e={e} key={e.id} onclickimg={this.onclickimg} />
+                            <ThirdReview e={e} key={e.id} onclickimg={this.onclickimg}  />
                         )) : null
                     }
                 </ScrollContainer>
@@ -118,16 +118,16 @@ class Thirdsec extends Component {
                     </div>
                 </div>
                 <div className="Mainpage_third_banner">
-                <Slider {...setting}>
-                    {
-                        this.state.banner.map((e)=>
-                         (
-                            <a href={e.url}  key={e.id} >
-                                <img src={e.img} alt="로위 배너" />
-                            </a>
-                        )) 
-                    }
-                </Slider>
+                    <Slider {...setting}>
+                        {
+                            this.state.banner.map((e) =>
+                            (
+                                <a href={e.url} key={e.id} >
+                                    <img src={e.img} alt="로위 배너" />
+                                </a>
+                            ))
+                        }
+                    </Slider>
                 </div>
                 {this.state.modal ?
                     <ModalReview data={this.state.review} close={this.closemodal} slider={this.state.slider} mainpage={true} /> : null

@@ -48,7 +48,11 @@
 
 .myreview_board {
     height: 36px;
-    font: 700 13px "Noto Sans"
+    font: 700 13px "Noto Sans";
+    white-space : pre;
+    overflow: hidden;
+    text-overflow : ellipsis;
+    width: 255px;
 }
 
 .myreview_manager {

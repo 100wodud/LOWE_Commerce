@@ -30,7 +30,7 @@ class Designer extends React.Component {
             localStorage.setItem("designer_list", JSON.stringify([]));
         }
         this.setState({ data: designer, showdata: designer })
-        axios.post("http://54.180.117.244:5000/getDesigner", {
+        axios.post("https://server.lowehair.kr/getDesigner", {
             isRank: true, isFavorite:true, isReview:true, isPayment:true, isPortfolio:true, isHashtag: true
         }).then((res) => {
             let arr = []

@@ -57,7 +57,9 @@ class Mainimg extends Component {
                         <div className="Mainimg_img_tips_recommand">
                             {this.props.board.counsel}
                         </div>
-                    </div> : null
+                    </div> :
+                    <div style={{ marginBottom: "80px" }}>
+                    </div>
                 }
                 {
                     this.props.sub[1] ?

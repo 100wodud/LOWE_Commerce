@@ -32,7 +32,35 @@ class Thirdsec extends Component {
                                         ))
                                         }
                                         </div>
-                                    </div> : null
+                                    </div> : 
+                                    
+                                    <div className="Payment_fifth_price_div">
+                                        <div className="Payment_fifth_price_sub">할인쿠폰 사용</div>
+                                        <div>
+                                            <div className="Payment_fifth_price_main" >
+                                                0원
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                {this.props.point >= 100 ?
+                                    <div className="Payment_fifth_price_div">
+                                        <div className="Payment_fifth_price_sub">포인트 사용</div>
+                                        <div>
+                                            <div className="Payment_fifth_price_main">
+                                                -{this.props.point.comma()}P
+                                            </div>
+                                        </div>
+                                    </div> : 
+                                    <div className="Payment_fifth_price_div">
+                                        <div className="Payment_fifth_price_sub">포인트 사용</div>
+                                        <div>
+                                            <div className="Payment_fifth_price_main">
+                                                0P
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 }
                             </div>
                             <div>

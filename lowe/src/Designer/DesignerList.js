@@ -18,7 +18,7 @@ class DesignerList extends React.Component {
         let manager_id = this.props.data.id;
         let user_id = Number(window.localStorage.getItem("id"));
         if (manager_id && user_id) {
-            axios.post(`http://54.180.117.244:5000/getFavorite`, {
+            axios.post(`https://server.lowehair.kr/getFavorite`, {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
@@ -38,13 +38,15 @@ class DesignerList extends React.Component {
         let manager_id = this.props.data.id;
         let user_id = Number(window.localStorage.getItem("id"));
         if (user_id && manager_id) {
-            await axios.post("http://54.180.117.244:5000/favorite", {
+            await axios.post("https://server.lowehair.kr/favorite", {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
                 this.setState({ like: !this.state.like })
             });
         }
+        window.naverInnerScript(2)
+        window.naverOuterScript()
     }
 
     render() {

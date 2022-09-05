@@ -36,12 +36,12 @@ class Firstsec extends Component {
 
     onClickRefund = (e) => {
         if (this.state.reason) {
-            axios.post('http://54.180.117.244:5000/updatePayment', {
+            axios.post('https://server.lowehair.kr/updatePayment', {
                 id: Number(this.props.mypayment.id), //결제 DB 상의 id 값
                 state: '환불대기', //원하시는 형태로 결제 상태 입력해주세요!
                 cancel_reason: this.state.reason,
             }).then((res) => {
-                axios.post("http://54.180.117.244:5000/alert", {
+                axios.post("https://server.lowehair.kr/alert", {
                     type: 5,
                     PaymentId: Number(this.props.mypayment.id)
                 }).then((res) => {

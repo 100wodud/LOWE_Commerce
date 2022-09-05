@@ -20,11 +20,11 @@ class Portf extends Component {
         if (route === "portfoliolist") {
             this.setState({ data: this.props.data })
         } else {
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
-                id: id
+            axios.post("https://server.lowehair.kr/getPortfolio", {
+                id: id, isDesigner: true
             }).then((res) => {
 
-                axios.post("http://54.180.117.244:5000/getDesigner", {
+                axios.post("https://server.lowehair.kr/getDesigner", {
                     id: res.data.portfolio[0].manager_id, isHashtag: true, isFavorite: true
                 }).then((res) => {
                     let coupon = ""
@@ -70,6 +70,7 @@ class Portf extends Component {
             funnel = ''
         }
         let route = window.location.pathname.split("/")[1]
+        console.log(this.state.data)
         return (
             <>
                 <section id={this.props.id} className="Portf_section" style={route==="portfolio" ? {paddingBottom: "80px"}: null}>
@@ -98,7 +99,7 @@ class Portf extends Component {
                                                         <img src={e.thumbnail} alt={e.content} />
                                                     </div>
                                                     <div style={{ marginLeft: "12px" }}>
-                                                        <div className="Porf_Board_designer"><strong>{e.designer_name} 원장</strong> {e.store}</div>
+                                                        <div className="Porf_Board_designer"><strong>{e.designer_name} {this.state.data.Manager.rank}</strong> {e.store}</div>
                                                         <div className="Porf_Board_name">{e.name}</div>
                                                         <div className="Porf_Board_price">{e.eventType ? <span>{e.eventPrice + "%"}</span>: null}{e.price.comma()}원</div>
 

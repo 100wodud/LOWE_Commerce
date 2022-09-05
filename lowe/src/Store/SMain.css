@@ -1,0 +1,130 @@
+.DMain_section {
+    padding-top: 32px;
+    width: 100%;
+}
+
+.DMain_allmenu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.DMain_allmenu > div {
+    font: 400 16px "Noto Sans";
+    height: 25px;
+    margin-bottom: 20px;
+    margin: 0 12px 20px;
+}
+
+.DMain_allmenu strong{
+    font: 700 16px "Noto Sans";
+    height: 25px;
+}
+
+.DMain_allmenu span {
+    font: 500 14px "Noto Sans";
+    line-height: 25px;
+    cursor: pointer;
+}
+
+.DMain_allmenu img {
+    margin-bottom: -2px;
+}
+
+.DMain_allmenu_board {
+    padding: 0 12px 32px;
+    height: 329px;
+}
+
+.DMain_allmenu_board img {
+    display: inline;
+}
+
+.DMain_allmenu_style {
+    margin-bottom: 80px;
+}
+
+
+.DMain_allmenu_style div {
+    width: 33.3333333333%;
+    height:144.66px;
+    display: inline-block;
+    margin-top: -4px;
+}
+.DMain_allmenu_style a {
+    width: 100%;
+    height:144.66px;
+    display: inline-block;
+}
+.DMain_allmenu_style img {
+    width: 100%;
+    height:144.66px;
+    border: 1px solid #FFFFFF;
+    object-fit: cover;
+}
+
+.DMain_allmenu_style video {
+    width: 100%;
+    height:144.66px;
+    border: 1px solid #FFFFFF;
+    object-fit: cover;
+}
+
+.DMain_allmenu_board_all {
+    width: 140px;
+    margin-top: 15px;
+    text-align: center;
+    font: 400 12px "Noto Sans";
+}
+
+.DMain_allmenu_board div {
+    padding-left: 0px;
+}
+
+.DMain_allmen_slide {
+    overflow-x: scroll;
+    white-space:nowrap;
+    height: 340px;
+    margin: auto;
+    display: flex;
+
+}
+.DMain_allmen_slide > span {
+    margin-right: 8px;
+}
+
+.SMain_moreview_button {
+border: 1px solid #DDDDDD;
+border-radius: 8px;
+margin: 12px 12px 80px 12px;
+width: calc(100% - 24px);
+height: 44px;
+font: 700 12px "Monteserrat";
+line-height: 44px;
+text-align: center;
+}
+
+.SMain_moreview_none {
+    margin-bottom: 80px;
+}
+
+@media screen and (max-width:  428px) {
+    .DMain_allmenu_style img {
+        width: 100%;
+        height: 33.33333333vw;
+        border: 1px solid #FFFFFF;
+        object-fit: cover;
+    }
+    .DMain_allmenu_style video {
+        width: 100%;
+        height: 33.33333333vw;
+        border: 1px solid #FFFFFF;
+        object-fit: cover;
+    }
+    .DMain_allmenu_style a {
+        height: 33.33333333vw;
+    }
+    .DMain_allmenu_style div {
+        height: 33.33333333vw;
+    }
+
+}

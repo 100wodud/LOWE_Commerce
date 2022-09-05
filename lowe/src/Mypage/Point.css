@@ -1,0 +1,82 @@
+.Point_mypoint {
+    margin-top: 60px;
+    padding: 40px 12px 32px;
+    border-bottom: 8px solid #F5F5F5;
+    margin-bottom: 32px;
+}
+
+.Point_mypoint_left {
+    font: 700 24px "Montserrat";
+    color: #FF3D12
+}
+
+.Point_mypoint_info {
+    font: 400 12px "Montserrat";
+    cursor: pointer;
+}
+
+.Point_mypoint_infodetail{
+    font: 400 12px "Montserrat";
+    color: #9C9C9C;
+    margin-left: 16px;
+}
+
+.Point_cicle_plus {
+    font: 700 14px "Noto Sans";
+    width: 58px;
+    height: 58px;
+    border: 1px solid #FF3D12;
+    border-radius: 90px;
+    line-height: 58px;
+    text-align: center;
+    color: #FF3D12;
+    margin-right: 12px;
+}
+
+
+.Point_cicle_minus {
+    font: 700 14px "Noto Sans";
+    width: 58px;
+    height: 58px;
+    border: 1px solid #DDDDDD;
+    border-radius: 90px;
+    line-height: 58px;
+    text-align: center;
+    color: #9C9C9C;
+    margin-right: 12px;
+}
+
+.Point_mypoint_date {
+    font: 400 14px "Montserrat";
+    color: #9C9C9C;
+    margin-bottom: 4px;
+}
+
+.Point_mypoint_type {
+    font: 700 14px "Montserrat";
+    line-height: 150%;
+}
+
+.Point_mypoint_goods {
+    font: 400 14px "Montserrat";
+    line-height: 150%;
+    white-space: pre;
+    text-overflow: ellipsis;
+    width: 200px;
+    overflow: hidden;
+}
+
+.Point_mypoint_pointuse {
+    height: 64px;
+    font: 400 18px "Montserrat";
+    line-height: 64px;
+    text-align: right;
+    color: #FF3D12;
+}
+
+/* .Point_mypoint_expired{
+    font: 400 12px "Montserrat";
+    color: #9C9C9C;
+    text-align: right;
+    line-height: 150%;
+} */
