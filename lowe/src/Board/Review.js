@@ -17,7 +17,7 @@ class Review extends Component {
 
     componentDidMount = () => {
         if (typeof (this.props.data.UserId) === "number") {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: this.props.data.UserId,
             })
                 .then((res) => {
@@ -62,7 +62,7 @@ class Review extends Component {
             funnel = ''
         }
         return (
-            <div style={{ paddingBottom: "24px", borderBottom: "1px solid #DDDDDD" }} onClick={this.onClickreview}>
+            <div style={{  borderBottom: "1px solid #DDDDDD" }} onClick={this.onClickreview}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: "24px" }}>
                     {
                         typeof (this.props.data.BoardId) === "number" ?

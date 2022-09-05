@@ -32,7 +32,7 @@ class ModalPhone extends React.Component {
         } else if (this.props.comment.slice(0, 5) === "비밀번호가") {
             window.location.href = `/signin${funnel}`
         } else if (this.props.comment.indexOf("네이버가입된번호") !== -1) {
-            axios.post("http://54.180.117.244:5000/withdrawalUser", {
+            axios.post("https://server.lowehair.kr/withdrawalUser", {
                 id: window.location.pathname.split("/")[2],
                 withdrawalReason: ""
             }).then((res) => {

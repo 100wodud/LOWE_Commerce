@@ -33,13 +33,6 @@ class Fifthsec extends Component {
     }
 
     render() {
-        let id = window.localStorage.getItem("id");
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
-        }
         return (
             <>
             { this.props.top && !this.state.imgreview.length ? null :
@@ -48,10 +41,7 @@ class Fifthsec extends Component {
                     <div className="review_title_div">
                         <span className="review_title">포토리뷰</span>
                         <span >
-                            { this.props.top ?
-                            null :
-                            <a href={id ? "/review/write/" + this.props.data.board.ManagerId +"/" +this.props.data.board.id+funnel : `/signin${funnel}`} className="review_title_write">리뷰쓰기</a>
-                            }
+                            
                         </span>
                     </div>
                     <ReviewList top={this.props.top} ManagerId={this.props.data.board.ManagerId} data={this.state.showreview} imgdata={this.state.imgreview} onClickmoreview={this.onClickmoreview} moreview={this.state.moreview} number={this.state.number} home={true} />

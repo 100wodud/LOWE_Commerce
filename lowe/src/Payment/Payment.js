@@ -26,31 +26,32 @@ class Payment extends Component {
             modalopen: false,
             surgeyid: "",
             reservation: "",
+            point: 0
         };
     }
 
     componentDidMount = () => {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         let id = window.location.pathname.split("/")[2];
         let path = window.location.pathname.split("/")[1];
         if (path === "payment") {
             let res_date = decodeURI(window.location.pathname.split("/")[3]);
-            axios.post("http://54.180.117.244:5000/getBoard", {
+            axios.post("https://server.lowehair.kr/getBoard", {
                 id: id,
             }).then((res) => {
-                this.setState({ data: {board: res.data[0]}, reservation: res_date });
+                this.setState({ data: { board: res.data[0] }, reservation: res_date });
             }).catch((err) => {
                 console.log(err)
             });
         } else if (path === "surgery") {
             let res_date = decodeURI(window.location.pathname.split("/")[3]);
             let data = {}
-            axios.get(`http://54.180.117.244:5000/surgery?id=${id}`, {
+            axios.get(`https://server.lowehair.kr/surgery?id=${id}`, {
             }).then((res) => {
                 data = {
                     board: {
@@ -64,17 +65,17 @@ class Payment extends Component {
                         eventPrice: 0,
                     },
                 }
-                this.setState({ data: data,surgeyid: Number(id), reservation: res_date });
+                this.setState({ data: data, surgeyid: Number(id), reservation: res_date });
             }).catch((err) => {
                 console.log(err)
             });
-            
+
         }
 
 
         let user = window.localStorage.getItem("id");
         if (user) {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: user
             })
                 .then((res) => {
@@ -112,7 +113,7 @@ class Payment extends Component {
                 const formData = new FormData();
                 formData.append("file", img);
                 await axios
-                    .post("http://54.180.117.244:5000/addImg", formData, {
+                    .post("https://server.lowehair.kr/addImg", formData, {
                         headers: {
                             "content-type": "multipart/form-data",
                         },
@@ -123,6 +124,46 @@ class Payment extends Component {
                         this.setState({ imgs: img });
                     })
             }
+        } else if (key === "point") {
+            let number = Number(e.target.value);
+            let num = Math.floor(number / 100) * 100;
+            e.target.value= e.target.value.replace(/^0+/, '')
+            if (this.state.coupon.length) {
+                if ((this.state.data.board.price - this.state.coupon[0].data.price) * 0.9 < 0) {
+                    e.target.value = 0
+                    this.setState({ [key]: 0 });
+                } else if (number > (this.state.data.board.price - this.state.coupon[0].data.price) * 0.9) {
+                    if (this.state.user.point < number && this.state.user.point < (this.state.data.board.price - this.state.coupon[0].data.price) * 0.9) {
+                        e.target.value = Math.floor(this.state.user.point / 100) * 100;
+                        this.setState({ [key]: Math.floor(this.state.user.point / 100) * 100 });
+                    } else {
+                        e.target.value = Math.floor((this.state.data.board.price - this.state.coupon[0].data.price) * 0.9 / 100) * 100
+                        this.setState({ [key]: Math.floor((this.state.data.board.price - this.state.coupon[0].data.price) * 0.9 / 100) * 100 });
+                    }
+                } else {
+                    this.setState({ [key]: num });
+                }
+            } else {
+                if ((this.state.data.board.price) * 0.9 < 0) {
+                    e.target.value = 0
+                    this.setState({ [key]: 0 });
+                } else if (number > (this.state.data.board.price) * 0.9) {
+                    if (this.state.user.point < number && this.state.user.point < (this.state.data.board.price) * 0.9) {
+                        e.target.value = Math.floor(this.state.user.point / 100) * 100;
+                        this.setState({ [key]: Math.floor(this.state.user.point / 100) * 100 });
+                    } else {
+                        e.target.value = Math.floor((this.state.data.board.price) * 0.9 / 100) * 100
+                        this.setState({ [key]: Math.floor((this.state.data.board.price) * 0.9 / 100) * 100 });
+                    }
+                } else {
+                    this.setState({ [key]: num });
+                }
+            } 
+            if (number < 0) {
+                e.target.value = 0
+                this.setState({ [key]: 0 });
+            }
+
         } else {
             this.setState({ [key]: e.target.value });
         }
@@ -168,9 +209,10 @@ class Payment extends Component {
             }
         }
         if (!exist) {
-            coupons[0]=(coupon)
+            coupons[0] = (coupon)
         }
-        this.setState({ coupon: coupons })
+        document.getElementById("point_input").value = ""
+        this.setState({ coupon: coupons, point: 0 })
 
     }
 
@@ -198,10 +240,11 @@ class Payment extends Component {
             define1.boardId = this.state.data.board.id
             define1.userId = this.state.user.id
             define1.coupons = this.state.coupon
+            define1.point = this.state.point
             define1.price = price
             define1.surgery_date = reservation_date
             define1.managerId = this.state.data.board.ManagerId
-            define1.surgeyId = this.state.surgeyid 
+            define1.surgeyId = this.state.surgeyid
             define2.request = {
                 text: this.state.content,
                 img: this.state.imgs
@@ -214,7 +257,7 @@ class Payment extends Component {
             // const data2 = { user_request: 'input text' };
             const dataString2 = JSON.stringify(define2);
             const replaceData2 = dataString2.replaceAll('"', '&quot;');
-            axios.post('http://54.180.117.244:5000/payAuth')
+            axios.post('https://server.lowehair.kr/payAuth')
                 .then((response) => {
                     if (response.status === 200) {
                         e.preventDefault();
@@ -233,7 +276,7 @@ class Payment extends Component {
                         //
                         obj.PCD_PAY_GOODS = this.state.data.board.name;
                         obj.PCD_PAY_TOTAL = price; //board.price;
-                        obj.PCD_RST_URL = `http://54.180.117.244:5000/payment_result`;
+                        obj.PCD_RST_URL = `https://server.lowehair.kr/payment_result`;
                         obj.PCD_PAYER_NO = this.state.user.id;
                         obj.PCD_PAYER_NAME = this.state.user.name; //user.name
                         obj.PCD_PAYER_EMAIL = this.state.user.email; //user.email
@@ -254,6 +297,45 @@ class Payment extends Component {
         }
     }
 
+    onInputPoint = () => {
+        let point = this.state.user.point;
+        let allpoint = Math.floor(point / 100) * 100
+
+        if (this.state.coupon.length) {
+            if ((this.state.data.board.price - this.state.coupon[0].data.price) * 0.9 < 0) {
+                document.getElementById("point_input").value = 0
+                this.setState({ point: 0 });
+            } else if (point > (this.state.data.board.price - this.state.coupon[0].data.price) * 0.9) {
+                document.getElementById("point_input").value = Math.floor((this.state.data.board.price - this.state.coupon[0].data.price) * 0.9 / 100) * 100
+                this.setState({ point: Math.floor((this.state.data.board.price - this.state.coupon[0].data.price) * 0.9 / 100) * 100 });
+            } else {
+                document.getElementById("point_input").value = allpoint
+                this.setState({ point: allpoint });
+            }
+        } else if (point > this.state.data.board.price * 0.9) {
+            document.getElementById("point_input").value = Math.floor(this.state.data.board.price * 0.9 / 100) * 100
+            this.setState({ point: Math.floor(this.state.data.board.price * 0.9 / 100) * 100 });
+        } else {
+            document.getElementById("point_input").value = allpoint
+            this.setState({ point: allpoint })
+        }
+    }
+
+    onBlurPoint = () => {
+        let point = document.getElementById("point_input").value
+        let allpoint = Math.floor(point / 100) * 100
+        this.setState({ point: allpoint })
+        document.getElementById("point_input").value = allpoint
+    }
+
+
+    onInputnoPoint = () => {
+        let allpoint = 0
+        this.setState({ point: allpoint })
+        document.getElementById("point_input").value = allpoint
+    }
+
+
 
     render() {
         let price = 0
@@ -266,18 +348,22 @@ class Payment extends Component {
             } else {
                 price = this.state.data.board.price;
             }
-            if(price <= 0){
+            if (this.state.point >= 100) {
+                price = price - this.state.point
+            }
+
+            if (price <= 0) {
                 price = 0;
             }
         }
         return (
             <>
                 <Header header="결제하기" />
-                <Firstsec data={this.state.data} reservation= {this.state.reservation} />
+                <Firstsec data={this.state.data} reservation={this.state.reservation} />
                 <Secondsec user={this.state.user} />
                 <Thirdsec onClickDelimg={this.onClickDelimg} handleInputValue={this.handleInputValue} state={this.state} />
-                <Fourthsec onClickCoupon={this.onClickCoupon} user={this.state.user} data={this.state.data} coupon={this.state.coupon} />
-                <Fifthsec data={this.state.data} coupon={this.state.coupon} handleInputValue={this.handleInputValue} price={price} />
+                <Fourthsec onInputnoPoint={this.onInputnoPoint} point={this.state.point} onInputPoint={this.onInputPoint} onBlurPoint={this.onBlurPoint} onClickCoupon={this.onClickCoupon} user={this.state.user} handleInputValue={this.handleInputValue} data={this.state.data} coupon={this.state.coupon} />
+                <Fifthsec data={this.state.data} coupon={this.state.coupon} point={this.state.point} handleInputValue={this.handleInputValue} price={price} />
                 <Seventhsec onClickAgree={this.onClickAgree} agree1={this.state.agree1} agree2={this.state.agree2} />
                 <PFooter onclickSubmit={this.onclickSubmit} price={price} modalopen={this.state.modalopen} />
             </>

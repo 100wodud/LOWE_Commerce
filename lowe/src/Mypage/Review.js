@@ -14,7 +14,7 @@ class Review extends Component {
 
     componentDidMount = () => {
         if (this.props.data.BoardId !== 122) {
-            axios.post("http://54.180.117.244:5000/getBoard", {
+            axios.post("https://server.lowehair.kr/getBoard", {
                 id: this.props.data.BoardId, isImage: true, isReview: true
             })
                 .then((res) => {
@@ -30,6 +30,7 @@ class Review extends Component {
         } else {
             funnel = ''
         }
+        console.log(this.props.data)
         return (
             <div className="myreview" >
                 {
@@ -44,7 +45,8 @@ class Review extends Component {
                                         hair_amout: this.props.data.hair_amout,
                                         hair_color: this.props.data.hair_color,
                                         hair_thick: this.props.data.hair_thick,
-                                        content: this.props.data.content
+                                        content: this.props.data.content,
+                                        happy: this.props.data.happy
                                     },
                                 }}>
                                     <div className="myreview_manager">{this.props.data.Manager.name} {this.props.data.Manager.rank} {this.props.data.Manager.store}</div>

@@ -11,12 +11,11 @@
 }
 
 .Payment_third_section textarea {
-    width: 94%;
-    max-width: 380px;
+    width: calc(100% - 26px);
     height: 128px;
     padding: 16px 12px;
     font: 400 15px "Noto Sans";
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     outline: none;
     border: 1px solid #EBEBEB;
     border-radius: 6px;
@@ -25,7 +24,7 @@
 
 
 .Payment_third_section textarea::placeholder {
-    font: 400 13px "Noto Sans";
+    font: 400 14px "Noto Sans";
     color: #9C9C9C;
     line-height: 21px;
 }

@@ -48,10 +48,24 @@
     font: 700 21px "Montserrat";
     color: #333333;
 }
+
+.Board_second_addpoint{
+    width: 100%;
+    height: max-content;
+}
+
 .Board_second_addprice {
     padding: 20.5px 0 12px 0;
     width: 100%;
     
+}
+.Board_second_addpoint > div{
+    font-weight: 400;
+    font-size: 14px ;
+    line-height: 150%;
+    min-height: 28px;
+    float: left;
+    display: block;
 }
 
 .Board_second_naver {

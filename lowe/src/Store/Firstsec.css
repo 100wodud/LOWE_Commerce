@@ -1,0 +1,88 @@
+.Ddesigner_first_section img {
+    width: 428px;    
+    height: 428px;
+    z-index:-1;
+    object-fit: cover;
+    display:block;
+    position:relative;
+}
+.Ddesigner_first_section {
+    background-position: center;
+    width: 100%;
+}
+
+.Ddesigner_first_img {
+    
+    background: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%);
+}
+
+.Ddesigner_first_img_div {
+    display:inline-block;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.3)), color-stop(36.27%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%); /* IE10+ */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 36.27%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+.Ddesigner_first_number {
+    position: absolute;
+    width: 44px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    margin-bottom: 25px;
+    transform: translate(835%, 0);
+    top: 365px;
+    text-align: center;
+    font: 700 11px "Montserrat";
+    color: #D1D1D1;
+    line-height: 20px;
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+}
+
+.Ddesigner_first_number > span{
+    font-weight: 500;
+}
+
+.Ddesigner_first_img_text {
+    position: absolute;
+    bottom: 42px;
+    margin-left: 20px;
+    color: #FFFFFF;
+    z-index: 10;
+    padding-top: 60px;
+}
+.Ddesigner_first_img_text pre {
+    font: 700 20px "Noto Sans";
+    line-height: 30px;
+}
+
+@media screen and (max-width:  428px) {
+    .Ddesigner_first_number {
+        transform: translate(85vw, 0);
+        top: 85.28037383vw;
+    }
+    .Ddesigner_first_section img {
+        width: 100vw;    
+        height: 100vw;
+        object-fit: cover;
+    }
+
+    .Ddesigner_first_img_text {
+        position: absolute;
+        bottom: 9.81308411215vw;
+        margin-left: 20px;
+        color: #FFFFFF;
+        z-index: 10;
+    }
+
+    .Ddesigner_first_img_text pre {
+        font: 700 4.6728971vw "Noto Sans";
+        line-height: 7.0093457vw;
+    }
+}

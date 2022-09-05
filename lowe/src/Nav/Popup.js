@@ -14,10 +14,10 @@ class Popup extends React.Component {
     }
 
     componentDidMount = () => {
-        let policy = window.localStorage.getItem("policy");
-        if (window.location.pathname === '/' && !policy) {
-            this.setState({ main: true })
-        }
+        // let policy = window.localStorage.getItem("policy");
+        // if (window.location.pathname === '/' && !policy) {
+        //     this.setState({ main: true })
+        // }
     }
 
     handleClose = () => {

@@ -17,15 +17,17 @@ class BoardStyle extends Component {
     componentDidMount = () => {
         let id = decodeURI(window.location.pathname.split("/")[2]);
         if (id === "") {
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
+            axios.post("https://server.lowehair.kr/getPortfolio", {
+                isDesigner: true
             }).then((res) => {
                 this.setState({ data: res.data.portfolio })
             })
 
         } else {
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
-                BoardId: id
-            }).then((res) => {
+            axios.post("https://server.lowehair.kr/getPortfolio", {
+                BoardId: id,isDesigner: true
+            }).then((res) => { 
+                console.log(res.data)
                 this.setState({ data: res.data.portfolio, style: id })
             })
         }
@@ -46,7 +48,7 @@ class BoardStyle extends Component {
                                         <img src={this.state.data[0].Boards[0].thumbnail} alt={this.state.data[0].Boards[0].content} />
                                     </div>
                                     <div style={{ marginLeft: "12px" }}>
-                                        <div className="Porf_Board_designer"><strong>{this.state.data[0].Boards[0].designer_name} 원장</strong> {this.state.data[0].Boards[0].store}</div>
+                                        <div className="Porf_Board_designer"><strong>{this.state.data[0].Boards[0].designer_name} {this.state.data[0].Manager.rank}</strong> {this.state.data[0].Boards[0].store}</div>
                                         <div className="Porf_Board_name">{this.state.data[0].Boards[0].name}</div>
                                         <div className="Porf_Board_price">{this.state.data[0].Boards[0].eventType ? <span>{this.state.data[0].Boards[0].eventPrice + "%"}</span> : null}{this.state.data[0].Boards[0].price.comma()}원</div>
 

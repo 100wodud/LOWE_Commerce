@@ -57,7 +57,7 @@ class EditmyInfo extends React.Component {
         }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -122,7 +122,7 @@ class EditmyInfo extends React.Component {
                 number = number - 100000;
             }
             this.setState({ random: number, phonecheck: true })
-            axios.post("http://54.180.117.244:5000/checkPhoneNumber", {
+            axios.post("https://server.lowehair.kr/checkPhoneNumber", {
                 phone: this.state.phone,
                 number: number
             }).then((res) => {
@@ -236,7 +236,7 @@ class EditmyInfo extends React.Component {
 
     sendSignup = () => {
         if (this.state.status && this.state.phonecheck && this.state.agree1 && this.state.agree2) {
-            axios.patch(`http://54.180.117.244:5000/user/${window.localStorage.getItem("id")}`, {
+            axios.patch(`https://server.lowehair.kr/user/${window.localStorage.getItem("id")}`, {
                 name: this.state.name,
                 login_id: this.state.login_id,
                 password: this.state.password,

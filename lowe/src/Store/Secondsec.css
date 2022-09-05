@@ -1,0 +1,240 @@
+.Sdetail {
+    padding-bottom: 80px;
+}
+.Sdetail_surgery{
+    margin-top: 1px;
+}
+
+.Sdetail_surgery th, .Sdetail_surgery td {
+    text-align: left;
+}
+
+.Sdetail_surgery_title_first  {
+    padding: 0px 12px 0 12px;
+    max-width: 217px;
+    font: 400 15px "Noto Sans";
+}
+
+.Sdetail_filter_category span {
+    padding: 6px 12px 6px 12px;
+    margin-right: 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.Sdetail_filter_category {
+    width: 100vw;
+    padding-left: 12px;
+    overflow-x: scroll;
+    white-space:nowrap;
+    height: 72px;
+    margin: auto;
+    line-height: 72px;
+}
+
+.Sdetail_category_select {
+    font: 700 14px "Noto Sans";
+    background: #FFF4F1;
+    color: #FF3D12;
+
+}
+
+.Sdetail_category_nonselect{
+    font: 400 14px "Noto Sans";
+    background: #F5F5F5;
+}
+
+.Sdetail_surgery_content_first  {
+    padding: 32px 12px 12px 12px;
+    width: 100%;
+    max-width: 217px;
+    word-break: keep-all;
+    font: 400 13px "Montserrat";
+    cursor: pointer;
+}
+
+.Sdetail_surgery_content_first_content {
+    font: 700 15px "Noto Sans";
+    margin-bottom: 8px;
+}
+
+.Sdetail_surgery_content_first_price {
+    font: 400 15px "Montserrat"
+}
+
+.Sdetail_surgery_title_second {
+    padding: 14px 8px;
+    min-width: 78px;
+    font: 700 12px "Montserrat";
+    color: #9C9C9C;
+}
+
+.Sdetail_surgery_content_second{
+    padding: 14px 8px;
+    min-width: 78px;
+    font: 400 13px "Montserrat";
+}
+
+.Sdetail_surgery_content_third {
+    padding: 20px 12px 0 12px;
+}
+.Sdetail_surgery_content_third > .Sdetail_orange {
+    border: 1px solid #FF5732;
+    border-radius: 22px;
+    font: 700 12px "Noto Sans";
+    line-height: 26px;
+    color: #FF5732;
+    cursor: pointer;
+} 
+
+.Sdetail_surgery_content_third > div {
+    width: 75px;
+    height: 26px;
+    font: 700 12px "Noto Sans";
+    border: 1px solid #DDDDDD;
+    border-radius: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: #333333
+}
+
+
+#store .dl {
+    width: 100%; 
+    display: flex; 
+    padding-bottom: 24px;
+}
+#store .dd {
+    font: 400 13px "Montserrat";
+    margin-left: 12px;
+}
+#store .dt {
+    width: 90px; 
+    font: 700 12px "Montserrat";
+    color: #9C9C9C;
+}
+
+.store-map {
+    margin-top: 12px;
+    border: 1px solid #DDDDDD;
+    width: 166px;
+    height: 40px;
+    font: 700 12px "Montserrat";
+    line-height: 40px;
+    text-align: center;
+}
+.Sdetail_surgery_more_info{
+    width: 125%;
+    padding: 0px 12px 20px 12px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.Sdetail_surgery_more_info:last-child {
+    border-bottom: none;
+
+}
+
+.Sdetail_surgery_moreview {
+    float: right;
+    margin-top: -20px;
+    
+}
+.Sdetail_surgery_more_false {
+    max-height: 20px;
+    overflow-y: hidden;
+    font: 400 13px "Noto Sans";
+    white-space:pre-line;
+    color: #9C9C9C;
+    word-break:break-word;
+}
+
+.Sdetail_surgery_more_true {
+    white-space: pre-line;
+    font: 400 13px "Noto Sans";
+    white-space:pre-line;
+    word-break:break-word;
+    color: #9C9C9C;
+}
+
+.rev {
+    transform: rotate(180deg);
+}
+.Sdetail_surgery_boards{
+    width: 100%;
+    padding: 32px 12px;
+    border-bottom: 1px solid #F5F5F5;
+}
+
+.Sdetail_surgery_boards:last-child{
+    border-bottom: none;
+}
+
+.Sdetail_surgery_boards > div {
+    display: flex;
+    cursor: pointer;
+}
+
+.Sdetail_surgery_boards_name {
+    font-size: 15px;
+    width: 230px;
+    white-space : pre;
+    overflow: hidden;
+    text-overflow : ellipsis;
+    font-weight: 700;
+}
+
+.Sdetail_surgery_boards_name span {
+    color: #FF3D12;
+    margin-left: 8px;
+}
+
+
+.Sdetail_surgery_boards_content {
+    font-size: 13px;
+    width: 230px;
+    white-space : pre;
+    overflow: hidden;
+    text-overflow : ellipsis;
+    color: #9C9C9C;
+    line-height: 150%;
+}
+
+.Sdetail_surgery_thunmbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.Sdetail_surgery_surgery {
+    width: 100%;
+    padding: 64px 0 0;
+    border-bottom: 8px solid #F5F5F5;
+}
+.Sdetail_surgery_surgery:last-child {
+    border-bottom: none;
+}
+
+.Sdetail_surgery_surgery:first-child {
+    margin-top: -32px;
+}
+
+.Sdetail_marginbottom {
+    margin-top: 35px;
+    background-color: #FFFFFF;
+    height: 55px;
+}
+
+.store_time {
+    margin-top: 20px;
+}
+
+.store_time span {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.change_height {
+    height: 72px;
+}

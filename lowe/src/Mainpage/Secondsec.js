@@ -13,7 +13,7 @@ class Secondsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://54.180.117.244:5000/getBoard", {
+        axios.post("https://server.lowehair.kr/getBoard", {
             order: "click", isClick: true, open: "1"
         }).then((res) => {
             this.setState({ favorite: res.data.slice(0, 8) })
@@ -21,7 +21,7 @@ class Secondsec extends Component {
 
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -98,37 +98,37 @@ class Secondsec extends Component {
                     <div className="Mainpage_second_store_slide">
                         <ScrollContainer className="Mainpage_second_store_slides" >
                             <div className="Mainpage_second_store_slide_list">
-                                <a href="/category/store/신촌점" >
+                                <a href="/stores/신촌" >
                                     <div>신촌</div>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_store_01.svg"} alt="메인 지점" />
                                 </a>
                             </div>
                             <div className="Mainpage_second_store_slide_list">
-                                <a href="/category/store/홍대입구역점" >
+                                <a href="/stores/홍대입구역" >
                                     <div>홍대입구역</div>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_store_02.svg"} alt="메인 지점" />
                                 </a>
                             </div>
                             <div className="Mainpage_second_store_slide_list">
-                                <a href="/category/store/L7홍대점" >
+                                <a href="/stores/L7홍대" >
                                     <div>L7홍대</div>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_store_03.svg"} alt="메인 지점" />
                                 </a>
                             </div>
                             <div className="Mainpage_second_store_slide_list">
-                                <a href="/category/store/합정점" >
+                                <a href="/stores/합정" >
                                     <div>합정</div>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_store_04.svg"} alt="메인 지점" />
                                 </a>
                             </div>
                             <div className="Mainpage_second_store_slide_list">
-                                <a href="/category/store/강남점" >
+                                <a href="/stores/강남" >
                                     <div>강남</div>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_store_05.svg"} alt="메인 지점" />
                                 </a>
                             </div>
                             <div className="Mainpage_second_store_slide_list">
-                                <a href="/category/store/이수역점" >
+                                <a href="/stores/이수역" >
                                     <div>이수역</div>
                                     <img src={process.env.PUBLIC_URL + "/image/nav/Mainpage_store_06.svg"} alt="메인 지점" />
                                 </a>

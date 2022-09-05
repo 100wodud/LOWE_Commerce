@@ -1,9 +1,28 @@
 .login_id{
     max-width: 416px;
     height: 80px;
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login_id_div {
     font: 700 17px "Montserrat";
     line-height: 80px;
-    padding-left: 12px;
+}
+.login_point_circle{
+    background: #FFF4F1;
+    border-radius: 4px;
+    height: 14px;
+    padding: 7px 10px;
+    line-height: 14px;
+    margin-top: 26px;
+}
+
+.login_point_circle span {
+    font: 400 12px "Montserrat";
+    color: #FF3D12;
+
 }
 
 .Mypage_section {

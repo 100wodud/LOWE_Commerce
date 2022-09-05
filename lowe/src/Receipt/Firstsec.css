@@ -108,7 +108,12 @@
 }
 
 .Receipt_first_content_content {
+    display: inline-block;
     font: 500 14px "Montserrat";
+    width: calc(100% - 120px);
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 

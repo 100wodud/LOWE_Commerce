@@ -30,11 +30,11 @@ class Board extends Component {
         } else {
             funnel = '/'
         }
-        axios.post("http://54.180.117.244:5000/getBoardDetail", {
+        axios.post("https://server.lowehair.kr/getBoardDetail", {
             id: id,
         }).then((res) => {
             this.setState({ data: res.data });
-            axios.post("http://54.180.117.244:5000/getDesigner", {
+            axios.post("https://server.lowehair.kr/getDesigner", {
                 id: res.data.board.ManagerId, isHashtag: true, isFavorite: true
             }).then((res) => {
                 this.setState({ designer: res.data[0] });
@@ -47,7 +47,7 @@ class Board extends Component {
         if (!this.state.click) {
             this.setState({ click: true })
             if (userid) {
-                axios.post("http://54.180.117.244:5000/click", {
+                axios.post("https://server.lowehair.kr/click", {
                     type: 2,
                     BoardId: id,
                     UserId: userid,
@@ -57,7 +57,7 @@ class Board extends Component {
                     }).catch((err) => {
                     });
             } else {
-                axios.post("http://54.180.117.244:5000/click", {
+                axios.post("https://server.lowehair.kr/click", {
                     type: 2,
                     BoardId: id,
                     funnel: funnel

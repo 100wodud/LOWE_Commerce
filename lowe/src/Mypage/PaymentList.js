@@ -25,8 +25,8 @@ class PaymentList extends Component {
         }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("http://54.180.117.244:5000/getPayment", {
-                UserId: Number(id),
+            axios.post("https://server.lowehair.kr/getPayment", {
+                UserId: Number(id), isPoint:true
             })
                 .then((res) => {
                     let data = [];

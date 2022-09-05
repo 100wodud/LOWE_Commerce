@@ -30,6 +30,12 @@ class Receipt extends Component {
         }
         let path = window.location.pathname.split("/")[1];
         if (path === "mypayment") {
+            let point = 0
+            if(this.props.location.state.data.Points.length){
+                if(this.props.location.state.data.Points[0].isSaved === false){
+                    point = this.props.location.state.data.Points[0].point
+                }
+            }
             let data = {
                 board: { board: this.props.location.state.data.Board },
                 BoardId: this.props.location.state.data.BoardId,
@@ -41,7 +47,8 @@ class Receipt extends Component {
                     img: this.props.location.state.data.Images
                 },
                 user: this.props.location.state.data.User,
-                userId: this.props.location.state.data.UserId
+                userId: this.props.location.state.data.UserId,
+                point: point
             }
             this.setState({ data: data, manager: this.props.location.state.data.Manager })
 
@@ -53,7 +60,7 @@ class Receipt extends Component {
                     }
                 }
             }
-            await axios.post("http://54.180.117.244:5000/getPayment", {
+            await axios.post("https://server.lowehair.kr/getPayment", {
                 id: id,
             }).then((res) => {
                 this.setState({ payment: res.data })
@@ -76,12 +83,12 @@ class Receipt extends Component {
             let userid = window.localStorage.getItem("id");
             this.setState({ data: recent_payment, surgery_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
-            await axios.post("http://54.180.117.244:5000/getPayment", {
-                id: id,
+            await axios.post("https://server.lowehair.kr/getPayment", {
+                id: id, 
             }).then((res) => {
                 if (Number(userid) === res.data[0].User.id) {
                     this.setState({ payment: res.data })
-                    axios.post('http://54.180.117.244:5000/updatePayment', {
+                    axios.post('https://server.lowehair.kr/updatePayment', {
                         id: Number(id), //결제 DB 상의 id 값
                         ManagerId: recent_payment.managerId,
                         BoardId: this.state.data.board.board.id,
@@ -98,7 +105,8 @@ class Receipt extends Component {
                         event_percent: this.state.data.board.board.eventPrice,
                         coupons: this.state.data.coupons,
                         text: this.state.data.board.board.name,
-                        surgery_date: reservation_date
+                        surgery_date: reservation_date,
+                        point: this.state.data.point
                     }).then((res) => {
                     })
                 } else {
@@ -109,7 +117,7 @@ class Receipt extends Component {
                 console.log(err)
             });
 
-            await axios.post("http://54.180.117.244:5000/getDesigner", {
+            await axios.post("https://server.lowehair.kr/getDesigner", {
                 id: recent_payment.managerId
             }).then((res) => {
                 this.setState({ manager: res.data[0] })
@@ -144,7 +152,7 @@ class Receipt extends Component {
                             <>
                                 <Firstsec data={this.state.data.board} mypayment={this.props.location.state ? this.props.location.state.data : ""} payment={this.state.payment[0]} />
                                 <Secondsec payment={this.state.payment} user={this.state.data.user} />
-                                <Thirdsec data={this.state.data.board} coupon={this.state.data.coupons} price={this.state.data.price} payment={this.state.payment[0]} />
+                                <Thirdsec data={this.state.data.board} point={this.state.data.point} coupon={this.state.data.coupons} price={this.state.data.price} payment={this.state.payment[0]} />
                                 <Fourthsec manager={this.state.manager} store={this.state.store} />
                                 <Fifthsec request={this.state.data.request} />
                             </> :

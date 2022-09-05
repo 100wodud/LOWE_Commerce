@@ -15,13 +15,13 @@ class Fourthsec extends Component {
     }
 
     componentDidMount = () => {
-        axios.post("http://54.180.117.244:5000/getDesigner", {
+        axios.post("https://server.lowehair.kr/getDesigner", {
             isRank: true, store: "신촌", isHashtag: true
         }).then((res) => {
             this.setState({ data: res.data.slice(0, 3) })
         })
 
-        axios.post("http://54.180.117.244:5000/getPortfolio", {
+        axios.post("https://server.lowehair.kr/getPortfolio", {
             hashtag: "컷"
         }).then((res) => {
             this.setState({ styledata: res.data.portfolio.slice(0,9) })
@@ -31,7 +31,7 @@ class Fourthsec extends Component {
     onClickfilter = (e) => () => {
         this.setState({ category: e })
 
-        axios.post("http://54.180.117.244:5000/getDesigner", {
+        axios.post("https://server.lowehair.kr/getDesigner", {
             isRank: true, store: e, isHashtag: true
         }).then((res) => {
             this.setState({ data: res.data.slice(0, 3) })
@@ -42,7 +42,7 @@ class Fourthsec extends Component {
     onClickstylefilter = (e) => () => {
         this.setState({ style: e })
 
-        axios.post("http://54.180.117.244:5000/getPortfolio", {
+        axios.post("https://server.lowehair.kr/getPortfolio", {
             hashtag: e
         }).then((res) => {
             this.setState({ styledata: res.data.portfolio.slice(0, 9) })

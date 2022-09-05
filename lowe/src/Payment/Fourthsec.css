@@ -7,21 +7,22 @@
 
 .Payment_fourth_title_div {
     justify-content: space-between;
-    display: flex;
 }
 
 .Payment_fourth_title_coupon {
     font: 400 14px "Noto Sans";
     cursor: pointer;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    padding: 16px 12px;
+    margin-top: 20px;
+
 }
 
 .Payment_fourth_title {
     font: 700 16px "Noto Sans";
     margin-bottom: 0px;
-}
-.Payment_fourth_title_margin {
-    font: 700 16px "Noto Sans";
-    margin-bottom: 12px;
 }
 
 .Payment_fourth_title_down {
@@ -37,14 +38,28 @@
     display: flex;
     justify-content: space-between;
     padding: 16px 12px;
-    border: 1px solid #DDDDDD;
-    border-radius: 6px;
-    margin-top: 8px;
     cursor: pointer;
 }
 
+.Payment_fourth_coupon:last-child , .Payment_fourth_coupon_click:last-child {
+    border-bottom: none;
+
+}
+
+.Payment_fourth_title_coupon_list {
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: calc(100% - 26px);
+    max-width: 402px;
+    margin-top: -1px;
+}
+
+
+
 .Payment_fourth_coupon_content {
-    font: 700 13px "Noto Sans"
+    font: 400 13px "Noto Sans"
 }
 
 .Payment_fourth_coupon_content > span {
@@ -60,26 +75,26 @@
     display: flex;
     justify-content: space-between;
     padding: 16px 12px;
-    border: 1px solid #DDDDDD;
-    border-radius: 6px;
-    margin-top: 8px;
+    cursor: pointer;
 }
 
 .Payment_fourth_coupon_click {
     display: flex;
     justify-content: space-between;
     padding-left: 12px;
-    border: 1px solid #FF3D12;
-    border-radius: 6px;
-    margin-top: 8px;
     cursor: pointer;
 }
-.Payment_fourth_coupon_click span {
-    line-height: 51px
+.Payment_fourth_coupon_click .Payment_fourth_coupon_content{
+    line-height: 46px;
+    font-weight: 700;
+}
+
+.Payment_fourth_title_coupon .Payment_fourth_coupon_content{
+    font-weight: 700;
 }
 
 .Payment_fourth_coupon_cant_content {
-    font: 700 13px "Noto Sans";
+    font: 400 13px "Noto Sans";
     color: #DDDDDD;
 }
 
@@ -91,4 +106,48 @@
     font: 400 13px "Montserrat";
     margin-left: 8px;
     color: #DDDDDD;
+}
+
+.Payment_fourth_allpoint {
+    display: flex;
+}
+
+.Payment_fourth_allpoint input {
+    border: 1px solid #DDDDDD;
+    border-radius: 6px !important;
+    height: 46px;
+    width: calc(100% - 126px);
+    outline: none;
+    font: 700 14px "Monserrat";
+    color: #9C9C9C;
+    padding: 0 12px;
+    background-color: #F5F5F5;
+}
+
+.Payment_fourth_allpoint::placeholder {
+    font: 400 14px "Montserrat";
+}
+
+.Payment_fourth_allpoint input:focus{
+    color: #FF3D12;
+    background-color: #FFFFFF;
+}
+
+.Payment_fourth_allpoint div {
+    margin-left: 8px;
+    width: 94px;
+    height: 46px;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    font: 400 14px "Noto Sans";
+    color: #9C9C9C;
+    line-height: 46px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.Payment_fourth_pointwarning {
+    font: 400 12px "Montserrat";
+    margin-top: 4px;
+    color: #9C9C9C;
 }

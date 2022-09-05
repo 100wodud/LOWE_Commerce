@@ -29,15 +29,15 @@ class Mypage extends Component {
 
 
     componentDidMount = () => {
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         let id = window.localStorage.getItem("id");
         if (id) {
-            axios.post("http://54.180.117.244:5000/getOneUser", {
+            axios.post("https://server.lowehair.kr/getOneUser", {
                 id: id,
             })
                 .then((res) => {
@@ -47,7 +47,7 @@ class Mypage extends Component {
                     console.log("에러")
                 })
 
-            axios.post("http://54.180.117.244:5000/getPayment", {
+            axios.post("https://server.lowehair.kr/getPayment", {
                 UserId: Number(id),
             })
                 .then((res) => {
@@ -58,16 +58,16 @@ class Mypage extends Component {
                         for (let i = 0; i < res.data.length; i++) {
                             if (res.data[i].state === "결제완료") {
                                 pay.push(res.data[i])
-                               } else if (res.data[i].state === "예약확정"  || res.data[i].state === "예약변경") {
-                                   date.push(res.data[i])
-                                } else if (res.data[i].state === "시술완료") {
+                            } else if (res.data[i].state === "예약확정" || res.data[i].state === "예약변경") {
+                                date.push(res.data[i])
+                            } else if (res.data[i].state === "시술완료") {
                                 done.push(res.data[i])
                             }
                         }
-                        this.setState({ pay: pay, date: date, done:done });
+                        this.setState({ pay: pay, date: date, done: done });
                         let pays = window.localStorage.getItem("payment_data");
-                        if(JSON.stringify(res.data) !== pays){
-                            this.setState({diff: true})
+                        if (JSON.stringify(res.data) !== pays) {
+                            this.setState({ diff: true })
                         }
                     }
                 })
@@ -81,18 +81,28 @@ class Mypage extends Component {
 
     render() {
         let data = this.state.data;
-        let funnel ="";
-        if(window.location.href.split("?")[1]){
-            funnel="?" + window.location.href.split("?")[1];
-        } else{
-            funnel=''
+        let funnel = "";
+        if (window.location.href.split("?")[1]) {
+            funnel = "?" + window.location.href.split("?")[1];
+        } else {
+            funnel = ''
         }
         return (
             <>
                 <section>
                     {data ?
                         <>
-                            <div className="login_id">{data.login_id ? data.login_id : data.name}님</div>
+                            <div className="login_id">
+                                <div className='login_id_div'>{data.login_id ? data.login_id : data.name}님</div>
+                                <div className='login_point_circle'>
+                                    <a href='/mypoint'>
+                                        <span>
+                                    <img style={{ marginRight: "2px",width: "16px", marginBottom: "-4px" }} src={process.env.PUBLIC_URL + "/image/nav/mypage_point.svg"} alt="로위 쿠폰" />
+                                    </span>
+                                    <span>보유 포인트 <strong>{data.point.comma()}</strong></span>
+                                    </a>
+                                </div>
+                            </div>
                             <div className="mypage-filter">
                                 <a href={`/mycoupons${funnel}`}>
                                     <img style={{ margin: "8px 0px" }} src={process.env.PUBLIC_URL + "/image/nav/mypage_coupon.svg"} alt="로위 쿠폰" />
@@ -146,7 +156,7 @@ class Mypage extends Component {
                             <div className="mypage-info">
                                 <div className='mypage-info-title'>고객센터</div>
                                 <div className='mypage-info-contact'>
-                                    <div style={{marginRight: "12px"}}><a href='http://pf.kakao.com/_xlzsPs/chat'>1:1 문의</a></div>
+                                    <div style={{ marginRight: "12px" }}><a href='http://pf.kakao.com/_xlzsPs/chat'>1:1 문의</a></div>
                                     <div><a href='https://lo-we.kr/request'>디자이너 입점문의</a></div>
                                 </div>
                                 <div className='mypage-info-content'>
@@ -157,7 +167,7 @@ class Mypage extends Component {
                             <div className="mypage-policy">
                                 <div className='mypage-policy-name'>(주)벤틀스페이스 사업자 정보</div>
                                 <div className='mypage-policy-content'>
-                                    <span style={{paddingRight: "8px", borderRight: "1px solid #DDDDDD"}}>대표자 : 양재원</span><span style={{marginLeft: "8px"}}>사업자 등록번호 : 856-87-00762</span> <br />
+                                    <span style={{ paddingRight: "8px", borderRight: "1px solid #DDDDDD" }}>대표자 : 양재원</span><span style={{ marginLeft: "8px" }}>사업자 등록번호 : 856-87-00762</span> <br />
                                     주소 : 서울특별시 마포구 동교로 25길10 3층 서일빌딩<br />
                                     통신판매업신고 : 2021-서울마포-2441<br />
                                     메일 주소 : info@bentlespace.com<br />

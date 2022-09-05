@@ -16,7 +16,7 @@ class SearchDesigner extends React.Component {
         let manager_id = this.props.data.id;
         let user_id = Number(window.localStorage.getItem("id"));
         if (manager_id && user_id) {
-            axios.post(`http://54.180.117.244:5000/getFavorite`, {
+            axios.post(`https://server.lowehair.kr/getFavorite`, {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
@@ -30,7 +30,7 @@ class SearchDesigner extends React.Component {
             });
         }
         if(this.props.rank){
-            axios.post("http://54.180.117.244:5000/getPortfolio", {
+            axios.post("https://server.lowehair.kr/getPortfolio", {
                 ManagerId: manager_id,
             }).then((res)=>{
                 this.setState({data: res.data.portfolio})

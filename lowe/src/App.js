@@ -33,6 +33,8 @@ import Mainpage from "./Mainpage/Mainpage";
 import Popup from "./Nav/Popup";
 import MainSytle from "./Home/MainStyle";
 import BoardStyle from "./Board/BoardStyle";
+import Sdetail from "./Store/Sdetail";
+import Point from "./Mypage/Point";
 
 class App extends Component {
   constructor(props) {
@@ -106,6 +108,8 @@ class App extends Component {
           <Route path='/reservation_change/:id' component={Reservation} />
           <Route path='/naverLogin/:id' component={SocialSignin} />
           <Route path='/category/:id' component={Home} />
+          <Route path='/stores/:id' component={Sdetail} />
+          <Route path='/mypoint' component={Point} />
         </Switch>
         {
           this.state.popup ?

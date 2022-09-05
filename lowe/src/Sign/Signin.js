@@ -33,7 +33,7 @@ class Signin extends React.Component {
     handleSignIn = () => {
         this.setState({ error: "" });
         if (this.state.login_id.length > 1) {
-            axios.post("http://54.180.117.244:5000/loginIdCheck", {
+            axios.post("https://server.lowehair.kr/loginIdCheck", {
                 login_id: this.state.login_id,
             }).then((res) => {
                 if (res.data.status === "false") {
@@ -53,7 +53,7 @@ class Signin extends React.Component {
             })
         }
 
-        axios.post("http://54.180.117.244:5000/loginUser", {
+        axios.post("https://server.lowehair.kr/loginUser", {
             login_id: this.state.login_id,
             password: this.state.password,
         })
@@ -71,7 +71,7 @@ class Signin extends React.Component {
     }
 
     onClickNaver = () => {
-        let host = "http://54.180.117.244:5000/"
+        let host = "https://server.lowehair.kr/"
             // let type = '/test';
             // let client_id = 'L1LG3ZXKVBWzG4K_xg96';
             // const redirect_uri = host + 'oauth/naver' + type;;
