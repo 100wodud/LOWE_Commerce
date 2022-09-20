@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./ModalContent.css"
 import axios from "axios";
+import TagManager from "react-gtm-module";
 
 class ModalContent extends Component {
     constructor(props) {
@@ -17,16 +18,48 @@ class ModalContent extends Component {
                 id: this.props.data.UserId,
             })
                 .then((res) => {
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'view_photo_review',
+                            name: res.data[0].login_id,
+                            item_id: this.props.data.BoardId,
+                            item_name: this.props.data.goods
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                     this.setState({ user: res.data[0].login_id })
                 })
                 .catch(err => {
                     console.log("에러")
                 })
         } else {
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'view_photo_review',
+                    name: this.props.data.UserId,
+                    item_id: this.props.data.BoardId,
+                    item_name: this.props.data.goods
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
             this.setState({ user: this.props.data.UserId })
 
         }
+    }
 
+    onClickReviewBoard = () =>{
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_photo_review_product',
+                name: this.state.user,
+                item_id: this.props.data.BoardId,
+                item_name: this.props.data.goods,
+                price: this.props.data.Board.price,
+                branch: this.props.data.Board.store,
+                designer: this.props.data.Board.designer_name
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
     }
 
     render() {
@@ -85,7 +118,7 @@ class ModalContent extends Component {
                     {
                         this.props.mainpage ?
 
-                            <a href={`/board/${this.props.data.Board.id}`} >
+                            <a href={`/board/${this.props.data.Board.id}`} onClick={this.onClickReviewBoard}>
                                 <div className="Porf_Board" style={{ margin: "20px 0 120px" }}>
                                     <div>
                                         <img src={this.props.data.Board.thumbnail} alt={this.props.data.Board.content} />

@@ -39,7 +39,7 @@ class Thirdsec extends Component {
             })
 
         axios.post("https://server.lowehair.kr/getBoard", {
-            order: "payment", isPayment: true, open: "1", isDesigner: true
+            order: "payment", isPayment: true, open: "1", isDesigner: true, isHashtag: true
         }).then((res) => {
             this.setState({ favorite: res.data.slice(0, 8) })
         })
@@ -110,8 +110,8 @@ class Thirdsec extends Component {
                     <div className="Recent_total_list" id="special_recent_list">
                         <ScrollContainer className="Recent_total_slide" style={{ marginTop: "20px", height: "280px" }} >
                             {
-                                this.state.favorite.map((e) => (
-                                    <Goodslist e={e} key={e.id} />
+                                this.state.favorite.map((e, i) => (
+                                    <Goodslist e={e} key={e.id} i={i} />
                                 ))
                             }
                         </ScrollContainer>

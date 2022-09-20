@@ -3,6 +3,7 @@ import "./Review.css";
 import axios from 'axios';
 import Header from "../Sign/SignHeader";
 import ReviewModal from "./ReviewModal";
+import TagManager from "react-gtm-module";
 
 class Review extends Component {
     constructor(props) {
@@ -43,9 +44,29 @@ class Review extends Component {
 
             if (window.location.pathname.split("/")[6]) {
 
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'view_item_review',
+                    item_id: window.location.pathname.split("/")[6],
+                    item_name: id,
+                    branch: '로위',
+                    designer: ManagerId
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
                 this.setState({ id: id, user: user, ManagerId: ManagerId, payment: window.location.pathname.split("/")[5], surgeryId: window.location.pathname.split("/")[6] })
             } else {
 
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'view_item_review',
+                        item_id: id,
+                        item_name: id,
+                        branch: '로위',
+                        designer: ManagerId
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
                 this.setState({ id: id, user: user, ManagerId: ManagerId, payment: window.location.pathname.split("/")[5] })
             }
         } else {
@@ -93,6 +114,16 @@ class Review extends Component {
                             img,
                         })
                         .then((res) => {
+                            const tagManagerArgs = {
+                                dataLayer: {
+                                    event: 'complete_review',
+                                    item_id: boardid,
+                                    item_name: boardid,
+                                    branch: '로위',
+                                    designer: this.state.ManagerId
+                                },
+                            };
+                            TagManager.dataLayer(tagManagerArgs);
                             this.openmodalReview("성공")
                         });
                 } else {
@@ -112,6 +143,16 @@ class Review extends Component {
                             img,
                         })
                         .then((res) => {
+                            const tagManagerArgs = {
+                                dataLayer: {
+                                    event: 'complete_review',
+                                    item_id: this.state.surgeryId,
+                                    item_name: boardid,
+                                    branch: '로위',
+                                    designer: this.state.ManagerId
+                                },
+                            };
+                            TagManager.dataLayer(tagManagerArgs);
                             this.openmodalReview("성공")
                         });
                 }
@@ -130,6 +171,16 @@ class Review extends Component {
                         img
                     })
                     .then((res) => {
+                        const tagManagerArgs = {
+                            dataLayer: {
+                                event: 'complete_review',
+                                item_id: this.state.id,
+                                item_name: this.state.id,
+                                branch: '로위',
+                                designer: this.state.ManagerId
+                            },
+                        };
+                        TagManager.dataLayer(tagManagerArgs);
                         this.openmodalReview("성공")
                     });
             }

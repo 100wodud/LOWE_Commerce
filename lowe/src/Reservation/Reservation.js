@@ -6,6 +6,7 @@ import Time from "./Time";
 import axios from "axios";
 import RFooter from "./RFooter";
 import RModal from "./RModal";
+import TagManager from "react-gtm-module";
 
 class Reservation extends React.Component {
     constructor(props) {
@@ -28,6 +29,33 @@ class Reservation extends React.Component {
             axios.post("https://server.lowehair.kr/getBoard", {
                 id: id,
             }).then((res) => {
+                let cat = ""
+                  if (res.data[0].category === 1) {
+                    cat = "컷";
+                  } else if (res.data[0].category === 2) {
+                    cat = "펌"
+                  } else if (res.data[0].category === 3) {
+                    cat = "염색"
+                  } else if (res.data[0].category === 5) {
+                    cat = "클리닉"
+                  }
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'view_reservation_page',
+                        items: [
+                          {
+                            item_id: res.data[0].id,
+                            item_name: res.data[0].name,
+                            price: res.data[0].price,
+                            discount: res.data[0].eventPrice,
+                            item_brand: res.data[0].store,
+                            item_variant: res.data[0].designer_name,
+                            item_category: cat
+                          }
+                        ]
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
                 this.setState({ data: {board: res.data[0]} });
             }).catch((err) => {
                 console.log(err)
@@ -36,6 +64,23 @@ class Reservation extends React.Component {
             let data = {}
             axios.get(`https://server.lowehair.kr/surgery?id=${id}`, {
             }).then((res) => {
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'view_reservation_page',
+                        items: [
+                          {
+                            item_id: res.data[0].id,
+                            item_name: res.data[0].content,
+                            price: res.data[0].price,
+                            discount: 0,
+                            item_brand: res.data[0].Manager.store,
+                            item_variant: res.data[0].Manager.name,
+                            item_category: "시술"
+                          }
+                        ]
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
                 data = {
                     board: {
                         id: 122,
@@ -72,8 +117,22 @@ class Reservation extends React.Component {
                         },
                     }
                     this.setState({ data: data, payment_date: res.data[0].surgery_date });
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'view_reservation_change_page',
+                            transaction_id: id
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                 } else {
                     this.setState({ data: {board: res.data[0].Board}, payment_date: res.data[0].surgery_date  })
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'view_reservation_change_page',
+                            transaction_id: id
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                 }
             }).catch((err) => {
                 console.log(err)
@@ -147,6 +206,13 @@ class Reservation extends React.Component {
                 schedule_confirm: false,
                 startTime: reservation_date,
           }).then(()=>{
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'reservation_change',
+                    transaction_id: paymentid
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
                 axios.post("https://server.lowehair.kr/alert", {
                     type: "reserveChange",
                     PaymentId: paymentid,

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./Recommand.css"
 import axios from "axios";
+import TagManager from "react-gtm-module";
 
 class Recommand extends Component {
     constructor(props) {
@@ -54,6 +55,33 @@ class Recommand extends Component {
     window.naverInnerScript(2)
     window.naverOuterScript()
     
+    let cat = ""
+    if (this.props.e.category === 1) {
+        cat = "컷";
+      } else if (this.props.e.category === 2) {
+        cat = "펌"
+      } else if (this.props.e.category === 3) {
+        cat = "염색"
+      } else if (this.props.e.category === 5) {
+        cat = "클리닉"
+      }
+    const tagManagerArgs = {
+      dataLayer: {
+        event: this.props.wish,
+        items: [
+          {
+            index: this.props.i,
+            item_id: this.props.e.id,
+            item_name: this.props.e.name,
+            price: this.props.e.price,
+            item_brand: this.props.e.store,
+            item_variant: this.props.e.designer_name,
+            item_category: [cat]
+          }
+        ]
+      },
+    };
+    TagManager.dataLayer(tagManagerArgs);
   }
   onclickRecently = async() => {
     var recently = JSON.parse(localStorage.getItem("recent"));
@@ -68,6 +96,33 @@ class Recommand extends Component {
       recently.unshift(id);
     }
     localStorage.setItem("recent", JSON.stringify(recently));
+    let cat = ""
+      if (this.props.e.category === 1) {
+        cat = "컷";
+      } else if (this.props.e.category === 2) {
+        cat = "펌"
+      } else if (this.props.e.category === 3) {
+        cat = "염색"
+      } else if (this.props.e.category === 5) {
+        cat = "클리닉"
+      }
+    const tagManagerArgs = {
+      dataLayer: {
+        event: this.props.event,
+        items: [
+          {
+            index: this.props.i,
+            item_id: this.props.e.id,
+            item_name: this.props.e.name,
+            price: this.props.e.price,
+            item_brand: this.props.e.store,
+            item_variant: this.props.e.designer_name,
+            item_category: [cat]
+          }
+        ]
+      },
+    };
+    TagManager.dataLayer(tagManagerArgs);
   }
 
 

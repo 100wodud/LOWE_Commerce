@@ -8,6 +8,7 @@ import axios from "axios";
 import Store from "../data/Store";
 import RFooter from "./RFooter";
 import Secondsec from "./Secondsec";
+import TagManager from "react-gtm-module";
 
 class Receipt extends Component {
     constructor(props) {
@@ -31,8 +32,8 @@ class Receipt extends Component {
         let path = window.location.pathname.split("/")[1];
         if (path === "mypayment") {
             let point = 0
-            if(this.props.location.state.data.Points.length){
-                if(this.props.location.state.data.Points[0].isSaved === false){
+            if (this.props.location.state.data.Points.length) {
+                if (this.props.location.state.data.Points[0].isSaved === false) {
                     point = this.props.location.state.data.Points[0].point
                 }
             }
@@ -73,8 +74,16 @@ class Receipt extends Component {
                     localStorage['firstLoad'] = true;
                     window.location.reload();
                 }
-                else
+                else{
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'view_reservation_detail_page',
+                            transaction_id: id
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                     localStorage.removeItem('firstLoad');
+                }
             }
 
         } else {
@@ -84,9 +93,51 @@ class Receipt extends Component {
             this.setState({ data: recent_payment, surgery_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
             await axios.post("https://server.lowehair.kr/getPayment", {
-                id: id, 
+                id: id,
             }).then((res) => {
                 if (Number(userid) === res.data[0].User.id) {
+                    let cat = ""
+                    if (this.state.data.board.board.category === 1) {
+                        cat = "컷";
+                    } else if (this.state.data.board.board.category === 2) {
+                        cat = "펌"
+                    } else if (this.state.data.board.board.category === 3) {
+                        cat = "염색"
+                    } else if (this.state.data.board.board.category === 5) {
+                        cat = "클리닉"
+                    } else {
+                        cat = "시술"
+                    }
+                    let c =""
+                    let cd =""
+                    if(this.state.data.length){
+                        c =this.state.data.Coupons[0].data.content
+                        cd = this.state.data.Coupons[0].data.price
+                    }
+
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'purchase',
+                            user_id: res.data[0].id,
+                            value: res.data[0].pay_total,
+                            coupon: c,
+                            coupon_discount: cd,
+                            transaction_id: res.data[0].pay_cardtradenum,
+                            first_purchase: res.data[0].User.Payment.length,
+                            items: [
+                                {
+                                    item_id: this.state.data.board.board.id,
+                                    item_name: this.state.data.board.board.name,
+                                    price: this.state.data.board.board.price,
+                                    discount: this.state.data.board.board.eventPrice,
+                                    item_brand: this.state.data.board.board.store,
+                                    item_variant: this.state.data.board.board.designer_name,
+                                    item_category: cat
+                                }
+                            ]
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                     this.setState({ payment: res.data })
                     axios.post('https://server.lowehair.kr/updatePayment', {
                         id: Number(id), //결제 DB 상의 id 값
@@ -164,10 +215,10 @@ class Receipt extends Component {
                         null :
 
                         this.state.payment ?
-                        <>
-                            <RFooter payment={this.state.payment[0]} date={this.state.surgery_date} />
-                            <div id="script"></div>
-                        </> : null
+                            <>
+                                <RFooter payment={this.state.payment[0]} date={this.state.surgery_date} />
+                                <div id="script"></div>
+                            </> : null
                 }
             </>
         )

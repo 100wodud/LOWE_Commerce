@@ -30,7 +30,6 @@ class Review extends Component {
         } else {
             funnel = ''
         }
-        console.log(this.props.data)
         return (
             <div className="myreview" >
                 {

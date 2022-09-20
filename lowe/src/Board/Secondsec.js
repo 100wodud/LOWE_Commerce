@@ -4,6 +4,7 @@ import "./Secondsec.css"
 import DesignerList from "../Designer/DesignerList";
 import Fifthsec from "./Fifthsec";
 import ModalPhone from "../Sign/ModalPhone";
+import TagManager from "react-gtm-module";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -43,7 +44,6 @@ class Secondsec extends Component {
                     }
                 });
         }
-
 
         axios.post("https://server.lowehair.kr/getAllBanner", {})
             .then((res) => {
@@ -85,9 +85,23 @@ class Secondsec extends Component {
         }
         window.naverInnerScript(2)
         window.naverOuterScript()
+
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_price_wish'
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
     }
 
     handleShare = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_price_share',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         let url = window.location.href;
         if (navigator.share) {
             navigator.share({
@@ -104,6 +118,12 @@ class Secondsec extends Component {
     }
 
     onClickReserve = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_naver_reservation',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
         let id = window.location.pathname.split("/")[2];
         let userid = Number(window.localStorage.getItem("id"));
         let funnel = "";
@@ -142,6 +162,16 @@ class Secondsec extends Component {
 
     }
 
+    onClickBanner = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_top_banner',
+                title: this.state.banner.title
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
     onClickPointmoreView = () => {
         this.setState({ pointmore: !this.state.pointmore })
     }
@@ -156,10 +186,23 @@ class Secondsec extends Component {
         } else {
             funnel = ''
         }
+        let hash = false
+        if (this.props.data.board.Hashtags) {
+            this.props.data.board.Hashtags.filter((v) => {
+                return v.content.indexOf("시그니처") !== -1 ?
+                    hash = true : null
+            })
+        }
         return (
             <>
                 <section className="Board_second">
                     <div className="Board_second_section">
+                        {
+                            hash ?
+                                <div className="Board_second_signature_box">
+                                    시그니처
+                                </div> : null
+                        }
                         <div className="Board_title">{this.props.data.board.name}</div>
                         <div className="Board_content">{this.props.data.board.content}</div>
                         {this.props.data.board.eventType ?
@@ -211,13 +254,13 @@ class Secondsec extends Component {
                         </div>
                         <div>
                             {this.props.designer ?
-                                <DesignerList data={this.props.designer} board={true} />
+                                <DesignerList data={this.props.designer} board={true} event="click_item_designer" wish="click_item_designer_wish" />
                                 : null
                             }
                         </div>
                     </div>
                     <Fifthsec data={this.props.data} top={true} />
-                    <a href={this.state.banner.url + funnel} className="Board_banner">
+                    <a href={this.state.banner.url + funnel} className="Board_banner" onClick={this.onClickBanner}>
                         <img src={this.state.banner.img} alt="이벤트 배너" />
                     </a>
                     <div id="filter_trigger" />
@@ -227,5 +270,5 @@ class Secondsec extends Component {
         )
     }
 }
-
+   
 export default Secondsec;

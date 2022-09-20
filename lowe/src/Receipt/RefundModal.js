@@ -1,5 +1,6 @@
 import React from "react";
 import "./RefundModal.css";
+import TagManager from "react-gtm-module";
 
 class RefundModal extends React.Component {
     constructor(props) {
@@ -10,6 +11,16 @@ class RefundModal extends React.Component {
     }
     handleClose = async () => {
         this.props.close();
+    }
+
+    componentDidMount = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'view_refund_page',
+                transaction_id: this.props.paymentid
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
     }
 
     render() {

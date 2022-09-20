@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./Signin.css";
 import SignHeader from "./SignHeader";
+import TagManager from "react-gtm-module";
 
 class Signin extends React.Component {
     constructor(props) {
@@ -59,6 +60,22 @@ class Signin extends React.Component {
         })
             .then((res) => {
                 if (res.data.id) {
+                    let price = 0
+                    for(let i=0; i < res.data.Payments.length; i++){
+                        price = price + Number(res.data.Payments[i])
+                    }
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'login',
+                            user_id: res.data.id,
+                            purchase_count: res.data.Payments.length,
+                            purchase_price: price,
+                            review_count: res.data.Reviews,
+                            remain_review_count: res.data.Payments.length - res.data.Reviews,
+                            method: 'general'
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                     window.localStorage.setItem("id", res.data.id);
                     window.history.go(-1)
                 } else {
@@ -66,7 +83,7 @@ class Signin extends React.Component {
                 }
             })
             .catch(err => {
-                console.log("에러")
+                console.log(err)
             })
     }
 

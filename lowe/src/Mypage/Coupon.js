@@ -5,6 +5,7 @@ import moment from 'moment';
 import axios from "axios";
 import Header from "../Sign/SignHeader";
 import Footer from '../Nav/Footer';
+import TagManager from "react-gtm-module";
 
 
 class Coupon extends Component {
@@ -17,6 +18,13 @@ class Coupon extends Component {
     }
 
     componentDidMount = async () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'view_coupon',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         let funnel ="";
         if(window.location.href.split("?")[1]){
             funnel="?" + window.location.href.split("?")[1];

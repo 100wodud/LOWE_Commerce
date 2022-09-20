@@ -4,6 +4,7 @@ import Header from '../Sign/SignHeader';
 import Footer from '../Nav/Footer';
 import Payment from './Payment';
 import "./PaymentList.css"
+import TagManager from "react-gtm-module";
 
 
 class PaymentList extends Component {
@@ -17,6 +18,13 @@ class PaymentList extends Component {
     }
 
     componentDidMount = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'view_reservation_history_page',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         let funnel ="";
         if(window.location.href.split("?")[1]){
             funnel="?" + window.location.href.split("?")[1];

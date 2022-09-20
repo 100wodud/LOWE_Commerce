@@ -1,6 +1,7 @@
 import React from "react";
 import "./SearchDesigner.css"
 import axios from "axios";
+import TagManager from "react-gtm-module";
 
 class SearchDesigner extends React.Component {
     constructor(props) {
@@ -39,15 +40,25 @@ class SearchDesigner extends React.Component {
         }
     }
 
+    onclickRecommand = () => {
+        let data = this.props.data;
+        
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_search_recommend_designer',
+                branch: data.store,
+                designer: data.name,
+                tags: data.Hashtags,
+                keyword: this.props.search
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
+        window.location.href =`/designer/${data.id}`
+    }
 
     render() {
         let data = this.props.data;
-        let funnel = "";
-        if (window.location.href.split("?")[1]) {
-            funnel = "?" + window.location.href.split("?")[1];
-        } else {
-            funnel = ''
-        }
         return (
             <>
                 {data.user_state === 1 ?
@@ -59,7 +70,7 @@ class SearchDesigner extends React.Component {
                             </div>
                         </div>
                         {this.props.detail ?
-                            <a href={`/designer/${data.id}${funnel}`} className="DesignerList_content_div">
+                            <div onClick={this.onclickRecommand} className="DesignerList_content_div">
                                 <div className="DesignerList_content_time">
                                     <strong>{data.name} {data.rank}</strong><span style={{ marginLeft: "8px" }}>{data.store}</span>
                                 </div>
@@ -74,8 +85,8 @@ class SearchDesigner extends React.Component {
                                 <div className="DesignerList_content_operating_time">
                                     {data.home} <span style={{marginLeft: "8px"}}>{data.operating_time}</span>
                                 </div>
-                            </a> :
-                            <a href={`/designer/${data.id}${funnel}`} className="DesignerList_content_div">
+                            </div> :
+                            <div onClick={this.onclickRecommand} className="DesignerList_content_div">
                                 <div className="DesignerList_content">
                                     <strong>{data.name} {data.rank}</strong><span style={{ marginLeft: "8px" }}>{data.store}</span>
                                 </div>
@@ -87,7 +98,7 @@ class SearchDesigner extends React.Component {
                                         <span>ㅤ</span>
                                     </div>
                                 }
-                            </a>
+                            </div>
                         }
                         <div className="DesignerList_Coupon_div">
                             {JSON.parse(data.coupons) ?

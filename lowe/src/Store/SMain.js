@@ -114,9 +114,9 @@ class SMain extends Component {
 
                                     <ScrollContainer className="DMain_allmen_slide">
                                         {
-                                            this.props.data.Boards.slice(0, 5).map((e) => (
+                                            this.props.data.Boards.slice(0, 5).map((e, i ) => (
                                                 e.open === "1" ?
-                                                <Goodslist e={e} key={e.id} /> : null
+                                                <Goodslist e={e} key={e.id} i={i} /> : null
                                             ))
                                         }
                                         <div style={{ width: "140px" }}>

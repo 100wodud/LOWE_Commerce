@@ -2,6 +2,7 @@ import { Component } from "react";
 import store from "../data/Store";
 import "./Store.css"
 import ModalPhone from "../Sign/ModalPhone";
+import TagManager from "react-gtm-module";
 
 class Store extends Component {
     constructor(props) {
@@ -33,10 +34,25 @@ class Store extends Component {
 
 
     clickAddress = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_adress_copy'
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
         navigator.clipboard.writeText(this.state.store.address)
             .then(() => {
                 this.openmodalPhone(`로위 ${this.state.store.store} 주소가 복사되었습니다`)
             })
+    }
+    
+    onClickShowMap = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_map_view'
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
     }
 
     render() {
@@ -51,7 +67,7 @@ class Store extends Component {
                             </div>
                             <img className="store_map" onClick={this.clickAddress} src={process.env.PUBLIC_URL + this.state.store.map} alt={`로위 ${this.state.store.store} 지도`} />
                             <div style={{ width: "100%" }}>
-                                <a href={this.state.store.mapurl}>
+                                <a href={this.state.store.mapurl} onClick={this.onClickShowMap}>
                                     <div style={{ lineHeight: "54px" }} className="store_box">지도 보기</div>
                                 </a>
                             </div>

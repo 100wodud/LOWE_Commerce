@@ -4,6 +4,7 @@ import axios from "axios";
 import Footer from '../Nav/Footer';
 import Edit from './Edit';
 import SignoutModal from './SignoutModal';
+import TagManager from "react-gtm-module";
 
 
 class Mypage extends Component {
@@ -27,8 +28,33 @@ class Mypage extends Component {
         this.setState({ open: false });
     };
 
+    onClickonebyone = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_my_inquiry',
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
+
+    onClickRequest = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_my_designer_faq',
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
 
     componentDidMount = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'view_my',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         let funnel = "";
         if (window.location.href.split("?")[1]) {
             funnel = "?" + window.location.href.split("?")[1];
@@ -38,7 +64,7 @@ class Mypage extends Component {
         let id = window.localStorage.getItem("id");
         if (id) {
             axios.post("https://server.lowehair.kr/getOneUser", {
-                id: id,
+                id: id, isPayment: true
             })
                 .then((res) => {
                     this.setState({ data: res.data[0] })
@@ -156,8 +182,8 @@ class Mypage extends Component {
                             <div className="mypage-info">
                                 <div className='mypage-info-title'>고객센터</div>
                                 <div className='mypage-info-contact'>
-                                    <div style={{ marginRight: "12px" }}><a href='http://pf.kakao.com/_xlzsPs/chat'>1:1 문의</a></div>
-                                    <div><a href='https://lo-we.kr/request'>디자이너 입점문의</a></div>
+                                    <div style={{ marginRight: "12px" }}><a href='http://pf.kakao.com/_xlzsPs/chat' onClick={this.onClickonebyone}>1:1 문의</a></div>
+                                    <div><a href='https://lo-we.kr/request' onClick={this.onClickRequest}>디자이너 입점문의</a></div>
                                 </div>
                                 <div className='mypage-info-content'>
                                     운영시간 : 평일 10:00 ~ 18:00 (토,일/공휴일 휴무) <br />

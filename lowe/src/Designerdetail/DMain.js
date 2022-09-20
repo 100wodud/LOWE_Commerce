@@ -5,6 +5,7 @@ import Goodslist from "../Home/Goodslist";
 import ReviewList from "../Board/ReviewList";
 import axios from "axios";
 import ScrollContainer from 'react-indiana-drag-scroll'
+import TagManager from "react-gtm-module";
 
 class DMain extends Component {
     constructor(props) {
@@ -92,17 +93,45 @@ class DMain extends Component {
         }
     }
 
+    onClickPortfolio = (e) =>(i)=> async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_designer_style_image',
+                index: i,
+                portfolio_id: e.id
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
+    }
+
     render() {
         let port = this.props.data.Portfolios;
         const Portfolios = port.sort(() => Math.random() - 0.5).slice(0, 9);
+        let filterboard = []
+        for(let i=0; i < this.props.data.Boards.length; i++){
+            let check = false
+            for(let j=0; j < this.props.data.Boards[i].Hashtags.length; j++){
+                if(this.props.data.Boards[i].Hashtags[j].content.indexOf("시그니처") !== -1){
+                    check= true
+                    break
+                } 
+            }
+            if(check){
+                filterboard.unshift(this.props.data.Boards[i]);
+
+            } else {
+                filterboard.push(this.props.data.Boards[i]);
+            }
+        }
         return (
             <section className="DMain_section">
                 <div>
                     <div className="DMain_allmenu">
-                        <div>{this.props.data.name} {this.props.data.rank} <strong>시그니처</strong></div>
+                        <div>{this.props.data.name} {this.props.data.rank} <strong>인기시술</strong></div>
                         <div>
                             <span>
-                                <span onClick={this.props.onclickList(2)}>전체보기</span>
+                                <span onClick={this.props.onclickList(2.5)}>전체보기</span>
                             </span>
                             <span>
                                 <img src={process.env.PUBLIC_URL + "/image/nav/port_arrow.svg"} alt="다음" />
@@ -112,13 +141,13 @@ class DMain extends Component {
                     <div className="DMain_allmenu_board">
                         <div>
                             {
-                                this.props.data.Boards.length ?
+                                filterboard.length ?
 
                                     <ScrollContainer className="DMain_allmen_slide">
                                         {
-                                            this.props.data.Boards.map((e) => (
+                                            filterboard.map((e, i) => (
                                                 e.open === "1" ?
-                                                <Goodslist e={e} key={e.id} /> : null
+                                                <Goodslist e={e} key={e.id} i={i} event="click_designer_signature_product" /> : null
                                             ))
                                         }
                                         <div style={{ width: "140px" }}>
@@ -140,7 +169,7 @@ class DMain extends Component {
                         <div>{this.props.data.name} {this.props.data.rank} <strong>스타일</strong></div>
                         <div>
                             <span>
-                                <span onClick={this.props.onclickList(5)}>전체보기</span>
+                                <span onClick={this.props.onclickList(5.5)}>전체보기</span>
                             </span>
                             <span>
                                 <img src={process.env.PUBLIC_URL + "/image/nav/port_arrow.svg"} alt="다음" />
@@ -150,9 +179,9 @@ class DMain extends Component {
                     <div className="DMain_allmenu_style">
                         {
                             this.props.data.Portfolios.length ?
-                                Portfolios.map((e) => (
+                                Portfolios.map((e, i) => (
                                     <div key={e.id}>
-                                        <a href={`/portfolio/${e.id}`}>
+                                        <a href={`/portfolio/${e.id}`} onClick={this.onClickPortfolio(e)(i)}>
                                             {
                                                 e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
                                                     <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >

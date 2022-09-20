@@ -9,6 +9,7 @@ import Fifthsec from "./Fifthsec";
 // import Sixthsec from "./Sixthsec";
 import Seventhsec from "./Seventhsec";
 import PFooter from "./PFooter";
+import TagManager from "react-gtm-module";
 
 
 class Payment extends Component {
@@ -44,6 +45,33 @@ class Payment extends Component {
             axios.post("https://server.lowehair.kr/getBoard", {
                 id: id,
             }).then((res) => {
+                let cat = ""
+                if (res.data[0].category === 1) {
+                    cat = "컷";
+                } else if (res.data[0].category === 2) {
+                    cat = "펌"
+                } else if (res.data[0].category === 3) {
+                    cat = "염색"
+                } else if (res.data[0].category === 5) {
+                    cat = "클리닉"
+                }
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'begin_checkout',
+                        items: [
+                            {
+                                item_id: res.data[0].id,
+                                item_name: res.data[0].name,
+                                price: res.data[0].price,
+                                discount: res.data[0].eventPrice,
+                                item_brand: res.data[0].store,
+                                item_variant: res.data[0].designer_name,
+                                item_category: cat
+                            }
+                        ]
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
                 this.setState({ data: { board: res.data[0] }, reservation: res_date });
             }).catch((err) => {
                 console.log(err)
@@ -53,6 +81,23 @@ class Payment extends Component {
             let data = {}
             axios.get(`https://server.lowehair.kr/surgery?id=${id}`, {
             }).then((res) => {
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'begin_checkout',
+                        items: [
+                            {
+                                item_id: res.data[0].id,
+                                item_name: res.data[0].content,
+                                price: res.data[0].price,
+                                discount: 0,
+                                item_brand: res.data[0].Manager.store,
+                                item_variant: res.data[0].Manager.name,
+                                item_category: "시술"
+                            }
+                        ]
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
                 data = {
                     board: {
                         id: 122,
@@ -127,7 +172,7 @@ class Payment extends Component {
         } else if (key === "point") {
             let number = Number(e.target.value);
             let num = Math.floor(number / 100) * 100;
-            e.target.value= e.target.value.replace(/^0+/, '')
+            e.target.value = e.target.value.replace(/^0+/, '')
             if (this.state.coupon.length) {
                 if ((this.state.data.board.price - this.state.coupon[0].data.price) * 0.9 < 0) {
                     e.target.value = 0
@@ -158,7 +203,7 @@ class Payment extends Component {
                 } else {
                     this.setState({ [key]: num });
                 }
-            } 
+            }
             if (number < 0) {
                 e.target.value = 0
                 this.setState({ [key]: 0 });
@@ -225,6 +270,46 @@ class Payment extends Component {
         let define2 = {}
         let reservation_date = JSON.parse(window.localStorage.getItem("reservation_date"));
         if (this.state.agree1 && this.state.agree2) {
+
+            let cat = ""
+            if (this.state.data.board.category === 1) {
+                cat = "컷";
+            } else if (this.state.data.board.category === 2) {
+                cat = "펌"
+            } else if (this.state.data.board.category === 3) {
+                cat = "염색"
+            } else if (this.state.data.board.category === 5) {
+                cat = "클리닉"
+            } else {
+                cat = "시술"
+            }
+            let c = ""
+            let cd = ""
+            if(this.state.coupon.length){
+                c=this.state.coupon[0].data.content;
+                cd = this.state.coupon[0].data.price;
+            }
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'add_payment_info',
+                    value: Number(price),
+                    coupon: c,
+                    coupon_discount: cd,
+                    items: [
+                        {
+                            item_id: this.state.data.board.id,
+                            item_name: this.state.data.board.name,
+                            price: this.state.data.board.price,
+                            discount: this.state.data.board.eventPrice ? this.state.data.board.eventPrice : 0,
+                            item_brand: this.state.data.board.store,
+                            item_variant: this.state.data.board.designer_name,
+                            item_category: cat
+                        }
+                    ]
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
+
             payment.boardId = this.state.data.board.id
             payment.board = this.state.data
             payment.userId = this.state.user.id
@@ -252,10 +337,10 @@ class Payment extends Component {
 
             localStorage.setItem("recent_payment", JSON.stringify(payment));
             // const data1 = { user_id: window.localStorage.getItem('id') };
-            const dataString1 = JSON.stringify(define1);
+            const dataString1 = encodeURIComponent(JSON.stringify(define1));
             const replaceData1 = dataString1.replaceAll('"', '&quot;');
             // const data2 = { user_request: 'input text' };
-            const dataString2 = JSON.stringify(define2);
+            const dataString2 = encodeURIComponent(JSON.stringify(define2));
             const replaceData2 = dataString2.replaceAll('"', '&quot;');
             axios.post('https://server.lowehair.kr/payAuth')
                 .then((response) => {

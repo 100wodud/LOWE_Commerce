@@ -1,5 +1,6 @@
 import './Header.css';
 import { Component } from 'react';
+import TagManager from "react-gtm-module";
 
 
 class Header extends Component {
@@ -47,6 +48,22 @@ class Header extends Component {
         } else if (e === 2) {
             window.location.href = "/" + funnel
         } else if (e === 3) {
+            if(this.props.item){
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'click_item_share'
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
+            }
+            if(window.location.pathname.split("/")[1] === "designer"){
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'click_designer_share'
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
+            }
             if (navigator.share) {
                 navigator.share({
                     title: '로위 - 헤어스타일 스토어',

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import "./BFooter.css";
 import axios from "axios";
+import TagManager from "react-gtm-module";
 
 
 class BFooter extends Component {
@@ -12,6 +13,13 @@ class BFooter extends Component {
     }
 
     onClicknumber = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_reservation',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         let id = Number(window.location.pathname.split("/")[2]);
         let userid = Number(window.localStorage.getItem("id"));
         let funnel ="";
@@ -44,6 +52,16 @@ class BFooter extends Component {
         }
     }
 
+
+    onClickkakao = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_kakaochat',
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
     render() {
         return (
             <footer className='BFooter'>
@@ -71,7 +89,7 @@ class BFooter extends Component {
                         </div> */}
                         <div className='BFooter_kakao'>
                             <a href="http://pf.kakao.com/_xlzsPs/chat" >
-                                <img src={process.env.PUBLIC_URL + "/image/nav/gotokakao.svg"} alt="문의하기" />
+                                <img src={process.env.PUBLIC_URL + "/image/nav/gotokakao.svg"} alt="문의하기" onClick={this.onClickkakao}/>
                             </a>
                         </div>
                         <div className='BFooter_payment' onClick={this.onClicknumber}>

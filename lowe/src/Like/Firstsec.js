@@ -14,7 +14,7 @@ class Firstsec extends Component {
 
     componentDidMount = () => {
         let user = window.localStorage.getItem("id");
-        axios.post("https://server.lowehair.kr/getMyWish", { user: user })
+        axios.post("https://server.lowehair.kr/getWish", { UserId: user, isOpen: true, isBoard: true })
             .then((res) => {
                 this.setState({ Showgoods: res.data })
             }).catch((err) => {
@@ -44,9 +44,9 @@ class Firstsec extends Component {
                         <div className="Recent_total_list" id="special_recent_list">
                             <ScrollContainer className="Recent_total_slide">
                                 {
-                                    this.state.Showgoods.map((e => (
+                                    this.state.Showgoods.map(((e,i) => (
                                         e.Board.open === "1" ?
-                                        <Goodslist key={e.id} e={e.Board} /> : null
+                                        <Goodslist key={e.id} e={e.Board} i={i} event="click_wish_product" /> : null
                                     )))
 
                                 }

@@ -4,6 +4,7 @@ import ModalReview from "./ModalReview";
 import "./ReviewList.css"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import TagManager from "react-gtm-module";
 
 class ReviewList extends Component {
   constructor(props) {
@@ -23,15 +24,26 @@ class ReviewList extends Component {
     this.setState({ review: false });
   };
 
-  onclickimg = (e) => () =>{
+  onclickimg = (e) => () => {
     let num = 0
-    for(let i =0; i <this.props.imgdata.length; i++){
-      if(e === this.props.imgdata[i].id){
+    for (let i = 0; i < this.props.imgdata.length; i++) {
+      if (e === this.props.imgdata[i].id) {
         num = i;
         break
       }
     }
     this.setState({ review: true, slider: num });
+  }
+
+  componentDidMount = () => {
+    if (window.location.pathname.indexOf("designer") !== -1) {
+      const tagManagerArgs = {
+        dataLayer: {
+          event: 'view_designer_reviewtab',
+        },
+      };
+      TagManager.dataLayer(tagManagerArgs);
+    }
   }
 
   render() {
@@ -50,7 +62,7 @@ class ReviewList extends Component {
         {!this.props.top ?
           this.props.data.length ?
             this.props.data.map((e, i) => (
-              <Review onclickimg={this.onclickimg} onclickList={this.props.onclickList} key={i} data={e} designer={this.props.designer ? true : null} home={this.props.home ? true : null}/>
+              <Review onclickimg={this.onclickimg} onclickList={this.props.onclickList} key={i} data={e} designer={this.props.designer ? true : null} home={this.props.home ? true : null} />
             )) :
             <div className="no_review" >
               <div>

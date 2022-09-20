@@ -60,6 +60,18 @@
     color: #333333;
 }
 
+.goods_signature_box {
+    position: relative;
+    margin-bottom: -20px;
+    font: 400 10px "Noto Sans";
+    width: 45px;
+    height: 20px;
+    background: #FF5732;
+    text-align: center;
+    line-height: 20px !important;
+    color: #ffffff;
+}
+
 
 @media screen and (max-width:  429px) {
     .goods_thumnail{

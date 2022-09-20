@@ -4,6 +4,7 @@ import axios from 'axios';
 import RefundModal from "./RefundModal";
 import ModalPhone from "../Sign/ModalPhone";
 import moment from 'moment';
+import TagManager from "react-gtm-module";
 
 class Firstsec extends Component {
     constructor(props) {
@@ -45,6 +46,15 @@ class Firstsec extends Component {
                     type: 5,
                     PaymentId: Number(this.props.mypayment.id)
                 }).then((res) => {
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'refund',
+                            value: this.props.mypayment.pay_total,
+                            reason: this.state.reason,
+                            transaction_id: this.props.mypayment.pay_cardtradenum
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                     this.openmodalPhone(`취소/환불요청이 완료되었습니다`)
                 }).catch((err) => {
                     console.log(err)
@@ -128,7 +138,8 @@ class Firstsec extends Component {
                                             {this.props.payment.surgery_date ?
                                                 <div>
                                                     <span className="Reservation_first_content_title" style={{ marginBottom: "12px", lineHeight: "100%"  }}>예약일자</span><span className="Reservation_first_content_content state_red" style={{ font: '700 14px "Montserrat', border: "none" }}>
-                                                    {new Date(this.props.payment.surgery_date.replaceAll("-","/")).toLocaleString("US", { dateStyle: "full", timeStyle: "short" }).replace("일 ", "일(").replace("요일", ")").replace("년 ", ".").replace("월 ", ".").replace("일", "")}                                                    </span>
+                                                    {new Date(this.props.payment.surgery_date.replaceAll("-","/")).toLocaleString("US", { dateStyle: "full", timeStyle: "short" }).replace("일 ", "일(").replace("요일", ")").replace("년 ", ".").replace("월 ", ".").replace("일", "")}                                                    
+                                                    </span>
                                                 </div> : null
                                             }
                                         </div>
@@ -190,7 +201,7 @@ class Firstsec extends Component {
                         <div>시술 정보가 없습니다</div>
                 }
                 {this.state.refund ?
-                    <RefundModal refund={this.onClickRefund} reason={this.state.reason} close={this.onClickrefundclose} submitreason={this.onChangeRefundreason} /> : null
+                    <RefundModal refund={this.onClickRefund} reason={this.state.reason} close={this.onClickrefundclose} submitreason={this.onChangeRefundreason} paymentid={this.props.mypayment.id} /> : null
                 }
                 {
                     this.state.phonemodal ?
