@@ -7,6 +7,7 @@ import Portfolios from "./Portfolios";
 import Surgery from "./Surgery";
 import ScrollContainer from 'react-indiana-drag-scroll'
 import DMain from "./DMain";
+import TagManager from "react-gtm-module";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -97,7 +98,7 @@ class Secondsec extends Component {
         }
     }
     onClickcategory = (e) => () => {
-        window.location.replace(window.location.pathname + "#"+e);
+        window.location.replace(window.location.pathname + "#" + e);
         this.setState({ category: e })
     }
 
@@ -117,6 +118,17 @@ class Secondsec extends Component {
             tab_num = ''
         }
 
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_designer_procedure_product',
+                item_id: e.id,
+                item_name: e.content,
+                item_category: e.Category.content,
+                price: e.price
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         if (userid) {
             axios.post("https://server.lowehair.kr/click", {
                 type: 6,
@@ -124,7 +136,7 @@ class Secondsec extends Component {
                 UserId: userid,
                 SurgeryId: Number(e.id),
                 funnel: funnel,
-                tab_num:tab_num
+                tab_num: tab_num
             })
                 .then((res) => {
                     localStorage.setItem("surgey_payment", JSON.stringify(e));
@@ -137,7 +149,7 @@ class Secondsec extends Component {
                 ManagerId: id,
                 SurgeryId: Number(e.id),
                 funnel: funnel,
-                tab_num:tab_num
+                tab_num: tab_num
             })
                 .then((res) => {
                     localStorage.setItem("surgey_payment", JSON.stringify(e));
@@ -163,6 +175,17 @@ class Secondsec extends Component {
             tab_num = ''
         }
 
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_designer_procedure_product',
+                item_id: e.id,
+                item_name: e.name,
+                item_category: "인기시술",
+                price: e.price
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         if (userid) {
             axios.post("https://server.lowehair.kr/click", {
                 type: 8,
@@ -170,7 +193,7 @@ class Secondsec extends Component {
                 UserId: userid,
                 SurgeryId: Number(e.id),
                 funnel: funnel,
-                tab_num:tab_num
+                tab_num: tab_num
             })
                 .then((res) => {
                     window.location.href = `${e.url}${funnel}`
@@ -182,7 +205,7 @@ class Secondsec extends Component {
                 ManagerId: id,
                 SurgeryId: Number(e.id),
                 funnel: funnel,
-                tab_num:tab_num
+                tab_num: tab_num
             })
                 .then((res) => {
                     window.location.href = `${e.url}${funnel}`
@@ -213,90 +236,135 @@ class Secondsec extends Component {
                 type: 6,
                 ManagerId: id,
                 UserId: userid,
-                BoardId: Number(e),
+                BoardId: Number(e.id),
                 funnel: funnel,
-                tab_num:tab_num
+                tab_num: tab_num
             })
                 .then((res) => {
-                    window.location.href = `/board/${e}${funnel}`
+                    window.location.href = `/board/${e.id}${funnel}`
                 }).catch((err) => {
                 });
         } else {
             axios.post("https://server.lowehair.kr/click", {
                 type: 6,
                 ManagerId: id,
-                BoardId: Number(e),
+                BoardId: Number(e.id),
                 funnel: funnel,
-                tab_num:tab_num
+                tab_num: tab_num
             })
                 .then((res) => {
-                    window.location.href = `/board/${e}${funnel}`
+                    window.location.href = `/board/${e.id}${funnel}`
                 }).catch((err) => {
                 });
         }
     }
 
+    onClickMapurl = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_designer_branch_map',
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
+    onClickSns = (e) => async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_designer_insta_id',
+                insta_id: e
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
     render() {
+        let filterboard = []
+        for(let i=0; i < this.props.data.Boards.length; i++){
+            let check = false
+            for(let j=0; j < this.props.data.Boards[i].Hashtags.length; j++){
+                if(this.props.data.Boards[i].Hashtags[j].content.indexOf("시그니처") !== -1){
+                    check= true
+                    break
+                } 
+            }
+            if(check){
+                filterboard.unshift(this.props.data.Boards[i]);
+
+            } else {
+                filterboard.push(this.props.data.Boards[i]);
+            }
+        }
         return (
-            <section className="Ddetail" id="시그니처">
+            <section className="Ddetail" id="인기시술">
                 {
                     this.props.list === 1 ?
                         <div>
-                            <DMain data={this.props.data} onclickList={this.props.onclickList} review={this.props.review} imgreview={this.props.imgreview} designer={true}/>
+                            <DMain data={this.props.data} onclickList={this.props.onclickList} review={this.props.review} imgreview={this.props.imgreview} designer={true} />
                         </div> :
                         this.props.list === 2 ?
                             this.props.data.Surgeries.length ?
                                 <div className="Ddetail_surgery">
                                     {this.props.data.Categories.length ?
-                                    <div id="filter_category">
-                                    <ScrollContainer className="Ddetail_filter_category">
-                                        {this.props.data.Categories.map((e, i) => (
-                                            <span key={e.content} onClick={this.onClickcategory(e.content)} className={(this.state.category === e.content ? "Ddetail_category_select" : "Ddetail_category_nonselect")}>{e.content}</span>
-                                        ))
-                                        }
-                                    </ScrollContainer>
-                                    </div>
-                                    : null}
-                                    <table  className="Ddetail_surgery_surgery" style={{paddingTop: "0px"}}>
+                                        <div id="filter_category">
+                                            <ScrollContainer className="Ddetail_filter_category">
+                                                {this.props.data.Categories.map((e, i) => (
+                                                     e.content === "시그니처"?
+                                                        <span key={"인기시술"} onClick={this.onClickcategory("인기시술")} className={(this.state.category === "인기시술" ? "Ddetail_category_select" : "Ddetail_category_nonselect")}>{"인기시술"}</span>:
+                                                        <span key={e.content} onClick={this.onClickcategory(e.content)} className={(this.state.category === e.content ? "Ddetail_category_select" : "Ddetail_category_nonselect")}>{e.content}</span>   
+                                                ))
+                                                }
+                                            </ScrollContainer>
+                                        </div>
+                                        : null}
+                                    <table className="Ddetail_surgery_surgery" style={{ paddingTop: "0px" }}>
                                         <thead>
                                             <tr>
-                                                <th className="Ddetail_surgery_title_first">시그니처</th>
+                                                <th className="Ddetail_surgery_title_first">인기시술</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.props.data.Boards.map((e, i) => (
+                                            {filterboard.map((e, i) => (
                                                 e.open === "1" ?
-                                                <div className="Ddetail_surgery_boards" key={e.id}>
-                                                    <div onClick={this.surgeryBoard(e.id)}>
-                                                    <div><img className="Ddetail_surgery_thunmbnail" src={e.thumbnail} alt={e.name} /></div>
-                                                    <div>
-                                                        <div className="Ddetail_surgery_boards_name" style={{marginTop: "4px",marginBottom: "8px"}}>{e.name}</div>
-                                                        <div className="Ddetail_surgery_boards_name" style={{marginBottom: "12px",lineHeight: "15px"}}>{e.price.comma()}원 <span>{e.eventPrice ? e.eventPrice+"%" : null}</span></div>
-                                                        <div className="Ddetail_surgery_boards_content">{e.content}</div>
-                                                    </div>
-                                                    </div>
-                                                </div> : null
+                                                    <div className="Ddetail_surgery_boards" key={e.id}>
+                                                        <div onClick={this.surgeryBoard(e)}>
+                                                            <div><img className="Ddetail_surgery_thunmbnail" src={e.thumbnail} alt={e.name} /></div>
+                                                            <div>
+                                                                <div className="Ddetail_surgery_boards_name" style={{ marginTop: "2px", marginBottom: "6px", lineHeight: "20px", height: "20px" }}>
+                                                                    {e.Hashtags.map((v) => {
+                                                                        if (v.content === ("시그니처")) {
+                                                                            return (
+                                                                                <span className="Ddetail_surgery_boards_name_signature">시그니처</span>
+                                                                            )
+                                                                        }
+                                                                    })}
+                                                                    {e.name}</div>
+                                                                <div className="Ddetail_surgery_boards_name" style={{ marginBottom: "12px", lineHeight: "15px" }}>{e.price.comma()}원 <span>{e.eventPrice ? e.eventPrice + "%" : null}</span></div>
+                                                                <div className="Ddetail_surgery_boards_content">{e.content}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div> : null
                                             ))}
                                         </tbody>
                                     </table>
                                     {this.props.data.Categories.length ?
-                                    this.props.data.Categories.slice(1).map((v, i) => (
-                                    <table id={v.content} className="Ddetail_surgery_surgery">
-                                        <thead>
-                                            <tr>
-                                                <th className="Ddetail_surgery_title_first">{v.content}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.props.data.Surgeries.map((e, i) => (
-                                                <>
-                                                    {(e.Category && e.Category.content === v.content) ?
-                                                        <Surgery data={e} key={i} SurgeriesPay={this.SurgeriesPay} boardPay={this.boardPay} /> : null
-                                                    }
-                                                </>
-                                            ))}
-                                        </tbody>
-                                    </table>)):null
+                                        this.props.data.Categories.slice(1).map((v, i) => (
+                                            <table id={v.content} className="Ddetail_surgery_surgery">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="Ddetail_surgery_title_first">{v.content}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {this.props.data.Surgeries.map((e, i) => (
+                                                        <>
+                                                            {(e.Category && e.Category.content === v.content) ?
+                                                                <Surgery data={e} key={i} SurgeriesPay={this.SurgeriesPay} boardPay={this.boardPay} /> : null
+                                                            }
+                                                        </>
+                                                    ))}
+                                                </tbody>
+                                            </table>)) : null
                                     }
                                 </div> :
                                 <div style={{ marginTop: "20px", textAlign: "center" }}>
@@ -314,7 +382,7 @@ class Secondsec extends Component {
                                                 <div>
                                                     <dl className="dl">
                                                         <dt className="dt">Instagram</dt>
-                                                        <dd className="dd"><a href={this.props.data.sns}><strong>{this.props.data.sns.split('/')[3]}</strong></a></dd>
+                                                        <dd className="dd"><a onClick={this.onClickSns(this.props.data.sns.split('/')[3])} href={this.props.data.sns}><strong>{this.props.data.sns.split('/')[3]}</strong></a></dd>
                                                     </dl>
                                                     <dl className="dl">
                                                         <dt className="dt">위치</dt>
@@ -330,7 +398,7 @@ class Secondsec extends Component {
                                                                             ))
                                                                         }
                                                                         <div className="store-map">
-                                                                            <a href={this.state.store.mapurl}>지도에서 매장 확인하기</a>
+                                                                            <a onClick={this.onClickMapurl} href={this.state.store.mapurl}>지도에서 매장 확인하기</a>
                                                                         </div>
                                                                     </> :
                                                                     <>

@@ -6,7 +6,7 @@ var urlsToCache = [
     "./js/main.js",
     "./css/main.css",
     "./manifest.json",
-    { url: '/index.html', revision: '383750' }
+    { url: '/index.html', revision: '383767' }
 ];
 // Install a service worker
 self.addEventListener('install', event => {

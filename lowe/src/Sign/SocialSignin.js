@@ -5,6 +5,7 @@ import ModalPhone from "./ModalPhone";
 import SocialFirst from "./SocialFirst";
 import SocialSecond from "./SocialSecond";
 import moment from 'moment';
+import TagManager from "react-gtm-module";
 
 class SocialSignin extends React.Component {
     constructor(props) {
@@ -28,8 +29,29 @@ class SocialSignin extends React.Component {
         this.setState({ id: id })
 
         if (exist === "false") {
-            window.localStorage.setItem("id", id);
-            window.history.go(-2)
+            axios.post("https://server.lowehair.kr/getUser", {
+                id: id, isLogin: true
+            }).then((res)=>{
+                let price = 0
+                for(let i=0; i < res.data.Payments.length; i++){
+                    price = price + Number(res.data.Payments[i])
+                }
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'login',
+                        user_id: res.data.id,
+                        purchase_count: res.data.Payments.length,
+                        purchase_price: price,
+                        review_count: res.data.Reviews,
+                        remain_review_count: res.data.Payments.length - res.data.Reviews,
+                        method: 'naver'
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
+                window.localStorage.setItem("id", id);
+                window.history.go(-2)
+
+            })
         }
     }
 

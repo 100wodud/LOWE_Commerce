@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Portfoliolist.css"
 import Footer from "../Nav/Footer";
 import Portf from "./Portf";
+import TagManager from "react-gtm-module";
 
 class Portfoliolist extends Component {
     constructor(props) {
@@ -30,6 +31,16 @@ class Portfoliolist extends Component {
             axios.post("https://server.lowehair.kr/getDesigner", {
                 id: id, isHashtag: true, isFavorite: true
             }).then((res) => {
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'view_portfoliolist_page',
+                        tag: portfolio,
+                        branch: res.data[0].store,
+                        designer: res.data[0].name
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
+
                 let coupon = ""
                 if (res.data[0].coupons) {
                     coupon = JSON.parse(res.data[0].coupons)

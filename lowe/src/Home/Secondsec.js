@@ -3,6 +3,7 @@ import { Component } from "react";
 import Goodslist from './Goodslist';
 import Filter from "./Filter";
 import "./Secondsec.css";
+import TagManager from "react-gtm-module";
 
 class Secondsec extends Component {
     constructor(props) {
@@ -29,16 +30,70 @@ class Secondsec extends Component {
             if (window.location.pathname.split('/')[3] === "event") {
 
                 axios.post("https://server.lowehair.kr/getBoard", {
-                    event_type: true, open: "1", isWish: true, isReview: true
+                    event_type: true, open: "1", isWish: true, isReview: true, isHashtag: true
                 })
                     .then((res) => {
+                        let boardarr = []
+                        for (let i = 0; i < res.data.length; i++) {
+                            let obj = {};
+                            obj.index = i;
+                            obj.item_id = res.data[i].id;
+                            obj.item_name = res.data[i].content;
+                            obj.price = res.data[i].price;
+                            obj.item_brand = res.data[i].store;
+                            obj.item_variant = res.data[i].designer_name
+
+                            boardarr.push(obj);
+                        }
+                        const tagManagerArgs = {
+                            dataLayer: {
+                                event: 'view_item_list',
+                                item_list_id: 0,
+                                item_list_name: 'event',
+                                filter: ["이벤트"],
+                                items: boardarr
+                            },
+                        };
+                        TagManager.dataLayer(tagManagerArgs);
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
                     })
             } else {
                 axios.post("https://server.lowehair.kr/getBoard", {
-                    category: window.location.pathname.split('/')[3], open: "1", isWish: true, isReview: true
+                    category: window.location.pathname.split('/')[3], open: "1", isWish: true, isReview: true, isHashtag: true
                 })
                     .then((res) => {
+                        let boardarr = []
+                        let cat = '';
+                        if(window.location.pathname.split('/')[3] ===1){
+                            cat = "컷";
+                        } else if(window.location.pathname.split('/')[3] ===2){
+                            cat = "펌"
+                        } else if(window.location.pathname.split('/')[3] ===3){
+                            cat = "염색"
+                        } else if(window.location.pathname.split('/')[3] ===5){
+                            cat = "클리닉"
+                        }
+                        for (let i = 0; i < res.data.length; i++) {
+                            let obj = {};
+                            obj.index = i;
+                            obj.item_id = res.data[i].id;
+                            obj.item_name = res.data[i].content;
+                            obj.price = res.data[i].price;
+                            obj.item_brand = res.data[i].store;
+                            obj.item_variant = res.data[i].designer_name
+
+                            boardarr.push(obj);
+                        }
+                        const tagManagerArgs = {
+                            dataLayer: {
+                                event: 'view_item_list',
+                                item_list_id: window.location.pathname.split('/')[3],
+                                item_list_name: cat,
+                                filter: [cat],
+                                items: boardarr
+                            },
+                        };
+                        TagManager.dataLayer(tagManagerArgs);
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
                     })
 
@@ -46,14 +101,14 @@ class Secondsec extends Component {
         } else if (window.location.pathname.split('/')[2] === "store") {
             if (window.location.pathname.split('/')[3] === "all") {
                 axios.post("https://server.lowehair.kr/getBoard", {
-                    open: "1", isWish: true, isReview: true
+                    open: "1", isWish: true, isReview: true, isHashtag: true
                 })
                     .then((res) => {
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
                     })
             } else {
                 axios.post("https://server.lowehair.kr/getBoard", {
-                    store: decodeURI(window.location.pathname.split('/')[3]), open: "1", isWish: true, isReview: true
+                    store: decodeURI(window.location.pathname.split('/')[3]), open: "1", isWish: true, isReview: true, isHashtag: true
                 })
                     .then((res) => {
                         this.setState({ Allgoods: res.data, Showgoods: res.data, category: 0, number: 10 });
@@ -92,7 +147,6 @@ class Secondsec extends Component {
     };
 
     onclickCategory = (e) => () => {
-        console.log(e)
         this.setState({ category: e.id })
     }
 
@@ -256,7 +310,7 @@ class Secondsec extends Component {
                                 this.state.Showgoods.slice(0, this.state.number).map((e, i) => (
                                     <>
                                         <div key={e.content}>
-                                            <Goodslist e={e} />
+                                            <Goodslist e={e} i={i} event="click_item_list_item" wish='click_item_list_item_wish' />
                                         </div>
                                         {
                                             (i + 1) % 10 === 0 ?

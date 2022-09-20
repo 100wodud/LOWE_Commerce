@@ -39,7 +39,6 @@ class Point extends Component {
             axios.post("https://server.lowehair.kr/getpoint", {
                 UserId: id
             }).then((res) => {
-                console.log(res.data)
                 this.setState({ data: res.data })
             })
         } else {

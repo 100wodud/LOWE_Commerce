@@ -9,6 +9,7 @@ import Filter from "./Filter";
 import Fourthsec from "./Fourthsec";
 import Fifthsec from "./Fifthsec";
 import BFooter2 from "./BFooter2";
+import TagManager from "react-gtm-module";
 
 class Board extends Component {
     constructor(props) {
@@ -30,14 +31,42 @@ class Board extends Component {
         } else {
             funnel = '/'
         }
-        axios.post("https://server.lowehair.kr/getBoardDetail", {
-            id: id,
+
+        axios.post("https://server.lowehair.kr/getBoard", {
+            id: id, isReview: true, isDesigner: true, isImage: true, isHashtag: true, isReviewImage: true
         }).then((res) => {
-            this.setState({ data: res.data });
+            this.setState({ data: {board: res.data[0]} });
             axios.post("https://server.lowehair.kr/getDesigner", {
-                id: res.data.board.ManagerId, isHashtag: true, isFavorite: true
+                id: res.data[0].ManagerId, isHashtag: true, isFavorite: true
             }).then((res) => {
                 this.setState({ designer: res.data[0] });
+                let cat ='';
+                if(this.state.data.board.category ===1){
+                    cat = "컷";
+                } else if(this.state.data.board.category ===2){
+                    cat = "펌"
+                } else if(this.state.data.board.category ===3){
+                    cat = "염색"
+                } else if(this.state.data.board.category ===5){
+                    cat = "클리닉"
+                }
+                const tagManagerArgs = {
+                    dataLayer: {
+                        event: 'view_item',
+                        items: [
+                            {
+                              item_id: this.state.data.board.id,
+                              item_name: this.state.data.board.name,
+                              price: this.state.data.board.price,
+                              discount: this.state.data.board.eventPrice,
+                              item_brand: this.state.data.board.Manager.store+"점",
+                              item_variant: this.state.data.board.name,
+                              item_category: cat
+                            }
+                        ]
+                    },
+                };
+                TagManager.dataLayer(tagManagerArgs);
             });
 
         }).catch((err) => {
@@ -73,7 +102,7 @@ class Board extends Component {
     render() {
         return (
             <>
-                <Header header="clear"  scroll={true}  />
+                <Header header="clear"  scroll={true} event="item" />
                 {this.state.data && this.state.designer && this.state.data.board.open === "1" ?
                     <>
                         <Firstsec data={this.state.data} />

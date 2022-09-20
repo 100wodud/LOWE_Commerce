@@ -8,6 +8,18 @@
     text-decoration-line: line-through;
 }
 
+.Board_second_signature_box {
+    margin-top: 28px;
+    width: 45px;
+    height: 20px;
+    background: #FFF4F1;
+    margin-bottom: -18px;
+    color: #FF5732;
+    font: 700 10px "Noto Sans";
+    line-height: 20px;
+    text-align: center;
+}
+
 .Board_second_price{
     justify-content: space-between;
     display: flex;

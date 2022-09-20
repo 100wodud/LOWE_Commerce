@@ -35,7 +35,7 @@ class Secondsec extends Component {
                             this.state.data.slice(0, this.state.number).map((e, i) => (
                                 <>
                                     <div key={e.id}>
-                                        <Goodslist e={e} />
+                                        <Goodslist e={e} i={i}/>
                                     </div>
                                 </>
                             )) :

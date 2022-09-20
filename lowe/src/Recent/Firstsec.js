@@ -17,10 +17,12 @@ class Firstsec extends Component {
             let arr = [];
             for (let i = 0; i < recent.length; i++) {
                 await axios.post("https://server.lowehair.kr/getBoard", {
-                    id: recent[i],
+                    id: recent[i], isHashtag: true
                 })
                     .then((res) => {
-                        arr.push(res.data[0])
+                        if (res.data[0].open === "1") {
+                            arr.push(res.data[0])
+                        }
                     });
 
             }
@@ -48,9 +50,9 @@ class Firstsec extends Component {
                     this.state.Showgoods.length ?
                         <div className="goods_list">
                             {
-                                this.state.Showgoods.map((e) => (
+                                this.state.Showgoods.map((e, i) => (
                                     e.open === "1" ?
-                                    <Goodslist e={e} key={e.id} /> : null
+                                        <Goodslist e={e} key={e.id} i={i} event="click_wish_recent_product" /> : null
                                 ))
                             }
                         </div> :

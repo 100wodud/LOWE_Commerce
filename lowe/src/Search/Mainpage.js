@@ -9,6 +9,7 @@ import Recently from "./Reacently";
 import ModalFilter from "../Home/ModalFilter";
 import ScrollContainer from 'react-indiana-drag-scroll'
 import SearchDesigner from "./SearchDesigner";
+import TagManager from "react-gtm-module";
 
 class Mainpage extends Component {
     constructor(props) {
@@ -30,11 +31,17 @@ class Mainpage extends Component {
         };
     }
     componentDidMount = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'view_search_page'
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
         let recently = JSON.parse(window.localStorage.getItem("recentWord"));
         let set = new Set(recently);
         let recent = [...set];
         axios.post("https://server.lowehair.kr/getBoard", {
-            order: "payment", isPayment: true
+            order: "payment", isPayment: true, isHashtag: true
         }).then((res) => {
             this.setState({ favorite: res.data.slice(0, 8) })
         })
@@ -55,11 +62,29 @@ class Mainpage extends Component {
             })
                 .then((res) => {
                     let arr = [];
+                    let boardarr = []
                     for (let i = 0; i < res.data.boards.length; i++) {
                         if (res.data.boards[i].open === '1') {
+                            let obj = {};
+                            obj.index = i;
+                            obj.item_id = res.data.boards[i].id;
+                            obj.item_name = res.data.boards[i].content;
+                            obj.price = res.data.boards[i].price;
+                            obj.item_brand = res.data.boards[i].store;
+                            obj.item_variant = res.data.boards[i].designer_name
+
+                            boardarr.push(obj);
                             arr.push(res.data.boards[i])
                         }
                     }
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'search',
+                            keyword: funnel,
+                            items: boardarr
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                     let userid = Number(window.localStorage.getItem("id"));
                     if (userid) {
                         axios.post("https://server.lowehair.kr/click", {
@@ -155,6 +180,24 @@ class Mainpage extends Component {
     }
 
     handleRecentSearch = (keyword) => () => {
+        if (keyword === "신촌점" || keyword === "합정점" || keyword === "홍대입구역점" || keyword === "강남점" || keyword === "L7홍대점" || keyword === "이수역점") {
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'click_search_branch',
+                    branch: keyword
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
+        } else {
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'click_search_recent_keyword',
+                    keyword: keyword
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
+        }
+
         let recently = this.state.recent;
         recently.unshift(keyword)
         let set = []
@@ -167,7 +210,7 @@ class Mainpage extends Component {
 
         window.localStorage.setItem("recentWord", JSON.stringify(recent));
         setTimeout(() => {
-            window.location.href =`/search?skeyword=${keyword}`
+            window.location.href = `/search?skeyword=${keyword}`
         }, 0);
     }
 
@@ -180,10 +223,19 @@ class Mainpage extends Component {
 
     handleInputRecommand = (key) => (e) => {
         e.preventDefault();
-        let keyword = key
+        let keyword = key.slice(1, key.length)
+        let rank = key.slice(0,1)
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_search_popular_keyword',
+                keyword: keyword,
+                index: rank
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
 
         setTimeout(() => {
-            window.location.href =`/search?skeyword=${keyword}`
+            window.location.href = `/search?skeyword=${keyword}`
         }, 0);
     }
 
@@ -250,7 +302,16 @@ class Mainpage extends Component {
     }
 
 
-    onclickRecently = (e) => async () => {
+    onclickRecently = (e) => (i)=>async () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_search_recommend_keyword',
+                recomm_keyword: this.state.search,
+                keyword: e,
+                index: i
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
         var recently = JSON.parse(localStorage.getItem("recent"));
         if (recently == null) recently = [];
         var id = e;
@@ -310,7 +371,7 @@ class Mainpage extends Component {
     }
 
     render() {
-        let store = ["신촌점", "합정점", "홍대입구역점", "강남점", "L7홍대점"]
+        let store = ["신촌점", "합정점", "홍대입구역점", "강남점", "L7홍대점", "이수역점"]
         return (
             <>
                 <SHeader handleInputValue={this.handleInputValue} onclickEnter={this.onclickEnter} handleInputSearch={this.handleInputSearch} />
@@ -336,12 +397,12 @@ class Mainpage extends Component {
                                     <div className="recentSearch_text_div">
                                         <div className="recentSearch_title">최근 가장 인기 많은 시술이에요</div>
                                     </div>
-                                    <div className="Recent_total_list" id="special_recent_list" style={{marginBottom: "8px"}}>
+                                    <div className="Recent_total_list" id="special_recent_list" style={{ marginBottom: "8px" }}>
                                         <ScrollContainer className="Recent_total_slide" style={{ marginTop: "16px", height: "280px" }} >
                                             {
-                                                this.state.favorite.map((e) => (
+                                                this.state.favorite.map((e, i) => (
                                                     e.open === "1" ?
-                                                        <Goodslist e={e} key={e.id} /> : null
+                                                        <Goodslist e={e} key={e.id} i={i} /> : null
                                                 ))
                                             }
                                         </ScrollContainer>
@@ -363,9 +424,9 @@ class Mainpage extends Component {
                                     <div className="no_search_recommand">추천 시술</div>
                                     <div className="goods_list">
                                         {
-                                            this.state.favorite.map((e) => (
+                                            this.state.favorite.map((e, i) => (
                                                 e.open === "1" ?
-                                                    <Goodslist e={e} key={e.id} /> : null
+                                                    <Goodslist e={e} key={e.id} i={i} event="click_search_popular_product" wish="click_search_popular_product_wish" /> : null
                                             ))
                                         }
                                     </div>
@@ -388,8 +449,8 @@ class Mainpage extends Component {
                                         this.state.showdata.length ?
                                             <div>
                                                 {
-                                                    this.state.showdata.map((e) => (
-                                                        <Goodslist e={e} key={e.id} />
+                                                    this.state.showdata.map((e, i) => (
+                                                        <Goodslist e={e} key={e.id} i={i} event="click_search_recommend_product" wish="click_search_recommend_product_wish" />
                                                     ))
                                                 }
                                             </div>
@@ -414,7 +475,7 @@ class Mainpage extends Component {
                                         <div className="Search_recommand">추천 디자이너</div>
                                         {
                                             this.state.name.designers.slice(0, 3).map((e) => (
-                                                <SearchDesigner data={e} />
+                                                <SearchDesigner data={e} search={this.state.search} />
                                             ))}
                                     </div> :
                                     <div>
@@ -426,10 +487,10 @@ class Mainpage extends Component {
                                     <div>
                                         <div className="Search_recommand">추천 검색어</div>
                                         {
-                                            this.state.name.hashtags.slice(0, 10).map((e) => (
+                                            this.state.name.hashtags.slice(0, 10).map((e, i) => (
                                                 <div className="search_board_name_div">
                                                     <img src={process.env.PUBLIC_URL + "/image/nav/search_recommand_icon.svg"} alt="검색결과 없음" />
-                                                    <a href={"/search?skeyword=" + e.content} className="search_board_name" onClick={this.onclickRecently(e.content)} key={e.content} >
+                                                    <a href={"/search?skeyword=" + e.content} className="search_board_name" onClick={this.onclickRecently(e.content)(i)} key={e.content} >
                                                         <pre>{e.content}</pre>
                                                     </a>
                                                 </div>

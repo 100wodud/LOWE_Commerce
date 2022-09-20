@@ -5,6 +5,7 @@ import SignHeader from "./SignHeader";
 import SignupModal from "./SignupModal";
 import ModalPhone from "./ModalPhone";
 import moment from 'moment';
+import TagManager from "react-gtm-module";
 
 class Signup extends React.Component {
     constructor(props) {
@@ -42,6 +43,15 @@ class Signup extends React.Component {
             phonemodal: false,
             modalcomment: '',
         };
+    }
+
+    componentDidMount = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+            event: "view_sign_up_page",
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
     }
 
     openmodal = (e) => () => {
@@ -289,6 +299,17 @@ class Signup extends React.Component {
                         minimum: 100000
                     })
                     setTimeout(() => {
+                        let ndate = new Date().toISOString().slice(0,10)
+                        const tagManagerArgs = {
+                            dataLayer: {
+                                event: 'sign_up',
+                                user_id: this.state.login_id,
+                                event_receive_agreement: this.state.agree5,
+                                date: ndate,
+                                method: 'email'
+                            },
+                        };
+                        TagManager.dataLayer(tagManagerArgs);
                         this.openmodalPhone(`회원가입 완료 :)\n${this.state.login_id}님 만을 위한 쿠폰을 보내드렸어요!`)
                     })
                 }

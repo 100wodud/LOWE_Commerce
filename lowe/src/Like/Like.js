@@ -3,6 +3,7 @@ import Footer from "../Nav/Footer";
 import Firstsec from "./Firstsec";
 import Firstsecs from "../Recent/Firstsec";
 import Secondsec from "./Secondsec";
+import TagManager from "react-gtm-module";
 
 class Like extends Component {
   constructor(props) {
@@ -21,7 +22,15 @@ class Like extends Component {
     let id = window.localStorage.getItem("id")
     if (!id) {
       window.location.replace(`/signin${funnel}`)
-    } 
+    } else {
+
+      const tagManagerArgs = {
+        dataLayer: {
+          event: "view_wish_page",
+        },
+      };
+      TagManager.dataLayer(tagManagerArgs);
+    }
   }
 
   onclickList = (e) => () => {

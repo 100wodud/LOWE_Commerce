@@ -4,6 +4,7 @@ import axios from 'axios';
 import Review from './Review';
 import Header from '../Sign/SignHeader';
 import Footer from '../Nav/Footer';
+import TagManager from "react-gtm-module";
 
 
 class ReviewList extends Component {
@@ -17,6 +18,13 @@ class ReviewList extends Component {
     }
 
     componentDidMount = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'view_review',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+
         let funnel = "";
         if (window.location.href.split("?")[1]) {
             funnel = "?" + window.location.href.split("?")[1];

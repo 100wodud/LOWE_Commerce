@@ -1,11 +1,21 @@
 import { Component } from "react";
 import "./Mainimg.css"
+import TagManager from "react-gtm-module";
 
 class Mainimg extends Component {
     constructor(props) {
         super(props);
         this.state = {
         };
+    }
+
+    onClickstyleAll = async() =>{
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_style_all'
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
     }
 
     render() {
@@ -16,7 +26,7 @@ class Mainimg extends Component {
                     <div className="Mainimg_img_contents_title">{this.props.board.introTitle}</div>
                     <div className="Mainimg_img_contents_title">{this.props.board.name}</div>
                     <div className="Mainimg_img_contents_content">{this.props.board.introduction}</div>
-                    <a href={`/boardstyles/${this.props.board.id}`}>
+                    <a href={`/boardstyles/${this.props.board.id}`} onClick={this.onClickstyleAll}>
                         <div className="Mainimg_img_contents_portfolio">
                             <span className="Mainimg_img_contents_portfolio_title">스타일 전체보기</span>
                             <span className="Mainimg_img_contents_portfolio_arrow">

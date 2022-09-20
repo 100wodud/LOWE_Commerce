@@ -2,6 +2,7 @@ import { Component } from "react";
 import ScrollContainer from 'react-indiana-drag-scroll'
 import "./Style.css";
 import axios from "axios";
+import TagManager from "react-gtm-module";
 
 class Style extends Component {
     constructor(props) {
@@ -19,6 +20,29 @@ class Style extends Component {
         })
     }
 
+    onClicktagPort = (e)=>(i) => async() =>{
+        const tagManagerArgs = {
+            dataLayer: {
+                event: "click_designers_style_image",
+                index: i,
+                tag: this.props.data,
+                portfolio_id: e.id
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
+    onClickAllport = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: "click_designers_style_view_all",
+                tag: this.props.data,
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+
+    }
+
 
     render() {
         let port = [];
@@ -34,7 +58,7 @@ class Style extends Component {
                 <div className="DMain_allmenu">
                     <div className="DesignerList_style_title" style={{marginBottom: "16px"}}>#{this.props.data}</div>
                     <div style={{marginBottom: "16px"}}>
-                        <a href={`/portfolios/${this.props.data}`}>
+                        <a href={`/portfolios/${this.props.data}`} onClick={this.onClickAllport}>
                             <span>
                                 <span>전체보기</span>
                             </span>
@@ -47,8 +71,8 @@ class Style extends Component {
                 </div>
                 <ScrollContainer className="DesignerList_port_slide">
                     {
-                        Portfolios.map((e)=>(
-                            <a key={e.id} href={`/portfolio/${e.id}`}>
+                        Portfolios.map((e, i)=>(
+                            <a key={e.id} href={`/portfolio/${e.id}`} onClick={this.onClicktagPort(e)(i)}>
                                 {
                                     e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
                                         <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import "./BFooter.css";
+import TagManager from "react-gtm-module";
 
 
 class BFooter2 extends Component {
@@ -32,6 +33,13 @@ class BFooter2 extends Component {
         });
     }
     onClickFooter = () => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_item_coupon_btn',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+        
         let funnel ="";
         if(window.location.href.split("?")[1]){
             funnel="?" + window.location.href.split("?")[1];

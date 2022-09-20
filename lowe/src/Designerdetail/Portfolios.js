@@ -21,7 +21,7 @@ class Portfolios extends Component {
                         <>
                             {
                                 v.Manager_Hashtag.open ?
-                                    <Portfolio data={v} portfolio={this.props.data.Portfolios} key={v.id} /> : null
+                                <Portfolio data={v} portfolio={this.props.data.Portfolios} designer={this.props.data.id} key={v.id} />:null
                             }
                         </>
                     )) : null

@@ -27,7 +27,6 @@ class BoardStyle extends Component {
             axios.post("https://server.lowehair.kr/getPortfolio", {
                 BoardId: id,isDesigner: true
             }).then((res) => { 
-                console.log(res.data)
                 this.setState({ data: res.data.portfolio, style: id })
             })
         }
