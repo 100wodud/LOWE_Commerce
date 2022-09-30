@@ -48,7 +48,7 @@ class Header extends Component {
         } else if (e === 2) {
             window.location.href = "/" + funnel
         } else if (e === 3) {
-            if(this.props.item){
+            if(this.props.event === "item"){
                 const tagManagerArgs = {
                     dataLayer: {
                         event: 'click_item_share'

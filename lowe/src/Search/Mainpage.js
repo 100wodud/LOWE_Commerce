@@ -180,7 +180,7 @@ class Mainpage extends Component {
     }
 
     handleRecentSearch = (keyword) => () => {
-        if (keyword === "신촌점" || keyword === "합정점" || keyword === "홍대입구역점" || keyword === "강남점" || keyword === "L7홍대점" || keyword === "이수역점") {
+        if (keyword === "신촌" || keyword === "합정" || keyword === "홍대입구역" || keyword === "강남" || keyword === "L7홍대" || keyword === "이수역") {
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'click_search_branch',
@@ -402,7 +402,7 @@ class Mainpage extends Component {
                                             {
                                                 this.state.favorite.map((e, i) => (
                                                     e.open === "1" ?
-                                                        <Goodslist e={e} key={e.id} i={i} /> : null
+                                                        <Goodslist e={e} key={e.id} i={i} event="click_search_popular_product" wish="click_search_popular_product_wish" /> : null
                                                 ))
                                             }
                                         </ScrollContainer>
@@ -426,7 +426,7 @@ class Mainpage extends Component {
                                         {
                                             this.state.favorite.map((e, i) => (
                                                 e.open === "1" ?
-                                                    <Goodslist e={e} key={e.id} i={i} event="click_search_popular_product" wish="click_search_popular_product_wish" /> : null
+                                                    <Goodslist e={e} key={e.id} i={i} event="click_search_recommend_product" wish="click_search_recommend_product_wish" /> : null
                                             ))
                                         }
                                     </div>

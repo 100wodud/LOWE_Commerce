@@ -50,11 +50,12 @@ class DesignerList extends React.Component {
                 manager_id: manager_id,
                 user_id: user_id,
             }).then((res) => {
+                if(res.data){
+                  window.naverInnerScript(2)
+                }
                 this.setState({ like: !this.state.like })
             });
         }
-        window.naverInnerScript(2)
-        window.naverOuterScript()
     }
 
     onClickHerf = async () => {
@@ -71,7 +72,17 @@ class DesignerList extends React.Component {
                 },
             };
             await TagManager.dataLayer(tagManagerArgs);
-        } else {
+        } else if(this.props.event === "click_wish_designer"){
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: "click_wish_designer",
+                    branch: this.props.data.store,
+                    designer: this.props.data.name,
+                    tags: this.props.data.Hashtags
+                },
+            };
+            await TagManager.dataLayer(tagManagerArgs);
+        }else {
             const tagManagerArgs = {
                 dataLayer: {
                     event: this.props.event,

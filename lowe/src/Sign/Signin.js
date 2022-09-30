@@ -20,6 +20,16 @@ class Signin extends React.Component {
         };
     }
 
+
+    componentDidMount = () =>{
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'login_view',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+    }
+
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
     };
@@ -62,7 +72,7 @@ class Signin extends React.Component {
                 if (res.data.id) {
                     let price = 0
                     for(let i=0; i < res.data.Payments.length; i++){
-                        price = price + Number(res.data.Payments[i])
+                        price = price + Number(res.data.Payments[i].pay_total)
                     }
                     const tagManagerArgs = {
                         dataLayer: {
@@ -70,8 +80,8 @@ class Signin extends React.Component {
                             user_id: res.data.id,
                             purchase_count: res.data.Payments.length,
                             purchase_price: price,
-                            review_count: res.data.Reviews,
-                            remain_review_count: res.data.Payments.length - res.data.Reviews,
+                            review_count: res.data.Reviews.length,
+                            remain_review_count: res.data.Payments.length - res.data.Reviews.length,
                             method: 'general'
                         },
                     };

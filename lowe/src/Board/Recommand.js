@@ -49,11 +49,12 @@ class Recommand extends Component {
         user: user,
         heart: like
       }).then((res) => {
+        if(res.data){
+          window.naverInnerScript(2)
+        }
         this.setState({ like: !this.state.like })
       });
     }
-    window.naverInnerScript(2)
-    window.naverOuterScript()
     
     let cat = ""
     if (this.props.e.category === 1) {

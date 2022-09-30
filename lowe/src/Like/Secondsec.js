@@ -36,7 +36,7 @@ class Secondsec extends Component {
             <section style={{ paddingBottom: "80px" }}>
                 {this.state.data.length ?
                     this.state.data.map((e) => (
-                        <DesignerList data={e.Manager} rank={true} />
+                        <DesignerList data={e.Manager} rank={true} event="click_wish_designer" />
                     ))
                     :
                     <div style={{ marginTop: "132px" }} className="mypage_nolike" >

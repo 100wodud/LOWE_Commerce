@@ -2,6 +2,7 @@ import { Component } from "react";
 import "./Fourthsec.css";
 import axios from "axios";
 import ScrollContainer from 'react-indiana-drag-scroll'
+import TagManager from "react-gtm-module";
 
 class Fourthsec extends Component {
     constructor(props) {
@@ -34,6 +35,13 @@ class Fourthsec extends Component {
         axios.post("https://server.lowehair.kr/getDesigner", {
             isRank: true, store: e, isHashtag: true
         }).then((res) => {
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'click_main_branch_popular_branch_name',
+                    branch: e
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
             this.setState({ data: res.data.slice(0, 3) })
         })
     }
@@ -45,11 +53,76 @@ class Fourthsec extends Component {
         axios.post("https://server.lowehair.kr/getPortfolio", {
             hashtag: e
         }).then((res) => {
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'click_main_style_hashtag',
+                    tag: e
+                },
+            };
+            TagManager.dataLayer(tagManagerArgs);
             this.setState({ styledata: res.data.portfolio.slice(0, 9) })
         })
     }
 
+    onClickDesignerAll = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_main_branch_popular_view_all'
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
 
+    }
+
+    onClickDesigner = (e) => async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_main_branch_popular_designer',
+                branch: e.store,
+                designer: e.name,
+                tags: e.Hashtags
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
+    onClickStyleAll = async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_main_style_view_all'
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+
+    }
+
+    onClickStyle = (e) => (i) => async() => {
+        console.log(e, i)
+        if(e.Boards[0]){
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'click_main_style_image',
+                    branch: e.Boards[0].store,
+                    designer: e.Boards[0].designer_name,
+                    index: i,
+                    portfolio_id: e.id
+                },
+            };
+            await TagManager.dataLayer(tagManagerArgs);
+
+        } else {
+            const tagManagerArgs = {
+                dataLayer: {
+                    event: 'click_main_style_image',
+                    branch: "",
+                    designer: "",
+                    index: i,
+                    portfolio_id: e.id
+                },
+            };
+            await TagManager.dataLayer(tagManagerArgs);
+        }
+    }
 
 
 
@@ -61,7 +134,7 @@ class Fourthsec extends Component {
                 <div className="Mainpage_fourth_recommand" >
                     <div><strong>지점별 인기 디자이너 ✨</strong></div>
                     <div>
-                        <a href="/designers" >
+                        <a href="/designers" onClick={this.onClickDesignerAll}>
                             <span>
                                 <span>전체보기</span>
                             </span>
@@ -83,7 +156,7 @@ class Fourthsec extends Component {
                 <div className="Mainpage_fourth_designer">
                     {this.state.data.map((e) => (
                         <div key={e.id}>
-                            <a href={`/designer/${e.id}`}>
+                            <a href={`/designer/${e.id}`} onClick={this.onClickDesigner(e)}>
                                 <div>
                                     <img className="Mainpage_fourth_designer_img" src={e.img} alt="디자이너" />
                                 </div>
@@ -100,7 +173,7 @@ class Fourthsec extends Component {
                 <div className="Mainpage_fourth_recommand" >
                     <div><strong>#스타일</strong></div>
                     <div>
-                        <a href={`/styles/${this.state.style}`} >
+                        <a href={`/styles/${this.state.style}`} onClick={this.onClickStyleAll}>
                             <span>
                                 <span>전체보기</span>
                             </span>
@@ -122,9 +195,9 @@ class Fourthsec extends Component {
                 <div className="DMain_allmenu_style" style={{marginTop: "8px"}}>
                         {
                             this.state.styledata.length ?
-                                this.state.styledata.map((e) => (
+                                this.state.styledata.map((e , i) => (
                                     <div key={e.id}>
-                                        <a href={`/portfolio/${e.id}`}>
+                                        <a href={`/portfolio/${e.id}`} onClick={this.onClickStyle(e)(i)}>
                                             {
                                                 e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
                                                     <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >

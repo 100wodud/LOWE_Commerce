@@ -230,6 +230,16 @@ class Secondsec extends Component {
         } else {
             tab_num = ''
         }
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_designer_procedure_product',
+                item_id:  Number(e.id),
+                item_name: e.name,
+                item_category: "인기시술",
+                price: e.price
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
 
         if (userid) {
             axios.post("https://server.lowehair.kr/click", {

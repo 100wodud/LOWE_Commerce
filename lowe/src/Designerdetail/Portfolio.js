@@ -36,6 +36,18 @@ class Portfolio extends Component {
 
     }
 
+    onClickPortfolio = (e) => (i)=> async() =>{
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_designer_styletab_image',
+                tag: e,
+                portfolio_id: i
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+
+    }
+
     render() {
         let funnel ="";
         if(window.location.href.split("?")[1]){
@@ -62,7 +74,7 @@ class Portfolio extends Component {
                             <div>
                                 <div className="Portfolio_images_first">
                                     {this.state.data[0] ?
-                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#0${funnel}`}>
+                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#0${funnel}`} onClick={this.onClickPortfolio(this.props.data.content)(this.state.data[0].id)}>
                                             {
                                                 this.state.data[0].img.slice(this.state.data[0].img.lastIndexOf('.'), this.state.data[0].img.lastIndexOf('.') + 4) === ".avi" || this.state.data[0].img.slice(this.state.data[0].img.lastIndexOf('.'), this.state.data[0].img.lastIndexOf('.') + 4) === ".mp4" ?
                                                     <video preload="metadata" alt="포트폴리오 사진" >
@@ -76,7 +88,7 @@ class Portfolio extends Component {
                                 <div className="Portfolio_images_second_div">
                                     <div className="Portfolio_images_second">
                                         {this.state.data[1] ?
-                                            <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#1${funnel}`}>
+                                            <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#1${funnel}`}  onClick={this.onClickPortfolio(this.props.data.content)(this.state.data[1].id)}>
                                                 {
                                                     this.state.data[1].img.slice(this.state.data[1].img.lastIndexOf('.'), this.state.data[1].img.lastIndexOf('.') + 4) === ".avi" || this.state.data[1].img.slice(this.state.data[1].img.lastIndexOf('.'), this.state.data[1].img.lastIndexOf('.') + 4) === ".mp4" ?
                                                         <video preload="metadata" alt="포트폴리오 사진" >
@@ -89,7 +101,7 @@ class Portfolio extends Component {
                                     </div>
                                     <div className="Portfolio_images_third">
                                         {this.state.data[2] ?
-                                            <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#2${funnel}`}>
+                                            <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#2${funnel}`}  onClick={this.onClickPortfolio(this.props.data.content)(this.state.data[2].id)}>
                                                 {
                                                     this.state.data[2].img.slice(this.state.data[2].img.lastIndexOf('.'), this.state.data[2].img.lastIndexOf('.') + 4) === ".avi" || this.state.data[2].img.slice(this.state.data[2].img.lastIndexOf('.'), this.state.data[2].img.lastIndexOf('.') + 4) === ".mp4" ?
                                                         <video preload="metadata" alt="포트폴리오 사진" >
@@ -105,7 +117,7 @@ class Portfolio extends Component {
                             <div className="Portfolio_images_third_div">
                                 <div>
                                     {this.state.data[3] ?
-                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#3${funnel}`}>
+                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#3${funnel}`}  onClick={this.onClickPortfolio(this.props.data.content)(this.state.data[3].id)}>
                                             {
                                                 this.state.data[3].img.slice(this.state.data[3].img.lastIndexOf('.'), this.state.data[3].img.lastIndexOf('.') + 4) === ".avi" || this.state.data[3].img.slice(this.state.data[3].img.lastIndexOf('.'), this.state.data[3].img.lastIndexOf('.') + 4) === ".mp4" ?
                                                     <video preload="metadata" alt="포트폴리오 사진" >
@@ -118,7 +130,7 @@ class Portfolio extends Component {
                                 </div>
                                 <div>
                                     {this.state.data[4] ?
-                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#4${funnel}`}>
+                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#4${funnel}`}  onClick={this.onClickPortfolio(this.props.data.content)(this.state.data[4].id)}>
                                             {
                                                 this.state.data[4].img.slice(this.state.data[4].img.lastIndexOf('.'), this.state.data[4].img.lastIndexOf('.') + 4) === ".avi" || this.state.data[4].img.slice(this.state.data[4].img.lastIndexOf('.'), this.state.data[4].img.lastIndexOf('.') + 4) === ".mp4" ?
                                                     <video preload="metadata" alt="포트폴리오 사진" >
@@ -131,7 +143,7 @@ class Portfolio extends Component {
                                 </div>
                                 <div>
                                     {this.state.data[5] ?
-                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#5${funnel}`}>
+                                        <a href={`/portfoliolist/${this.props.data.content}/${this.props.designer}#5${funnel}`}  onClick={this.onClickPortfolio(this.props.data.content)(this.state.data[5].id)}>
                                             {
                                                 this.state.data[5].img.slice(this.state.data[5].img.lastIndexOf('.'), this.state.data[5].img.lastIndexOf('.') + 4) === ".avi" || this.state.data[5].img.slice(this.state.data[5].img.lastIndexOf('.'), this.state.data[5].img.lastIndexOf('.') + 4) === ".mp4" ?
                                                     <video preload="metadata" alt="포트폴리오 사진" >

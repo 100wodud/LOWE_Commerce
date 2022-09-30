@@ -55,7 +55,7 @@ class Ddetail extends Component {
             funnel = '/'
         }
         axios.post("https://server.lowehair.kr/getDesigner", {
-            id: id, isBoard: true, isCategory: true, isFavorite: true, isHashtag: true, isImage: true, isSurgery: true, isReview: true, isPortfolio: true, isPortfolioHashtag: true
+            id: id, isBoard: true, isCategory: true, isFavorite: true, isHashtag: true, isImage: true, isSurgery: true, isReview: true, isPortfolio: true, isPortfolioHashtag: true, surgeryOpen : false
         }).then((res) => {
             let coupon = ""
             if (res.data[0].coupons) {
@@ -194,6 +194,7 @@ class Ddetail extends Component {
             window.location.replace(rou)
             window.location.href = window.location.pathname + "#Ddetailmenus"
         } else if (e === 2.5) {
+            this.setState({ list: 2 })
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'click_designer_signature_view_all',
@@ -206,6 +207,7 @@ class Ddetail extends Component {
             window.location.replace(rou)
             window.location.href = window.location.pathname + "#Ddetailreviews"
         } else if (e === 3.5) {
+            this.setState({ list: 3 })
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'click_designer_review_view_all',
@@ -221,6 +223,7 @@ class Ddetail extends Component {
             window.location.replace(rou)
             window.location.href = window.location.pathname + "#Ddetailstyles"
         } else if (e === 5.5) {
+            this.setState({ list: 5 })
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'click_designer_style_view_all',

@@ -34,7 +34,7 @@ class SocialSignin extends React.Component {
             }).then((res)=>{
                 let price = 0
                 for(let i=0; i < res.data.Payments.length; i++){
-                    price = price + Number(res.data.Payments[i])
+                    price = price + Number(res.data.Payments[i].pay_total)
                 }
                 const tagManagerArgs = {
                     dataLayer: {
@@ -42,15 +42,16 @@ class SocialSignin extends React.Component {
                         user_id: res.data.id,
                         purchase_count: res.data.Payments.length,
                         purchase_price: price,
-                        review_count: res.data.Reviews,
-                        remain_review_count: res.data.Payments.length - res.data.Reviews,
+                        review_count: res.data.Reviews.length,
+                        remain_review_count: res.data.Payments.length - res.data.Reviews.length,
                         method: 'naver'
                     },
                 };
                 TagManager.dataLayer(tagManagerArgs);
-                window.localStorage.setItem("id", id);
-                window.history.go(-2)
-
+                setTimeout(() => {
+                    window.localStorage.setItem("id", id);
+                    window.history.go(-2)
+                }, 1500);
             })
         }
     }

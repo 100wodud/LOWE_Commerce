@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import TagManager from "react-gtm-module";
 
 class Firstsec extends Component {
     constructor(props) {
@@ -33,6 +34,17 @@ class Firstsec extends Component {
     onChangeNumber =(key) =>() => {
         this.setState({count: key})
     }
+
+    onClickbanner = (e)=> async() => {
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_main_top_banner',
+                title: e
+            },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
+    }
+
 
     render() {
         var settings = {
@@ -64,7 +76,7 @@ class Firstsec extends Component {
                         this.state.data.map((e)=>{
                             count = count + 1;
                         return (
-                            <a href={e.url+funnel}  key={e.id} className="banner_img" >
+                            <a href={e.url+funnel}  key={e.id} className="banner_img" onClick={this.onClickbanner(e.title)}>
                                 <img src={e.img} alt="로위 배너" />
                             </a>
                         )}) :

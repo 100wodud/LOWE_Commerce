@@ -2,6 +2,7 @@ import { Component } from "react";
 import "./ThirdReview.css";
 import axios from "axios";
 import ModalPhone from "../Sign/ModalPhone";
+import TagManager from "react-gtm-module";
 
 class ThirdReview extends Component {
     constructor(props) {
@@ -47,11 +48,41 @@ class ThirdReview extends Component {
                 user: user,
                 heart: like
             }).then((res) => {
+              if(res.data){
+                window.naverInnerScript(2)
+              }
                 this.setState({ like: !this.state.like })
             });
         }
-        window.naverInnerScript(2)
-        window.naverOuterScript()
+        let cat = ""
+        if (window.location.pathname.split('/')[3] === "event") {
+          cat = "이벤트"
+        } else if (window.location.pathname.split('/')[3] === 1 || this.props.e.category === 1) {
+          cat = "컷";
+        } else if (window.location.pathname.split('/')[3] === 2 || this.props.e.category === 2) {
+          cat = "펌"
+        } else if (window.location.pathname.split('/')[3] === 3 || this.props.e.category === 3) {
+          cat = "염색"
+        } else if (window.location.pathname.split('/')[3] === 5 || this.props.e.category === 5) {
+          cat = "클리닉"
+        }
+        const tagManagerArgs = {
+          dataLayer: {
+            event: this.props.wish,
+            items: [
+              {
+                index: this.props.i,
+                item_id: this.props.e.id,
+                item_name: this.props.e.name,
+                price: this.props.e.price,
+                item_brand: this.props.e.store,
+                item_variant: this.props.e.designer_name,
+                item_category: [cat]
+              }
+            ]
+          },
+        };
+        TagManager.dataLayer(tagManagerArgs);
     }
 
     onclickRecently = async () => {
@@ -67,6 +98,36 @@ class ThirdReview extends Component {
             recently.unshift(id);
         }
         localStorage.setItem("recent", JSON.stringify(recently));
+        localStorage.setItem("recent", JSON.stringify(recently));
+        let cat = ""
+          if (window.location.pathname.split('/')[3] === "event") {
+            cat = "이벤트"
+          } else if (window.location.pathname.split('/')[3] === 1 || this.props.e.category === 1) {
+            cat = "컷";
+          } else if (window.location.pathname.split('/')[3] === 2 || this.props.e.category === 2) {
+            cat = "펌"
+          } else if (window.location.pathname.split('/')[3] === 3 || this.props.e.category === 3) {
+            cat = "염색"
+          } else if (window.location.pathname.split('/')[3] === 5 || this.props.e.category === 5) {
+            cat = "클리닉"
+          }
+        const tagManagerArgs = {
+          dataLayer: {
+            event: this.props.event,
+            items: [
+              {
+                index: this.props.i,
+                item_id: this.props.e.id,
+                item_name: this.props.e.name,
+                price: this.props.e.price,
+                item_brand: this.props.e.store,
+                item_variant: this.props.e.designer_name,
+                item_category: [cat]
+              }
+            ]
+          },
+        };
+        TagManager.dataLayer(tagManagerArgs);
     }
 
     openmodalPhone = (e) => (v) => {
@@ -83,7 +144,7 @@ class ThirdReview extends Component {
             <>
                 <div className="Mainpage_third_review_div">
                     <div className="Mainpage_third_review_div_div">
-                        <span className="Mainpage_third_review_a" onClick={this.props.onclickimg(this.props.e.id)}>
+                        <span className="Mainpage_third_review_a" onClick={this.props.onclickimg(this.props.e)}>
                             <img className="Mainpage_third_review_img" src={this.props.e.Images[0].url} alt="리뷰 사진" />
                             <div className="Mainpage_third_review_text" ><div>{this.props.e.content ? '"' + this.props.e.content + '"' : null}</div></div>
                         </span>
