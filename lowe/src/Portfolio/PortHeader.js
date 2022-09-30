@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import "./PortHeader.css"
+import TagManager from "react-gtm-module";
 
 
 class Header extends Component {
@@ -48,6 +49,15 @@ class Header extends Component {
 
     handleShare = () => {
         let url = window.location.href;
+        if(window.location.pathname.split("/")[1] === "portfolios"){
+
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'click_portfolios_share',
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
+        }
         if (navigator.share) {
             navigator.share({
                 title: '로위 - 헤어스타일 스토어',

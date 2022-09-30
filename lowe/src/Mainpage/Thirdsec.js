@@ -8,6 +8,7 @@ import Goodslist from "../Home/Goodslist";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import TagManager from "react-gtm-module";
 
 class Thirdsec extends Component {
     constructor(props) {
@@ -71,12 +72,35 @@ class Thirdsec extends Component {
     onclickimg = (e) => () => {
         let num = 0
         for (let i = 0; i < this.state.review.length; i++) {
-            if (e === this.state.review[i].id) {
+            if (e.id === this.state.review[i].id) {
                 num = i;
                 break
             }
         }
-        this.setState({ modal: true, slider: num });
+            const tagManagerArgs = {
+              dataLayer: {
+                event: "click_main_real_review_image",
+                item_id: e.Board.id,
+                item_name: e.Board.name,
+                price: e.Board.price,
+                branch: e.Board.store,
+                designer: e.Board.designer_name,
+                index: num,
+                name: e.User.name
+              },
+            };
+            TagManager.dataLayer(tagManagerArgs);
+            this.setState({ modal: true, slider: num });
+    }
+
+    onClickBannerimg = (e) => async() => {
+        const tagManagerArgs = {
+          dataLayer: {
+            event: "click_main_middle_banner",
+            title: e.title
+          },
+        };
+        await TagManager.dataLayer(tagManagerArgs);
     }
 
     render() {
@@ -100,7 +124,7 @@ class Thirdsec extends Component {
                 <ScrollContainer className="Recent_total_slide" style={{ marginTop: "20px", height: "345px" }} >
                     {this.state.review.length ?
                         this.state.review.map((e) => (
-                            <ThirdReview e={e} key={e.id} onclickimg={this.onclickimg}  />
+                            <ThirdReview e={e} key={e.id} onclickimg={this.onclickimg}  event="click_main_real_review_product" wish="click_main_real_review_product_wish" />
                         )) : null
                     }
                 </ScrollContainer>
@@ -111,7 +135,7 @@ class Thirdsec extends Component {
                         <ScrollContainer className="Recent_total_slide" style={{ marginTop: "20px", height: "280px" }} >
                             {
                                 this.state.favorite.map((e, i) => (
-                                    <Goodslist e={e} key={e.id} i={i} />
+                                    <Goodslist e={e} key={e.id} i={i} event="click_main_hot_product" wish="click_main_hot_product_wish" />
                                 ))
                             }
                         </ScrollContainer>
@@ -122,7 +146,7 @@ class Thirdsec extends Component {
                         {
                             this.state.banner.map((e) =>
                             (
-                                <a href={e.url} key={e.id} >
+                                <a href={e.url} key={e.id} onClick={this.onClickBannerimg(e)}>
                                     <img src={e.img} alt="로위 배너" />
                                 </a>
                             ))

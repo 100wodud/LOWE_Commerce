@@ -93,7 +93,7 @@ class Receipt extends Component {
             this.setState({ data: recent_payment, surgery_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
             await axios.post("https://server.lowehair.kr/getPayment", {
-                id: id,
+                id: id, isUserPayment: true
             }).then((res) => {
                 if (Number(userid) === res.data[0].User.id) {
                     let cat = ""
@@ -123,7 +123,7 @@ class Receipt extends Component {
                             coupon: c,
                             coupon_discount: cd,
                             transaction_id: res.data[0].pay_cardtradenum,
-                            first_purchase: res.data[0].User.Payment.length,
+                            first_purchase: res.data[0].User.Payments.length,
                             items: [
                                 {
                                     item_id: this.state.data.board.board.id,

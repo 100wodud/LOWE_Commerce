@@ -10,7 +10,6 @@ class RFooter extends Component {
 
     componentDidMount =()=>{
         window.naverInnerScript(this.props.payment.pay_total)
-        window.naverOuterScript()
     }
 
 
