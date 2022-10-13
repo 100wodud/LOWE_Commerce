@@ -63,10 +63,10 @@
   테스트 페이지용 네이버 소셜로그인 코드
   ```
  let type = '/test';
- let client_id = 'L1LG3ZXKVBWzG4K_xg96';
+ let client_id = '****************';
  const redirect_uri = host + 'oauth/naver' + type;;
- if (type === '/local') client_id = 'VDCjWganBityopCwtNRR';
- if (type === '/test') client_id = '6qt2bUAEaty7WfFiqDPW';
+ if (type === '/local') client_id = '****************';
+ if (type === '/test') client_id = '****************';
  const state = 'lowehair_naver_state';
  window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
  ```
@@ -74,7 +74,7 @@
 테스트 페이지용 네이버 소셜로그인 코드
 ```
  const redirect_uri = host + '/oauth/naver';
- const client_id = 'L1LG3ZXKVBWzG4K_xg96';
+ const client_id = '****************';
  const state = 'lowehair_naver_state';
  window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
 ```
