@@ -50,6 +50,10 @@ class Board extends Component {
                 } else if(this.state.data.board.category ===5){
                     cat = "클리닉"
                 }
+                let disc = 0;
+                if(this.state.data.board.listPrice > 0){
+                    disc = this.state.data.board.listPrice - this.state.data.board.price
+                }
                 const tagManagerArgs = {
                     dataLayer: {
                         event: 'view_item',
@@ -58,9 +62,9 @@ class Board extends Component {
                               item_id: this.state.data.board.id,
                               item_name: this.state.data.board.name,
                               price: this.state.data.board.price,
-                              discount: this.state.data.board.eventPrice,
+                              discount: disc,
                               item_brand: this.state.data.board.Manager.store+"점",
-                              item_variant: this.state.data.board.name,
+                              item_variant: this.state.data.board.designer_name,
                               item_category: cat
                             }
                         ]

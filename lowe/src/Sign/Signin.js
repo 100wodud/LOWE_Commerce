@@ -77,7 +77,7 @@ class Signin extends React.Component {
                     const tagManagerArgs = {
                         dataLayer: {
                             event: 'login',
-                            user_id: res.data.id,
+                            user_id: res.data.uuid,
                             purchase_count: res.data.Payments.length,
                             purchase_price: price,
                             review_count: res.data.Reviews.length,
@@ -86,7 +86,9 @@ class Signin extends React.Component {
                         },
                     };
                     TagManager.dataLayer(tagManagerArgs);
+                    window.localStorage.setItem("uuid", res.data.uuid);
                     window.localStorage.setItem("id", res.data.id);
+                    window.localStorage.setItem("login_method", "general");
                     window.history.go(-1)
                 } else {
                     this.setState({ error: "비밀번호를 확인해주세요" })

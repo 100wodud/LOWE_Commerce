@@ -152,7 +152,7 @@ class Goodslist extends Component {
     return (
       <>
         <span style={{ float: "left" }}>
-          <a onClick={this.onclickRecently} href={`/board/${this.props.e.id}`} className="goods">
+          <a href={`/board/${this.props.e.id}`} className="goods" id="board_goods">
             <div>
               {
                 hash ?
@@ -160,7 +160,7 @@ class Goodslist extends Component {
                     시그니처
                   </div> : null
               }
-              <img src={process.env.PUBLIC_URL + this.props.e.thumbnail} className="goods_thumnail" alt="로위 상품 썸네일" />
+              <img onClick={this.onclickRecently} src={process.env.PUBLIC_URL + this.props.e.thumbnail} className="goods_thumnail" alt="로위 상품 썸네일" />
               <div style={{ width: "100%", height: "37px", marginTop: "-39px", textAlign: "right", zIndex: "100" }} >
                 {user ?
                   this.state.like === false ?
@@ -170,13 +170,13 @@ class Goodslist extends Component {
                 }
               </div>
             </div>
-            <div className="goods_designer">
+            <div className="goods_designer" onClick={this.onclickRecently} >
               <strong>{this.props.e.designer_name}</strong> {this.props.e.store}
             </div>
-            <div className="goods_title">
+            <div className="goods_title" onClick={this.onclickRecently} >
               {this.props.e.name}
             </div>
-            <div className="goods_price">
+            <div className="goods_price" onClick={this.onclickRecently} >
               {
                 this.props.e.eventType ?
                   <span className="goods_price_percent">{this.props.e.eventPrice}%</span> :

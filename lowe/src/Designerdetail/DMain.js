@@ -200,7 +200,7 @@ class DMain extends Component {
                         <div><strong>고객 리뷰</strong></div>
                         <div>
                             <span>
-                                <span onClick={this.props.onclickList(3)}>전체보기</span>
+                                <span onClick={this.props.onclickList(3.5)}>전체보기</span>
                             </span>
                             <span>
                                 <img src={process.env.PUBLIC_URL + "/image/nav/port_arrow.svg"} alt="다음" />

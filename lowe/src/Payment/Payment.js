@@ -55,6 +55,11 @@ class Payment extends Component {
                 } else if (res.data[0].category === 5) {
                     cat = "클리닉"
                 }
+                let disc = 0;
+
+                if(res.data[0].listPrice > 0 && res.data[0].id !== 122){
+                    disc = res.data[0].listPrice - res.data[0].price
+                }
                 const tagManagerArgs = {
                     dataLayer: {
                         event: 'begin_checkout',
@@ -63,7 +68,7 @@ class Payment extends Component {
                                 item_id: res.data[0].id,
                                 item_name: res.data[0].name,
                                 price: res.data[0].price,
-                                discount: res.data[0].eventPrice,
+                                discount: disc,
                                 item_brand: res.data[0].store,
                                 item_variant: res.data[0].designer_name,
                                 item_category: cat
@@ -289,6 +294,11 @@ class Payment extends Component {
                 c=this.state.coupon[0].data.content;
                 cd = this.state.coupon[0].data.price;
             }
+            let disc = 0;
+
+            if(this.state.data.board.listPrice > 0 && this.state.data.board.id !== 122){
+                disc = this.state.data.board.listPrice - this.state.data.board.price
+            }
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'add_payment_info',
@@ -300,7 +310,7 @@ class Payment extends Component {
                             item_id: this.state.data.board.id,
                             item_name: this.state.data.board.name,
                             price: this.state.data.board.price,
-                            discount: this.state.data.board.eventPrice ? this.state.data.board.eventPrice : 0,
+                            discount: disc,
                             item_brand: this.state.data.board.store,
                             item_variant: this.state.data.board.designer_name,
                             item_category: cat

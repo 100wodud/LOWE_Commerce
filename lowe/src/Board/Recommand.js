@@ -97,30 +97,14 @@ class Recommand extends Component {
       recently.unshift(id);
     }
     localStorage.setItem("recent", JSON.stringify(recently));
-    let cat = ""
-      if (this.props.e.category === 1) {
-        cat = "컷";
-      } else if (this.props.e.category === 2) {
-        cat = "펌"
-      } else if (this.props.e.category === 3) {
-        cat = "염색"
-      } else if (this.props.e.category === 5) {
-        cat = "클리닉"
-      }
     const tagManagerArgs = {
       dataLayer: {
         event: this.props.event,
-        items: [
-          {
-            index: this.props.i,
-            item_id: this.props.e.id,
-            item_name: this.props.e.name,
-            price: this.props.e.price,
-            item_brand: this.props.e.store,
-            item_variant: this.props.e.designer_name,
-            item_category: [cat]
-          }
-        ]
+        recomm_item_id: this.props.e.id,
+        recomm_item_name: this.props.e.name,
+        recomm_price: this.props.e.price,
+        recomm_branch: this.props.e.store,
+        recomm_designer: this.props.e.designer_name
       },
     };
     TagManager.dataLayer(tagManagerArgs);
@@ -137,9 +121,9 @@ class Recommand extends Component {
         }
         return (
             <span style={{float: "left", marginRight: "12px"}}>
-                <a onClick={this.onclickRecently} href={`/board/${this.props.e.id}${funnel}`} className="recommand">
+                <a href={`/board/${this.props.e.id}${funnel}`} className="recommand">
                     <div>
-                        <img src={process.env.PUBLIC_URL + this.props.e.thumbnail} className="recommand_thumnail" alt="로위 상품 썸네일" /><div style={{ width: "100%", height: "37px", marginTop: "-39px", textAlign: "right", zIndex: "100" }} >
+                        <img onClick={this.onclickRecently} src={process.env.PUBLIC_URL + this.props.e.thumbnail} className="recommand_thumnail" alt="로위 상품 썸네일" /><div style={{ width: "100%", height: "37px", marginTop: "-39px", textAlign: "right", zIndex: "100" }} >
               {user ?
                 this.state.like === false ?
                   <img src={process.env.PUBLIC_URL + "/image/nav/home_dislike.png"} className="goods_like" alt="로위 상품 찜" onClick={this.onclickLike} /> :
@@ -148,10 +132,10 @@ class Recommand extends Component {
               }
             </div>
                     </div>
-                    <div className="recommand_title">
+                    <div className="recommand_title" onClick={this.onclickRecently} >
                         {this.props.e.name}
                     </div>
-                    <div className="recommand_price">
+                    <div className="recommand_price" onClick={this.onclickRecently} >
                         {this.props.e.eventType ?
                             <span className="recommand_price_percent">{this.props.e.eventPrice}%</span> :
                             <></>

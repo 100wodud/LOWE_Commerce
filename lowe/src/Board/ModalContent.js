@@ -18,16 +18,24 @@ class ModalContent extends Component {
                 id: this.props.data.UserId,
             })
                 .then((res) => {
+                    let name = ''
+                    if(res.data[0].login_id){
+                        name = res.data[0].login_id
+                    } else {
+                        name = res.data[0].name
+                    }
                     const tagManagerArgs = {
                         dataLayer: {
                             event: 'view_photo_review',
-                            name: res.data[0].login_id,
+                            name: name,
                             item_id: this.props.data.BoardId,
                             item_name: this.props.data.goods
                         },
                     };
-                    TagManager.dataLayer(tagManagerArgs);
-                    this.setState({ user: res.data[0].login_id })
+                    if(this.props.i === this.props.slider){
+                        TagManager.dataLayer(tagManagerArgs);
+                    }
+                    this.setState({ user: name })
                 })
                 .catch(err => {
                     console.log("에러")

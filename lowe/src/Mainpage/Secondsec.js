@@ -57,7 +57,7 @@ class Secondsec extends Component {
         const tagManagerArgs = {
             dataLayer: {
                 event: 'click_main_top_category',
-                branch: e
+                title: e
             },
         };
         await TagManager.dataLayer(tagManagerArgs);

@@ -201,7 +201,7 @@ class Firstsec extends Component {
                         <div>시술 정보가 없습니다</div>
                 }
                 {this.state.refund ?
-                    <RefundModal refund={this.onClickRefund} reason={this.state.reason} close={this.onClickrefundclose} submitreason={this.onChangeRefundreason} paymentid={this.props.mypayment.id} /> : null
+                    <RefundModal refund={this.onClickRefund} reason={this.state.reason} close={this.onClickrefundclose} submitreason={this.onChangeRefundreason} paymentid={this.props.mypayment.id} payment={this.props.payment}/> : null
                 }
                 {
                     this.state.phonemodal ?

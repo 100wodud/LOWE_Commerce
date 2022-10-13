@@ -43,12 +43,15 @@ class SearchDesigner extends React.Component {
     onclickRecommand = () => {
         let data = this.props.data;
         
+        let arr = []
+        arr.push(data.Hashtags[0].content);
+        arr.push(data.Hashtags[1].content);
         const tagManagerArgs = {
             dataLayer: {
                 event: 'click_search_recommend_designer',
                 branch: data.store,
                 designer: data.name,
-                tags: data.Hashtags,
+                tags: arr,
                 keyword: this.props.search
             },
         };

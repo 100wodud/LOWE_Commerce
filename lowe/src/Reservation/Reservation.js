@@ -30,33 +30,38 @@ class Reservation extends React.Component {
                 id: id,
             }).then((res) => {
                 let cat = ""
-                  if (res.data[0].category === 1) {
+                if (res.data[0].category === 1) {
                     cat = "컷";
-                  } else if (res.data[0].category === 2) {
+                } else if (res.data[0].category === 2) {
                     cat = "펌"
-                  } else if (res.data[0].category === 3) {
+                } else if (res.data[0].category === 3) {
                     cat = "염색"
-                  } else if (res.data[0].category === 5) {
+                } else if (res.data[0].category === 5) {
                     cat = "클리닉"
-                  }
+                }
+                let disc = 0;
+
+                if(res.data[0].listPrice > 0 && res.data[0].id !== 122){
+                    disc = res.data[0].listPrice - res.data[0].price
+                }
                 const tagManagerArgs = {
                     dataLayer: {
                         event: 'view_reservation_page',
                         items: [
-                          {
-                            item_id: res.data[0].id,
-                            item_name: res.data[0].name,
-                            price: res.data[0].price,
-                            discount: res.data[0].eventPrice,
-                            item_brand: res.data[0].store,
-                            item_variant: res.data[0].designer_name,
-                            item_category: cat
-                          }
+                            {
+                                item_id: res.data[0].id,
+                                item_name: res.data[0].name,
+                                price: res.data[0].price,
+                                discount: disc,
+                                item_brand: res.data[0].store,
+                                item_variant: res.data[0].designer_name,
+                                item_category: cat
+                            }
                         ]
                     },
                 };
                 TagManager.dataLayer(tagManagerArgs);
-                this.setState({ data: {board: res.data[0]} });
+                this.setState({ data: { board: res.data[0] } });
             }).catch((err) => {
                 console.log(err)
             });
@@ -68,15 +73,15 @@ class Reservation extends React.Component {
                     dataLayer: {
                         event: 'view_reservation_page',
                         items: [
-                          {
-                            item_id: res.data[0].id,
-                            item_name: res.data[0].content,
-                            price: res.data[0].price,
-                            discount: 0,
-                            item_brand: res.data[0].Manager.store,
-                            item_variant: res.data[0].Manager.name,
-                            item_category: "시술"
-                          }
+                            {
+                                item_id: res.data[0].id,
+                                item_name: res.data[0].content,
+                                price: res.data[0].price,
+                                discount: 0,
+                                item_brand: res.data[0].Manager.store,
+                                item_variant: res.data[0].Manager.name,
+                                item_category: "시술"
+                            }
                         ]
                     },
                 };
@@ -120,16 +125,16 @@ class Reservation extends React.Component {
                     const tagManagerArgs = {
                         dataLayer: {
                             event: 'view_reservation_change_page',
-                            transaction_id: id
+                            transaction_id: res.data[0].pay_cardtradenum
                         },
                     };
                     TagManager.dataLayer(tagManagerArgs);
                 } else {
-                    this.setState({ data: {board: res.data[0].Board}, payment_date: res.data[0].surgery_date  })
+                    this.setState({ data: { board: res.data[0].Board }, payment_date: res.data[0].surgery_date })
                     const tagManagerArgs = {
                         dataLayer: {
                             event: 'view_reservation_change_page',
-                            transaction_id: id
+                            transaction_id: res.data[0].pay_cardtradenum
                         },
                     };
                     TagManager.dataLayer(tagManagerArgs);
@@ -183,7 +188,7 @@ class Reservation extends React.Component {
         if (this.state.date && this.state.time) {
             let reservation_date = this.state.date + " " + this.state.time;
             localStorage.setItem("reservation_date", JSON.stringify(reservation_date));
-            this.setState({payment_date: reservation_date})
+            this.setState({ payment_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
             let path = window.location.pathname.split("/")[1];
             if (path === "reservation_board") {
@@ -200,19 +205,24 @@ class Reservation extends React.Component {
         let paymentid = window.location.pathname.split("/")[2];
         if (this.state.date && this.state.time) {
             let reservation_date = this.state.date + " " + this.state.time;
-             axios.patch('https://server.lowehair.kr/schedule', {
+            axios.patch('https://server.lowehair.kr/schedule', {
                 PaymentId: paymentid,
                 state: '예약변경',
                 schedule_confirm: false,
                 startTime: reservation_date,
-          }).then(()=>{
-            const tagManagerArgs = {
-                dataLayer: {
-                    event: 'reservation_change',
-                    transaction_id: paymentid
-                },
-            };
-            TagManager.dataLayer(tagManagerArgs);
+            }).then(() => {
+                axios.post("https://server.lowehair.kr/getPayment", {
+                    id: paymentid,
+                }).then((res) => {
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'reservation_change',
+                            transaction_id: res.data[0].pay_cardtradenum
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
+                })
+
                 axios.post("https://server.lowehair.kr/alert", {
                     type: "reserveChange",
                     PaymentId: paymentid,
@@ -220,14 +230,14 @@ class Reservation extends React.Component {
                     isDesigner: true,
                     isLowe: true
                 }).then((res) => {
-                    this.setState({modal: true, payment_date: reservation_date})
+                    this.setState({ modal: true, payment_date: reservation_date })
                 }).catch((err) => {
                     console.log(err)
                 })
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+            })
+                .catch((err) => {
+                    console.log(err);
+                });
         } else {
             window.alert("날짜를 선택해 주세요")
         }
@@ -246,7 +256,7 @@ class Reservation extends React.Component {
                         <RFooter gotoPayment={this.gotoPayment} changePaymentDate={this.changePaymentDate} date={this.state.date} data={this.state.data} time={this.state.time} />
                         {
                             this.state.modal ?
-                            <RModal data={this.state.data}  payment_date={this.state.payment_date} /> : null
+                                <RModal data={this.state.data} payment_date={this.state.payment_date} /> : null
                         }
                     </> : null
                 }

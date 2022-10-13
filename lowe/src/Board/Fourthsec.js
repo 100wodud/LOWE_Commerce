@@ -42,8 +42,8 @@ class Fourthsec extends Component {
                             
                                     <ScrollContainer className="recommand_scroll" style={{paddingBottom: "40px"}}>
                                     {
-                                        this.state.data.map((e => (
-                                            <Recommand key={e.id} e={e} event="click_item_recommend_product" wish="" />
+                                        this.state.data.map(((e, i) => (
+                                            <Recommand key={e.id} e={e} i={i} event="click_item_recommend_product" wish="" />
                                         )))
 
                                     }

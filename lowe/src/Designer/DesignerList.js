@@ -60,25 +60,41 @@ class DesignerList extends React.Component {
 
     onClickHerf = async () => {
         if (this.props.event === "click_designers_designer") {
+            let arr = [];
+            arr.push(this.props.data.Hashtags[0].content)
+            arr.push(this.props.data.Hashtags[1].content)
+            let procedures = [];
+            let branchs = [];
+
+            for(let m=0; m < this.props.filter.length; m++){
+                if(this.props.filter[m] === "홍대입구역" || this.props.filter[m] === "강남" || this.props.filter[m] === "신촌" || this.props.filter[m] === "합정" || this.props.filter[m] === "L7홍대" || this.props.filter[m] === "이수역"){
+                    branchs.push(this.props.filter[m])
+                } else if(this.props.filter[m] === "컷" || this.props.filter[m] === "펌" || this.props.filter[m] === "염색" || this.props.filter[m] === "클리닉"){
+                    procedures.push(this.props.filter[m])
+                }
+            }
             const tagManagerArgs = {
                 dataLayer: {
                     event: "click_designers_designer",
-                    procedures: this.props.filter,
-                    branchs: this.props.filter,
+                    procedures: procedures,
+                    branchs: branchs,
                     index: this.props.index,
                     designer: this.props.data.name,
                     branch: this.props.data.store,
-                    tags: this.props.data.Hashtags
+                    tags: arr
                 },
             };
             await TagManager.dataLayer(tagManagerArgs);
         } else if(this.props.event === "click_wish_designer"){
+            let arr = [];
+                arr.push(this.props.data.Hashtags[0].content)
+                arr.push(this.props.data.Hashtags[1].content)
             const tagManagerArgs = {
                 dataLayer: {
                     event: "click_wish_designer",
                     branch: this.props.data.store,
                     designer: this.props.data.name,
-                    tags: this.props.data.Hashtags
+                    tags: arr
                 },
             };
             await TagManager.dataLayer(tagManagerArgs);
@@ -94,26 +110,42 @@ class DesignerList extends React.Component {
 
     onClickPortfolios = (e) => (i) => async () => {
         if (window.location.pathname === "like") {
+            let arr = [];
+            arr.push(this.props.data.Hashtags[0].content)
+            arr.push(this.props.data.Hashtags[1].content)
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'click_wish_designer',
                     designer: this.props.data.name,
                     branch: this.props.data.store,
-                    tags: this.props.data.Hashtags,
+                    tags: arr,
                 },
             };
             await TagManager.dataLayer(tagManagerArgs);
         } else {
+            let arr = [];
+            arr.push(this.props.data.Hashtags[0].content)
+            arr.push(this.props.data.Hashtags[1].content)
+            let procedures = [];
+            let branchs = [];
+
+            for(let m=0; m < this.props.filter.length; m++){
+                if(this.props.filter[m] === "홍대입구역" || this.props.filter[m] === "강남" || this.props.filter[m] === "신촌" || this.props.filter[m] === "합정" || this.props.filter[m] === "L7홍대" || this.props.filter[m] === "이수역"){
+                    branchs.push(this.props.filter[m])
+                } else if(this.props.filter[m] === "컷" || this.props.filter[m] === "펌" || this.props.filter[m] === "염색" || this.props.filter[m] === "클리닉"){
+                    procedures.push(this.props.filter[m])
+                }
+            }
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'click_designers_designer_image',
-                    procedures: this.props.filter,
-                    branchs: this.props.filter,
+                    procedures: procedures,
+                    branchs: branchs,
                     designer_index: this.props.index,
                     index: i,
                     designer: this.props.data.name,
                     branch: this.props.data.store,
-                    tags: this.props.data.Hashtags,
+                    tags: arr,
                     portfolio_id: e.id
                 },
             };

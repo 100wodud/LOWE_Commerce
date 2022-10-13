@@ -43,30 +43,41 @@ class Review extends Component {
         if (window.location.pathname.split("/")[5]) {
 
             if (window.location.pathname.split("/")[6]) {
-
-            const tagManagerArgs = {
-                dataLayer: {
-                    event: 'view_item_review',
-                    item_id: window.location.pathname.split("/")[6],
-                    item_name: id,
-                    branch: '로위',
-                    designer: ManagerId
-                },
-            };
-            TagManager.dataLayer(tagManagerArgs);
+                axios.post("https://server.lowehair.kr/getPayment", {
+                    id: window.location.pathname.split("/")[5],
+                }).then((res) => {
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'view_item_review',
+                            item_id: Number(window.location.pathname.split("/")[6]),
+                            item_name: res.data[0].pay_goods,
+                            branch: res.data[0].Manager.store,
+                            designer: res.data[0].Manager.name
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
+                }).catch((err) => {
+                    console.log(err)
+                });
                 this.setState({ id: id, user: user, ManagerId: ManagerId, payment: window.location.pathname.split("/")[5], surgeryId: window.location.pathname.split("/")[6] })
             } else {
 
-                const tagManagerArgs = {
-                    dataLayer: {
-                        event: 'view_item_review',
-                        item_id: id,
-                        item_name: id,
-                        branch: '로위',
-                        designer: ManagerId
-                    },
-                };
-                TagManager.dataLayer(tagManagerArgs);
+                axios.post("https://server.lowehair.kr/getPayment", {
+                    id: window.location.pathname.split("/")[5],
+                }).then((res) => {
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'view_item_review',
+                            item_id: Number(id),
+                            item_name: res.data[0].pay_goods,
+                            branch: res.data[0].Manager.store,
+                            designer: res.data[0].Manager.name
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
+                }).catch((err) => {
+                    console.log(err)
+                });
                 this.setState({ id: id, user: user, ManagerId: ManagerId, payment: window.location.pathname.split("/")[5] })
             }
         } else {
@@ -114,16 +125,22 @@ class Review extends Component {
                             img,
                         })
                         .then((res) => {
-                            const tagManagerArgs = {
-                                dataLayer: {
-                                    event: 'complete_review',
-                                    item_id: boardid,
-                                    item_name: boardid,
-                                    branch: '로위',
-                                    designer: this.state.ManagerId
-                                },
-                            };
-                            TagManager.dataLayer(tagManagerArgs);
+                            axios.post("https://server.lowehair.kr/getPayment", {
+                                id: window.location.pathname.split("/")[5],
+                            }).then((res) => {
+                                const tagManagerArgs = {
+                                    dataLayer: {
+                                        event: 'complete_review',
+                                        item_id: Number(boardid),
+                                        item_name: res.data[0].pay_goods,
+                                        branch: res.data[0].Manager.store,
+                                        designer: res.data[0].Manager.name
+                                    },
+                                };
+                                TagManager.dataLayer(tagManagerArgs);
+                            }).catch((err) => {
+                                console.log(err)
+                            });
                             this.openmodalReview("성공")
                         });
                 } else {
@@ -143,16 +160,22 @@ class Review extends Component {
                             img,
                         })
                         .then((res) => {
-                            const tagManagerArgs = {
-                                dataLayer: {
-                                    event: 'complete_review',
-                                    item_id: this.state.surgeryId,
-                                    item_name: boardid,
-                                    branch: '로위',
-                                    designer: this.state.ManagerId
-                                },
-                            };
-                            TagManager.dataLayer(tagManagerArgs);
+                            axios.post("https://server.lowehair.kr/getPayment", {
+                                id: window.location.pathname.split("/")[5],
+                            }).then((res) => {
+                                const tagManagerArgs = {
+                                    dataLayer: {
+                                        event: 'complete_review',
+                                        item_id: Number(window.location.pathname.split("/")[6]),
+                                        item_name: res.data[0].pay_goods,
+                                        branch: res.data[0].Manager.store,
+                                        designer: res.data[0].Manager.name
+                                    },
+                                };
+                                TagManager.dataLayer(tagManagerArgs);
+                            }).catch((err) => {
+                                console.log(err)
+                            });
                             this.openmodalReview("성공")
                         });
                 }

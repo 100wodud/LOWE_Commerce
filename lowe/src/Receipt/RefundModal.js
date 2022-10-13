@@ -17,7 +17,7 @@ class RefundModal extends React.Component {
         const tagManagerArgs = {
             dataLayer: {
                 event: 'view_refund_page',
-                transaction_id: this.props.paymentid
+                transaction_id: this.props.payment.pay_cardtradenum
             },
         };
         TagManager.dataLayer(tagManagerArgs);
