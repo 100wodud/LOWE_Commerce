@@ -101,6 +101,7 @@ class Signin extends React.Component {
 
     onClickNaver = () => {
         let host = "https://server.lowehair.kr/"
+            // 테스트 페이지 네이버 소셜로그인
             // let type = '/test';
             // let client_id = 'L1LG3ZXKVBWzG4K_xg96';
             // const redirect_uri = host + 'oauth/naver' + type;;
@@ -108,6 +109,8 @@ class Signin extends React.Component {
             // if (type === '/test') client_id = '6qt2bUAEaty7WfFiqDPW';
             // const state = 'lowehair_naver_state';
             // window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
+
+        // 리얼 페이지 네이버 소셜로그인    
         const redirect_uri = host + '/oauth/naver';
         const client_id = 'L1LG3ZXKVBWzG4K_xg96';
         const state = 'lowehair_naver_state';
