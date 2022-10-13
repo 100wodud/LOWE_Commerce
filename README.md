@@ -67,7 +67,7 @@
  const redirect_uri = host + 'oauth/naver' + type;;
  if (type === '/local') client_id = '****************';
  if (type === '/test') client_id = '****************';
- const state = 'lowehair_naver_state';
+ const state = '****************';
  window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
  ```
  
@@ -75,7 +75,7 @@
 ```
  const redirect_uri = host + '/oauth/naver';
  const client_id = '****************';
- const state = 'lowehair_naver_state';
+ const state = '****************';
  window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
 ```
 
