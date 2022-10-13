@@ -78,3 +78,5 @@
  const state = 'lowehair_naver_state';
  window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${client_id}&state=${state}&redirect_uri=${redirect_uri}`;
 ```
+
+6. /pubilc/image에 내부적으로 사용하는 이미지가 전부 들어가 있습니다.
