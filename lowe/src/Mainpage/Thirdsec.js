@@ -123,8 +123,8 @@ class Thirdsec extends Component {
 
                 <ScrollContainer className="Recent_total_slide" style={{ marginTop: "20px", height: "345px" }} >
                     {this.state.review.length ?
-                        this.state.review.map((e) => (
-                            <ThirdReview e={e} key={e.id} onclickimg={this.onclickimg}  event="click_main_real_review_product" wish="click_main_real_review_product_wish" />
+                        this.state.review.map((e,i) => (
+                            <ThirdReview e={e} i={i} key={e.id} onclickimg={this.onclickimg}  event="click_main_real_review_product" wish="click_main_real_review_product_wish" />
                         )) : null
                     }
                 </ScrollContainer>

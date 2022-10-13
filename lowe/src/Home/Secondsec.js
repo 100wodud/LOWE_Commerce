@@ -38,7 +38,7 @@ class Secondsec extends Component {
                             let obj = {};
                             obj.index = i;
                             obj.item_id = res.data[i].id;
-                            obj.item_name = res.data[i].content;
+                            obj.item_name = res.data[i].name;
                             obj.price = res.data[i].price;
                             obj.item_brand = res.data[i].store;
                             obj.item_variant = res.data[i].designer_name
@@ -64,20 +64,20 @@ class Secondsec extends Component {
                     .then((res) => {
                         let boardarr = []
                         let cat = '';
-                        if(window.location.pathname.split('/')[3] ===1){
+                        if(window.location.pathname.split('/')[3] ==="1"){
                             cat = "컷";
-                        } else if(window.location.pathname.split('/')[3] ===2){
+                        } else if(window.location.pathname.split('/')[3] ==="2"){
                             cat = "펌"
-                        } else if(window.location.pathname.split('/')[3] ===3){
+                        } else if(window.location.pathname.split('/')[3] ==="3"){
                             cat = "염색"
-                        } else if(window.location.pathname.split('/')[3] ===5){
+                        } else if(window.location.pathname.split('/')[3] ==="5"){
                             cat = "클리닉"
                         }
                         for (let i = 0; i < res.data.length; i++) {
                             let obj = {};
                             obj.index = i;
                             obj.item_id = res.data[i].id;
-                            obj.item_name = res.data[i].content;
+                            obj.item_name = res.data[i].name;
                             obj.price = res.data[i].price;
                             obj.item_brand = res.data[i].store;
                             obj.item_variant = res.data[i].designer_name
@@ -277,6 +277,55 @@ class Secondsec extends Component {
                 }
             }
         }
+
+        let boardarr = []
+        let cat = '';
+        if(window.location.pathname.split('/')[3] ==="1"){
+            cat = "컷";
+        } else if(window.location.pathname.split('/')[3] ==="2"){
+            cat = "펌"
+        } else if(window.location.pathname.split('/')[3] ==="3"){
+            cat = "염색"
+        } else if(window.location.pathname.split('/')[3] ==="5"){
+            cat = "클리닉"
+        }
+        for (let i = 0; i < arr.length; i++) {
+            let obj = {};
+            obj.index = i;
+            obj.item_id = arr[i].id;
+            obj.item_name = arr[i].name;
+            obj.price = arr[i].price;
+            obj.item_brand = arr[i].store;
+            obj.item_variant = arr[i].designer_name
+
+            boardarr.push(obj);
+        }
+        let filter = []
+        filter.push(cat)
+        if(this.state.gender === 1){
+            filter.push("남성")
+        } else if(this.state.gender === 2){
+            filter.push("여성")
+        }
+        filter.push(location)
+
+        if(this.state.length === 1){
+            filter.push("숏")
+        } else if(this.state.length === 2){
+            filter.push("미들")
+        } else if(this.state.length === 3){
+            filter.push("롱")
+        }
+        const tagManagerArgs = {
+            dataLayer: {
+                event: 'view_item_list',
+                item_list_id: window.location.pathname.split('/')[3],
+                item_list_name: cat,
+                filter: filter,
+                items: boardarr
+            },
+        };
+        TagManager.dataLayer(tagManagerArgs);
         this.setState({ Showgoods: arr, modal: false, status: "최신순" })
     }
 

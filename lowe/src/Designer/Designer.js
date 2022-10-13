@@ -213,19 +213,32 @@ class Designer extends React.Component {
             let arr3 = [];
             for (let m = 0; m < board.length; m++) {
                 let obj = {}
+                let arr4 =[]
+                arr4.push(board[m].Hashtags[0].content)
+                arr4.push(board[m].Hashtags[1].content)
                 obj.index = m;
                 obj.designer = board[m].name;
                 obj.branch = board[m].store;
-                obj.tags = board[m].Hashtags;
+                obj.tags = arr4;
 
                 arr3.push(obj)
 
             }
+            let procedures = [];
+            let branchs = [];
+
+            for(let m=0; m < this.state.filterList.length; m++){
+                if(this.state.filterList[m] === "홍대입구역" || this.state.filterList[m] === "강남" || this.state.filterList[m] === "신촌" || this.state.filterList[m] === "합정" || this.state.filterList[m] === "L7홍대" || this.state.filterList[m] === "이수역"){
+                    branchs.push(this.state.filterList[m])
+                } else if(this.state.filterList[m] === "컷" || this.state.filterList[m] === "펌" || this.state.filterList[m] === "염색" || this.state.filterList[m] === "클리닉"){
+                    procedures.push(this.state.filterList[m])
+                }
+            }
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'complete_designers_filter',
-                    procedures: this.state.filterList,
-                    branchs: this.state.filterList,
+                    procedures: procedures,
+                    branchs: branchs,
                     designer: arr3
                 },
             };

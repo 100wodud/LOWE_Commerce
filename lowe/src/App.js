@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Route, Switch, withRouter} from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import moment from 'moment';
 import Home from "./Home/Home";
 import Signup from "./Sign/Signup";
@@ -45,26 +45,26 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    let lasttime =  window.localStorage.getItem("popup");
+    let lasttime = window.localStorage.getItem("popup");
     let path = window.location.pathname.split('/')[1]
     let between = 2;
     if (lasttime) {
-      between = moment(new Date(lasttime).setHours(0,0,0,0)).diff(moment(new Date().setHours(0,0,0,0)), 'days')
+      between = moment(new Date(lasttime).setHours(0, 0, 0, 0)).diff(moment(new Date().setHours(0, 0, 0, 0)), 'days')
     }
-    if(between > 0 && (path === "" || path=== "designer" || path === "board")){
-      this.setState({popup: true})
+    if (between > 0 && (path === "" || path === "designer" || path === "board")) {
+      this.setState({ popup: true })
     }
-
+    
   }
-  
-  popupClose = () =>{
-    this.setState({popup: false})
+
+  popupClose = () => {
+    this.setState({ popup: false })
     let date = new Date()
     localStorage.setItem("popup", date);
   }
 
-  closePopup = () =>{
-    this.setState({popup: false})
+  closePopup = () => {
+    this.setState({ popup: false })
   }
 
   render() {
@@ -87,7 +87,7 @@ class App extends Component {
           <Route path='/review/write/:id' component={Review} />
           <Route path='/designers' component={Designers} />
           <Route path='/designer/:id' component={Ddetail} />
-          <Route path='/promotion/moment_event'component={Promotion} />
+          <Route path='/promotion/moment_event' component={Promotion} />
           <Route path='/payment/:id' component={Payment} />
           <Route path='/mycoupons' component={Mycoupon} />
           <Route path='/myreviews' component={Myreview} />
@@ -95,7 +95,7 @@ class App extends Component {
           <Route path='/mypayments' component={PaymentList} />
           <Route path='/mypayment/:id' component={Receipt} />
           <Route path='/paymentfail' component={Paymentfail} />
-          <Route path='/promotion/spring2204'component={Promotion2} />
+          <Route path='/promotion/spring2204' component={Promotion2} />
           <Route path='/surgery/:id' component={Payment} />
           <Route path='/portfolios/:id' component={Portfolio} />
           <Route path='/portfoliolist/:id' component={Portfoliolist} />
@@ -113,7 +113,7 @@ class App extends Component {
         </Switch>
         {
           this.state.popup ?
-          <Popup dayclose={this.popupClose} close={this.closePopup}/> : null
+            <Popup dayclose={this.popupClose} close={this.closePopup} /> : null
         }
       </>
     )

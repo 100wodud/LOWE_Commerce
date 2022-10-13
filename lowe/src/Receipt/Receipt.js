@@ -78,7 +78,7 @@ class Receipt extends Component {
                     const tagManagerArgs = {
                         dataLayer: {
                             event: 'view_reservation_detail_page',
-                            transaction_id: id
+                            transaction_id: this.state.payment[0].pay_cardtradenum
                         },
                     };
                     TagManager.dataLayer(tagManagerArgs);
@@ -90,6 +90,7 @@ class Receipt extends Component {
             let recent_payment = JSON.parse(window.localStorage.getItem("recent_payment"));
             let reservation_date = JSON.parse(window.localStorage.getItem("reservation_date"));
             let userid = window.localStorage.getItem("id");
+            let uuid = window.localStorage.getItem("uuid");
             this.setState({ data: recent_payment, surgery_date: reservation_date })
             let id = window.location.pathname.split("/")[2];
             await axios.post("https://server.lowehair.kr/getPayment", {
@@ -110,26 +111,30 @@ class Receipt extends Component {
                     }
                     let c =""
                     let cd =""
-                    if(this.state.data.length){
-                        c =this.state.data.Coupons[0].data.content
-                        cd = this.state.data.Coupons[0].data.price
+                    if(res.data[0].Coupons.length > 0){
+                        c =res.data[0].Coupons[0].content
+                        cd = res.data[0].Coupons[0].price
+                    }
+                    let disc = 0;
+                    if(res.data[0].Board.listPrice > 0 && res.data[0].BoardId !== 122){
+                        disc = res.data[0].Board.listPrice - res.data[0].Board.price
                     }
 
                     const tagManagerArgs = {
                         dataLayer: {
                             event: 'purchase',
-                            user_id: res.data[0].id,
+                            user_id: uuid,
                             value: res.data[0].pay_total,
                             coupon: c,
                             coupon_discount: cd,
                             transaction_id: res.data[0].pay_cardtradenum,
-                            first_purchase: res.data[0].User.Payments.length,
+                            first_purchase: res.data[0].User.Payments.length > 0 ? true : false,
                             items: [
                                 {
                                     item_id: this.state.data.board.board.id,
                                     item_name: this.state.data.board.board.name,
                                     price: this.state.data.board.board.price,
-                                    discount: this.state.data.board.board.eventPrice,
+                                    discount: disc,
                                     item_brand: this.state.data.board.board.store,
                                     item_variant: this.state.data.board.board.designer_name,
                                     item_category: cat

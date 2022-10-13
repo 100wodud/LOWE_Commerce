@@ -25,7 +25,7 @@ class Fourthsec extends Component {
         axios.post("https://server.lowehair.kr/getPortfolio", {
             hashtag: "컷"
         }).then((res) => {
-            this.setState({ styledata: res.data.portfolio.slice(0,9) })
+            this.setState({ styledata: res.data.portfolio.slice(0, 9) })
         })
     }
 
@@ -64,7 +64,7 @@ class Fourthsec extends Component {
         })
     }
 
-    onClickDesignerAll = async() => {
+    onClickDesignerAll = async () => {
         const tagManagerArgs = {
             dataLayer: {
                 event: 'click_main_branch_popular_view_all'
@@ -74,19 +74,22 @@ class Fourthsec extends Component {
 
     }
 
-    onClickDesigner = (e) => async() => {
+    onClickDesigner = (e) => async () => {
+        let arr = [];
+        arr.push(e.Hashtags[0].content)
+        arr.push(e.Hashtags[1].content)
         const tagManagerArgs = {
             dataLayer: {
                 event: 'click_main_branch_popular_designer',
                 branch: e.store,
                 designer: e.name,
-                tags: e.Hashtags
+                tags: arr
             },
         };
         await TagManager.dataLayer(tagManagerArgs);
     }
 
-    onClickStyleAll = async() => {
+    onClickStyleAll = async () => {
         const tagManagerArgs = {
             dataLayer: {
                 event: 'click_main_style_view_all'
@@ -96,9 +99,8 @@ class Fourthsec extends Component {
 
     }
 
-    onClickStyle = (e) => (i) => async() => {
-        console.log(e, i)
-        if(e.Boards[0]){
+    onClickStyle = (e) => (i) => async () => {
+        if (e.Boards[0]) {
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'click_main_style_image',
@@ -146,9 +148,9 @@ class Fourthsec extends Component {
                 </div>
                 <div>
 
-                    <ScrollContainer className="filter_category" style={{width: "initial", marginBottom: "12px"}}>
+                    <ScrollContainer className="filter_category" style={{ width: "initial", marginBottom: "12px" }}>
                         {category.map((e, i) => (
-                            <span key={e.category} className={(this.state.category === e.category ? "category_select" : "category_nonselect")} onClick={this.onClickfilter(e.category)}  style={this.state.category === e.category ? {padding: "4px 16px 5px"}: null}>{e.category}</span>
+                            <span key={e.category} className={(this.state.category === e.category ? "category_select" : "category_nonselect")} onClick={this.onClickfilter(e.category)} style={this.state.category === e.category ? { padding: "4px 16px 5px" } : null}>{e.category}</span>
                         ))
                         }
                     </ScrollContainer>
@@ -184,33 +186,33 @@ class Fourthsec extends Component {
                     </div>
                 </div>
                 <div>
-                    <ScrollContainer className="filter_category" style={{width: "initial"}}>
+                    <ScrollContainer className="filter_category" style={{ width: "initial" }}>
                         {category2.map((e, i) => (
-                            <span key={e.category} className={(this.state.style === e.category ? "category_select" : "Portfolio_title_content")} onClick={this.onClickstylefilter(e.category)} style={{padding: "5px 12px", fontSize: "13px"}}>#{e.category}</span>
+                            <span key={e.category} className={(this.state.style === e.category ? "category_select" : "Portfolio_title_content")} onClick={this.onClickstylefilter(e.category)} style={{ padding: "5px 12px", fontSize: "13px" }}>#{e.category}</span>
                         ))
                         }
                     </ScrollContainer>
                 </div>
 
-                <div className="DMain_allmenu_style" style={{marginTop: "8px"}}>
-                        {
-                            this.state.styledata.length ?
-                                this.state.styledata.map((e , i) => (
-                                    <div key={e.id}>
-                                        <a href={`/portfolio/${e.id}`} onClick={this.onClickStyle(e)(i)}>
-                                            {
-                                                e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
-                                                    <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >
-                                                        <source src={e.img + "#t=0.5"} />
-                                                    </video> :
-                                                    <img src={e.img} alt="로위 포트폴리오 이미지" />
-                                            }
-                                        </a>
-                                    </div>
-                                ))
-                                : null
-                        }
-                    </div>
+                <div className="DMain_allmenu_style" style={{ marginTop: "8px" }}>
+                    {
+                        this.state.styledata.length ?
+                            this.state.styledata.map((e, i) => (
+                                <div key={e.id}>
+                                    <a href={`/portfolio/${e.id}`} onClick={this.onClickStyle(e)(i)}>
+                                        {
+                                            e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".avi" || e.img.slice(e.img.lastIndexOf('.'), e.img.lastIndexOf('.') + 4) === ".mp4" ?
+                                                <video preload="metadata" className="Portf_image" alt="포트폴리오 사진" >
+                                                    <source src={e.img + "#t=0.5"} />
+                                                </video> :
+                                                <img src={e.img} alt="로위 포트폴리오 이미지" />
+                                        }
+                                    </a>
+                                </div>
+                            ))
+                            : null
+                    }
+                </div>
 
             </section>
         )

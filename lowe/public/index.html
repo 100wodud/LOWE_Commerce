@@ -6,6 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+
   <script type="text/javascript">
     (function (e, t) {
       var n = e.amplitude || { _q: [], _iq: {} }; var r = t.createElement("script")
@@ -28,7 +29,7 @@
         ; var a = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset", "preInsert", "postInsert", "remove"]
         ; for (var c = 0; c < a.length; c++) { s(o, a[c]) } n.Identify = o; var u = function () {
           this._q = []
-          ; return this
+            ; return this
         }
         ; var l = ["setProductId", "setQuantity", "setPrice", "setRevenueType", "setEventProperties"]
         ; for (var p = 0; p < l.length; p++) { s(u, l[p]) } n.Revenue = u
@@ -55,16 +56,49 @@
       includeReferrer: true
     });
   </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script async defer>
+    (function () {
+      let id = window.localStorage.getItem("id");
+      let method = window.localStorage.getItem("login_method");
+      if (id) {
+         axios.post("https://server.lowehair.kr/getUser", {
+          id: Number(id), isLogin: true
+        }).then((res) => {
+          let price = 0
+          for (let i = 0; i < res.data.Payments.length; i++) {
+            price = price + Number(res.data.Payments[i].pay_total)
+          }
+          dataLayer = [{
+            user_id: res.data.uuid,
+            purchase_count: res.data.Payments.length,
+            purchase_price: price,
+            review_count: res.data.Reviews.length,
+            remain_review_count: res.data.Payments.length - res.data.Reviews.length,
+            method: method,
+          }]
+        })
+      }
+    })()
+  </script>
+
   <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-WRJWJNJ');</script>
+  <script>setTimeout(() => {(
+    function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-WRJWJNJ');
+  }, 200);</script>
   <!-- End Google Tag Manager -->
+
+
+
   <meta charset="utf-8" />
   <meta name="google-site-verification" content="WmZ_3B19ksSM8Oi9p81byMuNCoplFUE2LfCA43mAIgs" />
   <title>로위 - 헤어스타일 스토어</title>
@@ -96,17 +130,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160614766-3"></script>
   <meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-160614766-3');
-  </script>
-
   <script language="JavaScript">
     Number.prototype.comma = function () {
       return this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -117,11 +141,6 @@
       return this.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
   </script>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRJWJNJ" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
 </head>
 
 <body>
@@ -148,7 +167,7 @@
       if (window.location.pathname.split("/")[1] === "receipt") {
         var _nasa = {};
         if (window.wcs) _nasa["cnv"] = wcs.cnv("1", e);
-        
+
         if (!wcs_add) var wcs_add = {};
         wcs_add["wa"] = "s_49d1d4f99b44";
         if (!_nasa) var _nasa = {};

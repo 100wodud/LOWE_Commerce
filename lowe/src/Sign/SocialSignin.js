@@ -6,6 +6,7 @@ import SocialFirst from "./SocialFirst";
 import SocialSecond from "./SocialSecond";
 import moment from 'moment';
 import TagManager from "react-gtm-module";
+import { v4 as uuid } from 'uuid';
 
 class SocialSignin extends React.Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class SocialSignin extends React.Component {
                 const tagManagerArgs = {
                     dataLayer: {
                         event: 'login',
-                        user_id: res.data.id,
+                        user_id: res.data.uuid,
                         purchase_count: res.data.Payments.length,
                         purchase_price: price,
                         review_count: res.data.Reviews.length,
@@ -49,7 +50,9 @@ class SocialSignin extends React.Component {
                 };
                 TagManager.dataLayer(tagManagerArgs);
                 setTimeout(() => {
+                    window.localStorage.setItem("uuid", res.data.uuid);
                     window.localStorage.setItem("id", id);
+                    window.localStorage.setItem("login_method", "naver");
                     window.history.go(-2)
                 }, 1500);
             })
@@ -71,6 +74,7 @@ class SocialSignin extends React.Component {
             birthday: e.birth.slice(0, 4) + '-' + e.birth.slice(4, 6) + '-' + e.birth.slice(6, 8),
             gender: Number(e.gender),
             agree: this.state.agree5,
+            uuid: uuid()
         }).then((res) => {
             let date = new Date();
             let expired = moment(date).add(3, "months")

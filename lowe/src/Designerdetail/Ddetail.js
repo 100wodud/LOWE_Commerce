@@ -62,13 +62,15 @@ class Ddetail extends Component {
                 coupon = JSON.parse(res.data[0].coupons)
             }
             this.setState({ data: res.data[0], coupon: coupon })
-
+            let arr = []
+            arr.push(res.data[0].Hashtags[0].content);
+            arr.push(res.data[0].Hashtags[1].content);
             const tagManagerArgs = {
                 dataLayer: {
                     event: 'view_designer',
                     branch: res.data[0].store,
                     designer: res.data[0].name,
-                    tags: res.data[0].Hashtags
+                    tags: arr
                 },
             };
             TagManager.dataLayer(tagManagerArgs);

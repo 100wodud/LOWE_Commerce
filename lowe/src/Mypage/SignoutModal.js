@@ -21,6 +21,8 @@ class SignoutModal extends React.Component {
             funnel=''
         }
         window.localStorage.removeItem("id");
+        window.localStorage.removeItem("uuid");
+        window.localStorage.removeItem("login_method");
         window.location.href = `/${funnel}`
     }
 

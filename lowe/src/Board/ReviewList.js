@@ -36,7 +36,7 @@ class ReviewList extends Component {
   }
 
   componentDidMount = () => {
-    if (window.location.pathname.indexOf("designer") !== -1) {
+    if (window.location.pathname.indexOf("designer") !== -1 && window.location.href.indexOf("#Ddetailreviews") !== -1) {
       const tagManagerArgs = {
         dataLayer: {
           event: 'view_designer_reviewtab',

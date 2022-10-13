@@ -6,6 +6,7 @@ import SignupModal from "./SignupModal";
 import ModalPhone from "./ModalPhone";
 import moment from 'moment';
 import TagManager from "react-gtm-module";
+import { v4 as uuid } from 'uuid';
 
 class Signup extends React.Component {
     constructor(props) {
@@ -270,7 +271,8 @@ class Signup extends React.Component {
                 birthday: this.state.birthday.slice(0, 4) + '-' + this.state.birthday.slice(4, 6) + '-' + this.state.birthday.slice(6, 8),
                 gender: gender,
                 agree: this.state.agree5,
-                email: this.state.email
+                email: this.state.email,
+                uuid: uuid()
             }).then((res) => {
                 if (res.data.status === "false") {
                     this.setState({
@@ -303,10 +305,10 @@ class Signup extends React.Component {
                         const tagManagerArgs = {
                             dataLayer: {
                                 event: 'sign_up',
-                                user_id: this.state.login_id,
+                                user_id: res.data.uuid,
                                 event_receive_agreement: this.state.agree5,
                                 date: ndate,
-                                method: 'email'
+                                method: 'general'
                             },
                         };
                         TagManager.dataLayer(tagManagerArgs);

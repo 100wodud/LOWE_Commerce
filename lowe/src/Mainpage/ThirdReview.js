@@ -48,41 +48,46 @@ class ThirdReview extends Component {
                 user: user,
                 heart: like
             }).then((res) => {
-              if(res.data){
-                window.naverInnerScript(2)
-              }
+                if (res.data) {
+                    window.naverInnerScript(2)
+                    axios.post("https://server.lowehair.kr/getOneUser", {
+                        id: res.data.UserId
+                    }).then((res) => {
+                        let tagManagerArgs = {}
+                        if (this.props.wish === "click_main_real_review_product_wish") {
+                            tagManagerArgs = {
+                                dataLayer: {
+                                    event: this.props.wish,
+                                    item_id: this.props.e.Board.id,
+                                    item_name: this.props.e.Board.name,
+                                    price: this.props.e.Board.price,
+                                    branch: this.props.e.Board.store,
+                                    designer: this.props.e.Board.designer_name,
+                                    index: this.props.i,
+                                    name: this.props.e.User.login_id ? this.props.e.User.login_id : this.props.e.User.name
+                                },
+                            };
+                        } else {
+                            tagManagerArgs = {
+                                dataLayer: {
+                                    event: this.props.wish,
+                                    item_id: this.props.e.Board.id,
+                                    item_name: this.props.e.Board.name,
+                                    price: this.props.e.Board.price,
+                                    item_brand: this.props.e.Board.store,
+                                    item_variant: this.props.e.Board.designer_name,
+                                    index: this.props.i,
+                                    name: res.data[0].name
+                                },
+                            };
+                        }
+                        TagManager.dataLayer(tagManagerArgs);
+
+                    })
+                }
                 this.setState({ like: !this.state.like })
             });
         }
-        let cat = ""
-        if (window.location.pathname.split('/')[3] === "event") {
-          cat = "이벤트"
-        } else if (window.location.pathname.split('/')[3] === 1 || this.props.e.category === 1) {
-          cat = "컷";
-        } else if (window.location.pathname.split('/')[3] === 2 || this.props.e.category === 2) {
-          cat = "펌"
-        } else if (window.location.pathname.split('/')[3] === 3 || this.props.e.category === 3) {
-          cat = "염색"
-        } else if (window.location.pathname.split('/')[3] === 5 || this.props.e.category === 5) {
-          cat = "클리닉"
-        }
-        const tagManagerArgs = {
-          dataLayer: {
-            event: this.props.wish,
-            items: [
-              {
-                index: this.props.i,
-                item_id: this.props.e.id,
-                item_name: this.props.e.name,
-                price: this.props.e.price,
-                item_brand: this.props.e.store,
-                item_variant: this.props.e.designer_name,
-                item_category: [cat]
-              }
-            ]
-          },
-        };
-        TagManager.dataLayer(tagManagerArgs);
     }
 
     onclickRecently = async () => {
@@ -98,36 +103,61 @@ class ThirdReview extends Component {
             recently.unshift(id);
         }
         localStorage.setItem("recent", JSON.stringify(recently));
-        localStorage.setItem("recent", JSON.stringify(recently));
         let cat = ""
-          if (window.location.pathname.split('/')[3] === "event") {
+        if (window.location.pathname.split('/')[3] === "event") {
             cat = "이벤트"
-          } else if (window.location.pathname.split('/')[3] === 1 || this.props.e.category === 1) {
+        } else if (window.location.pathname.split('/')[3] === 1 || this.props.e.Board.category === 1) {
             cat = "컷";
-          } else if (window.location.pathname.split('/')[3] === 2 || this.props.e.category === 2) {
+        } else if (window.location.pathname.split('/')[3] === 2 || this.props.e.Board.category === 2) {
             cat = "펌"
-          } else if (window.location.pathname.split('/')[3] === 3 || this.props.e.category === 3) {
+        } else if (window.location.pathname.split('/')[3] === 3 || this.props.e.Board.category === 3) {
             cat = "염색"
-          } else if (window.location.pathname.split('/')[3] === 5 || this.props.e.category === 5) {
+        } else if (window.location.pathname.split('/')[3] === 5 || this.props.e.Board.category === 5) {
             cat = "클리닉"
-          }
-        const tagManagerArgs = {
-          dataLayer: {
-            event: this.props.event,
-            items: [
-              {
-                index: this.props.i,
-                item_id: this.props.e.id,
-                item_name: this.props.e.name,
-                price: this.props.e.price,
-                item_brand: this.props.e.store,
-                item_variant: this.props.e.designer_name,
-                item_category: [cat]
-              }
-            ]
-          },
-        };
-        TagManager.dataLayer(tagManagerArgs);
+        }
+        axios.post("https://server.lowehair.kr/getOneUser", {
+            id: this.props.e.id
+        }).then((res) => {
+            let tagManagerArgs = {}
+            if (this.props.event === "click_main_real_review_product") {
+                tagManagerArgs = {
+                    dataLayer: {
+                        event: this.props.event,
+                        items: [
+                            {
+                                index: this.props.i,
+                                item_id: this.props.e.Board.id,
+                                item_name: this.props.e.Board.name,
+                                price: this.props.e.Board.price,
+                                item_brand: this.props.e.Board.store,
+                                item_variant: this.props.e.Board.designer_name,
+                                item_category: [cat],
+                                name: this.props.e.User.login_id ? this.props.e.User.login_id : this.props.e.User.name
+                            }
+                        ]
+                    },
+                };
+            } else {
+                tagManagerArgs = {
+                    dataLayer: {
+                        event: this.props.event,
+                        items: [
+                            {
+                                index: this.props.i,
+                                item_id: this.props.e.Board.id,
+                                item_name: this.props.e.Board.name,
+                                price: this.props.e.Board.price,
+                                item_brand: this.props.e.Board.store,
+                                item_variant: this.props.e.Board.designer_name,
+                                item_category: [cat],
+                                name: res.data[0].name
+                            }
+                        ]
+                    },
+                };
+            }
+            TagManager.dataLayer(tagManagerArgs);
+        })
     }
 
     openmodalPhone = (e) => (v) => {
@@ -150,15 +180,15 @@ class ThirdReview extends Component {
                         </span>
                     </div>
                     <div className="Mainpage_third_review_div_div2">
-                        <a onClick={this.onclickRecently} href={`/board/${this.props.e.Board.id}`} >
+                        <a href={`/board/${this.props.e.Board.id}`}>
                             <div className="Mainpage_third_review_board" style={{ paddingLeft: "12px" }}>
                                 <div>
-                                    <img className="Mainpage_third_review_board_thumb" src={this.props.e.Board.thumbnail} alt="thumbnail" />
+                                    <img onClick={this.onclickRecently} className="Mainpage_third_review_board_thumb" src={this.props.e.Board.thumbnail} alt="thumbnail" />
                                 </div>
                                 <div className="Mainpage_third_review_board_content">
-                                    <div className="Mainpage_third_review_board_designer"><strong>{this.props.e.Board.designer_name} {this.props.e.Manager.rank}</strong> {this.props.e.Board.store}</div>
-                                    <div className="Mainpage_third_review_board_name">{this.props.e.Board.name}</div>
-                                    <div className="Mainpage_third_review_board_price">{this.props.e.Board.eventType ? <span>{this.props.e.Board.eventPrice + "%"}</span> : null}{this.props.e.Board.price.comma()}</div>
+                                    <div onClick={this.onclickRecently} className="Mainpage_third_review_board_designer"><strong>{this.props.e.Board.designer_name} {this.props.e.Manager.rank}</strong> {this.props.e.Board.store}</div>
+                                    <div onClick={this.onclickRecently} className="Mainpage_third_review_board_name">{this.props.e.Board.name}</div>
+                                    <div onClick={this.onclickRecently} className="Mainpage_third_review_board_price">{this.props.e.Board.eventType ? <span>{this.props.e.Board.eventPrice + "%"}</span> : null}{this.props.e.Board.price.comma()}</div>
                                 </div>
                                 <div className="Mainpage_third_review_board_like">
                                     {user ?

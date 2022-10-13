@@ -63,28 +63,6 @@ class Mainpage extends Component {
                 .then((res) => {
                     let arr = [];
                     let boardarr = []
-                    for (let i = 0; i < res.data.boards.length; i++) {
-                        if (res.data.boards[i].open === '1') {
-                            let obj = {};
-                            obj.index = i;
-                            obj.item_id = res.data.boards[i].id;
-                            obj.item_name = res.data.boards[i].content;
-                            obj.price = res.data.boards[i].price;
-                            obj.item_brand = res.data.boards[i].store;
-                            obj.item_variant = res.data.boards[i].designer_name
-
-                            boardarr.push(obj);
-                            arr.push(res.data.boards[i])
-                        }
-                    }
-                    const tagManagerArgs = {
-                        dataLayer: {
-                            event: 'search',
-                            keyword: funnel,
-                            items: boardarr
-                        },
-                    };
-                    TagManager.dataLayer(tagManagerArgs);
                     let userid = Number(window.localStorage.getItem("id"));
                     if (userid) {
                         axios.post("https://server.lowehair.kr/click", {
@@ -99,7 +77,8 @@ class Mainpage extends Component {
                         })
                     }
                     window.localStorage.setItem("recentWord", JSON.stringify(recent));
-                    arr.sort(function (a, b) {
+                    let boards = res.data.boards
+                    boards.sort(function (a, b) {
                         let alike = 0;
                         let blike = 0;
                         for (let i = 0; i < a.Wishes.length; i++) {
@@ -120,6 +99,29 @@ class Mainpage extends Component {
                         }
                         return 0;
                     })
+
+                    for (let i = 0; i < boards.length; i++) {
+                        if (boards[i].open === '1') {
+                            let obj = {};
+                            obj.index = i;
+                            obj.item_id = boards[i].id;
+                            obj.item_name = boards[i].name;
+                            obj.price = boards[i].price;
+                            obj.item_brand = boards[i].store;
+                            obj.item_variant = boards[i].designer_name
+
+                            boardarr.push(obj);
+                            arr.push(boards[i])
+                        }
+                    }
+                    const tagManagerArgs = {
+                        dataLayer: {
+                            event: 'search',
+                            keyword: funnel,
+                            items: boardarr
+                        },
+                    };
+                    TagManager.dataLayer(tagManagerArgs);
                     this.setState({ data: arr, result: true, recent: recent, showdata: arr })
                 })
                 .catch(err => {

@@ -16,6 +16,8 @@
 .goods_like {
     text-align: right;
     z-index: 100;
+    position: relative;
+    z-index: 100;
 }
 
 .goods_title {
